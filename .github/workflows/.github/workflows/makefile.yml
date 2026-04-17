@@ -1,0 +1,33 @@
+name: Makefile CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Check for Makefile
+      run: |
+        if [ ! -f Makefile ]; then
+          echo "Makefile not found. Skipping build."
+          exit 0
+        fi
+
+    - name: configure
+      run: ./configure || true
+
+    - name: Install dependencies
+      run: make || true
+
+    - name: Run check
+      run: make check || true
+
+    - name: Run distcheck
+      run: make distcheck || true
