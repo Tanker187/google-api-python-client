@@ -22,6 +22,10 @@ on:
     - cron:  '0 7 * * 2'
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   build:
     name: Update Discovery Artifacts PR
