@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #eef2fa; }
+        .weather-box { background: white; padding: 2em; max-width: 370px; margin: 4em auto; border-radius: 1em; box-shadow: 0 4px 8px #0001; }
+        #result { margin-top: 2em; }
+        img { height: 48px; }
+    </style>
+</head>
+<body>
+    <div class="weather-box">
+        <h2>Weather Dashboard</h2>
+        <input type="text" id="city" placeholder="Enter city" />
+        <button onclick="getWeather()">Get Weather</button>
+        <div id="result"></div>
+    </div>
+    <script>
+        function getWeather() {
+            const city = document.getElementById('city').value;
+            if (!city) {
+                alert('Please enter a city');
+                return;
+            }
+
+            fetch(`/weather?city=${encodeURIComponent(city)}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.error) {
+                        document.getElementById('result').innerHTML = `<b>${data.error}</b>`;
+                    } else {
+                        document.getElementById('result').innerHTML = `
+                            <h3>${data.city}</h3>
+                            <img src="https://openweathermap.org/img/wn/${data.icon}@2x.png" alt="icon" />
+                            <p>
+                                ${data.temperature}°C, ${data.description}<br>
+                                Humidity: ${data.humidity}%<br>
+                                Wind: ${data.wind} m/s
+                            </p>
+                        `;
+                    }
+                });
+        }
+    </script>
+</body>
+</html>
