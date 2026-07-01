@@ -427,6 +427,7 @@ Args:
     &quot;A String&quot;,
   ],
   &quot;pemCsr&quot;: &quot;A String&quot;, # Immutable. A pem-encoded X.509 certificate signing request (CSR).
+  &quot;requestedNotBeforeTime&quot;: &quot;A String&quot;, # Optional. The requested not_before_time of this Certificate. This field may only be set if the CaPool.IssuancePolicy.allow_requester_specified_not_before_time field is set to true for the issuing CaPool. If this field is specified, the certificate will be issued with this &#x27;not_before_time&#x27;. If this is not specified, the &#x27;not_before_time&#x27; will be set to the issuance time or issuance time minus backdate_duration depending on the CaPool configuration.
   &quot;revocationDetails&quot;: { # Describes fields that are relavent to the revocation of a Certificate. # Output only. Details regarding the revocation of this Certificate. This Certificate is considered revoked if and only if this field is present.
     &quot;revocationState&quot;: &quot;A String&quot;, # Indicates why a Certificate was revoked.
     &quot;revocationTime&quot;: &quot;A String&quot;, # The time at which this Certificate was revoked.
@@ -764,6 +765,7 @@ Returns:
     &quot;A String&quot;,
   ],
   &quot;pemCsr&quot;: &quot;A String&quot;, # Immutable. A pem-encoded X.509 certificate signing request (CSR).
+  &quot;requestedNotBeforeTime&quot;: &quot;A String&quot;, # Optional. The requested not_before_time of this Certificate. This field may only be set if the CaPool.IssuancePolicy.allow_requester_specified_not_before_time field is set to true for the issuing CaPool. If this field is specified, the certificate will be issued with this &#x27;not_before_time&#x27;. If this is not specified, the &#x27;not_before_time&#x27; will be set to the issuance time or issuance time minus backdate_duration depending on the CaPool configuration.
   &quot;revocationDetails&quot;: { # Describes fields that are relavent to the revocation of a Certificate. # Output only. Details regarding the revocation of this Certificate. This Certificate is considered revoked if and only if this field is present.
     &quot;revocationState&quot;: &quot;A String&quot;, # Indicates why a Certificate was revoked.
     &quot;revocationTime&quot;: &quot;A String&quot;, # The time at which this Certificate was revoked.
@@ -1104,6 +1106,7 @@ Returns:
     &quot;A String&quot;,
   ],
   &quot;pemCsr&quot;: &quot;A String&quot;, # Immutable. A pem-encoded X.509 certificate signing request (CSR).
+  &quot;requestedNotBeforeTime&quot;: &quot;A String&quot;, # Optional. The requested not_before_time of this Certificate. This field may only be set if the CaPool.IssuancePolicy.allow_requester_specified_not_before_time field is set to true for the issuing CaPool. If this field is specified, the certificate will be issued with this &#x27;not_before_time&#x27;. If this is not specified, the &#x27;not_before_time&#x27; will be set to the issuance time or issuance time minus backdate_duration depending on the CaPool configuration.
   &quot;revocationDetails&quot;: { # Describes fields that are relavent to the revocation of a Certificate. # Output only. Details regarding the revocation of this Certificate. This Certificate is considered revoked if and only if this field is present.
     &quot;revocationState&quot;: &quot;A String&quot;, # Indicates why a Certificate was revoked.
     &quot;revocationTime&quot;: &quot;A String&quot;, # The time at which this Certificate was revoked.
@@ -1118,7 +1121,7 @@ Returns:
   <pre>Lists Certificates.
 
 Args:
-  parent: string, Required. The resource name of the parent associated with the Certificates, in the format `projects/*/locations/*/caPools/*`. The parent resource name can be in one of two forms: 1. **Specific CA Pool:** To list certificates within a single CA Pool: `projects/*/locations/*/caPools/*` 2. **All CA Pools in a Location:** To list certificates across *all* CA Pools in a given project and location, use the wildcard character (`-`) in place of the CA Pool ID. Example: `projects/*/locations/*/caPools/-` See go/ccfe-nested-collections#aggregate-listing for more details. (required)
+  parent: string, Required. The resource name of the parent associated with the Certificates, in the format `projects/*/locations/*/caPools/*`. The parent resource name can be in one of two forms: 1. **Specific CA Pool:** To list certificates within a single CA Pool: `projects/*/locations/*/caPools/*` 2. **All CA Pools in a Location:** To list certificates across *all* CA Pools in a given project and location, use the wildcard character (`-`) in place of the CA Pool ID. Example: `projects/*/locations/*/caPools/-` (required)
   filter: string, Optional. Only include resources that match the filter in the response. For details on supported filters and syntax, see [Certificates Filtering documentation](https://cloud.google.com/certificate-authority-service/docs/sorting-filtering-certificates#filtering_support).
   orderBy: string, Optional. Specify how the results should be sorted. For details on supported fields and syntax, see [Certificates Sorting documentation](https://cloud.google.com/certificate-authority-service/docs/sorting-filtering-certificates#sorting_support).
   pageSize: integer, Optional. Limit on the number of Certificates to include in the response. Further Certificates can subsequently be obtained by including the ListCertificatesResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
@@ -1450,6 +1453,7 @@ Returns:
         &quot;A String&quot;,
       ],
       &quot;pemCsr&quot;: &quot;A String&quot;, # Immutable. A pem-encoded X.509 certificate signing request (CSR).
+      &quot;requestedNotBeforeTime&quot;: &quot;A String&quot;, # Optional. The requested not_before_time of this Certificate. This field may only be set if the CaPool.IssuancePolicy.allow_requester_specified_not_before_time field is set to true for the issuing CaPool. If this field is specified, the certificate will be issued with this &#x27;not_before_time&#x27;. If this is not specified, the &#x27;not_before_time&#x27; will be set to the issuance time or issuance time minus backdate_duration depending on the CaPool configuration.
       &quot;revocationDetails&quot;: { # Describes fields that are relavent to the revocation of a Certificate. # Output only. Details regarding the revocation of this Certificate. This Certificate is considered revoked if and only if this field is present.
         &quot;revocationState&quot;: &quot;A String&quot;, # Indicates why a Certificate was revoked.
         &quot;revocationTime&quot;: &quot;A String&quot;, # The time at which this Certificate was revoked.
@@ -1805,6 +1809,7 @@ Args:
     &quot;A String&quot;,
   ],
   &quot;pemCsr&quot;: &quot;A String&quot;, # Immutable. A pem-encoded X.509 certificate signing request (CSR).
+  &quot;requestedNotBeforeTime&quot;: &quot;A String&quot;, # Optional. The requested not_before_time of this Certificate. This field may only be set if the CaPool.IssuancePolicy.allow_requester_specified_not_before_time field is set to true for the issuing CaPool. If this field is specified, the certificate will be issued with this &#x27;not_before_time&#x27;. If this is not specified, the &#x27;not_before_time&#x27; will be set to the issuance time or issuance time minus backdate_duration depending on the CaPool configuration.
   &quot;revocationDetails&quot;: { # Describes fields that are relavent to the revocation of a Certificate. # Output only. Details regarding the revocation of this Certificate. This Certificate is considered revoked if and only if this field is present.
     &quot;revocationState&quot;: &quot;A String&quot;, # Indicates why a Certificate was revoked.
     &quot;revocationTime&quot;: &quot;A String&quot;, # The time at which this Certificate was revoked.
@@ -2140,6 +2145,7 @@ Returns:
     &quot;A String&quot;,
   ],
   &quot;pemCsr&quot;: &quot;A String&quot;, # Immutable. A pem-encoded X.509 certificate signing request (CSR).
+  &quot;requestedNotBeforeTime&quot;: &quot;A String&quot;, # Optional. The requested not_before_time of this Certificate. This field may only be set if the CaPool.IssuancePolicy.allow_requester_specified_not_before_time field is set to true for the issuing CaPool. If this field is specified, the certificate will be issued with this &#x27;not_before_time&#x27;. If this is not specified, the &#x27;not_before_time&#x27; will be set to the issuance time or issuance time minus backdate_duration depending on the CaPool configuration.
   &quot;revocationDetails&quot;: { # Describes fields that are relavent to the revocation of a Certificate. # Output only. Details regarding the revocation of this Certificate. This Certificate is considered revoked if and only if this field is present.
     &quot;revocationState&quot;: &quot;A String&quot;, # Indicates why a Certificate was revoked.
     &quot;revocationTime&quot;: &quot;A String&quot;, # The time at which this Certificate was revoked.
@@ -2488,6 +2494,7 @@ Returns:
     &quot;A String&quot;,
   ],
   &quot;pemCsr&quot;: &quot;A String&quot;, # Immutable. A pem-encoded X.509 certificate signing request (CSR).
+  &quot;requestedNotBeforeTime&quot;: &quot;A String&quot;, # Optional. The requested not_before_time of this Certificate. This field may only be set if the CaPool.IssuancePolicy.allow_requester_specified_not_before_time field is set to true for the issuing CaPool. If this field is specified, the certificate will be issued with this &#x27;not_before_time&#x27;. If this is not specified, the &#x27;not_before_time&#x27; will be set to the issuance time or issuance time minus backdate_duration depending on the CaPool configuration.
   &quot;revocationDetails&quot;: { # Describes fields that are relavent to the revocation of a Certificate. # Output only. Details regarding the revocation of this Certificate. This Certificate is considered revoked if and only if this field is present.
     &quot;revocationState&quot;: &quot;A String&quot;, # Indicates why a Certificate was revoked.
     &quot;revocationTime&quot;: &quot;A String&quot;, # The time at which this Certificate was revoked.

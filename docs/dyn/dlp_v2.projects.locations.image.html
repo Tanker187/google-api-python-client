@@ -156,6 +156,20 @@ Args:
           },
         },
         &quot;exclusionType&quot;: &quot;A String&quot;, # If set to EXCLUSION_TYPE_EXCLUDE this infoType will not cause a finding to be returned. It still can be used for rules matching. Only supported for the `dictionary`, `regex`, and `stored_type` CustomInfoTypes.
+        &quot;fileLabelInfoType&quot;: { # Configuration for a custom infoType that detects file labels. # File label to detect.
+          &quot;googleDriveLabel&quot;: { # Google Drive labels published by Google. # Google Drive labels published by Google.
+            &quot;labelFieldsToMatch&quot;: [ # The field values of the Google Drive label to match.
+              { # The field values of the Google Drive label to match.
+                &quot;id&quot;: &quot;A String&quot;, # The identifier of the Label Field.
+                &quot;value&quot;: &quot;A String&quot;, # The value of the Label Field to match.
+              },
+            ],
+            &quot;labelId&quot;: &quot;A String&quot;, # The [label ID](https://developers.google.com/workspace/drive/labels/guides/overview) of the Google Drive label.
+          },
+          &quot;sensitivityLabel&quot;: { # Sensitivity labels published by Microsoft. # Sensitivity labels published by Microsoft.
+            &quot;guid&quot;: &quot;A String&quot;, # The GUID of the sensitivity label.
+          },
+        },
         &quot;infoType&quot;: { # Type of information detected by the API. # CustomInfoType can either be a new infoType, or an extension of built-in infoType, when the name matches one of existing infoTypes and that infoType is specified in `InspectContent.info_types` field. Specifying the latter adds findings to the one detected by the system. If built-in info type is not specified in `InspectContent.info_types` list then the name is treated as a custom info type.
           &quot;name&quot;: &quot;A String&quot;, # Name of the information type. Either a name of your choosing when creating a CustomInfoType, or one of the names listed at https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference when specifying a built-in type. When sending Cloud DLP results to Data Catalog, infoType names should conform to the pattern `[A-Za-z0-9$_-]{1,64}`.
           &quot;sensitivityScore&quot;: { # Score is calculated from of all elements in the data profile. A higher level means the data is more sensitive. # Optional custom sensitivity for this InfoType. This only applies to data profiling.
@@ -411,9 +425,17 @@ Returns:
           },
           &quot;contentLocations&quot;: [ # List of nested objects pointing to the precise location of the finding within the file or record.
             { # Precise location of the finding within a document, record, image, or metadata container.
+              &quot;batchContentLocation&quot;: { # Location within a batch of content. # Location within a batch of content.
+                &quot;itemIndex&quot;: 42, # Matches an index of a batch item in the batch provided in the request.
+              },
               &quot;containerName&quot;: &quot;A String&quot;, # Name of the container where the finding is located. The top level name is the source file name or table name. Names of some common storage containers are formatted as follows: * BigQuery tables: `{project_id}:{dataset_id}.{table_id}` * Cloud Storage files: `gs://{bucket}/{path}` * Datastore namespace: {namespace} Nested names could be absent if the embedded object has no string identifier (for example, an image contained within a document).
               &quot;containerTimestamp&quot;: &quot;A String&quot;, # Finding container modification timestamp, if applicable. For Cloud Storage, this field contains the last file modification timestamp. For a BigQuery table, this field contains the last_modified_time property. For Datastore, this field isn&#x27;t populated.
               &quot;containerVersion&quot;: &quot;A String&quot;, # Finding container version, if available (&quot;generation&quot; for Cloud Storage).
+              &quot;conversationLocation&quot;: { # Location within a conversation. # Location within a conversation.
+                &quot;allMessages&quot;: { # If set, indicates that the finding applies to all messages in the conversation. # If set, indicates that the finding applies to all messages in the conversation.
+                },
+                &quot;messageIndex&quot;: 42, # Matches an index of a message in the conversation provided in the request.
+              },
               &quot;documentLocation&quot;: { # Location of a finding within a document. # Location data for document files.
                 &quot;fileOffset&quot;: &quot;A String&quot;, # Offset of the line, from the beginning of the file, where the finding is located.
               },

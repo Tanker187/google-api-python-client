@@ -15,7 +15,7 @@
 "baseUrl": "https://aiplatform.googleapis.com/",
 "batchPath": "batch",
 "canonicalName": "Aiplatform",
-"description": "Train high-quality custom machine learning models with minimal machine learning expertise and effort.",
+"description": "Build, scale, govern, and optimize sophisticated agents and models.",
 "discoveryVersion": "v1",
 "documentationLink": "https://cloud.google.com/vertex-ai/",
 "endpoints": [
@@ -5784,6 +5784,166 @@
 }
 }
 },
+"onlineEvaluators": {
+"resources": {
+"operations": {
+"methods": {
+"cancel": {
+"description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
+"flatPath": "v1/onlineEvaluators/{onlineEvaluatorsId}/operations/{operationsId}:cancel",
+"httpMethod": "POST",
+"id": "aiplatform.onlineEvaluators.operations.cancel",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "The name of the operation resource to be cancelled.",
+"location": "path",
+"pattern": "^onlineEvaluators/[^/]+/operations/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}:cancel",
+"response": {
+"$ref": "GoogleProtobufEmpty"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"delete": {
+"description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+"flatPath": "v1/onlineEvaluators/{onlineEvaluatorsId}/operations/{operationsId}",
+"httpMethod": "DELETE",
+"id": "aiplatform.onlineEvaluators.operations.delete",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "The name of the operation resource to be deleted.",
+"location": "path",
+"pattern": "^onlineEvaluators/[^/]+/operations/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}",
+"response": {
+"$ref": "GoogleProtobufEmpty"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"get": {
+"description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+"flatPath": "v1/onlineEvaluators/{onlineEvaluatorsId}/operations/{operationsId}",
+"httpMethod": "GET",
+"id": "aiplatform.onlineEvaluators.operations.get",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "The name of the operation resource.",
+"location": "path",
+"pattern": "^onlineEvaluators/[^/]+/operations/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}",
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"list": {
+"description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+"flatPath": "v1/onlineEvaluators/{onlineEvaluatorsId}/operations",
+"httpMethod": "GET",
+"id": "aiplatform.onlineEvaluators.operations.list",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"filter": {
+"description": "The standard list filter.",
+"location": "query",
+"type": "string"
+},
+"name": {
+"description": "The name of the operation's parent resource.",
+"location": "path",
+"pattern": "^onlineEvaluators/[^/]+$",
+"required": true,
+"type": "string"
+},
+"pageSize": {
+"description": "The standard list page size.",
+"format": "int32",
+"location": "query",
+"type": "integer"
+},
+"pageToken": {
+"description": "The standard list page token.",
+"location": "query",
+"type": "string"
+},
+"returnPartialSuccess": {
+"description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+"location": "query",
+"type": "boolean"
+}
+},
+"path": "v1/{+name}/operations",
+"response": {
+"$ref": "GoogleLongrunningListOperationsResponse"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"wait": {
+"description": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.",
+"flatPath": "v1/onlineEvaluators/{onlineEvaluatorsId}/operations/{operationsId}:wait",
+"httpMethod": "POST",
+"id": "aiplatform.onlineEvaluators.operations.wait",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "The name of the operation resource to wait on.",
+"location": "path",
+"pattern": "^onlineEvaluators/[^/]+/operations/[^/]+$",
+"required": true,
+"type": "string"
+},
+"timeout": {
+"description": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.",
+"format": "google-duration",
+"location": "query",
+"type": "string"
+}
+},
+"path": "v1/{+name}:wait",
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+}
+}
+}
+}
+},
 "operations": {
 "methods": {
 "cancel": {
@@ -6539,6 +6699,34 @@
 "https://www.googleapis.com/auth/cloud-platform"
 ]
 },
+"generateLossClusters": {
+"description": "Generates loss clusters from evaluation results. This is a statelss API method that would not modify the EvaluationSet resource.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}:generateLossClusters",
+"httpMethod": "POST",
+"id": "aiplatform.projects.locations.generateLossClusters",
+"parameterOrder": [
+"location"
+],
+"parameters": {
+"location": {
+"description": "Required. The resource name of the Location. Format: `projects/{project}/locations/{location}`",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+location}:generateLossClusters",
+"request": {
+"$ref": "GoogleCloudAiplatformV1GenerateLossClustersRequest"
+},
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
 "generateSyntheticData": {
 "description": "Generates synthetic (artificial) data based on a description",
 "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:generateSyntheticData",
@@ -6562,6 +6750,34 @@
 },
 "response": {
 "$ref": "GoogleCloudAiplatformV1GenerateSyntheticDataResponse"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"generateUserScenarios": {
+"description": "Generates user scenarios for agent evaluation.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}:generateUserScenarios",
+"httpMethod": "POST",
+"id": "aiplatform.projects.locations.generateUserScenarios",
+"parameterOrder": [
+"location"
+],
+"parameters": {
+"location": {
+"description": "Required. The resource name of the Location to run the job. Format: `projects/{project}/locations/{location}`",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+location}:generateUserScenarios",
+"request": {
+"$ref": "GoogleCloudAiplatformV1GenerateUserScenariosRequest"
+},
+"response": {
+"$ref": "GoogleCloudAiplatformV1GenerateUserScenariosResponse"
 },
 "scopes": [
 "https://www.googleapis.com/auth/cloud-platform"
@@ -6617,8 +6833,33 @@
 "https://www.googleapis.com/auth/cloud-platform"
 ]
 },
+"getSemanticGovernancePolicyEngine": {
+"description": "Gets a SemanticGovernancePolicyEngine. A SemanticGovernancePolicyEngine is a singleton resource that is created when its parent is created, and deleted when its parent is deleted. This method retrieves the current state of the Semantic Governance Policy Engine.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/semanticGovernancePolicyEngine",
+"httpMethod": "GET",
+"id": "aiplatform.projects.locations.getSemanticGovernancePolicyEngine",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "Required. The resource name of the SemanticGovernancePolicyEngine to retrieve. Format: projects/{project}/locations/{location}/semanticGovernancePolicyEngine",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/semanticGovernancePolicyEngine$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}",
+"response": {
+"$ref": "GoogleCloudAiplatformV1SemanticGovernancePolicyEngine"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
 "list": {
-"description": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the [ListLocationsRequest.name] field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
+"description": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
 "flatPath": "v1/projects/{projectsId}/locations",
 "httpMethod": "GET",
 "id": "aiplatform.projects.locations.list",
@@ -6627,7 +6868,7 @@
 ],
 "parameters": {
 "extraLocationTypes": {
-"description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+"description": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
 "location": "query",
 "repeated": true,
 "type": "string"
@@ -6719,9 +6960,200 @@
 "scopes": [
 "https://www.googleapis.com/auth/cloud-platform"
 ]
+},
+"updateSemanticGovernancePolicyEngine": {
+"description": "Updates a SemanticGovernancePolicyEngine. This method performs an upsert operation. If the SemanticGovernancePolicyEngine resource does not exist, it will be created. Otherwise, it will be updated.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/semanticGovernancePolicyEngine",
+"httpMethod": "PATCH",
+"id": "aiplatform.projects.locations.updateSemanticGovernancePolicyEngine",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "Identifier. The resource name of the SemanticGovernancePolicyEngine. Format: projects/{project}/locations/{location}/semanticGovernancePolicyEngine",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/semanticGovernancePolicyEngine$",
+"required": true,
+"type": "string"
+},
+"updateMask": {
+"description": "Optional. Specifies the fields to be overwritten in the SemanticGovernancePolicyEngine resource by the update. The fields specified in the update_mask are relative to the resource itself. If no update_mask is provided, all fields are overwritten.",
+"format": "google-fieldmask",
+"location": "query",
+"type": "string"
+}
+},
+"path": "v1/{+name}",
+"request": {
+"$ref": "GoogleCloudAiplatformV1SemanticGovernancePolicyEngine"
+},
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
 }
 },
 "resources": {
+"agents": {
+"methods": {
+"create": {
+"description": "Creates an agent.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/agents",
+"httpMethod": "POST",
+"id": "aiplatform.projects.locations.agents.create",
+"parameterOrder": [
+"parent"
+],
+"parameters": {
+"parent": {
+"description": "Required. The resource name of the location to create the agent in. Format: `projects/{project}/locations/{location}`.",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+parent}/agents",
+"request": {
+"$ref": "GoogleCloudAiplatformV1Agent"
+},
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"delete": {
+"description": "Deletes an agent.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}",
+"httpMethod": "DELETE",
+"id": "aiplatform.projects.locations.agents.delete",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "Required. The resource name of the agent to delete. Format: `projects/{project}/locations/{location}/agents/{agent}`.",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}",
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"get": {
+"description": "Retrieves an agent.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}",
+"httpMethod": "GET",
+"id": "aiplatform.projects.locations.agents.get",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "Required. The resource name of the agent to retrieve. Format: `projects/{project}/locations/{location}/agents/{agent}`.",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}",
+"response": {
+"$ref": "GoogleCloudAiplatformV1Agent"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"list": {
+"description": "Lists agents in a location.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/agents",
+"httpMethod": "GET",
+"id": "aiplatform.projects.locations.agents.list",
+"parameterOrder": [
+"parent"
+],
+"parameters": {
+"orderBy": {
+"description": "Optional. A comma-separated list of fields to order by. Supported fields: * `created` * `updated` Use `desc` after a field name for descending order. Example: `created desc`.",
+"location": "query",
+"type": "string"
+},
+"pageSize": {
+"description": "Optional. The maximum number of agents to return. The service may return fewer than this value. The maximum page size is 100; values above 100 will be coerced to 100. If unspecified, the default page size is 10.",
+"format": "int32",
+"location": "query",
+"type": "integer"
+},
+"pageToken": {
+"description": "Optional. A page token, received from a previous AgentService.ListAgents call. Provide this to retrieve the subsequent page.",
+"location": "query",
+"type": "string"
+},
+"parent": {
+"description": "Required. The resource name of the location to list agents from. Format: `projects/{project}/locations/{location}`.",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+parent}/agents",
+"response": {
+"$ref": "GoogleCloudAiplatformV1ListAgentsResponse"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"patch": {
+"description": "Updates an agent.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}",
+"httpMethod": "PATCH",
+"id": "aiplatform.projects.locations.agents.patch",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "Identifier. The resource name of the agent. Format: `projects/{project}/locations/{location}/agents/{agent}`.",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+$",
+"required": true,
+"type": "string"
+},
+"updateMask": {
+"description": "Optional. The list of fields to update. If not present, all fields are updated.",
+"format": "google-fieldmask",
+"location": "query",
+"type": "string"
+}
+},
+"path": "v1/{+name}",
+"request": {
+"$ref": "GoogleCloudAiplatformV1Agent"
+},
+"response": {
+"$ref": "GoogleCloudAiplatformV1Agent"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+}
+}
+},
 "batchPredictionJobs": {
 "methods": {
 "cancel": {
@@ -11098,6 +11530,34 @@
 "path": "v1/{+name}",
 "response": {
 "$ref": "GoogleCloudAiplatformV1EvaluationSet"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"import": {
+"description": "Imports an Evaluation Set.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/evaluationSets:import",
+"httpMethod": "POST",
+"id": "aiplatform.projects.locations.evaluationSets.import",
+"parameterOrder": [
+"parent"
+],
+"parameters": {
+"parent": {
+"description": "Required. Parent resource name.",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+parent}/evaluationSets:import",
+"request": {
+"$ref": "GoogleCloudAiplatformV1ImportEvaluationSetRequest"
+},
+"response": {
+"$ref": "GoogleLongrunningOperation"
 },
 "scopes": [
 "https://www.googleapis.com/auth/cloud-platform"
@@ -20187,6 +20647,382 @@
 }
 }
 },
+"onlineEvaluators": {
+"methods": {
+"activate": {
+"description": "Activates an OnlineEvaluator.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/onlineEvaluators/{onlineEvaluatorsId}:activate",
+"httpMethod": "POST",
+"id": "aiplatform.projects.locations.onlineEvaluators.activate",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "Required. The name of the OnlineEvaluator to activate. Format: projects/{project}/locations/{location}/onlineEvaluators/{id}.",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/onlineEvaluators/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}:activate",
+"request": {
+"$ref": "GoogleCloudAiplatformV1ActivateOnlineEvaluatorRequest"
+},
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"create": {
+"description": "Creates an OnlineEvaluator in the given project and location.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/onlineEvaluators",
+"httpMethod": "POST",
+"id": "aiplatform.projects.locations.onlineEvaluators.create",
+"parameterOrder": [
+"parent"
+],
+"parameters": {
+"parent": {
+"description": "Required. The parent resource where the OnlineEvaluator will be created. Format: projects/{project}/locations/{location}.",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+parent}/onlineEvaluators",
+"request": {
+"$ref": "GoogleCloudAiplatformV1OnlineEvaluator"
+},
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"delete": {
+"description": "Deletes an OnlineEvaluator.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/onlineEvaluators/{onlineEvaluatorsId}",
+"httpMethod": "DELETE",
+"id": "aiplatform.projects.locations.onlineEvaluators.delete",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "Required. The name of the OnlineEvaluator to delete. Format: projects/{project}/locations/{location}/onlineEvaluators/{id}.",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/onlineEvaluators/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}",
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"get": {
+"description": "Gets details of an OnlineEvaluator.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/onlineEvaluators/{onlineEvaluatorsId}",
+"httpMethod": "GET",
+"id": "aiplatform.projects.locations.onlineEvaluators.get",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "Required. The name of the OnlineEvaluator to retrieve. Format: projects/{project}/locations/{location}/onlineEvaluators/{id}.",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/onlineEvaluators/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}",
+"response": {
+"$ref": "GoogleCloudAiplatformV1OnlineEvaluator"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"list": {
+"description": "Lists the OnlineEvaluators for the given project and location.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/onlineEvaluators",
+"httpMethod": "GET",
+"id": "aiplatform.projects.locations.onlineEvaluators.list",
+"parameterOrder": [
+"parent"
+],
+"parameters": {
+"filter": {
+"description": "Optional. Standard list filter. Supported fields: * `create_time` * `update_time` * `agent_resource` Example: `create_time>\"2026-01-01T00:00:00-04:00\"` where the timestamp is in RFC 3339 format) Based on aip.dev/160.",
+"location": "query",
+"type": "string"
+},
+"orderBy": {
+"description": "Optional. A comma-separated list of fields to order by. The default sorting order is ascending. Use \"desc\" after a field name for descending. Supported fields: * `create_time` * `update_time` Example: `create_time desc`. Based on aip.dev/132.",
+"location": "query",
+"type": "string"
+},
+"pageSize": {
+"description": "Optional. The maximum number of OnlineEvaluators to return. The service may return fewer than this value. If unspecified, at most 100 OnlineEvaluators will be returned. The maximum value is 100; values above 100 will be coerced to 100. Based on aip.dev/158.",
+"format": "int32",
+"location": "query",
+"type": "integer"
+},
+"pageToken": {
+"description": "Optional. A token identifying a page of results the server should return. Based on aip.dev/158.",
+"location": "query",
+"type": "string"
+},
+"parent": {
+"description": "Required. The parent resource of the OnlineEvaluators to list. Format: projects/{project}/locations/{location}.",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+parent}/onlineEvaluators",
+"response": {
+"$ref": "GoogleCloudAiplatformV1ListOnlineEvaluatorsResponse"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"patch": {
+"description": "Updates the fields of an OnlineEvaluator.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/onlineEvaluators/{onlineEvaluatorsId}",
+"httpMethod": "PATCH",
+"id": "aiplatform.projects.locations.onlineEvaluators.patch",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "Identifier. The resource name of the OnlineEvaluator. Format: projects/{project}/locations/{location}/onlineEvaluators/{id}.",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/onlineEvaluators/[^/]+$",
+"required": true,
+"type": "string"
+},
+"updateMask": {
+"description": "Optional. Field mask is used to control which fields get updated. If the mask is not present, all fields will be updated.",
+"format": "google-fieldmask",
+"location": "query",
+"type": "string"
+}
+},
+"path": "v1/{+name}",
+"request": {
+"$ref": "GoogleCloudAiplatformV1OnlineEvaluator"
+},
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"suspend": {
+"description": "Suspends an OnlineEvaluator. When an OnlineEvaluator is suspended, it won't run any evaluations until it is activated again.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/onlineEvaluators/{onlineEvaluatorsId}:suspend",
+"httpMethod": "POST",
+"id": "aiplatform.projects.locations.onlineEvaluators.suspend",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "Required. The name of the OnlineEvaluator to suspend. Format: projects/{project}/locations/{location}/onlineEvaluators/{id}.",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/onlineEvaluators/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}:suspend",
+"request": {
+"$ref": "GoogleCloudAiplatformV1SuspendOnlineEvaluatorRequest"
+},
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+}
+},
+"resources": {
+"operations": {
+"methods": {
+"cancel": {
+"description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/onlineEvaluators/{onlineEvaluatorsId}/operations/{operationsId}:cancel",
+"httpMethod": "POST",
+"id": "aiplatform.projects.locations.onlineEvaluators.operations.cancel",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "The name of the operation resource to be cancelled.",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/onlineEvaluators/[^/]+/operations/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}:cancel",
+"response": {
+"$ref": "GoogleProtobufEmpty"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"delete": {
+"description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/onlineEvaluators/{onlineEvaluatorsId}/operations/{operationsId}",
+"httpMethod": "DELETE",
+"id": "aiplatform.projects.locations.onlineEvaluators.operations.delete",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "The name of the operation resource to be deleted.",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/onlineEvaluators/[^/]+/operations/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}",
+"response": {
+"$ref": "GoogleProtobufEmpty"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"get": {
+"description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/onlineEvaluators/{onlineEvaluatorsId}/operations/{operationsId}",
+"httpMethod": "GET",
+"id": "aiplatform.projects.locations.onlineEvaluators.operations.get",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "The name of the operation resource.",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/onlineEvaluators/[^/]+/operations/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}",
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"list": {
+"description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/onlineEvaluators/{onlineEvaluatorsId}/operations",
+"httpMethod": "GET",
+"id": "aiplatform.projects.locations.onlineEvaluators.operations.list",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"filter": {
+"description": "The standard list filter.",
+"location": "query",
+"type": "string"
+},
+"name": {
+"description": "The name of the operation's parent resource.",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/onlineEvaluators/[^/]+$",
+"required": true,
+"type": "string"
+},
+"pageSize": {
+"description": "The standard list page size.",
+"format": "int32",
+"location": "query",
+"type": "integer"
+},
+"pageToken": {
+"description": "The standard list page token.",
+"location": "query",
+"type": "string"
+},
+"returnPartialSuccess": {
+"description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+"location": "query",
+"type": "boolean"
+}
+},
+"path": "v1/{+name}/operations",
+"response": {
+"$ref": "GoogleLongrunningListOperationsResponse"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"wait": {
+"description": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/onlineEvaluators/{onlineEvaluatorsId}/operations/{operationsId}:wait",
+"httpMethod": "POST",
+"id": "aiplatform.projects.locations.onlineEvaluators.operations.wait",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "The name of the operation resource to wait on.",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/onlineEvaluators/[^/]+/operations/[^/]+$",
+"required": true,
+"type": "string"
+},
+"timeout": {
+"description": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.",
+"format": "google-duration",
+"location": "query",
+"type": "string"
+}
+},
+"path": "v1/{+name}:wait",
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+}
+}
+}
+}
+},
 "operations": {
 "methods": {
 "cancel": {
@@ -22185,6 +23021,62 @@
 },
 "reasoningEngines": {
 "methods": {
+"asyncQuery": {
+"description": "Async query using a reasoning engine.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}:asyncQuery",
+"httpMethod": "POST",
+"id": "aiplatform.projects.locations.reasoningEngines.asyncQuery",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "Required. The name of the ReasoningEngine resource to use. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}:asyncQuery",
+"request": {
+"$ref": "GoogleCloudAiplatformV1AsyncQueryReasoningEngineRequest"
+},
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"cancelAsyncQuery": {
+"description": "Cancels an AsyncQueryReasoningEngine operation.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}:cancelAsyncQuery",
+"httpMethod": "POST",
+"id": "aiplatform.projects.locations.reasoningEngines.cancelAsyncQuery",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "Required. The name of the ReasoningEngine resource to use. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}:cancelAsyncQuery",
+"request": {
+"$ref": "GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineRequest"
+},
+"response": {
+"$ref": "GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
 "create": {
 "description": "Creates a reasoning engine.",
 "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines",
@@ -22632,6 +23524,34 @@
 "https://www.googleapis.com/auth/cloud-platform"
 ]
 },
+"ingestEvents": {
+"description": "Ingests events for a Memory Bank.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/memories:ingestEvents",
+"httpMethod": "POST",
+"id": "aiplatform.projects.locations.reasoningEngines.memories.ingestEvents",
+"parameterOrder": [
+"parent"
+],
+"parameters": {
+"parent": {
+"description": "Required. The resource name of the ReasoningEngine to ingest events to. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+parent}/memories:ingestEvents",
+"request": {
+"$ref": "GoogleCloudAiplatformV1IngestEventsRequest"
+},
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
 "list": {
 "description": "List Memories.",
 "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/memories",
@@ -22695,7 +23615,7 @@
 "type": "string"
 },
 "updateMask": {
-"description": "Optional. Mask specifying which fields to update. Supported fields: * `display_name` * `description` * `fact`",
+"description": "Optional. Mask specifying which fields to update. The following fields are immutable: * `scope` * `memory_type`",
 "format": "google-fieldmask",
 "location": "query",
 "type": "string"
@@ -23833,6 +24753,62 @@
 "https://www.googleapis.com/auth/cloud-platform"
 ]
 },
+"pause": {
+"description": "Pauses the specific SandboxEnvironment.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/sandboxEnvironments/{sandboxEnvironmentsId}:pause",
+"httpMethod": "POST",
+"id": "aiplatform.projects.locations.reasoningEngines.sandboxEnvironments.pause",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "Required. The resource name of the sandbox environment to pause. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/sandboxEnvironments/{sandbox_environment}`",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+/sandboxEnvironments/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}:pause",
+"request": {
+"$ref": "GoogleCloudAiplatformV1PauseSandboxEnvironmentRequest"
+},
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"resume": {
+"description": "Resumes the specific SandboxEnvironment.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/sandboxEnvironments/{sandboxEnvironmentsId}:resume",
+"httpMethod": "POST",
+"id": "aiplatform.projects.locations.reasoningEngines.sandboxEnvironments.resume",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "Required. The resource name of the sandbox environment to resume. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/sandboxEnvironments/{sandbox_environment}`",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+/sandboxEnvironments/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}:resume",
+"request": {
+"$ref": "GoogleCloudAiplatformV1ResumeSandboxEnvironmentRequest"
+},
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
 "snapshot": {
 "description": "Snapshots the specific SandboxEnvironment resource and creates a SandboxEnvironmentSnapshot resource.",
 "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/sandboxEnvironments/{sandboxEnvironmentsId}:snapshot",
@@ -24108,7 +25084,7 @@
 "type": "string"
 },
 "pageSize": {
-"description": "Optional. The maximum number of sessions to return. The service may return fewer than this value. If unspecified, at most 100 sessions will be returned.",
+"description": "Optional. The maximum number of sessions to return. The service may return fewer than this value. If unspecified, the default page size is 100. Values greater than 100 will be capped at 100.",
 "format": "int32",
 "location": "query",
 "type": "integer"
@@ -24734,6 +25710,518 @@
 "description": "The name of the operation resource to wait on.",
 "location": "path",
 "pattern": "^projects/[^/]+/locations/[^/]+/schedules/[^/]+/operations/[^/]+$",
+"required": true,
+"type": "string"
+},
+"timeout": {
+"description": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.",
+"format": "google-duration",
+"location": "query",
+"type": "string"
+}
+},
+"path": "v1/{+name}:wait",
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+}
+}
+}
+}
+},
+"semanticGovernancePolicies": {
+"methods": {
+"create": {
+"description": "Creates a SemanticGovernancePolicy.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/semanticGovernancePolicies",
+"httpMethod": "POST",
+"id": "aiplatform.projects.locations.semanticGovernancePolicies.create",
+"parameterOrder": [
+"parent"
+],
+"parameters": {
+"parent": {
+"description": "Required. The resource name of the Location into which to create the SemanticGovernancePolicy. Format: `projects/{project}/locations/{location}`",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+$",
+"required": true,
+"type": "string"
+},
+"semanticGovernancePolicyId": {
+"description": "Required. The ID to use for the SemanticGovernancePolicy, which will become the final component of the SemanticGovernancePolicy's resource name. This value may be up to 63 characters, and valid characters are `[a-z0-9-]`. The first character cannot be a number or hyphen. The last character must be a letter or a number.",
+"location": "query",
+"type": "string"
+}
+},
+"path": "v1/{+parent}/semanticGovernancePolicies",
+"request": {
+"$ref": "GoogleCloudAiplatformV1SemanticGovernancePolicy"
+},
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"delete": {
+"description": "Deletes a SemanticGovernancePolicy.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/semanticGovernancePolicies/{semanticGovernancePoliciesId}",
+"httpMethod": "DELETE",
+"id": "aiplatform.projects.locations.semanticGovernancePolicies.delete",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"etag": {
+"description": "Optional. The etag of the SemanticGovernancePolicy. If an etag is provided and does not match the current etag of the SemanticGovernancePolicy, deletion will be blocked and an ABORTED error will be returned.",
+"location": "query",
+"type": "string"
+},
+"name": {
+"description": "Required. The name of the SemanticGovernancePolicy resource to be deleted. Format: `projects/{project}/locations/{location}/semanticGovernancePolicies/{semantic_governance_policy}`",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/semanticGovernancePolicies/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}",
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"get": {
+"description": "Gets a SemanticGovernancePolicy.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/semanticGovernancePolicies/{semanticGovernancePoliciesId}",
+"httpMethod": "GET",
+"id": "aiplatform.projects.locations.semanticGovernancePolicies.get",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "Required. The name of the SemanticGovernancePolicy resource. Format: `projects/{project}/locations/{location}/semanticGovernancePolicies/{semantic_governance_policy}`",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/semanticGovernancePolicies/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}",
+"response": {
+"$ref": "GoogleCloudAiplatformV1SemanticGovernancePolicy"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"list": {
+"description": "Lists SemanticGovernancePolicies in a given location.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/semanticGovernancePolicies",
+"httpMethod": "GET",
+"id": "aiplatform.projects.locations.semanticGovernancePolicies.list",
+"parameterOrder": [
+"parent"
+],
+"parameters": {
+"pageSize": {
+"description": "Optional. The list page size. If zero, a default page size of 10 is used.",
+"format": "int32",
+"location": "query",
+"type": "integer"
+},
+"pageToken": {
+"description": "Optional. The standard list page token.",
+"location": "query",
+"type": "string"
+},
+"parent": {
+"description": "Required. The resource name of the Location from which to list the SemanticGovernancePolicies. Format: `projects/{project}/locations/{location}`",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+parent}/semanticGovernancePolicies",
+"response": {
+"$ref": "GoogleCloudAiplatformV1ListSemanticGovernancePoliciesResponse"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"patch": {
+"description": "Updates a SemanticGovernancePolicy.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/semanticGovernancePolicies/{semanticGovernancePoliciesId}",
+"httpMethod": "PATCH",
+"id": "aiplatform.projects.locations.semanticGovernancePolicies.patch",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "Identifier. Resource name of the SemanticGovernancePolicy.",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/semanticGovernancePolicies/[^/]+$",
+"required": true,
+"type": "string"
+},
+"updateMask": {
+"description": "Optional. `update_mask` is used to specify the fields to be overwritten in the SemanticGovernancePolicy resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the mask is not present, then all fields that are populated in the request message will be overwritten. Set the `update_mask` to `*` to override all fields.",
+"format": "google-fieldmask",
+"location": "query",
+"type": "string"
+}
+},
+"path": "v1/{+name}",
+"request": {
+"$ref": "GoogleCloudAiplatformV1SemanticGovernancePolicy"
+},
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+}
+},
+"resources": {
+"operations": {
+"methods": {
+"cancel": {
+"description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/semanticGovernancePolicies/{semanticGovernancePoliciesId}/operations/{operationsId}:cancel",
+"httpMethod": "POST",
+"id": "aiplatform.projects.locations.semanticGovernancePolicies.operations.cancel",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "The name of the operation resource to be cancelled.",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/semanticGovernancePolicies/[^/]+/operations/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}:cancel",
+"response": {
+"$ref": "GoogleProtobufEmpty"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"delete": {
+"description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/semanticGovernancePolicies/{semanticGovernancePoliciesId}/operations/{operationsId}",
+"httpMethod": "DELETE",
+"id": "aiplatform.projects.locations.semanticGovernancePolicies.operations.delete",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "The name of the operation resource to be deleted.",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/semanticGovernancePolicies/[^/]+/operations/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}",
+"response": {
+"$ref": "GoogleProtobufEmpty"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"get": {
+"description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/semanticGovernancePolicies/{semanticGovernancePoliciesId}/operations/{operationsId}",
+"httpMethod": "GET",
+"id": "aiplatform.projects.locations.semanticGovernancePolicies.operations.get",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "The name of the operation resource.",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/semanticGovernancePolicies/[^/]+/operations/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}",
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"list": {
+"description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/semanticGovernancePolicies/{semanticGovernancePoliciesId}/operations",
+"httpMethod": "GET",
+"id": "aiplatform.projects.locations.semanticGovernancePolicies.operations.list",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"filter": {
+"description": "The standard list filter.",
+"location": "query",
+"type": "string"
+},
+"name": {
+"description": "The name of the operation's parent resource.",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/semanticGovernancePolicies/[^/]+$",
+"required": true,
+"type": "string"
+},
+"pageSize": {
+"description": "The standard list page size.",
+"format": "int32",
+"location": "query",
+"type": "integer"
+},
+"pageToken": {
+"description": "The standard list page token.",
+"location": "query",
+"type": "string"
+},
+"returnPartialSuccess": {
+"description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+"location": "query",
+"type": "boolean"
+}
+},
+"path": "v1/{+name}/operations",
+"response": {
+"$ref": "GoogleLongrunningListOperationsResponse"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"wait": {
+"description": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/semanticGovernancePolicies/{semanticGovernancePoliciesId}/operations/{operationsId}:wait",
+"httpMethod": "POST",
+"id": "aiplatform.projects.locations.semanticGovernancePolicies.operations.wait",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "The name of the operation resource to wait on.",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/semanticGovernancePolicies/[^/]+/operations/[^/]+$",
+"required": true,
+"type": "string"
+},
+"timeout": {
+"description": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.",
+"format": "google-duration",
+"location": "query",
+"type": "string"
+}
+},
+"path": "v1/{+name}:wait",
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+}
+}
+}
+}
+},
+"semanticGovernancePolicyEngine": {
+"methods": {
+"deprovision": {
+"description": "Deprovisions the SemanticGovernancePolicyEngine, tearing down the associated tenant project, GKE cluster, and PSC service attachments. This operation is irreversible. Returns a long-running operation; poll for completion. The response contains the SemanticGovernancePolicyEngine in DEPROVISIONING state.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/semanticGovernancePolicyEngine:deprovision",
+"httpMethod": "POST",
+"id": "aiplatform.projects.locations.semanticGovernancePolicyEngine.deprovision",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "Required. The resource name of the SemanticGovernancePolicyEngine to deprovision. Format: projects/{project}/locations/{location}/semanticGovernancePolicyEngine",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/semanticGovernancePolicyEngine$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}:deprovision",
+"request": {
+"$ref": "GoogleCloudAiplatformV1DeprovisionSemanticGovernancePolicyEngineRequest"
+},
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+}
+}
+},
+"skills": {
+"resources": {
+"operations": {
+"methods": {
+"cancel": {
+"description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/skills/{skillsId}/operations/{operationsId}:cancel",
+"httpMethod": "POST",
+"id": "aiplatform.projects.locations.skills.operations.cancel",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "The name of the operation resource to be cancelled.",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/skills/[^/]+/operations/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}:cancel",
+"response": {
+"$ref": "GoogleProtobufEmpty"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"delete": {
+"description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/skills/{skillsId}/operations/{operationsId}",
+"httpMethod": "DELETE",
+"id": "aiplatform.projects.locations.skills.operations.delete",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "The name of the operation resource to be deleted.",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/skills/[^/]+/operations/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}",
+"response": {
+"$ref": "GoogleProtobufEmpty"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"get": {
+"description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/skills/{skillsId}/operations/{operationsId}",
+"httpMethod": "GET",
+"id": "aiplatform.projects.locations.skills.operations.get",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "The name of the operation resource.",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/skills/[^/]+/operations/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}",
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"list": {
+"description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/skills/{skillsId}/operations",
+"httpMethod": "GET",
+"id": "aiplatform.projects.locations.skills.operations.list",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"filter": {
+"description": "The standard list filter.",
+"location": "query",
+"type": "string"
+},
+"name": {
+"description": "The name of the operation's parent resource.",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/skills/[^/]+$",
+"required": true,
+"type": "string"
+},
+"pageSize": {
+"description": "The standard list page size.",
+"format": "int32",
+"location": "query",
+"type": "integer"
+},
+"pageToken": {
+"description": "The standard list page token.",
+"location": "query",
+"type": "string"
+},
+"returnPartialSuccess": {
+"description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+"location": "query",
+"type": "boolean"
+}
+},
+"path": "v1/{+name}/operations",
+"response": {
+"$ref": "GoogleLongrunningListOperationsResponse"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"wait": {
+"description": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/skills/{skillsId}/operations/{operationsId}:wait",
+"httpMethod": "POST",
+"id": "aiplatform.projects.locations.skills.operations.wait",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "The name of the operation resource to wait on.",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+/skills/[^/]+/operations/[^/]+$",
 "required": true,
 "type": "string"
 },
@@ -28790,6 +30278,62 @@
 },
 "reasoningEngines": {
 "methods": {
+"asyncQuery": {
+"description": "Async query using a reasoning engine.",
+"flatPath": "v1/reasoningEngines/{reasoningEnginesId}:asyncQuery",
+"httpMethod": "POST",
+"id": "aiplatform.reasoningEngines.asyncQuery",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "Required. The name of the ReasoningEngine resource to use. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`",
+"location": "path",
+"pattern": "^reasoningEngines/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}:asyncQuery",
+"request": {
+"$ref": "GoogleCloudAiplatformV1AsyncQueryReasoningEngineRequest"
+},
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"cancelAsyncQuery": {
+"description": "Cancels an AsyncQueryReasoningEngine operation.",
+"flatPath": "v1/reasoningEngines/{reasoningEnginesId}:cancelAsyncQuery",
+"httpMethod": "POST",
+"id": "aiplatform.reasoningEngines.cancelAsyncQuery",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "Required. The name of the ReasoningEngine resource to use. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`",
+"location": "path",
+"pattern": "^reasoningEngines/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}:cancelAsyncQuery",
+"request": {
+"$ref": "GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineRequest"
+},
+"response": {
+"$ref": "GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
 "create": {
 "description": "Creates a reasoning engine.",
 "flatPath": "v1/reasoningEngines",
@@ -29993,6 +31537,62 @@
 "https://www.googleapis.com/auth/cloud-platform"
 ]
 },
+"pause": {
+"description": "Pauses the specific SandboxEnvironment.",
+"flatPath": "v1/reasoningEngines/{reasoningEnginesId}/sandboxEnvironments/{sandboxEnvironmentsId}:pause",
+"httpMethod": "POST",
+"id": "aiplatform.reasoningEngines.sandboxEnvironments.pause",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "Required. The resource name of the sandbox environment to pause. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/sandboxEnvironments/{sandbox_environment}`",
+"location": "path",
+"pattern": "^reasoningEngines/[^/]+/sandboxEnvironments/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}:pause",
+"request": {
+"$ref": "GoogleCloudAiplatformV1PauseSandboxEnvironmentRequest"
+},
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"resume": {
+"description": "Resumes the specific SandboxEnvironment.",
+"flatPath": "v1/reasoningEngines/{reasoningEnginesId}/sandboxEnvironments/{sandboxEnvironmentsId}:resume",
+"httpMethod": "POST",
+"id": "aiplatform.reasoningEngines.sandboxEnvironments.resume",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "Required. The resource name of the sandbox environment to resume. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/sandboxEnvironments/{sandbox_environment}`",
+"location": "path",
+"pattern": "^reasoningEngines/[^/]+/sandboxEnvironments/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}:resume",
+"request": {
+"$ref": "GoogleCloudAiplatformV1ResumeSandboxEnvironmentRequest"
+},
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
 "snapshot": {
 "description": "Snapshots the specific SandboxEnvironment resource and creates a SandboxEnvironmentSnapshot resource.",
 "flatPath": "v1/reasoningEngines/{reasoningEnginesId}/sandboxEnvironments/{sandboxEnvironmentsId}:snapshot",
@@ -30435,6 +32035,326 @@
 "description": "The name of the operation resource to wait on.",
 "location": "path",
 "pattern": "^schedules/[^/]+/operations/[^/]+$",
+"required": true,
+"type": "string"
+},
+"timeout": {
+"description": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.",
+"format": "google-duration",
+"location": "query",
+"type": "string"
+}
+},
+"path": "v1/{+name}:wait",
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+}
+}
+}
+}
+},
+"semanticGovernancePolicies": {
+"resources": {
+"operations": {
+"methods": {
+"cancel": {
+"description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
+"flatPath": "v1/semanticGovernancePolicies/{semanticGovernancePoliciesId}/operations/{operationsId}:cancel",
+"httpMethod": "POST",
+"id": "aiplatform.semanticGovernancePolicies.operations.cancel",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "The name of the operation resource to be cancelled.",
+"location": "path",
+"pattern": "^semanticGovernancePolicies/[^/]+/operations/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}:cancel",
+"response": {
+"$ref": "GoogleProtobufEmpty"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"delete": {
+"description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+"flatPath": "v1/semanticGovernancePolicies/{semanticGovernancePoliciesId}/operations/{operationsId}",
+"httpMethod": "DELETE",
+"id": "aiplatform.semanticGovernancePolicies.operations.delete",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "The name of the operation resource to be deleted.",
+"location": "path",
+"pattern": "^semanticGovernancePolicies/[^/]+/operations/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}",
+"response": {
+"$ref": "GoogleProtobufEmpty"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"get": {
+"description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+"flatPath": "v1/semanticGovernancePolicies/{semanticGovernancePoliciesId}/operations/{operationsId}",
+"httpMethod": "GET",
+"id": "aiplatform.semanticGovernancePolicies.operations.get",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "The name of the operation resource.",
+"location": "path",
+"pattern": "^semanticGovernancePolicies/[^/]+/operations/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}",
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"list": {
+"description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+"flatPath": "v1/semanticGovernancePolicies/{semanticGovernancePoliciesId}/operations",
+"httpMethod": "GET",
+"id": "aiplatform.semanticGovernancePolicies.operations.list",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"filter": {
+"description": "The standard list filter.",
+"location": "query",
+"type": "string"
+},
+"name": {
+"description": "The name of the operation's parent resource.",
+"location": "path",
+"pattern": "^semanticGovernancePolicies/[^/]+$",
+"required": true,
+"type": "string"
+},
+"pageSize": {
+"description": "The standard list page size.",
+"format": "int32",
+"location": "query",
+"type": "integer"
+},
+"pageToken": {
+"description": "The standard list page token.",
+"location": "query",
+"type": "string"
+},
+"returnPartialSuccess": {
+"description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+"location": "query",
+"type": "boolean"
+}
+},
+"path": "v1/{+name}/operations",
+"response": {
+"$ref": "GoogleLongrunningListOperationsResponse"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"wait": {
+"description": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.",
+"flatPath": "v1/semanticGovernancePolicies/{semanticGovernancePoliciesId}/operations/{operationsId}:wait",
+"httpMethod": "POST",
+"id": "aiplatform.semanticGovernancePolicies.operations.wait",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "The name of the operation resource to wait on.",
+"location": "path",
+"pattern": "^semanticGovernancePolicies/[^/]+/operations/[^/]+$",
+"required": true,
+"type": "string"
+},
+"timeout": {
+"description": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.",
+"format": "google-duration",
+"location": "query",
+"type": "string"
+}
+},
+"path": "v1/{+name}:wait",
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+}
+}
+}
+}
+},
+"skills": {
+"resources": {
+"operations": {
+"methods": {
+"cancel": {
+"description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
+"flatPath": "v1/skills/{skillsId}/operations/{operationsId}:cancel",
+"httpMethod": "POST",
+"id": "aiplatform.skills.operations.cancel",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "The name of the operation resource to be cancelled.",
+"location": "path",
+"pattern": "^skills/[^/]+/operations/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}:cancel",
+"response": {
+"$ref": "GoogleProtobufEmpty"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"delete": {
+"description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+"flatPath": "v1/skills/{skillsId}/operations/{operationsId}",
+"httpMethod": "DELETE",
+"id": "aiplatform.skills.operations.delete",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "The name of the operation resource to be deleted.",
+"location": "path",
+"pattern": "^skills/[^/]+/operations/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}",
+"response": {
+"$ref": "GoogleProtobufEmpty"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"get": {
+"description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+"flatPath": "v1/skills/{skillsId}/operations/{operationsId}",
+"httpMethod": "GET",
+"id": "aiplatform.skills.operations.get",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "The name of the operation resource.",
+"location": "path",
+"pattern": "^skills/[^/]+/operations/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+name}",
+"response": {
+"$ref": "GoogleLongrunningOperation"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"list": {
+"description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+"flatPath": "v1/skills/{skillsId}/operations",
+"httpMethod": "GET",
+"id": "aiplatform.skills.operations.list",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"filter": {
+"description": "The standard list filter.",
+"location": "query",
+"type": "string"
+},
+"name": {
+"description": "The name of the operation's parent resource.",
+"location": "path",
+"pattern": "^skills/[^/]+$",
+"required": true,
+"type": "string"
+},
+"pageSize": {
+"description": "The standard list page size.",
+"format": "int32",
+"location": "query",
+"type": "integer"
+},
+"pageToken": {
+"description": "The standard list page token.",
+"location": "query",
+"type": "string"
+},
+"returnPartialSuccess": {
+"description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+"location": "query",
+"type": "boolean"
+}
+},
+"path": "v1/{+name}/operations",
+"response": {
+"$ref": "GoogleLongrunningListOperationsResponse"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform"
+]
+},
+"wait": {
+"description": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.",
+"flatPath": "v1/skills/{skillsId}/operations/{operationsId}:wait",
+"httpMethod": "POST",
+"id": "aiplatform.skills.operations.wait",
+"parameterOrder": [
+"name"
+],
+"parameters": {
+"name": {
+"description": "The name of the operation resource to wait on.",
+"location": "path",
+"pattern": "^skills/[^/]+/operations/[^/]+$",
 "required": true,
 "type": "string"
 },
@@ -31925,19 +33845,47 @@
 }
 }
 },
-"revision": "20260410",
+"revision": "20260623",
 "rootUrl": "https://aiplatform.googleapis.com/",
 "schemas": {
 "CloudAiLargeModelsVisionGenerateVideoExperiments": {
 "description": "Experimental parameters for video generation.",
 "id": "CloudAiLargeModelsVisionGenerateVideoExperiments",
 "properties": {
+"anchorLastFrame": {
+"description": "Optional. If true, anchors the last frame in video generation by generating a custom border mask.",
+"type": "boolean"
+},
+"codec": {
+"description": "Optional. Video codec to use for output.",
+"enum": [
+"VIDEO_CODEC_UNSPECIFIED",
+"VIDEO_CODEC_H264",
+"VIDEO_CODEC_PRORES",
+"VIDEO_CODEC_DNXHR"
+],
+"enumDescriptions": [
+"",
+"",
+"",
+""
+],
+"type": "string"
+},
 "conditioningFrames": {
 "description": "Conditioning frames for veo experimental models ONLY, not to be confused with keyframes (ID:31) in GenerateVideoRequest.",
 "items": {
 "$ref": "CloudAiLargeModelsVisionGenerateVideoExperimentsConditioningFrame"
 },
 "type": "array"
+},
+"customParameters": {
+"additionalProperties": {
+"description": "Properties of the object.",
+"type": "any"
+},
+"description": "Generic key-value pairs for experimental parameters. This allows adding new parameters without changing the dataplane binary.",
+"type": "object"
 },
 "humanPose": {
 "$ref": "CloudAiLargeModelsVisionHumanPose",
@@ -31952,9 +33900,29 @@
 "format": "int32",
 "type": "integer"
 },
+"originalRequestJson": {
+"description": "The original REST API request JSON sent by the user, in the instances/parameters format. Preserved for saving alongside output artifacts so users can reproduce their requests. This field is populated by the API handler and is not user-settable.",
+"type": "string"
+},
 "promptInputs": {
 "$ref": "CloudAiLargeModelsVisionPromptInputs",
 "description": "Prompt chunks for \"ProModel\" prompting. If set, the prompt will not be rewritten, and top-level prompt ignored."
+},
+"requestOriginTag": {
+"description": "Optional tag for tracking the source of this request. Allowed values: \"colab\", \"comfyui\", \"curl\", \"flowresearch\", \"vertexstudio\". Unrecognized tags are recorded as \"unknown\" in metrics. Tags do not affect video generation behavior. Up to 16 characters, ASCII alphanumeric, hyphens, and underscores only.",
+"type": "string"
+},
+"schedulingConfig": {
+"$ref": "CloudAiLargeModelsVisionGenerateVideoExperimentsVESchedulingConfig",
+"description": "Optional. Scheduling configuration."
+},
+"seamless": {
+"$ref": "CloudAiLargeModelsVisionSeamless",
+"description": "Parameters for seamless (edge-continuous) video generation, enabling temporal looping and/or spatial tessellation."
+},
+"truncateInputVideo": {
+"description": "If true (default), truncate input videos that exceed the model's maximum frame count by applying a frame_selection_config to __video_file__ inputs. Set to false to preserve the existing fail-fast behavior.",
+"type": "boolean"
 },
 "videoTransformMaskGcsUri": {
 "description": "GCS URI of the grayscale video mask for Differential Diffusion. Maps to sdedit_video_tmax_scale_map ",
@@ -31979,6 +33947,17 @@
 "image": {
 "$ref": "CloudAiLargeModelsVisionGenerateVideoRequestImage",
 "description": "The image data for this conditioning frame."
+}
+},
+"type": "object"
+},
+"CloudAiLargeModelsVisionGenerateVideoExperimentsVESchedulingConfig": {
+"description": "Scheduling configuration for Veo Experimental.",
+"id": "CloudAiLargeModelsVisionGenerateVideoExperimentsVESchedulingConfig",
+"properties": {
+"enableRetry": {
+"description": "Optional. If true, enable retries on transient errors with default backoff.",
+"type": "boolean"
 }
 },
 "type": "object"
@@ -32064,10 +34043,12 @@
 "id": "CloudAiLargeModelsVisionHumanPose",
 "properties": {
 "bodyLandmarksGcsUri": {
+"deprecated": true,
 "description": "GCS URI of the human pose video to condition video generation.",
 "type": "string"
 },
 "faceLandmarksGcsUri": {
+"deprecated": true,
 "description": "GCS URI of the face landmarks video to condition video generation.",
 "type": "string"
 },
@@ -32354,6 +34335,24 @@
 },
 "type": "object"
 },
+"CloudAiLargeModelsVisionSeamless": {
+"id": "CloudAiLargeModelsVisionSeamless",
+"properties": {
+"loop": {
+"description": "If true, the generated video will be loopable (seamless time looping).",
+"type": "boolean"
+},
+"tessellateHorizontal": {
+"description": "If true, the generated video will be tessellatable as a horizontal tessellation.",
+"type": "boolean"
+},
+"tessellateVertical": {
+"description": "If true, the generated video will be tessellatable as a vertical tessellation.",
+"type": "boolean"
+}
+},
+"type": "object"
+},
 "CloudAiLargeModelsVisionSemanticFilterResponse": {
 "id": "CloudAiLargeModelsVisionSemanticFilterResponse",
 "properties": {
@@ -32495,6 +34494,23 @@
 },
 "type": "object"
 },
+"GoogleCloudAiplatformV1ActivateOnlineEvaluatorOperationMetadata": {
+"description": "Metadata for the ActivateOnlineEvaluator operation.",
+"id": "GoogleCloudAiplatformV1ActivateOnlineEvaluatorOperationMetadata",
+"properties": {
+"genericMetadata": {
+"$ref": "GoogleCloudAiplatformV1GenericOperationMetadata",
+"description": "Common part of operation metadata."
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1ActivateOnlineEvaluatorRequest": {
+"description": "Request message for ActivateOnlineEvaluator.",
+"id": "GoogleCloudAiplatformV1ActivateOnlineEvaluatorRequest",
+"properties": {},
+"type": "object"
+},
 "GoogleCloudAiplatformV1ActiveLearningConfig": {
 "description": "Parameters that configure the active learning pipeline. Active learning will label the data incrementally by several iterations. For every iteration, it will select a batch of data based on the sampling strategy.",
 "id": "GoogleCloudAiplatformV1ActiveLearningConfig",
@@ -32594,6 +34610,131 @@
 "measurement": {
 "$ref": "GoogleCloudAiplatformV1Measurement",
 "description": "Required. The measurement to be added to a Trial."
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1Agent": {
+"description": "A Vertex agent contains instructions and configurations for the LLM to execute a certain task.",
+"id": "GoogleCloudAiplatformV1Agent",
+"properties": {
+"base_agent": {
+"description": "Required. The base agent for the agent. Supported values: * `antigravity-preview-05-2026`",
+"type": "string"
+},
+"base_environment": {
+"description": "Optional. The base environment configuration for the agent. Valid types: * A string value for the environment ID, or `remote` for the default. * A struct value for the `environment_config`.",
+"type": "any"
+},
+"created": {
+"description": "Output only. The time the agent was created.",
+"format": "google-datetime",
+"readOnly": true,
+"type": "string"
+},
+"description": {
+"description": "Optional. The description of the agent.",
+"type": "string"
+},
+"id": {
+"description": "Immutable. The user-specified ID for the agent. This ID becomes the final component of the agent resource name. If not provided, Vertex AI will generate a value for this ID. The ID can be up to 63 characters and must match the regular expression `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`.",
+"type": "string"
+},
+"metadata": {
+"additionalProperties": {
+"type": "string"
+},
+"description": "Optional. The metadata for the agent.",
+"type": "object"
+},
+"name": {
+"description": "Identifier. The resource name of the agent. Format: `projects/{project}/locations/{location}/agents/{agent}`.",
+"type": "string"
+},
+"object": {
+"description": "Output only. The object type of the resource. For agents, the value is `agent`.",
+"readOnly": true,
+"type": "string"
+},
+"system_instruction": {
+"description": "Optional. The instructions for the agent to follow. These instructions are passed to the LLM as a system instruction.",
+"type": "string"
+},
+"tools": {
+"description": "Optional. The tools available to the agent.",
+"items": {
+"$ref": "GoogleCloudAiplatformV1AgentTool"
+},
+"type": "array"
+},
+"updated": {
+"description": "Output only. The time the agent was last updated.",
+"format": "google-datetime",
+"readOnly": true,
+"type": "string"
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1AgentConfig": {
+"description": "Represents configuration for an Agent.",
+"id": "GoogleCloudAiplatformV1AgentConfig",
+"properties": {
+"agentId": {
+"description": "Required. Unique identifier of the agent. This ID is used to refer to this agent, e.g., in AgentEvent.author, or in the `sub_agents` field. It must be unique within the `agents` map.",
+"type": "string"
+},
+"agentType": {
+"description": "Optional. The type or class of the agent (e.g., \"LlmAgent\", \"RouterAgent\", \"ToolUseAgent\"). Useful for the autorater to understand the expected behavior of the agent.",
+"type": "string"
+},
+"description": {
+"description": "Optional. A high-level description of the agent's role and responsibilities. Critical for evaluating if the agent is routing tasks correctly.",
+"type": "string"
+},
+"instruction": {
+"description": "Optional. Provides instructions for the LLM model, guiding the agent's behavior. Can be static or dynamic. Dynamic instructions can contain placeholders like {variable_name} that will be resolved at runtime using the `AgentEvent.state_delta` field.",
+"type": "string"
+},
+"subAgents": {
+"description": "Optional. The list of valid agent IDs that this agent can delegate to. This defines the directed edges in the multi-agent system graph topology.",
+"items": {
+"type": "string"
+},
+"type": "array"
+},
+"tools": {
+"description": "Optional. The list of tools available to this agent.",
+"items": {
+"$ref": "GoogleCloudAiplatformV1Tool"
+},
+"type": "array"
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1AgentTool": {
+"description": "A tool provides a list of actions available to the Agent during the process of executing a task.",
+"id": "GoogleCloudAiplatformV1AgentTool",
+"properties": {
+"headers": {
+"additionalProperties": {
+"type": "string"
+},
+"description": "Optional. The headers for the MCP server, such as for authentication. Only applicable when `type` is `mcp_server`.",
+"type": "object"
+},
+"name": {
+"description": "Optional. The name of the MCP server. Only applicable when `type` is `mcp_server`.",
+"type": "string"
+},
+"type": {
+"description": "Required. The type of the tool. Supported types: * `code_execution` * `filesystem` * `google_search` * `mcp_server` * `url_context`",
+"type": "string"
+},
+"url": {
+"description": "Optional. The URL for the MCP server endpoint. Only applicable when `type` is `mcp_server`.",
+"type": "string"
 }
 },
 "type": "object"
@@ -32933,6 +35074,21 @@
 },
 "type": "object"
 },
+"GoogleCloudAiplatformV1AsyncQueryReasoningEngineRequest": {
+"description": "Request message for ReasoningEngineExecutionService.AsyncQueryReasoningEngine.",
+"id": "GoogleCloudAiplatformV1AsyncQueryReasoningEngineRequest",
+"properties": {
+"inputGcsUri": {
+"description": "Optional. Input Cloud Storage URI for the Async query. If you are not bringing your own container (BYOC), the content of the file should be a JSON object with an `input` field matching the `input` field of `QueryReasoningEngineRequest` (e.g. `{ \"input\": { \"user_id\": \"hello\", \"message\":\"$QUERY\"} }`). For BYOC, the content of the file depends on the the agent application.",
+"type": "string"
+},
+"outputGcsUri": {
+"description": "Optional. Output Cloud Storage URI for the Async query. This contains the final response of the query.",
+"type": "string"
+}
+},
+"type": "object"
+},
 "GoogleCloudAiplatformV1AsyncRetrieveContextsRequest": {
 "description": "Request message for VertexRagService.AsyncRetrieveContexts.",
 "id": "GoogleCloudAiplatformV1AsyncRetrieveContextsRequest",
@@ -32996,6 +35152,59 @@
 "description": "Output only. Name of the explain output. Specified as the key in ExplanationMetadata.outputs.",
 "readOnly": true,
 "type": "string"
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1AudioResponseFormat": {
+"description": "Configuration for audio-specific output formatting.",
+"id": "GoogleCloudAiplatformV1AudioResponseFormat",
+"properties": {
+"bitRate": {
+"description": "Optional. Bit rate in bits per second (bps). Only applicable for compressed formats (MP3, Opus).",
+"format": "int32",
+"type": "integer"
+},
+"delivery": {
+"description": "Optional. Delivery mode for the generated content.",
+"enum": [
+"DELIVERY_UNSPECIFIED",
+"INLINE",
+"URI"
+],
+"enumDescriptions": [
+"Default value. This value is unused.",
+"Generated bytes are returned inline in the response.",
+"Generated content is stored and a URI is returned."
+],
+"type": "string"
+},
+"mimeType": {
+"description": "Optional. The MIME type of the audio output.",
+"enum": [
+"MIME_TYPE_UNSPECIFIED",
+"AUDIO_MP3",
+"AUDIO_OGG_OPUS",
+"AUDIO_L16",
+"AUDIO_WAV",
+"AUDIO_ALAW",
+"AUDIO_MULAW"
+],
+"enumDescriptions": [
+"Default value. This value is unused.",
+"MP3 audio format.",
+"OGG Opus audio format.",
+"Raw PCM (L16) audio format.",
+"WAV audio format.",
+"A-law audio format.",
+"Mu-law audio format."
+],
+"type": "string"
+},
+"sampleRate": {
+"description": "Optional. Sample rate for the generated audio in Hertz.",
+"format": "int32",
+"type": "integer"
 }
 },
 "type": "object"
@@ -33199,11 +35408,11 @@
 "type": "object"
 },
 "GoogleCloudAiplatformV1AutomaticResources": {
-"description": "A description of resources that to large degree are decided by Vertex AI, and require only a modest additional configuration. Each Model supporting these resources documents its specific guidelines.",
+"description": "A description of resources that to large degree are decided by Agent Platform, and require only a modest additional configuration. Each Model supporting these resources documents its specific guidelines.",
 "id": "GoogleCloudAiplatformV1AutomaticResources",
 "properties": {
 "maxReplicaCount": {
-"description": "Immutable. The maximum number of replicas that may be deployed on when the traffic against it increases. If the requested value is too large, the deployment will error, but if deployment succeeds then the ability to scale to that many replicas is guaranteed (barring service outages). If traffic increases beyond what its replicas at maximum may handle, a portion of the traffic will be dropped. If this value is not provided, a no upper bound for scaling under heavy traffic will be assume, though Vertex AI may be unable to scale beyond certain replica number.",
+"description": "Immutable. The maximum number of replicas that may be deployed on when the traffic against it increases. If the requested value is too large, the deployment will error, but if deployment succeeds then the ability to scale to that many replicas is guaranteed (barring service outages). If traffic increases beyond what its replicas at maximum may handle, a portion of the traffic will be dropped. If this value is not provided, a no upper bound for scaling under heavy traffic will be assume, though Agent Platform may be unable to scale beyond certain replica number.",
 "format": "int32",
 "type": "integer"
 },
@@ -33389,7 +35598,7 @@
 "type": "integer"
 },
 "startingReplicaCount": {
-"description": "Immutable. The number of machine replicas used at the start of the batch operation. If not set, Vertex AI decides starting number, not greater than max_replica_count",
+"description": "Immutable. The number of machine replicas used at the start of the batch operation. If not set, Agent Platform decides starting number, not greater than max_replica_count",
 "format": "int32",
 "type": "integer"
 }
@@ -34230,6 +36439,23 @@
 "type": "integer"
 }
 },
+"type": "object"
+},
+"GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineRequest": {
+"description": "Request message for ReasoningEngineExecutionService.CancelAsyncQueryReasoningEngine.",
+"id": "GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineRequest",
+"properties": {
+"operationName": {
+"description": "Required. The name of the longrunning operation returned from AsyncQueryReasoningEngine. Format: `projects/{project}/locations/{location}/operations/{operation}`",
+"type": "string"
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse": {
+"description": "Response message for ReasoningEngineExecutionService.CancelAsyncQueryReasoningEngine.",
+"id": "GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse",
+"properties": {},
 "type": "object"
 },
 "GoogleCloudAiplatformV1CancelBatchPredictionJobRequest": {
@@ -35087,6 +37313,10 @@
 "description": "Request message for ModelService.CopyModel.",
 "id": "GoogleCloudAiplatformV1CopyModelRequest",
 "properties": {
+"customServiceAccount": {
+"description": "Optional. The user-provided custom service account to use to do the copy model. If empty, [Vertex AI Service Agent](https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents) will be used to access resources needed to upload the model. This account must belong to the destination project where the model is copied to, i.e., the project specified in the `parent` field of this request and have the Vertex AI Service Agent role in the source project. Requires the user copying the Model to have the `iam.serviceAccounts.actAs` permission on this service account.",
+"type": "string"
+},
 "encryptionSpec": {
 "$ref": "GoogleCloudAiplatformV1EncryptionSpec",
 "description": "Customer-managed encryption key options. If this is set, then the Model copy will be encrypted with the provided encryption key."
@@ -35526,6 +37756,17 @@
 },
 "type": "object"
 },
+"GoogleCloudAiplatformV1CreateOnlineEvaluatorOperationMetadata": {
+"description": "Metadata for the CreateOnlineEvaluator operation.",
+"id": "GoogleCloudAiplatformV1CreateOnlineEvaluatorOperationMetadata",
+"properties": {
+"genericMetadata": {
+"$ref": "GoogleCloudAiplatformV1GenericOperationMetadata",
+"description": "Common part of operation metadata."
+}
+},
+"type": "object"
+},
 "GoogleCloudAiplatformV1CreatePersistentResourceOperationMetadata": {
 "description": "Details of operations that perform create PersistentResource.",
 "id": "GoogleCloudAiplatformV1CreatePersistentResourceOperationMetadata",
@@ -35567,6 +37808,18 @@
 "genericMetadata": {
 "$ref": "GoogleCloudAiplatformV1GenericOperationMetadata",
 "description": "Operation metadata for Feature."
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1CreateServingProfileOperationMetadata": {
+"description": "Runtime operation metadata for ServingProfileService.CreateServingProfile.",
+"id": "GoogleCloudAiplatformV1CreateServingProfileOperationMetadata",
+"properties": {
+"genericMetadata": {
+"$ref": "GoogleCloudAiplatformV1GenericOperationMetadata",
+"description": "Output only. The standard operation metadata for Vertex AI.",
+"readOnly": true
 }
 },
 "type": "object"
@@ -36345,7 +38598,7 @@
 "description": "Required. Immutable. The specification of a single machine being used."
 },
 "maxReplicaCount": {
-"description": "Immutable. The maximum number of replicas that may be deployed on when the traffic against it increases. If the requested value is too large, the deployment will error, but if deployment succeeds then the ability to scale to that many replicas is guaranteed (barring service outages). If traffic increases beyond what its replicas at maximum may handle, a portion of the traffic will be dropped. If this value is not provided, will use min_replica_count as the default value. The value of this field impacts the charge against Vertex CPU and GPU quotas. Specifically, you will be charged for (max_replica_count * number of cores in the selected machine type) and (max_replica_count * number of GPUs per replica in the selected machine type).",
+"description": "Immutable. The maximum number of replicas that may be deployed on when the traffic against it increases. If the requested value is too large, the deployment will error, but if deployment succeeds then the ability to scale to that many replicas is guaranteed (barring service outages). If traffic increases beyond what its replicas at maximum may handle, a portion of the traffic will be dropped. If this value is not provided, will use min_replica_count as the default value. The value of this field impacts the charge against Agent Platform CPU and GPU quotas. Specifically, you will be charged for (max_replica_count * number of cores in the selected machine type) and (max_replica_count * number of GPUs per replica in the selected machine type).",
 "format": "int32",
 "type": "integer"
 },
@@ -36483,6 +38736,17 @@
 "genericMetadata": {
 "$ref": "GoogleCloudAiplatformV1GenericOperationMetadata",
 "description": "Operation metadata for deleting a MetadataStore."
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1DeleteOnlineEvaluatorOperationMetadata": {
+"description": "Metadata for the DeleteOnlineEvaluator operation.",
+"id": "GoogleCloudAiplatformV1DeleteOnlineEvaluatorOperationMetadata",
+"properties": {
+"genericMetadata": {
+"$ref": "GoogleCloudAiplatformV1GenericOperationMetadata",
+"description": "Generic operation metadata."
 }
 },
 "type": "object"
@@ -37093,6 +39357,12 @@
 "type": "string"
 }
 },
+"type": "object"
+},
+"GoogleCloudAiplatformV1DeprovisionSemanticGovernancePolicyEngineRequest": {
+"description": "Request message for SemanticGovernancePolicyEngineService.DeprovisionSemanticGovernancePolicyEngine.",
+"id": "GoogleCloudAiplatformV1DeprovisionSemanticGovernancePolicyEngineRequest",
+"properties": {},
 "type": "object"
 },
 "GoogleCloudAiplatformV1DestinationFeatureSetting": {
@@ -37790,7 +40060,7 @@
 "properties": {
 "autoraterConfig": {
 "$ref": "GoogleCloudAiplatformV1AutoraterConfig",
-"description": "Optional. Autorater config used for evaluation."
+"description": "Optional. Autorater config used for evaluation. Not applicable for predefined metrics (PredefinedMetricSpec); the server uses its own model configuration for predefined metrics and this field is ignored."
 },
 "bleuInput": {
 "$ref": "GoogleCloudAiplatformV1BleuInput",
@@ -38724,7 +40994,7 @@
 },
 "evaluationConfig": {
 "$ref": "GoogleCloudAiplatformV1EvaluationRunEvaluationConfig",
-"description": "Required. The configuration used for the evaluation."
+"description": "Optional. The configuration used for the evaluation. Optional when analysis_configs is provided."
 },
 "evaluationResults": {
 "$ref": "GoogleCloudAiplatformV1EvaluationResults",
@@ -38819,7 +41089,7 @@
 "type": "array"
 },
 "metrics": {
-"description": "Required. The metrics to be calculated in the evaluation run.",
+"description": "Optional. The metrics to be calculated in the evaluation run. Required when analysis_configs is not set.",
 "items": {
 "$ref": "GoogleCloudAiplatformV1EvaluationRunMetric"
 },
@@ -39193,6 +41463,13 @@
 "description": "EvaluationSet is a collection of related EvaluationItems that are evaluated together.",
 "id": "GoogleCloudAiplatformV1EvaluationSet",
 "properties": {
+"agentConfigs": {
+"additionalProperties": {
+"$ref": "GoogleCloudAiplatformV1AgentConfig"
+},
+"description": "Optional. Static configurations for each agent associated with the items in this set. Key: `agent_id` (matches the `author` field in `events`). Value: The static configuration of the agent.",
+"type": "object"
+},
 "createTime": {
 "description": "Output only. Timestamp when this item was created.",
 "format": "google-datetime",
@@ -42263,6 +44540,20 @@
 "description": "Structured representation of a function declaration as defined by the [OpenAPI 3.0 specification](https://spec.openapis.org/oas/v3.0.3). Included in this declaration are the function name, description, parameters and response type. This FunctionDeclaration is a representation of a block of code that can be used as a `Tool` by the model and executed by the client.",
 "id": "GoogleCloudAiplatformV1FunctionDeclaration",
 "properties": {
+"behavior": {
+"description": "Optional. Specifies the function Behavior. If not specified, the system keeps the current function call behavior. This field is currently only supported by the BidiGenerateContent method.",
+"enum": [
+"UNSPECIFIED",
+"BLOCKING",
+"NON_BLOCKING"
+],
+"enumDescriptions": [
+"This value is unspecified.",
+"If set, the system will wait to receive the function response before continuing the conversation.",
+"If set, the system will not wait to receive the function response. Instead, it will attempt to handle function responses as they become available while maintaining the conversation between the user and the model."
+],
+"type": "string"
+},
 "description": {
 "description": "Optional. Description and purpose of the function. Model uses it to decide how and whether to call the function.",
 "type": "string"
@@ -42382,6 +44673,61 @@
 "inlineData": {
 "$ref": "GoogleCloudAiplatformV1FunctionResponseBlob",
 "description": "Inline media bytes."
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1GatewayConfig": {
+"description": "Configuration for a single gateway.",
+"id": "GoogleCloudAiplatformV1GatewayConfig",
+"properties": {
+"dnsRecord": {
+"description": "Output only. The fully qualified record name of the created A-record in Cloud DNS.",
+"readOnly": true,
+"type": "string"
+},
+"dnsZoneName": {
+"description": "Optional. FQDN of the private DNS zone to create DNS record set for PSC endpoint.",
+"type": "string"
+},
+"ipAddress": {
+"description": "Output only. The private IP address of the PSC endpoint.",
+"readOnly": true,
+"type": "string"
+},
+"network": {
+"description": "Optional. The URI of the network resource where PSC-E will be provisioned. if not provided `default` network will be used. Format: projects/{project}/global/networks/{network}",
+"type": "string"
+},
+"pscEndpoint": {
+"description": "Output only. The self-link or name of the Private Service Connect endpoint forwarding rule.",
+"readOnly": true,
+"type": "string"
+},
+"state": {
+"description": "Output only. The state of the Gateway configuration.",
+"enum": [
+"STATE_UNSPECIFIED",
+"PROVISIONING",
+"ACTIVE",
+"DEPROVISIONING",
+"INACTIVE",
+"FAILED"
+],
+"enumDescriptions": [
+"The default value. This value is used if the state is omitted.",
+"The Gateway is being provisioned.",
+"The Gateway is active and ready to use.",
+"The Gateway is being de-provisioned.",
+"The Gateway is inactive.",
+"The Gateway failed to be provisioned."
+],
+"readOnly": true,
+"type": "string"
+},
+"subnetwork": {
+"description": "Optional. The URI of the subnetwork resource where PSC-E will be provisioned. if not provided `default` subnet will be used from the same {location} Format: projects/{project}/regions/{region}/subnetworks/{subnetwork}",
+"type": "string"
 }
 },
 "type": "object"
@@ -42783,6 +45129,42 @@
 },
 "type": "object"
 },
+"GoogleCloudAiplatformV1GenerateLossClustersRequest": {
+"description": "Request message for EvaluationAnalyticsService.GenerateLossClusters.",
+"id": "GoogleCloudAiplatformV1GenerateLossClustersRequest",
+"properties": {
+"configs": {
+"description": "Required. Configuration for the analysis algorithm. Analysis for multiple metrics and multiple candidates could be specified.",
+"items": {
+"$ref": "GoogleCloudAiplatformV1LossAnalysisConfig"
+},
+"type": "array"
+},
+"evaluationSet": {
+"description": "Reference to a persisted EvaluationSet. The service will read items from this set.",
+"type": "string"
+},
+"inlineResults": {
+"$ref": "GoogleCloudAiplatformV1GenerateLossClustersRequestEvaluationResultList",
+"description": "Inline evaluation results. Useful for ephemeral analysis in notebooks/SDKs where data isn't persisted."
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1GenerateLossClustersRequestEvaluationResultList": {
+"description": "A wrapper to allow providing a list of items inline.",
+"id": "GoogleCloudAiplatformV1GenerateLossClustersRequestEvaluationResultList",
+"properties": {
+"evaluationResults": {
+"description": "Required. The list of evaluation results to analyze.",
+"items": {
+"$ref": "GoogleCloudAiplatformV1EvaluationResult"
+},
+"type": "array"
+}
+},
+"type": "object"
+},
 "GoogleCloudAiplatformV1GenerateMemoriesRequest": {
 "description": "Request message for MemoryBankService.GenerateMemories. Maximum size is 8 MB.",
 "id": "GoogleCloudAiplatformV1GenerateMemoriesRequest",
@@ -42986,6 +45368,46 @@
 },
 "type": "object"
 },
+"GoogleCloudAiplatformV1GenerateUserScenariosRequest": {
+"description": "Request message for DataFoundryService.GenerateUserScenarios.",
+"id": "GoogleCloudAiplatformV1GenerateUserScenariosRequest",
+"properties": {
+"agents": {
+"additionalProperties": {
+"$ref": "GoogleCloudAiplatformV1AgentConfig"
+},
+"description": "Required. A map containing the static configurations for each agent in the system. Key: agent_id (matches the `author` field in events). Value: The static configuration of the agent.",
+"type": "object"
+},
+"allowCrossRegionModel": {
+"description": "Optional. Allows the scenario generation to use cross region models. When this flag is set, the service may route traffic to other regions if a model is unavailable in the current region (e.g., to a `global` endpoint). If a fully-qualified model endpoint resource name with a different region than the request location is provided elsewhere in the request, this flag must be set to true or the request will fail.",
+"type": "boolean"
+},
+"rootAgentId": {
+"description": "Required. The agent id to identify the root agent.",
+"type": "string"
+},
+"userScenarioGenerationConfig": {
+"$ref": "GoogleCloudAiplatformV1UserScenarioGenerationConfig",
+"description": "Required. Configuration for generating user scenarios."
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1GenerateUserScenariosResponse": {
+"description": "Response message for DataFoundryService.GenerateUserScenarios.",
+"id": "GoogleCloudAiplatformV1GenerateUserScenariosResponse",
+"properties": {
+"userScenarios": {
+"description": "The generated user scenarios used to simulate multi-turn agent running results and agent evaluation.",
+"items": {
+"$ref": "GoogleCloudAiplatformV1UserScenario"
+},
+"type": "array"
+}
+},
+"type": "object"
+},
 "GoogleCloudAiplatformV1GenerateVideoResponse": {
 "description": "Generate video response.",
 "id": "GoogleCloudAiplatformV1GenerateVideoResponse",
@@ -43063,7 +45485,8 @@
 },
 "imageConfig": {
 "$ref": "GoogleCloudAiplatformV1ImageConfig",
-"description": "Optional. Config for image generation features."
+"deprecated": true,
+"description": "Optional. Config for image generation features. Deprecated: Use `response_format.image` instead."
 },
 "logprobs": {
 "description": "Optional. The number of top log probabilities to return for each token. This can be used to see which other tokens were considered likely candidates for a given position. A higher value will return more options, but it will also increase the size of the response.",
@@ -43096,8 +45519,16 @@
 "format": "float",
 "type": "number"
 },
+"responseFormat": {
+"description": "Optional. New response format field for the model to configure output formatting and delivery.",
+"items": {
+"$ref": "GoogleCloudAiplatformV1ResponseFormat"
+},
+"type": "array"
+},
 "responseJsonSchema": {
-"description": "Optional. When this field is set, response_schema must be omitted and response_mime_type must be set to `application/json`.",
+"deprecated": true,
+"description": "Optional. When this field is set, response_schema must be omitted and response_mime_type must be set to `application/json`. Deprecated: Use `response_format` instead.",
 "type": "any"
 },
 "responseLogprobs": {
@@ -43105,7 +45536,8 @@
 "type": "boolean"
 },
 "responseMimeType": {
-"description": "Optional. The IANA standard MIME type of the response. The model will generate output that conforms to this MIME type. Supported values include 'text/plain' (default) and 'application/json'. The model needs to be prompted to output the appropriate response type, otherwise the behavior is undefined.",
+"deprecated": true,
+"description": "Optional. The IANA standard MIME type of the response. The model will generate output that conforms to this MIME type. Supported values include 'text/plain' (default) and 'application/json'. The model needs to be prompted to output the appropriate response type, otherwise the behavior is undefined. Deprecated: Use `response_format` instead.",
 "type": "string"
 },
 "responseModalities": {
@@ -43115,13 +45547,15 @@
 "MODALITY_UNSPECIFIED",
 "TEXT",
 "IMAGE",
-"AUDIO"
+"AUDIO",
+"VIDEO"
 ],
 "enumDescriptions": [
 "Unspecified modality. Will be processed as text.",
 "Text modality.",
 "Image modality.",
-"Audio modality."
+"Audio modality.",
+"Video modality."
 ],
 "type": "string"
 },
@@ -43129,7 +45563,8 @@
 },
 "responseSchema": {
 "$ref": "GoogleCloudAiplatformV1Schema",
-"description": "Optional. Lets you to specify a schema for the model's response, ensuring that the output conforms to a particular structure. This is useful for generating structured data such as JSON. The schema is a subset of the [OpenAPI 3.0 schema object](https://spec.openapis.org/oas/v3.0.3#schema) object. When this field is set, you must also set the `response_mime_type` to `application/json`."
+"deprecated": true,
+"description": "Optional. Lets you to specify a schema for the model's response, ensuring that the output conforms to a particular structure. This is useful for generating structured data such as JSON. The schema is a subset of the [OpenAPI 3.0 schema object](https://spec.openapis.org/oas/v3.0.3#schema) object. When this field is set, you must also set the `response_mime_type` to `application/json`. Deprecated: Use `response_format` instead."
 },
 "routingConfig": {
 "$ref": "GoogleCloudAiplatformV1GenerationConfigRoutingConfig",
@@ -43338,7 +45773,8 @@
 "id": "GoogleCloudAiplatformV1GoogleMaps",
 "properties": {
 "enableWidget": {
-"description": "Optional. If true, include the widget context token in the response.",
+"deprecated": true,
+"description": "Optional. Deprecated: The Google Maps contextual widget behavior in Grounding with Google Maps is being deprecated; this field is planned for removal and no longer has any effect once removed. If true, include the widget context token in the response.",
 "type": "boolean"
 }
 },
@@ -43605,7 +46041,8 @@
 "id": "GoogleCloudAiplatformV1GroundingMetadata",
 "properties": {
 "googleMapsWidgetContextToken": {
-"description": "Optional. Output only. A token that can be used to render a Google Maps widget with the contextual data. This field is populated only when the grounding source is Google Maps.",
+"deprecated": true,
+"description": "Optional. Output only. Deprecated: The Google Maps contextual widget behavior in Grounding with Google Maps is being deprecated; this field is planned for removal and will no longer be populated once removed. A token that can be used to render a Google Maps widget with the contextual data. This field is populated only when the grounding source is Google Maps.",
 "readOnly": true,
 "type": "string"
 },
@@ -43916,6 +46353,95 @@
 },
 "type": "object"
 },
+"GoogleCloudAiplatformV1ImageResponseFormat": {
+"description": "Configuration for image-specific output formatting.",
+"id": "GoogleCloudAiplatformV1ImageResponseFormat",
+"properties": {
+"aspectRatio": {
+"description": "Optional. The aspect ratio for the image output.",
+"enum": [
+"ASPECT_RATIO_UNSPECIFIED",
+"ASPECT_RATIO_ONE_BY_ONE",
+"ASPECT_RATIO_TWO_BY_THREE",
+"ASPECT_RATIO_THREE_BY_TWO",
+"ASPECT_RATIO_THREE_BY_FOUR",
+"ASPECT_RATIO_FOUR_BY_THREE",
+"ASPECT_RATIO_FOUR_BY_FIVE",
+"ASPECT_RATIO_FIVE_BY_FOUR",
+"ASPECT_RATIO_NINE_BY_SIXTEEN",
+"ASPECT_RATIO_SIXTEEN_BY_NINE",
+"ASPECT_RATIO_TWENTY_ONE_BY_NINE",
+"ASPECT_RATIO_ONE_BY_EIGHT",
+"ASPECT_RATIO_EIGHT_BY_ONE",
+"ASPECT_RATIO_ONE_BY_FOUR",
+"ASPECT_RATIO_FOUR_BY_ONE"
+],
+"enumDescriptions": [
+"Default value. This value is unused.",
+"1:1 aspect ratio.",
+"2:3 aspect ratio.",
+"3:2 aspect ratio.",
+"3:4 aspect ratio.",
+"4:3 aspect ratio.",
+"4:5 aspect ratio.",
+"5:4 aspect ratio.",
+"9:16 aspect ratio.",
+"16:9 aspect ratio.",
+"21:9 aspect ratio.",
+"1:8 aspect ratio.",
+"8:1 aspect ratio.",
+"1:4 aspect ratio.",
+"4:1 aspect ratio."
+],
+"type": "string"
+},
+"delivery": {
+"description": "Optional. Delivery mode for the generated content.",
+"enum": [
+"DELIVERY_UNSPECIFIED",
+"INLINE",
+"URI"
+],
+"enumDescriptions": [
+"Default value. This value is unused.",
+"Generated bytes are returned inline in the response.",
+"Generated content is stored and a URI is returned."
+],
+"type": "string"
+},
+"imageSize": {
+"description": "Optional. The size of the image output.",
+"enum": [
+"IMAGE_SIZE_UNSPECIFIED",
+"IMAGE_SIZE_FIVE_TWELVE",
+"IMAGE_SIZE_ONE_K",
+"IMAGE_SIZE_TWO_K",
+"IMAGE_SIZE_FOUR_K"
+],
+"enumDescriptions": [
+"Default value. This value is unused.",
+"512px image size.",
+"1K image size.",
+"2K image size.",
+"4K image size."
+],
+"type": "string"
+},
+"mimeType": {
+"description": "Optional. The MIME type of the image output.",
+"enum": [
+"MIME_TYPE_UNSPECIFIED",
+"IMAGE_JPEG"
+],
+"enumDescriptions": [
+"Default value. This value is unused.",
+"JPEG image format."
+],
+"type": "string"
+}
+},
+"type": "object"
+},
 "GoogleCloudAiplatformV1ImportDataConfig": {
 "description": "Describes the location from where we import data into a Dataset, together with the labels that will be applied to the DataItems and the Annotations.",
 "id": "GoogleCloudAiplatformV1ImportDataConfig",
@@ -43974,6 +46500,150 @@
 "description": "Response message for DatasetService.ImportData.",
 "id": "GoogleCloudAiplatformV1ImportDataResponse",
 "properties": {},
+"type": "object"
+},
+"GoogleCloudAiplatformV1ImportEvaluationSetRequest": {
+"description": "Request message for EvaluationManagementService.ImportEvaluationSet.",
+"id": "GoogleCloudAiplatformV1ImportEvaluationSetRequest",
+"properties": {
+"agentEngineSource": {
+"$ref": "GoogleCloudAiplatformV1ImportEvaluationSetRequestAgentEngineSource",
+"description": "Source for loading Agent Engine sessions."
+},
+"bigquerySource": {
+"$ref": "GoogleCloudAiplatformV1BigQueryRequestSet",
+"description": "BigQuery source with column mappings."
+},
+"cloudTraceSource": {
+"$ref": "GoogleCloudAiplatformV1ImportEvaluationSetRequestCloudTraceSource",
+"description": "Source for loading data directly from Cloud Trace."
+},
+"evaluationSet": {
+"$ref": "GoogleCloudAiplatformV1EvaluationSet",
+"description": "Required. The EvaluationSet to create. Used to specify 'display_name' and 'metadata'. The 'evaluation_items' field is ignored and populated by the import process."
+},
+"gcsDestination": {
+"$ref": "GoogleCloudAiplatformV1GcsDestination",
+"description": "Required. The Cloud Storage location where the resulting EvaluationItem payloads will be stored."
+},
+"gcsSource": {
+"$ref": "GoogleCloudAiplatformV1ImportEvaluationSetRequestGcsSource",
+"description": "Google Cloud Storage location."
+},
+"inlineSource": {
+"$ref": "GoogleCloudAiplatformV1ImportEvaluationSetRequestInlineSource",
+"description": "Inline source for small payloads (< 4MB)."
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1ImportEvaluationSetRequestAgentEngineSource": {
+"description": "Source for loading Agent Engine sessions.",
+"id": "GoogleCloudAiplatformV1ImportEvaluationSetRequestAgentEngineSource",
+"properties": {
+"location": {
+"description": "Required. Location for the Agent Engine sessions.",
+"type": "string"
+},
+"projectId": {
+"description": "Required. Project ID for the Agent Engine sessions.",
+"type": "string"
+},
+"reasoningEngineId": {
+"description": "Required. Reasoning Engine ID for the Agent Engine sessions.",
+"type": "string"
+},
+"sessionIds": {
+"description": "Required. Session IDs for the Agent Engine sessions to retrieve.",
+"items": {
+"type": "string"
+},
+"type": "array"
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1ImportEvaluationSetRequestCloudTraceSource": {
+"description": "Source for loading traces directly from Cloud Trace.",
+"id": "GoogleCloudAiplatformV1ImportEvaluationSetRequestCloudTraceSource",
+"properties": {
+"projectId": {
+"description": "Required. Project ID for the Cloud Trace.",
+"type": "string"
+},
+"sessionIds": {
+"description": "Optional. Session IDs to import traces for. If both trace_ids and session_ids are specified, the union of the two will be imported.",
+"items": {
+"type": "string"
+},
+"type": "array"
+},
+"traceIds": {
+"description": "Optional. Trace IDs to import.",
+"items": {
+"type": "string"
+},
+"type": "array"
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1ImportEvaluationSetRequestGcsSource": {
+"description": "Source for loading data from Cloud Storage.",
+"id": "GoogleCloudAiplatformV1ImportEvaluationSetRequestGcsSource",
+"properties": {
+"gcsUri": {
+"description": "Required. The Cloud Storage location of the input data.",
+"type": "string"
+},
+"importSchemaConfig": {
+"$ref": "GoogleCloudAiplatformV1ImportEvaluationSetRequestImportSchemaConfig",
+"description": "Required. Schema configuration for the input data."
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1ImportEvaluationSetRequestImportSchemaConfig": {
+"description": "Configuration for the input data format.",
+"id": "GoogleCloudAiplatformV1ImportEvaluationSetRequestImportSchemaConfig",
+"properties": {
+"dataFormat": {
+"description": "Required. The format of the input data.",
+"enum": [
+"DATA_FORMAT_UNSPECIFIED",
+"OTEL_PROTO",
+"OTEL_JSON",
+"JSONL"
+],
+"enumDescriptions": [
+"Unspecified data format.",
+"OpenTelemetry Protobuf format (e.g. TracesData).",
+"OpenTelemetry JSON format.",
+"JSONL format mapping directly to EvaluationItem schema."
+],
+"type": "string"
+},
+"dataFormatVersion": {
+"description": "Optional. Version of the data format.",
+"type": "string"
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1ImportEvaluationSetRequestInlineSource": {
+"description": "Wrapper for inline data.",
+"id": "GoogleCloudAiplatformV1ImportEvaluationSetRequestInlineSource",
+"properties": {
+"content": {
+"description": "Required. The content of the inline data.",
+"format": "byte",
+"type": "string"
+},
+"importSchemaConfig": {
+"$ref": "GoogleCloudAiplatformV1ImportEvaluationSetRequestImportSchemaConfig",
+"description": "Required. Schema configuration for the inline data."
+}
+},
 "type": "object"
 },
 "GoogleCloudAiplatformV1ImportFeatureValuesOperationMetadata": {
@@ -44582,6 +47252,70 @@
 },
 "type": "object"
 },
+"GoogleCloudAiplatformV1IngestEventsRequest": {
+"description": "Request message for MemoryBankService.IngestEvents.",
+"id": "GoogleCloudAiplatformV1IngestEventsRequest",
+"properties": {
+"directContentsSource": {
+"$ref": "GoogleCloudAiplatformV1IngestionDirectContentsSource",
+"description": "Ingest events directly from the request."
+},
+"forceFlush": {
+"description": "Optional. Forces a flush of all pending events in the stream and triggers memory generation immediately bypassing any conditions configured in the `generation_trigger_config`.",
+"type": "boolean"
+},
+"generationTriggerConfig": {
+"$ref": "GoogleCloudAiplatformV1MemoryGenerationTriggerConfig",
+"description": "Optional. Configuration for triggering memory generation from this ingestion. If not set, then the stream will be force flushed immediately."
+},
+"scope": {
+"additionalProperties": {
+"type": "string"
+},
+"description": "Required. The scope of the memories that should be generated from the stream. Memories will be consolidated across memories with the same scope. Scope values cannot contain the wildcard character '*'.",
+"type": "object"
+},
+"streamId": {
+"description": "Optional. The ID of the stream to ingest events into. If not provided, a new one will be created.",
+"type": "string"
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1IngestionDirectContentsSource": {
+"description": "Ingest events directly from the request.",
+"id": "GoogleCloudAiplatformV1IngestionDirectContentsSource",
+"properties": {
+"events": {
+"description": "Required. The events to ingest.",
+"items": {
+"$ref": "GoogleCloudAiplatformV1IngestionDirectContentsSourceEvent"
+},
+"type": "array"
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1IngestionDirectContentsSourceEvent": {
+"description": "A single event to ingest.",
+"id": "GoogleCloudAiplatformV1IngestionDirectContentsSourceEvent",
+"properties": {
+"content": {
+"$ref": "GoogleCloudAiplatformV1Content",
+"description": "Required. The content of the event."
+},
+"eventId": {
+"description": "Optional. A unique identifier for the event. If an event with the same event_id is ingested multiple times, it will be de-duplicated.",
+"type": "string"
+},
+"eventTime": {
+"description": "Optional. The time at which the event occurred. If provided, this timestamp will be used for ordering events within a stream. If not provided, the server-side ingestion time will be used.",
+"format": "google-datetime",
+"type": "string"
+}
+},
+"type": "object"
+},
 "GoogleCloudAiplatformV1InputDataConfig": {
 "description": "Specifies Vertex AI owned input data to be used for training, and possibly evaluating, the Model.",
 "id": "GoogleCloudAiplatformV1InputDataConfig",
@@ -44870,6 +47604,24 @@
 "$ref": "GoogleCloudAiplatformV1Execution"
 },
 "type": "array"
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1ListAgentsResponse": {
+"description": "Response message for AgentService.ListAgents.",
+"id": "GoogleCloudAiplatformV1ListAgentsResponse",
+"properties": {
+"agents": {
+"description": "The agents matching the request.",
+"items": {
+"$ref": "GoogleCloudAiplatformV1Agent"
+},
+"type": "array"
+},
+"nextPageToken": {
+"description": "A token to retrieve the next page of results. Pass this value as ListAgentsRequest.page_token in a subsequent call.",
+"type": "string"
 }
 },
 "type": "object"
@@ -45630,6 +48382,24 @@
 },
 "type": "object"
 },
+"GoogleCloudAiplatformV1ListOnlineEvaluatorsResponse": {
+"description": "Response message for ListOnlineEvaluators.",
+"id": "GoogleCloudAiplatformV1ListOnlineEvaluatorsResponse",
+"properties": {
+"nextPageToken": {
+"description": "A token to retrieve the next page. Absence of this field indicates there are no subsequent pages.",
+"type": "string"
+},
+"onlineEvaluators": {
+"description": "A list of OnlineEvaluators matching the request.",
+"items": {
+"$ref": "GoogleCloudAiplatformV1OnlineEvaluator"
+},
+"type": "array"
+}
+},
+"type": "object"
+},
 "GoogleCloudAiplatformV1ListOptimalTrialsRequest": {
 "description": "Request message for VizierService.ListOptimalTrials.",
 "id": "GoogleCloudAiplatformV1ListOptimalTrialsRequest",
@@ -45823,6 +48593,24 @@
 "description": "List of Schedules in the requested page.",
 "items": {
 "$ref": "GoogleCloudAiplatformV1Schedule"
+},
+"type": "array"
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1ListSemanticGovernancePoliciesResponse": {
+"description": "Response message for SemanticGovernancePolicyService.ListSemanticGovernancePolicies.",
+"id": "GoogleCloudAiplatformV1ListSemanticGovernancePoliciesResponse",
+"properties": {
+"nextPageToken": {
+"description": "A token to retrieve the next page of results. Pass to ListSemanticGovernancePoliciesRequest.page_token to obtain that page.",
+"type": "string"
+},
+"semanticGovernancePolicies": {
+"description": "The list of SemanticGovernancePolicies.",
+"items": {
+"$ref": "GoogleCloudAiplatformV1SemanticGovernancePolicy"
 },
 "type": "array"
 }
@@ -46076,6 +48864,21 @@
 },
 "type": "object"
 },
+"GoogleCloudAiplatformV1LossAnalysisConfig": {
+"description": "Configuration for the loss analysis job.",
+"id": "GoogleCloudAiplatformV1LossAnalysisConfig",
+"properties": {
+"candidate": {
+"description": "Required. The candidate model/agent to analyze (e.g., \"gemini-3.0-pro\"). This targets the specific CandidateResult within the EvaluationResult.",
+"type": "string"
+},
+"metric": {
+"description": "Required. The metric to analyze (e.g., \"tool_use_quality\"). This filters the EvaluationItems in the EvalSet to only those where EvaluationResult.metric matches this value.",
+"type": "string"
+}
+},
+"type": "object"
+},
 "GoogleCloudAiplatformV1LustreMount": {
 "description": "Represents a mount configuration for Lustre file system.",
 "id": "GoogleCloudAiplatformV1LustreMount",
@@ -46104,7 +48907,7 @@
 "id": "GoogleCloudAiplatformV1MachineSpec",
 "properties": {
 "acceleratorCount": {
-"description": "The number of accelerators to attach to the machine. For accelerator optimized machine types (https://cloud.google.com/compute/docs/accelerator-optimized-machines), One may set the accelerator_count from 1 to N for machine with N GPUs. If accelerator_count is less than or equal to N / 2, Vertex will co-schedule the replicas of the model into the same VM to save cost. For example, if the machine type is a3-highgpu-8g, which has 8 H100 GPUs, one can set accelerator_count to 1 to 8. If accelerator_count is 1, 2, 3, or 4, Vertex will co-schedule 8, 4, 2, or 2 replicas of the model into the same VM to save cost. When co-scheduling, CPU, memory and storage on the VM will be distributed to replicas on the VM. For example, one can expect a co-scheduled replica requesting 2 GPUs out of a 8-GPU VM will receive 25% of the CPU, memory and storage of the VM. Note that the feature is not compatible with multihost_gpu_node_count. When multihost_gpu_node_count is set, the co-scheduling will not be enabled.",
+"description": "The number of accelerators to attach to the machine. For [accelerator optimized machine types](https://cloud.google.com/compute/docs/accelerator-optimized-machines), One may set the accelerator_count from 1 to N for machine with N GPUs. If accelerator_count is less than or equal to N / 2, Agent Platform co-schedules the replicas of the model into the same VM to save cost. For example, if the machine type is a3-highgpu-8g, which has 8 H100 GPUs, one can set accelerator_count to 1 to 8. If accelerator_count is 1, 2, 3, or 4, Agent Platform co-schedules 8, 4, 2, or 2 replicas of the model into the same VM to save cost. When co-scheduling, CPU, memory and storage on the VM will be distributed to replicas on the VM. For example, one can expect a co-scheduled replica requesting 2 GPUs out of a 8-GPU VM will receive 25% of the CPU, memory and storage of the VM. Note that the feature is not compatible with multihost_gpu_node_count. When multihost_gpu_node_count is set, the co-scheduling will not be enabled.",
 "format": "int32",
 "type": "integer"
 },
@@ -46180,7 +48983,7 @@ false
 "type": "string"
 },
 "machineType": {
-"description": "Immutable. The type of the machine. See the [list of machine types supported for prediction](https://cloud.google.com/vertex-ai/docs/predictions/configure-compute#machine-types) See the [list of machine types supported for custom training](https://cloud.google.com/vertex-ai/docs/training/configure-compute#machine-types). For DeployedModel this field is optional, and the default value is `n1-standard-2`. For BatchPredictionJob or as part of WorkerPoolSpec this field is required.",
+"description": "Immutable. The type of the machine. See the [list of machine types supported for prediction](https://cloud.google.com/gemini-enterprise-agent-platform/machine-learning/predictions/configure-compute#machine-types) See the [list of machine types supported for custom training](https://cloud.google.com/gemini-enterprise-agent-platform/machine-learning/training/configure-compute#machine-types). For DeployedModel this field is optional, and the default value is `n1-standard-2`. For BatchPredictionJob or as part of WorkerPoolSpec this field is required.",
 "type": "string"
 },
 "reservationAffinity": {
@@ -47003,7 +49806,7 @@ false
 "description": "Inline metric config."
 },
 "metricResourceName": {
-"description": "Resource name for registered metric.",
+"description": "Optional. Resource name for registered metric.",
 "type": "string"
 }
 },
@@ -47103,7 +49906,8 @@ false
 },
 "dataLabelingDataset": {
 "$ref": "GoogleCloudAiplatformV1MigratableResourceDataLabelingDataset",
-"description": "Output only. Represents one Dataset in datalabeling.googleapis.com.",
+"deprecated": true,
+"description": "Output only. Deprecated: Data Labeling Dataset migration is no longer supported. Represents one Dataset in datalabeling.googleapis.com.",
 "readOnly": true
 },
 "lastMigrateTime": {
@@ -49224,7 +52028,8 @@ false
 "INVALID_SPARSE_EMBEDDING",
 "INVALID_EMBEDDING",
 "INVALID_EMBEDDING_METADATA",
-"EMBEDDING_METADATA_EXCEEDS_SIZE_LIMIT"
+"EMBEDDING_METADATA_EXCEEDS_SIZE_LIMIT",
+"DUPLICATE_ID"
 ],
 "enumDescriptions": [
 "Default, shall not be used.",
@@ -49246,7 +52051,8 @@ false
 "Invalid sparse embedding.",
 "Invalid dense embedding.",
 "Invalid embedding metadata.",
-"Embedding metadata exceeds size limit."
+"Embedding metadata exceeds size limit.",
+"Multiple input records share the same datapoint id. The input conversion pipeline performs non-deterministic last-write-wins de-duplication and emits one error per duplicated id."
 ],
 "type": "string"
 },
@@ -49944,6 +52750,216 @@ false
 },
 "type": "object"
 },
+"GoogleCloudAiplatformV1OnlineEvaluator": {
+"description": "An OnlineEvaluator contains the configuration for an Online Evaluation.",
+"id": "GoogleCloudAiplatformV1OnlineEvaluator",
+"properties": {
+"agentResource": {
+"description": "Required. Immutable. The name of the agent that the OnlineEvaluator evaluates periodically. This value is used to filter the traces with a matching cloud.resource_id and link the evaluation results with relevant dashboards/UIs. This field is immutable. Once set, it cannot be changed.",
+"type": "string"
+},
+"cloudObservability": {
+"$ref": "GoogleCloudAiplatformV1OnlineEvaluatorCloudObservability",
+"description": "Data source for the OnlineEvaluator, based on Google Cloud Observability stack (Cloud Trace & Cloud Logging)."
+},
+"config": {
+"$ref": "GoogleCloudAiplatformV1OnlineEvaluatorConfig",
+"description": "Required. Configuration for the OnlineEvaluator."
+},
+"createTime": {
+"description": "Output only. Timestamp when the OnlineEvaluator was created.",
+"format": "google-datetime",
+"readOnly": true,
+"type": "string"
+},
+"displayName": {
+"description": "Optional. Human-readable name for the `OnlineEvaluator`. The name doesn't have to be unique. The name can consist of any UTF-8 characters. The maximum length is `63` characters. If the display name exceeds max characters, an `INVALID_ARGUMENT` error is returned.",
+"type": "string"
+},
+"metricSources": {
+"description": "Required. A list of metric sources to be used for evaluating samples. At least one MetricSource must be provided. Right now, only predefined metrics and registered metrics are supported. Every registered metric must have `display_name` (or `title`) and `score_range` defined. Otherwise, the evaluations will fail. The maximum number of `metric_sources` is 25.",
+"items": {
+"$ref": "GoogleCloudAiplatformV1MetricSource"
+},
+"type": "array"
+},
+"name": {
+"description": "Identifier. The resource name of the OnlineEvaluator. Format: projects/{project}/locations/{location}/onlineEvaluators/{id}.",
+"type": "string"
+},
+"state": {
+"description": "Output only. The state of the OnlineEvaluator.",
+"enum": [
+"STATE_UNSPECIFIED",
+"ACTIVE",
+"SUSPENDED",
+"FAILED",
+"WARNING"
+],
+"enumDescriptions": [
+"Default value.",
+"Indicates that the OnlineEvaluator is active.",
+"Indicates that the OnlineEvaluator is suspended. In this state, the OnlineEvaluator will not evaluate any samples.",
+"Indicates that the OnlineEvaluator is in a failed state. This can happen if, for example, the `log_view` or `trace_view` set on the `CloudObservability` does not exist.",
+"Indicates that the OnlineEvaluator is in a warning state. This can happen if, for example, some of the metrics in the `metric_sources` are invalid. Evaluation will still run with the remaining valid metrics."
+],
+"readOnly": true,
+"type": "string"
+},
+"stateDetails": {
+"description": "Output only. Contains additional information about the state of the OnlineEvaluator. This is used to provide more details in the event of a failure.",
+"items": {
+"$ref": "GoogleCloudAiplatformV1OnlineEvaluatorStateDetails"
+},
+"readOnly": true,
+"type": "array"
+},
+"updateTime": {
+"description": "Output only. Timestamp when the OnlineEvaluator was last updated.",
+"format": "google-datetime",
+"readOnly": true,
+"type": "string"
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1OnlineEvaluatorCloudObservability": {
+"description": "Data source for the OnlineEvaluator, based on Google Cloud Observability stack (Cloud Trace & Cloud Logging).",
+"id": "GoogleCloudAiplatformV1OnlineEvaluatorCloudObservability",
+"properties": {
+"logView": {
+"description": "Optional. Optional log view that will be used to query logs. If empty, the `_Default` view will be used.",
+"type": "string"
+},
+"openTelemetry": {
+"$ref": "GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityOpenTelemetry",
+"description": "Data source follows OpenTelemetry convention."
+},
+"traceScope": {
+"$ref": "GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityTraceScope",
+"description": "Scope online evaluation to single traces."
+},
+"traceView": {
+"description": "Optional. Optional trace view that will be used to query traces. If empty, the `_Default` view will be used. NOTE: This field is not supported yet and will be ignored if set.",
+"type": "string"
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate": {
+"description": "Defines a predicate for filtering based on a numeric value.",
+"id": "GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate",
+"properties": {
+"comparisonOperator": {
+"description": "Required. The comparison operator to apply.",
+"enum": [
+"COMPARISON_OPERATOR_UNSPECIFIED",
+"LESS",
+"LESS_OR_EQUAL",
+"EQUAL",
+"NOT_EQUAL",
+"GREATER_OR_EQUAL",
+"GREATER"
+],
+"enumDescriptions": [
+"Unspecified comparison operator. This value should not be used.",
+"Less than.",
+"Less than or equal to.",
+"Equal to.",
+"Not equal to.",
+"Greater than or equal to.",
+"Greater than."
+],
+"type": "string"
+},
+"value": {
+"description": "Required. The value to compare against.",
+"format": "float",
+"type": "number"
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityOpenTelemetry": {
+"description": "Configuration for data source following OpenTelemetry.",
+"id": "GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityOpenTelemetry",
+"properties": {
+"semconvVersion": {
+"description": "Required. Defines which version OTel Semantic Convention the data follows. Can be \"1.39.0\" or newer.",
+"type": "string"
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityTraceScope": {
+"description": "If chosen, the online evaluator will evaluate single traces matching specified `filter`.",
+"id": "GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityTraceScope",
+"properties": {
+"filter": {
+"description": "Optional. A list of predicates to filter traces. Multiple predicates are combined using AND. The maximum number of predicates is 10.",
+"items": {
+"$ref": "GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityTraceScopePredicate"
+},
+"type": "array"
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityTraceScopePredicate": {
+"description": "Defines a single filter predicate.",
+"id": "GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityTraceScopePredicate",
+"properties": {
+"duration": {
+"$ref": "GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate",
+"description": "Filter on the duration of a trace."
+},
+"totalTokenUsage": {
+"$ref": "GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate",
+"description": "Filter on the total token usage within a trace."
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1OnlineEvaluatorConfig": {
+"description": "Configuration for sampling behavior of the OnlineEvaluator. The OnlineEvaluator runs at a fixed interval of 10 minutes.",
+"id": "GoogleCloudAiplatformV1OnlineEvaluatorConfig",
+"properties": {
+"maxEvaluatedSamplesPerRun": {
+"description": "Optional. The maximum number of evaluations to perform per run. If set to 0, the number is unbounded.",
+"format": "int64",
+"type": "string"
+},
+"randomSampling": {
+"$ref": "GoogleCloudAiplatformV1OnlineEvaluatorConfigRandomSampling",
+"description": "Random sampling method."
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1OnlineEvaluatorConfigRandomSampling": {
+"description": "Configuration for random sampling.",
+"id": "GoogleCloudAiplatformV1OnlineEvaluatorConfigRandomSampling",
+"properties": {
+"percentage": {
+"description": "Required. The percentage of traces to sample for evaluation. Must be an integer between `1` and `100`.",
+"format": "int32",
+"type": "integer"
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1OnlineEvaluatorStateDetails": {
+"description": "Contains additional information about the state of the OnlineEvaluator.",
+"id": "GoogleCloudAiplatformV1OnlineEvaluatorStateDetails",
+"properties": {
+"message": {
+"description": "Output only. Human-readable message describing the state of the OnlineEvaluator.",
+"readOnly": true,
+"type": "string"
+}
+},
+"type": "object"
+},
 "GoogleCloudAiplatformV1OutputConfig": {
 "description": "Config for evaluation output.",
 "id": "GoogleCloudAiplatformV1OutputConfig",
@@ -50443,6 +53459,12 @@ false
 "properties": {},
 "type": "object"
 },
+"GoogleCloudAiplatformV1PauseSandboxEnvironmentRequest": {
+"description": "Request message for SandboxEnvironmentService.PauseSandboxEnvironment.",
+"id": "GoogleCloudAiplatformV1PauseSandboxEnvironmentRequest",
+"properties": {},
+"type": "object"
+},
 "GoogleCloudAiplatformV1PauseScheduleRequest": {
 "description": "Request message for ScheduleService.PauseSchedule.",
 "id": "GoogleCloudAiplatformV1PauseScheduleRequest",
@@ -50450,7 +53472,7 @@ false
 "type": "object"
 },
 "GoogleCloudAiplatformV1PersistentDiskSpec": {
-"description": "Represents the spec of persistent disk options.",
+"description": "Represents the spec of persistent disk and hyperdisk options.",
 "id": "GoogleCloudAiplatformV1PersistentDiskSpec",
 "properties": {
 "diskSizeGb": {
@@ -50459,7 +53481,7 @@ false
 "type": "string"
 },
 "diskType": {
-"description": "Type of the disk (default is \"pd-standard\"). Valid values: \"pd-ssd\" (Persistent Disk Solid State Drive) \"pd-standard\" (Persistent Disk Hard Disk Drive) \"pd-balanced\" (Balanced Persistent Disk) \"pd-extreme\" (Extreme Persistent Disk)",
+"description": "Type of the disk (default is \"pd-standard\"). Valid values: \"pd-ssd\" (Persistent Disk Solid State Drive) \"pd-standard\" (Persistent Disk Hard Disk Drive) \"pd-balanced\" (Balanced Persistent Disk) \"pd-extreme\" (Extreme Persistent Disk) \"hyperdisk-balanced\" (Hyperdisk Balanced) \"hyperdisk-extreme\" (Hyperdisk Extreme) \"hyperdisk-balanced-high-availability\" (Hyperdisk Balanced High Availability) \"hyperdisk-ml\" (Hyperdisk ML) \"hyperdisk-throughput\" (Hyperdisk Throughput)",
 "type": "string"
 }
 },
@@ -53828,6 +56850,10 @@ false
 "description": "The specification of a Reasoning Engine deployment.",
 "id": "GoogleCloudAiplatformV1ReasoningEngineSpecDeploymentSpec",
 "properties": {
+"agentGatewayConfig": {
+"$ref": "GoogleCloudAiplatformV1ReasoningEngineSpecDeploymentSpecAgentGatewayConfig",
+"description": "Optional. Agent Gateway configuration for the Reasoning Engine deployment."
+},
 "containerConcurrency": {
 "description": "Optional. Concurrency for each container and agent server. Recommended value: 2 * cpu + 1. Defaults to 9.",
 "format": "int32",
@@ -53850,7 +56876,7 @@ false
 "type": "integer"
 },
 "minInstances": {
-"description": "Optional. The minimum number of application instances that will be kept running at all times. Defaults to 1. Range: [0, 10].",
+"description": "Optional. The minimum number of application instances that will be kept running at all times. Defaults to 1. Range: [0, 75].",
 "format": "int32",
 "type": "integer"
 },
@@ -53875,6 +56901,43 @@ false
 },
 "type": "object"
 },
+"GoogleCloudAiplatformV1ReasoningEngineSpecDeploymentSpecAgentGatewayConfig": {
+"description": "Agent Gateway configuration for a Reasoning Engine deployment.",
+"id": "GoogleCloudAiplatformV1ReasoningEngineSpecDeploymentSpecAgentGatewayConfig",
+"properties": {
+"agentToAnywhereConfig": {
+"$ref": "GoogleCloudAiplatformV1ReasoningEngineSpecDeploymentSpecAgentGatewayConfigAgentToAnywhereConfig",
+"description": "Optional. Configuration for traffic originating from the Reasoning Engine. When unset, outgoing traffic is not routed through an Agent Gateway."
+},
+"clientToAgentConfig": {
+"$ref": "GoogleCloudAiplatformV1ReasoningEngineSpecDeploymentSpecAgentGatewayConfigClientToAgentConfig",
+"description": "Optional. Configuration for traffic targeting the Reasoning Engine. When unset, incoming traffic is not routed through an Agent Gateway."
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1ReasoningEngineSpecDeploymentSpecAgentGatewayConfigAgentToAnywhereConfig": {
+"description": "Configuration for traffic originating from a Reasoning Engine.",
+"id": "GoogleCloudAiplatformV1ReasoningEngineSpecDeploymentSpecAgentGatewayConfigAgentToAnywhereConfig",
+"properties": {
+"agentGateway": {
+"description": "Required. The resource name of the Agent Gateway for outbound traffic. It must be set to a Google-managed gateway whose `governed_access_path` is `AGENT_TO_ANYWHERE`. Format: `projects/{project}/locations/{location}/agentGateways/{agent_gateway}`",
+"type": "string"
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1ReasoningEngineSpecDeploymentSpecAgentGatewayConfigClientToAgentConfig": {
+"description": "Configuration for traffic targeting a Reasoning Engine.",
+"id": "GoogleCloudAiplatformV1ReasoningEngineSpecDeploymentSpecAgentGatewayConfigClientToAgentConfig",
+"properties": {
+"agentGateway": {
+"description": "Required. The resource name of the Agent Gateway to use for inbound traffic. It must be set to a Google-managed gateway whose `governed_access_path` is `CLIENT_TO_AGENT`. Format: `projects/{project}/locations/{location}/agentGateways/{agent_gateway}`",
+"type": "string"
+}
+},
+"type": "object"
+},
 "GoogleCloudAiplatformV1ReasoningEngineSpecPackageSpec": {
 "description": "User-provided package specification, containing pickled object and package requirements.",
 "id": "GoogleCloudAiplatformV1ReasoningEngineSpecPackageSpec",
@@ -53888,7 +56951,7 @@ false
 "type": "string"
 },
 "pythonVersion": {
-"description": "Optional. The Python version. Supported values are 3.9, 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, the default value is 3.10.",
+"description": "Optional. The Python version. Supported values are 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, the default value is 3.10.",
 "type": "string"
 },
 "requirementsGcsUri": {
@@ -54028,7 +57091,7 @@ false
 "type": "string"
 },
 "version": {
-"description": "Optional. The version of Python to use. Support version includes 3.9, 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, default value is 3.10.",
+"description": "Optional. The version of Python to use. Supported versions include 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, default value is 3.10.",
 "type": "string"
 }
 },
@@ -54262,6 +57325,29 @@ false
 },
 "type": "object"
 },
+"GoogleCloudAiplatformV1ResponseFormat": {
+"description": "Configuration for the model to configure output formatting and delivery.",
+"id": "GoogleCloudAiplatformV1ResponseFormat",
+"properties": {
+"audio": {
+"$ref": "GoogleCloudAiplatformV1AudioResponseFormat",
+"description": "Audio output format."
+},
+"image": {
+"$ref": "GoogleCloudAiplatformV1ImageResponseFormat",
+"description": "Image output format."
+},
+"text": {
+"$ref": "GoogleCloudAiplatformV1TextResponseFormat",
+"description": "Text output format."
+},
+"video": {
+"$ref": "GoogleCloudAiplatformV1VideoResponseFormat",
+"description": "Video output format."
+}
+},
+"type": "object"
+},
 "GoogleCloudAiplatformV1RestoreDatasetVersionOperationMetadata": {
 "description": "Runtime operation information for DatasetService.RestoreDatasetVersion.",
 "id": "GoogleCloudAiplatformV1RestoreDatasetVersionOperationMetadata",
@@ -54276,6 +57362,12 @@ false
 "GoogleCloudAiplatformV1ResumeModelDeploymentMonitoringJobRequest": {
 "description": "Request message for JobService.ResumeModelDeploymentMonitoringJob.",
 "id": "GoogleCloudAiplatformV1ResumeModelDeploymentMonitoringJobRequest",
+"properties": {},
+"type": "object"
+},
+"GoogleCloudAiplatformV1ResumeSandboxEnvironmentRequest": {
+"description": "Request message for SandboxEnvironmentService.ResumeSandboxEnvironment.",
+"id": "GoogleCloudAiplatformV1ResumeSandboxEnvironmentRequest",
 "properties": {},
 "type": "object"
 },
@@ -55180,8 +58272,25 @@ false
 "format": "google-datetime",
 "type": "string"
 },
+"latestSandboxEnvironmentSnapshot": {
+"description": "Output only. The resource name of the latest snapshot taken for this SandboxEnvironment.",
+"readOnly": true,
+"type": "string"
+},
 "name": {
 "description": "Identifier. The name of the SandboxEnvironment.",
+"type": "string"
+},
+"owner": {
+"description": "Optional. Owner information for this sandbox environment. A Sandbox can only be restored from a snapshot that belongs to the same owner. If not set, sandbox will be created as the default owner.",
+"type": "string"
+},
+"sandboxEnvironmentSnapshot": {
+"description": "Optional. The resource name of the SandboxEnvironmentSnapshot to use for creating this SandboxEnvironment. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/sandboxEnvironmentSnapshots/{sandbox_environment_snapshot}`",
+"type": "string"
+},
+"sandboxEnvironmentTemplate": {
+"description": "Optional. The name of the SandboxEnvironmentTemplate specified in the parent Agent Engine resource that this SandboxEnvironment is created from.",
 "type": "string"
 },
 "spec": {
@@ -55237,8 +58346,8 @@ false
 "readOnly": true,
 "type": "string"
 },
-"sandboxHostname": {
-"description": "Output only. The hostname of the SandboxEnvironment.",
+"routingToken": {
+"description": "Output only. The routing token for the SandboxEnvironment.",
 "readOnly": true,
 "type": "string"
 },
@@ -55386,6 +58495,10 @@ false
 "description": "Required. The display name of the SandboxEnvironmentTemplate.",
 "type": "string"
 },
+"egressControlConfig": {
+"$ref": "GoogleCloudAiplatformV1SandboxEnvironmentTemplateEgressControlConfig",
+"description": "Optional. The configuration for egress control of this template."
+},
 "name": {
 "description": "Identifier. The resource name of the SandboxEnvironmentTemplate. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/sandboxEnvironmentTemplates/{sandbox_environment_template}`",
 "type": "string"
@@ -55416,10 +58529,6 @@ false
 "format": "google-datetime",
 "readOnly": true,
 "type": "string"
-},
-"warmPoolConfig": {
-"$ref": "GoogleCloudAiplatformV1SandboxEnvironmentTemplateWarmPoolConfig",
-"description": "Optional. The configuration for the warm pool of this template."
 }
 },
 "type": "object"
@@ -55472,6 +58581,21 @@ false
 "The default container image for Computer Use."
 ],
 "type": "string"
+},
+"resources": {
+"$ref": "GoogleCloudAiplatformV1SandboxEnvironmentTemplateResourceRequirements",
+"description": "Optional. Resource requests and limits for the default container."
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1SandboxEnvironmentTemplateEgressControlConfig": {
+"description": "Configuration for egress control of sandbox instances.",
+"id": "GoogleCloudAiplatformV1SandboxEnvironmentTemplateEgressControlConfig",
+"properties": {
+"internetAccess": {
+"description": "Optional. Whether to allow internet access.",
+"type": "boolean"
 }
 },
 "type": "object"
@@ -55519,18 +58643,6 @@ false
 },
 "description": "Optional. The requested amounts of compute resources. Keys are resource names (e.g., \"cpu\", \"memory\"). Values are quantities (e.g., \"250m\", \"512Mi\").",
 "type": "object"
-}
-},
-"type": "object"
-},
-"GoogleCloudAiplatformV1SandboxEnvironmentTemplateWarmPoolConfig": {
-"description": "Configuration for a warm pool of sandbox instances.",
-"id": "GoogleCloudAiplatformV1SandboxEnvironmentTemplateWarmPoolConfig",
-"properties": {
-"targetInstanceCount": {
-"description": "Optional. The target number of pre-warmed instances to maintain.",
-"format": "int32",
-"type": "integer"
 }
 },
 "type": "object"
@@ -60380,6 +63492,145 @@ false
 },
 "type": "object"
 },
+"GoogleCloudAiplatformV1SemanticGovernancePolicy": {
+"description": "Represents a governance policy applied to a specific Agent and optionally a specific Tool within that Agent.",
+"id": "GoogleCloudAiplatformV1SemanticGovernancePolicy",
+"properties": {
+"agent": {
+"description": "Required. The name of the agent in Agent Registry that is affected by this policy.",
+"type": "string"
+},
+"agentIdentity": {
+"description": "Output only. Represents the principal of the agent, used by the Policy Decision Point (PDP) for governance checks. For more information, see https://docs.cloud.google.com/agent-builder/agent-engine/agent-identity Format: `principal://TRUST_DOMAIN/NAMESPACE/AGENT_NAME` Example: `principal://agents.global.org-ORGANIZATION_ID.system.id.goog/resources/aiplatform/projects/PROJECT_NUMBER/locations/LOCATION/reasoningEngines/AGENT_ENGINE_ID`",
+"readOnly": true,
+"type": "string"
+},
+"createTime": {
+"description": "Output only. Timestamp when this SemanticGovernancePolicy was created.",
+"format": "google-datetime",
+"readOnly": true,
+"type": "string"
+},
+"description": {
+"description": "Optional. The description of the SemanticGovernancePolicy.",
+"type": "string"
+},
+"displayName": {
+"description": "Optional. The user-defined name of the SemanticGovernancePolicy.",
+"type": "string"
+},
+"etag": {
+"description": "Optional. Used to perform consistent read-modify-write transactions. If provided, the request will only succeed if the etag matches the current value. Otherwise, an ABORTED error will be returned.",
+"type": "string"
+},
+"mcpTools": {
+"description": "Optional. The McpTools that are affected by this policy.",
+"items": {
+"$ref": "GoogleCloudAiplatformV1SemanticGovernancePolicyMcpTool"
+},
+"type": "array"
+},
+"name": {
+"description": "Identifier. Resource name of the SemanticGovernancePolicy.",
+"type": "string"
+},
+"naturalLanguageConstraint": {
+"description": "Required. The natural language constraint of the SemanticGovernancePolicy.",
+"type": "string"
+},
+"updateTime": {
+"description": "Output only. Timestamp when this SemanticGovernancePolicy was last updated.",
+"format": "google-datetime",
+"readOnly": true,
+"type": "string"
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1SemanticGovernancePolicyEngine": {
+"description": "Define a singleton SemanticGovernancePolicyEngine resource under a project and location.",
+"id": "GoogleCloudAiplatformV1SemanticGovernancePolicyEngine",
+"properties": {
+"createTime": {
+"description": "Output only. Timestamp when this SemanticGovernancePolicyEngine was created.",
+"format": "google-datetime",
+"readOnly": true,
+"type": "string"
+},
+"gatewayConfigs": {
+"additionalProperties": {
+"$ref": "GoogleCloudAiplatformV1GatewayConfig"
+},
+"description": "Optional. Configurations for gateways. The keys are user-defined names for each gateway. At most 5 gateway configurations are allowed.",
+"type": "object"
+},
+"ipAddress": {
+"description": "Output only. The private IPv4 address of the PSC endpoint.",
+"readOnly": true,
+"type": "string"
+},
+"name": {
+"description": "Identifier. The resource name of the SemanticGovernancePolicyEngine. Format: projects/{project}/locations/{location}/semanticGovernancePolicyEngine",
+"type": "string"
+},
+"pscForwardingRule": {
+"description": "Output only. The URI of the PSC endpoint resource created in customer project. Format: projects/{project}/regions/{region}/forwardingRules/{forwarding_rule}",
+"readOnly": true,
+"type": "string"
+},
+"pscServiceAttachment": {
+"description": "Output only. URI of the PSC attachment resource provided by SGP. Format: projects/{project}/regions/{region}/serviceAttachments/{service_attachment}",
+"readOnly": true,
+"type": "string"
+},
+"state": {
+"description": "Output only. The state of the SemanticGovernancePolicyEngine.",
+"enum": [
+"STATE_UNSPECIFIED",
+"PROVISIONING",
+"ACTIVE",
+"DEPROVISIONING",
+"INACTIVE",
+"FAILED"
+],
+"enumDescriptions": [
+"Default value. This value is unused.",
+"A provisioning operation is in progress. The engine will transition to ACTIVE on success or FAILED on failure.",
+"The engine and all of its gateway configurations are provisioned and ready to serve traffic.",
+"A deprovisioning operation is in progress. The engine will transition to INACTIVE on success or FAILED on failure.",
+"The engine has no provisioned infrastructure: either never provisioned, or successfully deprovisioned.",
+"The most recent provisioning or deprovisioning operation failed. The engine may have partial infrastructure that needs explicit deprovision; the engine may be either re-provisioned or deprovisioned to recover."
+],
+"readOnly": true,
+"type": "string"
+},
+"updateTime": {
+"description": "Output only. Timestamp when this SemanticGovernancePolicyEngine was last updated.",
+"format": "google-datetime",
+"readOnly": true,
+"type": "string"
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1SemanticGovernancePolicyMcpTool": {
+"description": "Represents a governance policy applied to MCP tools used by an Agent.",
+"id": "GoogleCloudAiplatformV1SemanticGovernancePolicyMcpTool",
+"properties": {
+"mcpServer": {
+"description": "Required. The resource name of the McpServer in Agent Registry that is affected by this policy. Format: `projects/{project}/locations/{location}/mcpServers/{mcp_server}`",
+"type": "string"
+},
+"tools": {
+"description": "Optional. The resource names of the McpTools used by the Agent that is affected by this policy. If not specified, the policy applies to all McpTools in the McpServer.",
+"items": {
+"type": "string"
+},
+"type": "array"
+}
+},
+"type": "object"
+},
 "GoogleCloudAiplatformV1ServiceAccountSpec": {
 "description": "Configuration for the use of custom service account to run the workloads.",
 "id": "GoogleCloudAiplatformV1ServiceAccountSpec",
@@ -62010,6 +65261,23 @@ false
 },
 "type": "object"
 },
+"GoogleCloudAiplatformV1SuspendOnlineEvaluatorOperationMetadata": {
+"description": "Metadata for the SuspendOnlineEvaluator operation.",
+"id": "GoogleCloudAiplatformV1SuspendOnlineEvaluatorOperationMetadata",
+"properties": {
+"genericMetadata": {
+"$ref": "GoogleCloudAiplatformV1GenericOperationMetadata",
+"description": "Common part of operation metadata."
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1SuspendOnlineEvaluatorRequest": {
+"description": "Request message for SuspendOnlineEvaluator.",
+"id": "GoogleCloudAiplatformV1SuspendOnlineEvaluatorRequest",
+"properties": {},
+"type": "object"
+},
 "GoogleCloudAiplatformV1SyncFeatureViewRequest": {
 "description": "Request message for FeatureOnlineStoreAdminService.SyncFeatureView.",
 "id": "GoogleCloudAiplatformV1SyncFeatureViewRequest",
@@ -62517,6 +65785,31 @@ false
 },
 "type": "object"
 },
+"GoogleCloudAiplatformV1TextResponseFormat": {
+"description": "Configuration for text-specific output formatting.",
+"id": "GoogleCloudAiplatformV1TextResponseFormat",
+"properties": {
+"mimeType": {
+"description": "Optional. The IANA standard MIME type of the response.",
+"enum": [
+"MIME_TYPE_UNSPECIFIED",
+"APPLICATION_JSON",
+"TEXT_PLAIN"
+],
+"enumDescriptions": [
+"Default value. This value is unused.",
+"JSON output format.",
+"Plain text output format."
+],
+"type": "string"
+},
+"schema": {
+"description": "Optional. The JSON schema that the output should conform to. Only applicable when mime_type is APPLICATION_JSON.",
+"type": "any"
+}
+},
+"type": "object"
+},
 "GoogleCloudAiplatformV1ThresholdConfig": {
 "description": "The config for feature monitoring threshold.",
 "id": "GoogleCloudAiplatformV1ThresholdConfig",
@@ -62661,6 +65954,10 @@ false
 "$ref": "GoogleCloudAiplatformV1EnterpriseWebSearch",
 "description": "Optional. Tool to support searching public web data, powered by Vertex AI Search and Sec4 compliance."
 },
+"exaAiSearch": {
+"$ref": "GoogleCloudAiplatformV1ToolExaAiSearch",
+"description": "Optional. Uses Exa.ai to search for information to answer user queries. The search results will be grounded on Exa.ai and presented to the model for response generation"
+},
 "functionDeclarations": {
 "description": "Optional. Function tool type. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 512 function declarations can be provided.",
 "items": {
@@ -62788,15 +66085,23 @@ false
 "description": "Tool to support computer use.",
 "id": "GoogleCloudAiplatformV1ToolComputerUse",
 "properties": {
+"enablePromptInjectionDetection": {
+"description": "Optional. Enables the prompt injection detection check on computer-use request.",
+"type": "boolean"
+},
 "environment": {
 "description": "Required. The environment being operated.",
 "enum": [
 "ENVIRONMENT_UNSPECIFIED",
-"ENVIRONMENT_BROWSER"
+"ENVIRONMENT_BROWSER",
+"ENVIRONMENT_MOBILE",
+"ENVIRONMENT_DESKTOP"
 ],
 "enumDescriptions": [
 "Defaults to browser.",
-"Operates in a web browser."
+"Operates in a web browser.",
+"Operates in a mobile environment.",
+"Operates in a desktop environment."
 ],
 "type": "string"
 },
@@ -62821,6 +66126,25 @@ false
 "retrievalConfig": {
 "$ref": "GoogleCloudAiplatformV1RetrievalConfig",
 "description": "Optional. Retrieval config."
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1ToolExaAiSearch": {
+"description": "ExaAiSearch tool type. A tool that uses the Exa.ai search engine for grounding.",
+"id": "GoogleCloudAiplatformV1ToolExaAiSearch",
+"properties": {
+"apiKey": {
+"description": "Required. The API key for ExaAiSearch.",
+"type": "string"
+},
+"customConfigs": {
+"additionalProperties": {
+"description": "Properties of the object.",
+"type": "any"
+},
+"description": "Optional. This field can be used to pass any parameter from the Exa.ai Search API.",
+"type": "object"
 }
 },
 "type": "object"
@@ -62974,6 +66298,10 @@ false
 },
 "description": "Optional. Custom configs for ParallelAiSearch. This field can be used to pass any parameter from the Parallel.ai Search API. See the Parallel.ai documentation for the full list of available parameters and their usage: https://docs.parallel.ai/api-reference/search-beta/search Currently only `source_policy`, `excerpts`, `max_results`, `mode`, `fetch_policy` can be set via this field. For example: { \"source_policy\": { \"include_domains\": [\"google.com\", \"wikipedia.org\"], \"exclude_domains\": [\"example.com\"] }, \"fetch_policy\": { \"max_age_seconds\": 3600 } }",
 "type": "object"
+},
+"enableDataRetention": {
+"description": "Optional. Instructs Vertex Grounding to use Parallel's Zero Data Retention Marketplace product. If this value is \"false\" or omitted, the Parallel Web Search for Grounding standard subscription will be used. If this value is \"true\", the Parallel Web Search for Grounding - ZDR subscription will be used.",
+"type": "boolean"
 }
 },
 "type": "object"
@@ -64236,6 +67564,17 @@ false
 },
 "type": "object"
 },
+"GoogleCloudAiplatformV1UpdateOnlineEvaluatorOperationMetadata": {
+"description": "Metadata for the UpdateOnlineEvaluator operation.",
+"id": "GoogleCloudAiplatformV1UpdateOnlineEvaluatorOperationMetadata",
+"properties": {
+"genericMetadata": {
+"$ref": "GoogleCloudAiplatformV1GenericOperationMetadata",
+"description": "Generic operation metadata."
+}
+},
+"type": "object"
+},
 "GoogleCloudAiplatformV1UpdatePersistentResourceOperationMetadata": {
 "description": "Details of operations that perform update PersistentResource.",
 "id": "GoogleCloudAiplatformV1UpdatePersistentResourceOperationMetadata",
@@ -64571,6 +67910,49 @@ false
 },
 "type": "object"
 },
+"GoogleCloudAiplatformV1UserScenario": {
+"description": "Output of user scenario generation.",
+"id": "GoogleCloudAiplatformV1UserScenario",
+"properties": {
+"conversationPlan": {
+"description": "Conversation plan to drive multi-turn agent run and get simulated agent eval dataset.",
+"type": "string"
+},
+"startingPrompt": {
+"description": "Starting prompt for the conversation between simulated user and agent under the test.",
+"type": "string"
+},
+"testCaseTitle": {
+"description": "Represents a short 3-5 word title for eval test case.",
+"type": "string"
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1UserScenarioGenerationConfig": {
+"description": "User scenario generation configuration.",
+"id": "GoogleCloudAiplatformV1UserScenarioGenerationConfig",
+"properties": {
+"environmentData": {
+"description": "Optional. Environment data in string type.",
+"type": "string"
+},
+"modelName": {
+"description": "Optional. The model name to use for generation. It can be model name, e.g. \"gemini-3-pro-preview\". or the fully qualified name of the publisher model or endpoint. Publisher model format: `projects/{project}/locations/{location}/publishers/*/models/*` Endpoint format: `projects/{project}/locations/{location}/endpoints/{endpoint}`",
+"type": "string"
+},
+"simulationInstruction": {
+"description": "Optional. Simulation instruction to guide the user scenario generation.",
+"type": "string"
+},
+"userScenarioCount": {
+"description": "Required. The number of user scenarios to generate. The maximum number of scenarios that can be generated is 100.",
+"format": "int64",
+"type": "string"
+}
+},
+"type": "object"
+},
 "GoogleCloudAiplatformV1Value": {
 "description": "Value is the value of the field.",
 "id": "GoogleCloudAiplatformV1Value",
@@ -64740,6 +68122,50 @@ false
 "startOffset": {
 "description": "Optional. The start offset of the video.",
 "format": "google-duration",
+"type": "string"
+}
+},
+"type": "object"
+},
+"GoogleCloudAiplatformV1VideoResponseFormat": {
+"description": "Configuration for video-specific output formatting.",
+"id": "GoogleCloudAiplatformV1VideoResponseFormat",
+"properties": {
+"aspectRatio": {
+"description": "The aspect ratio for the video output.",
+"enum": [
+"ASPECT_RATIO_UNSPECIFIED",
+"ASPECT_RATIO_SIXTEEN_BY_NINE",
+"ASPECT_RATIO_NINE_BY_SIXTEEN"
+],
+"enumDescriptions": [
+"Default value. This value is unused.",
+"16:9 aspect ratio.",
+"9:16 aspect ratio."
+],
+"type": "string"
+},
+"delivery": {
+"description": "Optional. Delivery mode for the generated content.",
+"enum": [
+"DELIVERY_UNSPECIFIED",
+"INLINE",
+"URI"
+],
+"enumDescriptions": [
+"Default value. This value is unused.",
+"Generated bytes are returned inline in the response.",
+"Generated content is stored and a URI is returned."
+],
+"type": "string"
+},
+"duration": {
+"description": "Optional. The duration for the video output.",
+"format": "google-duration",
+"type": "string"
+},
+"gcsUri": {
+"description": "Optional. The Google Cloud Storage URI to store the video output. Required for Vertex if delivery is URI.",
 "type": "string"
 }
 },
@@ -65249,7 +68675,7 @@ false
 }
 },
 "servicePath": "",
-"title": "Vertex AI API",
+"title": "Agent Platform API",
 "version": "v1",
 "version_module": true
 }

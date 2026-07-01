@@ -129,6 +129,9 @@ Args:
         &quot;A String&quot;,
       ],
       &quot;networkUri&quot;: &quot;A String&quot;, # Optional. Network URI to connect workload to.
+      &quot;resourceManagerTags&quot;: { # Optional. Associates Resource Manager tags with the workload nodes. There is a max limit of 30 tags. Keys and values can be either in numeric format, such as tagKeys/{tag_key_id} and tagValues/{tag_value_id}, or in namespaced format, such as {org_id|project_id}/{tag_key_short_name} and {tag_value_short_name}.
+        &quot;a_key&quot;: &quot;A String&quot;,
+      },
       &quot;serviceAccount&quot;: &quot;A String&quot;, # Optional. Service account that used to execute workload.
       &quot;stagingBucket&quot;: &quot;A String&quot;, # Optional. A Cloud Storage bucket used to stage workload dependencies, config files, and store workload output and other ephemeral data, such as Spark history files. If you do not specify a staging bucket, Cloud Dataproc will determine a Cloud Storage location according to the region where your workload is running, and then create and manage project-level, per-location staging and temporary buckets. This field requires a Cloud Storage bucket name, not a gs://... URI to a Cloud Storage bucket.
       &quot;subnetworkUri&quot;: &quot;A String&quot;, # Optional. Subnetwork URI to connect workload to.
@@ -169,8 +172,11 @@ Args:
   },
   &quot;runtimeInfo&quot;: { # Runtime information about workload execution. # Output only. Runtime information about session execution.
     &quot;approximateUsage&quot;: { # Usage metrics represent approximate total resources consumed by a workload. # Output only. Approximate workload resource usage, calculated when the workload completes (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).Note: This metric calculation may change in the future, for example, to capture cumulative workload resource consumption during workload execution (see the Dataproc Serverless release notes (https://cloud.google.com/dataproc-serverless/docs/release-notes) for announcements, changes, fixes and other Dataproc developments).
-      &quot;acceleratorType&quot;: &quot;A String&quot;, # Optional. DEPRECATED Accelerator type being used, if any
-      &quot;milliAcceleratorSeconds&quot;: &quot;A String&quot;, # Optional. DEPRECATED Accelerator usage in (milliAccelerator x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
+      &quot;acceleratorType&quot;: &quot;A String&quot;, # Optional. Accelerator type being used, if any Deprecated: This field is only used in runtime versions below 3.0.
+      &quot;milliAcceleratorSeconds&quot;: &quot;A String&quot;, # Optional. Accelerator usage in (milliAccelerator x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)). Deprecated: This field is only used in runtime versions below 3.0.
+      &quot;milliAcceleratorSecondsA10040&quot;: &quot;A String&quot;, # Optional. A100-40 accelerator usage in (milliAccelerator x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
+      &quot;milliAcceleratorSecondsA10080&quot;: &quot;A String&quot;, # Optional. A100-80 accelerator usage in (milliAccelerator x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
+      &quot;milliAcceleratorSecondsL4&quot;: &quot;A String&quot;, # Optional. L4 accelerator usage in (milliAccelerator x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
       &quot;milliDcuSeconds&quot;: &quot;A String&quot;, # Optional. DCU (Dataproc Compute Units) usage in (milliDCU x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
       &quot;shuffleStorageGbSeconds&quot;: &quot;A String&quot;, # Optional. Shuffle storage usage in (GB x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
       &quot;updateTime&quot;: &quot;A String&quot;, # Optional. The timestamp of the usage metrics.
@@ -180,8 +186,11 @@ Args:
       &quot;cohortSource&quot;: &quot;A String&quot;, # Output only. Source of the cohort.
     },
     &quot;currentUsage&quot;: { # The usage snapshot represents the resources consumed by a workload at a specified time. # Output only. Snapshot of current workload resource usage.
-      &quot;acceleratorType&quot;: &quot;A String&quot;, # Optional. Accelerator type being used, if any
-      &quot;milliAccelerator&quot;: &quot;A String&quot;, # Optional. Milli (one-thousandth) accelerator. (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing))
+      &quot;acceleratorType&quot;: &quot;A String&quot;, # Optional. Accelerator type being used, if any Deprecated: This field is only used in runtime versions below 3.0.
+      &quot;milliAccelerator&quot;: &quot;A String&quot;, # Optional. Milli (one-thousandth) accelerator. (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)) Deprecated: This field is only used in runtime versions below 3.0.
+      &quot;milliAcceleratorA10040&quot;: &quot;A String&quot;, # Optional. Milli (one-thousandth) accelerator for A100-40 accelerators. (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing))
+      &quot;milliAcceleratorA10080&quot;: &quot;A String&quot;, # Optional. Milli (one-thousandth) accelerator for A100-80 accelerators. (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing))
+      &quot;milliAcceleratorL4&quot;: &quot;A String&quot;, # Optional. Milli (one-thousandth) accelerator for L4 accelerators. (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing))
       &quot;milliDcu&quot;: &quot;A String&quot;, # Optional. Milli (one-thousandth) Dataproc Compute Units (DCUs) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
       &quot;milliDcuPremium&quot;: &quot;A String&quot;, # Optional. Milli (one-thousandth) Dataproc Compute Units (DCUs) charged at premium tier (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
       &quot;shuffleStorageGb&quot;: &quot;A String&quot;, # Optional. Shuffle Storage in gigabytes (GB). (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing))
@@ -315,6 +324,9 @@ Returns:
         &quot;A String&quot;,
       ],
       &quot;networkUri&quot;: &quot;A String&quot;, # Optional. Network URI to connect workload to.
+      &quot;resourceManagerTags&quot;: { # Optional. Associates Resource Manager tags with the workload nodes. There is a max limit of 30 tags. Keys and values can be either in numeric format, such as tagKeys/{tag_key_id} and tagValues/{tag_value_id}, or in namespaced format, such as {org_id|project_id}/{tag_key_short_name} and {tag_value_short_name}.
+        &quot;a_key&quot;: &quot;A String&quot;,
+      },
       &quot;serviceAccount&quot;: &quot;A String&quot;, # Optional. Service account that used to execute workload.
       &quot;stagingBucket&quot;: &quot;A String&quot;, # Optional. A Cloud Storage bucket used to stage workload dependencies, config files, and store workload output and other ephemeral data, such as Spark history files. If you do not specify a staging bucket, Cloud Dataproc will determine a Cloud Storage location according to the region where your workload is running, and then create and manage project-level, per-location staging and temporary buckets. This field requires a Cloud Storage bucket name, not a gs://... URI to a Cloud Storage bucket.
       &quot;subnetworkUri&quot;: &quot;A String&quot;, # Optional. Subnetwork URI to connect workload to.
@@ -355,8 +367,11 @@ Returns:
   },
   &quot;runtimeInfo&quot;: { # Runtime information about workload execution. # Output only. Runtime information about session execution.
     &quot;approximateUsage&quot;: { # Usage metrics represent approximate total resources consumed by a workload. # Output only. Approximate workload resource usage, calculated when the workload completes (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).Note: This metric calculation may change in the future, for example, to capture cumulative workload resource consumption during workload execution (see the Dataproc Serverless release notes (https://cloud.google.com/dataproc-serverless/docs/release-notes) for announcements, changes, fixes and other Dataproc developments).
-      &quot;acceleratorType&quot;: &quot;A String&quot;, # Optional. DEPRECATED Accelerator type being used, if any
-      &quot;milliAcceleratorSeconds&quot;: &quot;A String&quot;, # Optional. DEPRECATED Accelerator usage in (milliAccelerator x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
+      &quot;acceleratorType&quot;: &quot;A String&quot;, # Optional. Accelerator type being used, if any Deprecated: This field is only used in runtime versions below 3.0.
+      &quot;milliAcceleratorSeconds&quot;: &quot;A String&quot;, # Optional. Accelerator usage in (milliAccelerator x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)). Deprecated: This field is only used in runtime versions below 3.0.
+      &quot;milliAcceleratorSecondsA10040&quot;: &quot;A String&quot;, # Optional. A100-40 accelerator usage in (milliAccelerator x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
+      &quot;milliAcceleratorSecondsA10080&quot;: &quot;A String&quot;, # Optional. A100-80 accelerator usage in (milliAccelerator x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
+      &quot;milliAcceleratorSecondsL4&quot;: &quot;A String&quot;, # Optional. L4 accelerator usage in (milliAccelerator x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
       &quot;milliDcuSeconds&quot;: &quot;A String&quot;, # Optional. DCU (Dataproc Compute Units) usage in (milliDCU x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
       &quot;shuffleStorageGbSeconds&quot;: &quot;A String&quot;, # Optional. Shuffle storage usage in (GB x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
       &quot;updateTime&quot;: &quot;A String&quot;, # Optional. The timestamp of the usage metrics.
@@ -366,8 +381,11 @@ Returns:
       &quot;cohortSource&quot;: &quot;A String&quot;, # Output only. Source of the cohort.
     },
     &quot;currentUsage&quot;: { # The usage snapshot represents the resources consumed by a workload at a specified time. # Output only. Snapshot of current workload resource usage.
-      &quot;acceleratorType&quot;: &quot;A String&quot;, # Optional. Accelerator type being used, if any
-      &quot;milliAccelerator&quot;: &quot;A String&quot;, # Optional. Milli (one-thousandth) accelerator. (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing))
+      &quot;acceleratorType&quot;: &quot;A String&quot;, # Optional. Accelerator type being used, if any Deprecated: This field is only used in runtime versions below 3.0.
+      &quot;milliAccelerator&quot;: &quot;A String&quot;, # Optional. Milli (one-thousandth) accelerator. (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)) Deprecated: This field is only used in runtime versions below 3.0.
+      &quot;milliAcceleratorA10040&quot;: &quot;A String&quot;, # Optional. Milli (one-thousandth) accelerator for A100-40 accelerators. (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing))
+      &quot;milliAcceleratorA10080&quot;: &quot;A String&quot;, # Optional. Milli (one-thousandth) accelerator for A100-80 accelerators. (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing))
+      &quot;milliAcceleratorL4&quot;: &quot;A String&quot;, # Optional. Milli (one-thousandth) accelerator for L4 accelerators. (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing))
       &quot;milliDcu&quot;: &quot;A String&quot;, # Optional. Milli (one-thousandth) Dataproc Compute Units (DCUs) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
       &quot;milliDcuPremium&quot;: &quot;A String&quot;, # Optional. Milli (one-thousandth) Dataproc Compute Units (DCUs) charged at premium tier (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
       &quot;shuffleStorageGb&quot;: &quot;A String&quot;, # Optional. Shuffle Storage in gigabytes (GB). (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing))
@@ -441,6 +459,9 @@ Returns:
             &quot;A String&quot;,
           ],
           &quot;networkUri&quot;: &quot;A String&quot;, # Optional. Network URI to connect workload to.
+          &quot;resourceManagerTags&quot;: { # Optional. Associates Resource Manager tags with the workload nodes. There is a max limit of 30 tags. Keys and values can be either in numeric format, such as tagKeys/{tag_key_id} and tagValues/{tag_value_id}, or in namespaced format, such as {org_id|project_id}/{tag_key_short_name} and {tag_value_short_name}.
+            &quot;a_key&quot;: &quot;A String&quot;,
+          },
           &quot;serviceAccount&quot;: &quot;A String&quot;, # Optional. Service account that used to execute workload.
           &quot;stagingBucket&quot;: &quot;A String&quot;, # Optional. A Cloud Storage bucket used to stage workload dependencies, config files, and store workload output and other ephemeral data, such as Spark history files. If you do not specify a staging bucket, Cloud Dataproc will determine a Cloud Storage location according to the region where your workload is running, and then create and manage project-level, per-location staging and temporary buckets. This field requires a Cloud Storage bucket name, not a gs://... URI to a Cloud Storage bucket.
           &quot;subnetworkUri&quot;: &quot;A String&quot;, # Optional. Subnetwork URI to connect workload to.
@@ -481,8 +502,11 @@ Returns:
       },
       &quot;runtimeInfo&quot;: { # Runtime information about workload execution. # Output only. Runtime information about session execution.
         &quot;approximateUsage&quot;: { # Usage metrics represent approximate total resources consumed by a workload. # Output only. Approximate workload resource usage, calculated when the workload completes (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).Note: This metric calculation may change in the future, for example, to capture cumulative workload resource consumption during workload execution (see the Dataproc Serverless release notes (https://cloud.google.com/dataproc-serverless/docs/release-notes) for announcements, changes, fixes and other Dataproc developments).
-          &quot;acceleratorType&quot;: &quot;A String&quot;, # Optional. DEPRECATED Accelerator type being used, if any
-          &quot;milliAcceleratorSeconds&quot;: &quot;A String&quot;, # Optional. DEPRECATED Accelerator usage in (milliAccelerator x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
+          &quot;acceleratorType&quot;: &quot;A String&quot;, # Optional. Accelerator type being used, if any Deprecated: This field is only used in runtime versions below 3.0.
+          &quot;milliAcceleratorSeconds&quot;: &quot;A String&quot;, # Optional. Accelerator usage in (milliAccelerator x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)). Deprecated: This field is only used in runtime versions below 3.0.
+          &quot;milliAcceleratorSecondsA10040&quot;: &quot;A String&quot;, # Optional. A100-40 accelerator usage in (milliAccelerator x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
+          &quot;milliAcceleratorSecondsA10080&quot;: &quot;A String&quot;, # Optional. A100-80 accelerator usage in (milliAccelerator x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
+          &quot;milliAcceleratorSecondsL4&quot;: &quot;A String&quot;, # Optional. L4 accelerator usage in (milliAccelerator x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
           &quot;milliDcuSeconds&quot;: &quot;A String&quot;, # Optional. DCU (Dataproc Compute Units) usage in (milliDCU x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
           &quot;shuffleStorageGbSeconds&quot;: &quot;A String&quot;, # Optional. Shuffle storage usage in (GB x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
           &quot;updateTime&quot;: &quot;A String&quot;, # Optional. The timestamp of the usage metrics.
@@ -492,8 +516,11 @@ Returns:
           &quot;cohortSource&quot;: &quot;A String&quot;, # Output only. Source of the cohort.
         },
         &quot;currentUsage&quot;: { # The usage snapshot represents the resources consumed by a workload at a specified time. # Output only. Snapshot of current workload resource usage.
-          &quot;acceleratorType&quot;: &quot;A String&quot;, # Optional. Accelerator type being used, if any
-          &quot;milliAccelerator&quot;: &quot;A String&quot;, # Optional. Milli (one-thousandth) accelerator. (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing))
+          &quot;acceleratorType&quot;: &quot;A String&quot;, # Optional. Accelerator type being used, if any Deprecated: This field is only used in runtime versions below 3.0.
+          &quot;milliAccelerator&quot;: &quot;A String&quot;, # Optional. Milli (one-thousandth) accelerator. (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)) Deprecated: This field is only used in runtime versions below 3.0.
+          &quot;milliAcceleratorA10040&quot;: &quot;A String&quot;, # Optional. Milli (one-thousandth) accelerator for A100-40 accelerators. (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing))
+          &quot;milliAcceleratorA10080&quot;: &quot;A String&quot;, # Optional. Milli (one-thousandth) accelerator for A100-80 accelerators. (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing))
+          &quot;milliAcceleratorL4&quot;: &quot;A String&quot;, # Optional. Milli (one-thousandth) accelerator for L4 accelerators. (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing))
           &quot;milliDcu&quot;: &quot;A String&quot;, # Optional. Milli (one-thousandth) Dataproc Compute Units (DCUs) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
           &quot;milliDcuPremium&quot;: &quot;A String&quot;, # Optional. Milli (one-thousandth) Dataproc Compute Units (DCUs) charged at premium tier (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
           &quot;shuffleStorageGb&quot;: &quot;A String&quot;, # Optional. Shuffle Storage in gigabytes (GB). (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing))

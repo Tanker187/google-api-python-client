@@ -52,6 +52,21 @@
 "description": "Regional Endpoint",
 "endpointUrl": "https://discoveryengine.in.rep.googleapis.com/",
 "location": "in"
+},
+{
+"description": "Regional Endpoint",
+"endpointUrl": "https://discoveryengine.asia-southeast1.rep.googleapis.com/",
+"location": "asia-southeast1"
+},
+{
+"description": "Regional Endpoint",
+"endpointUrl": "https://discoveryengine.europe-west3.rep.googleapis.com/",
+"location": "europe-west3"
+},
+{
+"description": "Regional Endpoint",
+"endpointUrl": "https://discoveryengine.ca.rep.googleapis.com/",
+"location": "ca"
 }
 ],
 "fullyEncodeReservedExpansion": true,
@@ -2832,7 +2847,7 @@
 "type": "string"
 },
 "orderBy": {
-"description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.",
+"description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` * `display_name` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.",
 "location": "query",
 "type": "string"
 },
@@ -3775,6 +3790,11 @@
 "location": "query",
 "type": "boolean"
 },
+"languageCode": {
+"description": "Optional. BCP-47 language tag (e.g. \"en\", \"fr-CA\"). Used to localize human-readable strings in the response, such as the model selector `display_name` / `description` on `WidgetConfig.UiSettings.ModelConfigInfo`. Empty / unset falls back to the default language (English).",
+"location": "query",
+"type": "string"
+},
 "name": {
 "description": "Required. Full WidgetConfig resource name. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/widgetConfigs/{widget_config_id}`",
 "location": "path",
@@ -4039,7 +4059,7 @@
 ]
 },
 "setIamPolicy": {
-"description": "Sets the IAM access control policy for an Engine. A `NOT_FOUND` error is returned if the resource does not exist. **Important:** When setting a policy directly on an Engine resource, the only recommended roles in the bindings are: `roles/discoveryengine.user` and `roles/discoveryengine.agentspaceUser`. Attempting to grant any other role will result in a warning in logging.",
+"description": "Sets the IAM access control policy for an Engine. A `NOT_FOUND` error is returned if the resource does not exist. **Important:** When setting a policy directly on an Engine resource, the only recommended roles in the bindings are: `roles/discoveryengine.admin`, `roles/discoveryengine.agentspaceAdmin`, `roles/discoveryengine.user`, `roles/discoveryengine.agentspaceUser`, `roles/discoveryengine.viewer`, `roles/discoveryengine.agentspaceViewer`. Attempting to grant any other role will result in a warning in logging.",
 "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}:setIamPolicy",
 "httpMethod": "POST",
 "id": "discoveryengine.projects.locations.collections.engines.setIamPolicy",
@@ -5646,7 +5666,7 @@
 "type": "string"
 },
 "orderBy": {
-"description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.",
+"description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` * `display_name` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.",
 "location": "query",
 "type": "string"
 },
@@ -5772,6 +5792,11 @@
 "description": "Optional. Whether to turn off collection_components in WidgetConfig to reduce latency and data transmission.",
 "location": "query",
 "type": "boolean"
+},
+"languageCode": {
+"description": "Optional. BCP-47 language tag (e.g. \"en\", \"fr-CA\"). Used to localize human-readable strings in the response, such as the model selector `display_name` / `description` on `WidgetConfig.UiSettings.ModelConfigInfo`. Empty / unset falls back to the default language (English).",
+"location": "query",
+"type": "string"
 },
 "name": {
 "description": "Required. Full WidgetConfig resource name. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/widgetConfigs/{widget_config_id}`",
@@ -7804,7 +7829,7 @@
 "type": "string"
 },
 "orderBy": {
-"description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.",
+"description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` * `display_name` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.",
 "location": "query",
 "type": "string"
 },
@@ -8519,6 +8544,11 @@
 "location": "query",
 "type": "boolean"
 },
+"languageCode": {
+"description": "Optional. BCP-47 language tag (e.g. \"en\", \"fr-CA\"). Used to localize human-readable strings in the response, such as the model selector `display_name` / `description` on `WidgetConfig.UiSettings.ModelConfigInfo`. Empty / unset falls back to the default language (English).",
+"location": "query",
+"type": "string"
+},
 "name": {
 "description": "Required. Full WidgetConfig resource name. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/widgetConfigs/{widget_config_id}`",
 "location": "path",
@@ -8997,6 +9027,49 @@
 "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
 ]
 },
+"list": {
+"description": "Lists all the LicenseConfigs associated with the project.",
+"flatPath": "v1/projects/{projectsId}/locations/{locationsId}/licenseConfigs",
+"httpMethod": "GET",
+"id": "discoveryengine.projects.locations.licenseConfigs.list",
+"parameterOrder": [
+"parent"
+],
+"parameters": {
+"filter": {
+"description": "Optional. The filter to apply to the list results. The supported fields are: * `subscription_tier` * `state` Examples: * `subscription_tier=SUBSCRIPTION_TIER_SEARCH,state=ACTIVE` - Lists all active search license configs. * `state=ACTIVE` - Lists all active license configs. The filter string should be a comma-separated list of field=value pairs.",
+"location": "query",
+"type": "string"
+},
+"pageSize": {
+"description": "Optional. Not supported.",
+"format": "int32",
+"location": "query",
+"type": "integer"
+},
+"pageToken": {
+"description": "Optional. Not supported.",
+"location": "query",
+"type": "string"
+},
+"parent": {
+"description": "Required. The parent branch resource name, such as `projects/{project}/locations/{location}`.",
+"location": "path",
+"pattern": "^projects/[^/]+/locations/[^/]+$",
+"required": true,
+"type": "string"
+}
+},
+"path": "v1/{+parent}/licenseConfigs",
+"response": {
+"$ref": "GoogleCloudDiscoveryengineV1ListLicenseConfigsResponse"
+},
+"scopes": [
+"https://www.googleapis.com/auth/cloud-platform",
+"https://www.googleapis.com/auth/discoveryengine.readwrite",
+"https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+]
+},
 "patch": {
 "description": "Updates the LicenseConfig",
 "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/licenseConfigs/{licenseConfigsId}",
@@ -9438,7 +9511,7 @@
 ],
 "parameters": {
 "filter": {
-"description": "Optional. Filter for the list request. Supported fields: * `license_assignment_state` * `user_principal` * Examples: * `license_assignment_state = ASSIGNED` to list assigned user licenses. * `license_assignment_state = NO_LICENSE` to list not licensed users. * `license_assignment_state = NO_LICENSE_ATTEMPTED_LOGIN` to list users who attempted login but no license assigned. * `license_assignment_state != NO_LICENSE_ATTEMPTED_LOGIN` to filter out users who attempted login but no license assigned. * `user_principal = user1@abc.com` to list user license for `user1@abc.com`.",
+"description": "Optional. Filter for the list request. Supported fields: * `license_assignment_state` * `user_principal` * Examples: * `license_assignment_state = ASSIGNED` to list assigned user licenses. * `license_assignment_state = NO_LICENSE` to list not licensed users. * `license_assignment_state = NO_LICENSE_ATTEMPTED_LOGIN` to list users who attempted login but no license assigned. * `license_assignment_state != NO_LICENSE_ATTEMPTED_LOGIN` to filter out users who attempted login but no license assigned. * `user_principal = user1@example.com` to list user license for `user1@example.com`.",
 "location": "query",
 "type": "string"
 },
@@ -9448,7 +9521,7 @@
 "type": "string"
 },
 "pageSize": {
-"description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, defaults to 10. The maximum value is 50; values above 50 will be coerced to 50. If this field is negative, an INVALID_ARGUMENT error is returned.",
+"description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, defaults to 100. The maximum value is 1000; values above 1000 will be coerced to 1000. If this field is negative, an INVALID_ARGUMENT error is returned.",
 "format": "int32",
 "location": "query",
 "type": "integer"
@@ -9594,7 +9667,7 @@
 }
 }
 },
-"revision": "20260413",
+"revision": "20260620",
 "rootUrl": "https://discoveryengine.googleapis.com/",
 "schemas": {
 "A2aV1APIKeySecurityScheme": {
@@ -12698,14 +12771,16 @@
 "IN_PROGRESS",
 "FAILED",
 "SUCCEEDED",
-"SKIPPED"
+"SKIPPED",
+"CANCELLED"
 ],
 "enumDescriptions": [
 "Unknown.",
 "Assist operation is currently in progress.",
 "Assist operation has failed.",
 "Assist operation has succeeded.",
-"Assist operation has been skipped."
+"Assist operation has been skipped.",
+"Assist operation has been cancelled (e.g. client closed the stream). May contain a partial response."
 ],
 "type": "string"
 }
@@ -13134,6 +13209,13 @@
 "$ref": "GoogleCloudDiscoveryengineV1AssistantGroundedContentTextGroundingMetadataSegment"
 },
 "type": "array"
+},
+"visualSegments": {
+"description": "Grounding information for parts of the visual content.",
+"items": {
+"$ref": "GoogleCloudDiscoveryengineV1AssistantGroundedContentTextGroundingMetadataVisualSegment"
+},
+"type": "array"
 }
 },
 "type": "object"
@@ -13142,6 +13224,10 @@
 "description": "Referenced content and related document metadata.",
 "id": "GoogleCloudDiscoveryengineV1AssistantGroundedContentTextGroundingMetadataReference",
 "properties": {
+"codeSnippet": {
+"description": "Chunk of code snippet from the referenced document.",
+"type": "string"
+},
 "content": {
 "description": "Referenced text content.",
 "type": "string"
@@ -13163,6 +13249,19 @@
 },
 "domain": {
 "description": "Domain name from the document URI. Note that the `uri` field may contain a URL that redirects to the actual website, in which case this will contain the domain name of the target site.",
+"type": "string"
+},
+"language": {
+"enum": [
+"LANGUAGE_UNSPECIFIED",
+"PYTHON",
+"SQL"
+],
+"enumDescriptions": [
+"",
+"",
+""
+],
 "type": "string"
 },
 "mimeType": {
@@ -13214,6 +13313,25 @@
 "text": {
 "description": "The text segment itself.",
 "type": "string"
+}
+},
+"type": "object"
+},
+"GoogleCloudDiscoveryengineV1AssistantGroundedContentTextGroundingMetadataVisualSegment": {
+"description": "Grounding information for a visual segment.",
+"id": "GoogleCloudDiscoveryengineV1AssistantGroundedContentTextGroundingMetadataVisualSegment",
+"properties": {
+"contentId": {
+"description": "The content id of the visual segment. In order to display the citation of the visual element, this content_id needs to match with the `grounded_content.content_metadata.content_id` field.",
+"type": "string"
+},
+"referenceIndices": {
+"description": "References for the visual segment.",
+"items": {
+"format": "int32",
+"type": "integer"
+},
+"type": "array"
 }
 },
 "type": "object"
@@ -13274,6 +13392,32 @@
 "Connector utilized for End User Authentication."
 ],
 "type": "string"
+},
+"type": "array"
+},
+"toolspecOverride": {
+"$ref": "GoogleCloudDiscoveryengineV1BAPConfigToolspecOverride",
+"description": "Optional. Custom toolspec overrides for this connection. For Enterprise BAP connectors that support admin-curated tool definitions, this holds the (simplified) per-tool overrides. On Get, populated by the server by merging persisted overrides with live runtime tool definitions and trimming the result for UI consumption. On Update, the supplied value replaces the persisted overrides after server-side validation and merging: the `base_version` field MUST match the server's current base toolspec version (otherwise the request is rejected with a user-facing error directing the admin to re-download the latest tools first)."
+}
+},
+"type": "object"
+},
+"GoogleCloudDiscoveryengineV1BAPConfigToolspecOverride": {
+"description": "Customer-facing view of the admin-curated toolspec for a BAP connection. Holds the (simplified) per-tool definitions surfaced to and editable by the admin in the Discovery Engine UI. Mirrors the shape of the backend `google.cloud.connectorexecution.v1.ToolspecOverride` message, but is intentionally kept as a separate public type so the Discovery Engine API surface can evolve independently of the fed-API surface (AIP-215). Handlers convert between the two via helpers in //cloud/ml/discoveryengine/external_service/v1main/data_connector_service/lib:bap_custom_tool_util.",
+"id": "GoogleCloudDiscoveryengineV1BAPConfigToolspecOverride",
+"properties": {
+"baseVersion": {
+"description": "Required. Base toolspec version against which `tools` were authored. On Update, MUST match the server's current stable toolspec version for the connection; mismatch is rejected with a user-facing error directing the admin to re-download the latest tools first.",
+"type": "string"
+},
+"tools": {
+"description": "Required. Tool definitions (one Struct per tool) that the admin has customised on top of the base toolspec returned by the fed API. REQUIRED because it is the only user-editable field in the modify API; the request must carry at least one tool.",
+"items": {
+"additionalProperties": {
+"description": "Properties of the object.",
+"type": "any"
+},
+"type": "object"
 },
 "type": "array"
 }
@@ -14994,6 +15138,10 @@
 },
 "type": "array"
 },
+"connectorSourceId": {
+"description": "Optional. If set, this value instead of `data_source` is used to fetch the corresponding connector source.",
+"type": "string"
+},
 "connectorType": {
 "description": "Output only. The type of connector. Each source can only map to one type. For example, salesforce, confluence and jira have THIRD_PARTY connector type. It is not mutable once set by system.",
 "enum": [
@@ -15011,7 +15159,8 @@
 "GCNV",
 "GOOGLE_CHAT",
 "GOOGLE_SITES",
-"REMOTE_MCP"
+"REMOTE_MCP",
+"GOOGLE_WORKSPACE"
 ],
 "enumDescriptions": [
 "Default value.",
@@ -15028,7 +15177,8 @@
 "Google Cloud NetApp Volumes connector.",
 "Google Chat connector.",
 "Google Sites connector.",
-"Remote MCP based connector."
+"Remote MCP based connector.",
+"Google Workspace connector."
 ],
 "readOnly": true,
 "type": "string"
@@ -16399,6 +16549,10 @@
 ],
 "type": "string"
 },
+"associatedAgentRegistry": {
+"description": "Optional. The Agent registry containing the agents, MCP servers and tools associated with this engine. Field is required if the engine has an Agent Gateway setting.",
+"type": "string"
+},
 "chatEngineConfig": {
 "$ref": "GoogleCloudDiscoveryengineV1EngineChatEngineConfig",
 "description": "Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT."
@@ -16471,7 +16625,7 @@
 ],
 "type": "string"
 },
-"description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `disable-canvas-workspace` * `disable-skills`",
+"description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `disable-skills` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `deep-research`",
 "type": "object"
 },
 "industryVertical": {
@@ -16812,7 +16966,8 @@
 "SUBSCRIPTION_TIER_EDU_PRO",
 "SUBSCRIPTION_TIER_EDU_EMERGING",
 "SUBSCRIPTION_TIER_EDU_PRO_EMERGING",
-"SUBSCRIPTION_TIER_FRONTLINE_STARTER"
+"SUBSCRIPTION_TIER_FRONTLINE_STARTER",
+"SUBSCRIPTION_TIER_CONSUMPTION_ONLY"
 ],
 "enumDescriptions": [
 "Default value.",
@@ -16828,7 +16983,8 @@
 "Gemini Enterprise EDU Pro tier.",
 "Gemini Enterprise EDU tier for emerging market only.",
 "Gemini Enterprise EDU Pro tier for emerging market.",
-"Gemini Frontline Starter tier."
+"Gemini Frontline Starter tier.",
+"Represents the Gemini Enterprise Consumption-only tier: $0 subscription billed purely on usage (PAYG)."
 ],
 "type": "string"
 },
@@ -16898,6 +17054,124 @@
 },
 "uri": {
 "description": "The URI of the source.",
+"type": "string"
+}
+},
+"type": "object"
+},
+"GoogleCloudDiscoveryengineV1Feedback": {
+"description": "Information about the user feedback. This information will be used for logging and metrics purpose.",
+"id": "GoogleCloudDiscoveryengineV1Feedback",
+"properties": {
+"comment": {
+"description": "Optional. The additional user comment of the feedback if user gives a thumb down.",
+"type": "string"
+},
+"componentVersion": {
+"description": "Optional. The version of the component that this report is being sent from.",
+"type": "string"
+},
+"conversationInfo": {
+"$ref": "GoogleCloudDiscoveryengineV1FeedbackConversationInfo",
+"description": "The related conversation information when user gives feedback."
+},
+"dataTermsAccepted": {
+"description": "Optional. Whether the customer accepted data use terms.",
+"type": "boolean"
+},
+"feedbackSource": {
+"description": "Optional. The UI component the user feedback comes from, which could be GOOGLE_CONSOLE, GOOGLE_WIDGET, GOOGLE_WEBAPP.",
+"enum": [
+"FEEDBACK_SOURCE_UNSPECIFIED",
+"GOOGLE_CONSOLE",
+"GOOGLE_WIDGET",
+"GOOGLE_WEBAPP",
+"GOOGLE_AGENTSPACE_MOBILE"
+],
+"enumDescriptions": [
+"Unspecified feedback source.",
+"Feedback source is Google Console.",
+"Feedback source is Google Widget.",
+"Feedback source is Google Webapp.",
+"Feedback source is Google AgentSpace Mobile app."
+],
+"type": "string"
+},
+"feedbackType": {
+"description": "Required. Indicate whether the user gives a positive or negative feedback. If the user gives a negative feedback, there might be more feedback details.",
+"enum": [
+"FEEDBACK_TYPE_UNSPECIFIED",
+"LIKE",
+"DISLIKE"
+],
+"enumDescriptions": [
+"Unspecified feedback type.",
+"The user gives a positive feedback.",
+"The user gives a negative feedback."
+],
+"type": "string"
+},
+"llmModelVersion": {
+"description": "The version of the LLM model that was used to generate the response.",
+"type": "string"
+},
+"reasons": {
+"description": "Optional. The reason if user gives a thumb down.",
+"items": {
+"enum": [
+"REASON_UNSPECIFIED",
+"INACCURATE_RESPONSE",
+"NOT_RELEVANT",
+"INCOMPREHENSIVE",
+"OFFENSIVE_OR_UNSAFE",
+"FORMAT_AND_STYLES",
+"BAD_CITATION",
+"CANVAS_NOT_GENERATED",
+"CANVAS_QUALITY_BAD",
+"CANVAS_EXPORT_FAILED"
+],
+"enumDescriptions": [
+"Unspecified reason.",
+"The response is inaccurate.",
+"The response is not relevant.",
+"The response is incomprehensive.",
+"The response is offensive or unsafe.",
+"The response is not well-formatted.",
+"The response is not well-associated with the query.",
+"The expected canvas was not generated for the response.",
+"The generated canvas is of bad quality (e.g. inaccurate, incomplete, poorly formatted).",
+"Exporting the generated canvas failed (e.g. download or external export action did not complete successfully)."
+],
+"type": "string"
+},
+"type": "array"
+}
+},
+"type": "object"
+},
+"GoogleCloudDiscoveryengineV1FeedbackConversationInfo": {
+"description": "The conversation information such as the question index and session name.",
+"id": "GoogleCloudDiscoveryengineV1FeedbackConversationInfo",
+"properties": {
+"answerQueryToken": {
+"description": "Optional. The token which could be used to fetch the answer log.",
+"type": "string"
+},
+"assistToken": {
+"description": "Optional. The token which could be used to fetch the assistant log.",
+"type": "string"
+},
+"query": {
+"$ref": "GoogleCloudDiscoveryengineV1Query",
+"description": "Required. The user's search query."
+},
+"questionIndex": {
+"description": "The index of the user input within the conversation messages.",
+"format": "int32",
+"type": "integer"
+},
+"session": {
+"description": "Name of the newly generated or continued session.",
 "type": "string"
 }
 },
@@ -17738,7 +18012,8 @@
 "SUBSCRIPTION_TIER_EDU_PRO",
 "SUBSCRIPTION_TIER_EDU_EMERGING",
 "SUBSCRIPTION_TIER_EDU_PRO_EMERGING",
-"SUBSCRIPTION_TIER_FRONTLINE_STARTER"
+"SUBSCRIPTION_TIER_FRONTLINE_STARTER",
+"SUBSCRIPTION_TIER_CONSUMPTION_ONLY"
 ],
 "enumDescriptions": [
 "Default value.",
@@ -17754,7 +18029,8 @@
 "Gemini Enterprise EDU Pro tier.",
 "Gemini Enterprise EDU tier for emerging market only.",
 "Gemini Enterprise EDU Pro tier for emerging market.",
-"Gemini Frontline Starter tier."
+"Gemini Frontline Starter tier.",
+"Represents the Gemini Enterprise Consumption-only tier: $0 subscription billed purely on usage (PAYG)."
 ],
 "type": "string"
 }
@@ -17944,6 +18220,24 @@
 },
 "nextPageToken": {
 "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+"type": "string"
+}
+},
+"type": "object"
+},
+"GoogleCloudDiscoveryengineV1ListLicenseConfigsResponse": {
+"description": "Response message for LicenseConfigService.ListLicenseConfigs method.",
+"id": "GoogleCloudDiscoveryengineV1ListLicenseConfigsResponse",
+"properties": {
+"licenseConfigs": {
+"description": "All the customer's LicenseConfigs.",
+"items": {
+"$ref": "GoogleCloudDiscoveryengineV1LicenseConfig"
+},
+"type": "array"
+},
+"nextPageToken": {
+"description": "Not supported.",
 "type": "string"
 }
 },
@@ -18227,9 +18521,17 @@
 "type": "object"
 },
 "GoogleCloudDiscoveryengineV1ProjectConfigurableBillingStatus": {
-"description": "Represents the currently effective configurable billing parameters. These values are derived from the customer's subscription history stored internally and reflect the thresholds actively being used for billing purposes at the time of the GetProject call. This includes the start_time of the subscription and may differ from the values in `customer_provided_config` due to billing rules (e.g., scale-downs taking effect only at the start of a new month).",
+"description": "Represents the currently effective configurable billing parameters. These values are derived from the customer's subscription history stored internally and reflect the thresholds actively being used for billing purposes at the time of the GetProject call. This includes the start_time of the subscription and may differ from the values in `customer_provided_config` due to billing rules (e.g., scale-downs taking effect only at the start of a new month). We also include the update type to indicate the type of update performed on the configurable billing configuration in the UpdateProject operation.",
 "id": "GoogleCloudDiscoveryengineV1ProjectConfigurableBillingStatus",
 "properties": {
+"agentSearchTokenSubscriptionStatuses": {
+"description": "Output only. Per-model Agent Search TPM subscription status.",
+"items": {
+"$ref": "GoogleCloudDiscoveryengineV1ProjectConfigurableBillingStatusAgentSearchTokenSubscriptionStatus"
+},
+"readOnly": true,
+"type": "array"
+},
 "effectiveIndexingCoreThreshold": {
 "description": "Optional. The currently effective Indexing Core threshold. This is the threshold against which Indexing Core usage is compared for overage calculations.",
 "format": "int64",
@@ -18260,6 +18562,80 @@
 "terminateTime": {
 "description": "Output only. The latest terminate effective time of search qpm and indexing core subscriptions.",
 "format": "google-datetime",
+"readOnly": true,
+"type": "string"
+},
+"updateType": {
+"description": "Output only. The type of update performed in this operation. This field is populated in the response of UpdateProject.",
+"enum": [
+"UPDATE_TYPE_UNSPECIFIED",
+"CREATE",
+"DELETE",
+"SCALE_UP",
+"SCALE_DOWN"
+],
+"enumDescriptions": [
+"Unspecified update type.",
+"Configurable billing was created/enabled.",
+"Configurable billing was deleted/disabled.",
+"Subscription was scaled up (thresholds increased).",
+"Subscription was scaled down (thresholds decreased)."
+],
+"readOnly": true,
+"type": "string"
+}
+},
+"type": "object"
+},
+"GoogleCloudDiscoveryengineV1ProjectConfigurableBillingStatusAgentSearchTokenSubscriptionStatus": {
+"description": "Per-model Agent Search TPM subscription status. One entry per active `core_subscription.agent_search_token_subscriptions[*]` entry in the customer-provided config; populated by UpdateProject and GetProject. The lifecycle scalars on this message (`start_time`, `terminate_time`, `update_type`, `tpm_threshold_next_update_time`) are per (project, model_version) \u2014 siblings of the whole-relationship `start_time` / `terminate_time` / `update_type` on the enclosing ConfigurableBillingStatus, but scoped to this specific Agent Search TPM subscription instead of to the overall customer-configurable- pricing relationship. This per-instance granularity is intentional: the underlying SubV3 storage is per-(project, model_version), so each model has its own activation, termination, and deferred-update clock; surfacing that on the response gives customers the granularity they need to manage per-model commitments independently. QPM / IndexingCore differ \u2014 their storage is one row per (project, location), so their lifecycle is represented only by the whole- relationship scalars on ConfigurableBillingStatus.",
+"id": "GoogleCloudDiscoveryengineV1ProjectConfigurableBillingStatusAgentSearchTokenSubscriptionStatus",
+"properties": {
+"effectiveTpmThreshold": {
+"description": "Output only. The currently effective TPM threshold. Reflects scale-up immediately and scale-down at the next billing cycle, matching `effective_search_qpm_threshold` semantics.",
+"format": "int64",
+"readOnly": true,
+"type": "string"
+},
+"modelVersion": {
+"description": "Output only. The Gemini model version this status corresponds to. Matches CoreSubscription.AgentSearchTokenSubscription.model_version (a stable Gemini model version from the Gemini Enterprise Agent Platform model-versions registry; see https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/model-versions#gemini-models).",
+"readOnly": true,
+"type": "string"
+},
+"startTime": {
+"description": "Output only. When this (project, model_version) Agent Search TPM subscription was first activated. Set once on first activation of this model version and never moved by subsequent threshold updates; on termination + re-activation a new value is recorded. Does NOT move the whole-relationship `start_time` on the enclosing ConfigurableBillingStatus, which continues to represent the first activation of the overall customer-configurable-pricing relationship.",
+"format": "google-datetime",
+"readOnly": true,
+"type": "string"
+},
+"terminateTime": {
+"description": "Output only. If set, the scheduled effective time at which this (project, model_version) Agent Search TPM subscription will terminate. Populated when the customer removes this entry from `core_subscription.agent_search_token_subscriptions[*]`. Does NOT move the whole-relationship `terminate_time` on the enclosing ConfigurableBillingStatus, which is populated only when the entire customer-configurable-pricing relationship is being torn down.",
+"format": "google-datetime",
+"readOnly": true,
+"type": "string"
+},
+"tpmThresholdNextUpdateTime": {
+"description": "Output only. The earliest next update time for the TPM subscription threshold for this (project, model_version). Populated only after a successful update.",
+"format": "google-datetime",
+"readOnly": true,
+"type": "string"
+},
+"updateType": {
+"description": "Output only. The type of the most recent update to this (project, model_version) subscription, as performed by the most recent UpdateProject call. `UPDATE_TYPE_UNSPECIFIED` indicates this model_version was not touched by the most recent UpdateProject (its `effective_tpm_threshold` reflects an earlier update). The whole-relationship `update_type` on the enclosing ConfigurableBillingStatus continues to summarize the direction of the most recent update across all surfaces in the project (QPM, IndexingCore, and Agent Search TPM together).",
+"enum": [
+"UPDATE_TYPE_UNSPECIFIED",
+"CREATE",
+"DELETE",
+"SCALE_UP",
+"SCALE_DOWN"
+],
+"enumDescriptions": [
+"Unspecified update type.",
+"Configurable billing was created/enabled.",
+"Configurable billing was deleted/disabled.",
+"Subscription was scaled up (thresholds increased).",
+"Subscription was scaled down (thresholds decreased)."
+],
 "readOnly": true,
 "type": "string"
 }
@@ -18733,7 +19109,7 @@
 "type": "string"
 },
 "score": {
-"description": "The score of this record based on the given query and selected model. The score will be rounded to 2 decimal places. If the score is close to 0, it will be rounded to 0.0001 to avoid returning unset.",
+"description": "The score of this record based on the given query and selected model. The score will be rounded to 4 decimal places. If the score is close to 0, it will be rounded to 0.00001 to avoid returning unset.",
 "format": "float",
 "type": "number"
 },
@@ -19170,7 +19546,7 @@
 "description": "The query expansion specification that specifies the conditions under which query expansion occurs."
 },
 "rankingExpression": {
-"description": "Optional. The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the `ranking_expression_backend` value. If `ranking_expression_backend` is not provided, it defaults to `RANK_BY_EMBEDDING`. If ranking_expression_backend is not provided or set to `RANK_BY_EMBEDDING`, it should be a single function or multiple functions that are joined by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between `embedding_field_path` and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. If ranking_expression_backend is set to `RANK_BY_FORMULA`, the following expression types (and combinations of those chained using + or * operators) are supported: * `double` * `signal` * `log(signal)` * `exp(signal)` * `rr(signal, double > 0)` -- reciprocal rank transformation with second argument being a denominator constant. * `is_nan(signal)` -- returns 0 if signal is NaN, 1 otherwise. * `fill_nan(signal1, signal2 | double)` -- if signal1 is NaN, returns signal2 | double, else returns signal1. Here are a few examples of ranking formulas that use the supported ranking expression types: - `0.2 * semantic_similarity_score + 0.8 * log(keyword_similarity_score)` -- mostly rank by the logarithm of `keyword_similarity_score` with slight `semantic_smilarity_score` adjustment. - `0.2 * exp(fill_nan(semantic_similarity_score, 0)) + 0.3 * is_nan(keyword_similarity_score)` -- rank by the exponent of `semantic_similarity_score` filling the value with 0 if it's NaN, also add constant 0.3 adjustment to the final score if `semantic_similarity_score` is NaN. - `0.2 * rr(semantic_similarity_score, 16) + 0.8 * rr(keyword_similarity_score, 16)` -- mostly rank by the reciprocal rank of `keyword_similarity_score` with slight adjustment of reciprocal rank of `semantic_smilarity_score`. The following signals are supported: * `semantic_similarity_score`: semantic similarity adjustment that is calculated using the embeddings generated by a proprietary Google model. This score determines how semantically similar a search query is to a document. * `keyword_similarity_score`: keyword match adjustment uses the Best Match 25 (BM25) ranking function. This score is calculated using a probabilistic model to estimate the probability that a document is relevant to a given query. * `relevance_score`: semantic relevance adjustment that uses a proprietary Google model to determine the meaning and intent behind a user's query in context with the content in the documents. * `pctr_rank`: predicted conversion rate adjustment as a rank use predicted Click-through rate (pCTR) to gauge the relevance and attractiveness of a search result from a user's perspective. A higher pCTR suggests that the result is more likely to satisfy the user's query and intent, making it a valuable signal for ranking. * `freshness_rank`: freshness adjustment as a rank * `document_age`: The time in hours elapsed since the document was last updated, a floating-point number (e.g., 0.25 means 15 minutes). * `topicality_rank`: topicality adjustment as a rank. Uses proprietary Google model to determine the keyword-based overlap between the query and the document. * `base_rank`: the default rank of the result",
+"description": "Optional. The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the `ranking_expression_backend` value. If `ranking_expression_backend` is not provided, it defaults to `RANK_BY_EMBEDDING`. If ranking_expression_backend is not provided or set to `RANK_BY_EMBEDDING`, it should be a single function or multiple functions that are joined by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between `embedding_field_path` and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. If ranking_expression_backend is set to `RANK_BY_FORMULA`, the following expression types (and combinations of those chained using + or * operators) are supported: * `double` * `signal` * `log(signal)` * `exp(signal)` * `rr(signal, double > 0)` -- reciprocal rank transformation with second argument being a denominator constant. * `is_nan(signal)` -- returns 0 if signal is NaN, 1 otherwise. * `fill_nan(signal1, signal2 | double)` -- if signal1 is NaN, returns signal2 | double, else returns signal1. Here are a few examples of ranking formulas that use the supported ranking expression types: - `0.2 * semantic_similarity_score + 0.8 * log(keyword_similarity_score)` -- mostly rank by the logarithm of `keyword_similarity_score` with slight `semantic_smilarity_score` adjustment. - `0.2 * exp(fill_nan(semantic_similarity_score, 0)) + 0.3 * is_nan(keyword_similarity_score)` -- rank by the exponent of `semantic_similarity_score` filling the value with 0 if it's NaN, also add constant 0.3 adjustment to the final score if `semantic_similarity_score` is NaN. - `0.2 * rr(semantic_similarity_score, 16) + 0.8 * rr(keyword_similarity_score, 16)` -- mostly rank by the reciprocal rank of `keyword_similarity_score` with slight adjustment of reciprocal rank of `semantic_smilarity_score`. The following signals are supported: * `semantic_similarity_score`: semantic similarity adjustment that is calculated using the embeddings generated by a proprietary Google model. This score determines how semantically similar a search query is to a document. * `keyword_similarity_score`: keyword match adjustment uses the Best Match 25 (BM25) ranking function. This score is calculated using a probabilistic model to estimate the probability that a document is relevant to a given query. * `relevance_score`: semantic relevance adjustment that uses a proprietary Google model to determine the meaning and intent behind a user's query in context with the content in the documents. * `pctr_rank`: predicted conversion rate adjustment as a rank use predicted Click-through rate (pCTR) to gauge the relevance and attractiveness of a search result from a user's perspective. A higher pCTR suggests that the result is more likely to satisfy the user's query and intent, making it a valuable signal for ranking. * `freshness_rank`: freshness adjustment as a rank * `document_age`: The time in hours elapsed since the document was last updated, a floating-point number (e.g., 0.25 means 15 minutes). * `topicality_rank`: topicality adjustment as a rank. Uses proprietary Google model to determine the keyword-based overlap between the query and the document. * `base_rank`: the default rank of the result * `media_actor_match`: whether the media actor matches the query * `media_director_match`: whether the media director matches the query * `media_genre_match`: whether the media genre matches the query * `media_language_match`: whether the media language matches the query * `media_title_match`: whether the media title matches the query * `media_prefix_similarity_rank`: prefix similarity rank for media results * `media_semantic_similarity_rank`: semantic similarity rank for media results",
 "type": "string"
 },
 "rankingExpressionBackend": {
@@ -20691,6 +21067,11 @@ false
 "description": "Immutable. Fully qualified name `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/*`",
 "type": "string"
 },
+"pendingAsyncAssistOperationId": {
+"description": "Output only. Full resource name of an in-progress AsyncAssist operation for this session, e.g. `projects/*/locations/*/collections/*/engines/*/sessions/*/operations/*`. Set when the operation starts and cleared when it finishes.",
+"readOnly": true,
+"type": "string"
+},
 "startTime": {
 "description": "Output only. The time the session started.",
 "format": "google-datetime",
@@ -20740,6 +21121,10 @@ false
 "$ref": "GoogleCloudDiscoveryengineV1AssistAnswer",
 "description": "Output only. In ConversationalSearchService.GetSession API, if GetSessionRequest.include_answer_details is set to true, this field will be populated when getting assistant session.",
 "readOnly": true
+},
+"live": {
+"description": "Optional. Indicates whether this turn is a live turn.",
+"type": "boolean"
 },
 "query": {
 "$ref": "GoogleCloudDiscoveryengineV1Query",
@@ -20988,6 +21373,13 @@ false
 "description": "A global unique ID that identifies the current pair of request and stream of responses. Used for feedback and support.",
 "type": "string"
 },
+"connectorAuthErrors": {
+"description": "Per-connector authentication errors encountered during the request. Present when one or more connectors failed authentication but the request proceeded with the remaining connectors.",
+"items": {
+"$ref": "GoogleCloudDiscoveryengineV1StreamAssistResponseConnectorAuthError"
+},
+"type": "array"
+},
 "invocationTools": {
 "description": "The tool names of the tools that were invoked.",
 "items": {
@@ -20995,9 +21387,46 @@ false
 },
 "type": "array"
 },
+"invokedSkills": {
+"description": "The skills executed during the turn.",
+"items": {
+"$ref": "GoogleCloudDiscoveryengineV1StreamAssistResponseInvokedSkill"
+},
+"type": "array"
+},
 "sessionInfo": {
 "$ref": "GoogleCloudDiscoveryengineV1StreamAssistResponseSessionInfo",
 "description": "Session information. Only included in the final StreamAssistResponse of the response stream."
+}
+},
+"type": "object"
+},
+"GoogleCloudDiscoveryengineV1StreamAssistResponseConnectorAuthError": {
+"description": "Describes an authentication error for a specific data connector.",
+"id": "GoogleCloudDiscoveryengineV1StreamAssistResponseConnectorAuthError",
+"properties": {
+"dataConnector": {
+"description": "Resource name of the data connector that failed authentication.",
+"type": "string"
+},
+"errorMessage": {
+"description": "Human-readable error message describing the auth failure.",
+"type": "string"
+}
+},
+"type": "object"
+},
+"GoogleCloudDiscoveryengineV1StreamAssistResponseInvokedSkill": {
+"description": "Represents a skill used during the assist call.",
+"id": "GoogleCloudDiscoveryengineV1StreamAssistResponseInvokedSkill",
+"properties": {
+"displayName": {
+"description": "The display name of the skill.",
+"type": "string"
+},
+"name": {
+"description": "The resource name of the skill.",
+"type": "string"
 }
 },
 "type": "object"
@@ -21415,6 +21844,10 @@ false
 "eventType": {
 "description": "Required. User event type. Allowed values are: Generic values: * `search`: Search for Documents. * `view-item`: Detailed page view of a Document. * `view-item-list`: View of a panel or ordered list of Documents. * `view-home-page`: View of the home page. * `view-category-page`: View of a category page, e.g. Home > Men > Jeans Retail-related values: * `add-to-cart`: Add an item(s) to cart, e.g. in Retail online shopping * `purchase`: Purchase an item(s) Media-related values: * `media-play`: Start/resume watching a video, playing a song, etc. * `media-complete`: Finished or stopped midway through a video, song, etc. Custom conversion value: * `conversion`: Customer defined conversion event.",
 "type": "string"
+},
+"feedback": {
+"$ref": "GoogleCloudDiscoveryengineV1Feedback",
+"description": "Optional. This field is optional except for the `add-feedback` event types."
 },
 "filter": {
 "description": "Optional. The filter syntax consists of an expression language for constructing a predicate from one or more fields of the documents being filtered. One example is for `search` events, the associated SearchRequest may contain a filter expression in SearchRequest.filter conforming to https://google.aip.dev/160#filtering. Similarly, for `view-item-list` events that are generated from a RecommendRequest, this field may be populated directly from RecommendRequest.filter conforming to https://google.aip.dev/160#filtering. The value must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
@@ -21927,6 +22360,11 @@ false
 "description": "Read-only collection component that contains data store collections fields that may be used for filtering",
 "id": "GoogleCloudDiscoveryengineV1WidgetConfigCollectionComponent",
 "properties": {
+"connectorAuthState": {
+"$ref": "GoogleCloudDiscoveryengineV1WidgetConfigConnectorAuthState",
+"description": "Output only. The auth uri of the connector source.",
+"readOnly": true
+},
 "connectorIconLink": {
 "description": "Output only. The icon link of the connector source.",
 "readOnly": true,
@@ -21959,6 +22397,43 @@ false
 },
 "name": {
 "description": "The name of the collection. It should be collection resource name. Format: `projects/{project}/locations/{location}/collections/{collection_id}`. For APIs under WidgetService, such as WidgetService.LookupWidgetConfig, the project number and location part is erased in this field.",
+"type": "string"
+}
+},
+"type": "object"
+},
+"GoogleCloudDiscoveryengineV1WidgetConfigConnectorAuthState": {
+"description": "Read-only connector in CollectionComponent auth state.",
+"id": "GoogleCloudDiscoveryengineV1WidgetConfigConnectorAuthState",
+"properties": {
+"authState": {
+"description": "Output only. The authorization state of the data connector.",
+"enum": [
+"AUTH_STATE_UNSPECIFIED",
+"AUTHORIZED",
+"EXPIRED",
+"ACTIONS_DISABLED",
+"NO_AUTH"
+],
+"enumDescriptions": [
+"Default value. This value is unused.",
+"The user has authorized the data connector.",
+"The user authorization for the data connector has expired.",
+"The user can still make search requests but actions need to be enabled.",
+"The data connector does not require any authorization."
+],
+"readOnly": true,
+"type": "string"
+},
+"authorizationUri": {
+"description": "Output only. The authorization uri for the data connector.",
+"readOnly": true,
+"type": "string"
+},
+"updateTime": {
+"description": "Output only. The authorization state update timestamp.",
+"format": "google-datetime",
+"readOnly": true,
 "type": "string"
 }
 },
@@ -22274,7 +22749,7 @@ false
 ],
 "type": "string"
 },
-"description": "Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `disable-canvas-workspace` * `disable-skills`",
+"description": "Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `disable-skills` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `deep-research`",
 "readOnly": true,
 "type": "object"
 },
@@ -22297,6 +22772,11 @@ false
 "Search with the generative answer that supports follow up questions. Also known as multi-turn search."
 ],
 "type": "string"
+},
+"modelConfigInfo": {
+"$ref": "GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsModelConfigInfo",
+"description": "Output only. The resolved, server-side view of model selector configuration. Holds both the ordered list of models that should appear in the model selector dropdown and the model that should be selected by default. Clients should render this directly without applying their own filtering, ordering, or localization. The legacy `model_configs` map above is retained for backward compatibility with clients that have not yet migrated to consuming this field.",
+"readOnly": true
 },
 "modelConfigs": {
 "additionalProperties": {
@@ -22394,12 +22874,65 @@ false
 },
 "type": "object"
 },
+"GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsModelConfigInfo": {
+"description": "The resolved, server-side view of model selector configuration for the end-user. The backend computes this per-request by applying, in order: Mendel flag evaluation, regional availability rules based on the engine's location, and admin-panel overrides from `model_configs`. The backend is the single source of truth for this configuration; clients should render `resolved_models` directly in the model selector dropdown, in the order provided, without applying their own filtering, ordering, or localization.",
+"id": "GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsModelConfigInfo",
+"properties": {
+"defaultModelId": {
+"description": "Output only. The `model_id` of the model that should be selected by default in the model selector when the end-user has not made an explicit choice. The value is always one of the `model_id`s present in `resolved_models`.",
+"readOnly": true,
+"type": "string"
+},
+"resolvedModels": {
+"description": "Output only. The list of models that are available to the end-user in the model selector, in the order in which they should be displayed.",
+"items": {
+"$ref": "GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsModelConfigInfoResolvedModel"
+},
+"readOnly": true,
+"type": "array"
+}
+},
+"type": "object"
+},
+"GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsModelConfigInfoResolvedModel": {
+"description": "A single model that is resolved to be available to the end-user in the model selector, with all of its localized display metadata.",
+"id": "GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsModelConfigInfoResolvedModel",
+"properties": {
+"description": {
+"description": "Output only. Localized description text (e.g. `State-of-the-art reasoning`). Localized using the same locale as `display_name`.",
+"readOnly": true,
+"type": "string"
+},
+"displayName": {
+"description": "Output only. Localized display name of the model (e.g. `Gemini 3.1 Pro`). Localized server-side based on the LookupWidgetConfigRequest.language_code and LookupWidgetConfigRequest.region_code of the request.",
+"readOnly": true,
+"type": "string"
+},
+"icon": {
+"description": "Output only. GM3-compatible icon token associated with the model (e.g. `rocket_launch`, `bolt`, `graph_5`).",
+"readOnly": true,
+"type": "string"
+},
+"isPreview": {
+"description": "Output only. Whether the model is currently in preview. Clients should surface this via a \"Preview\" badge in the selector UI.",
+"readOnly": true,
+"type": "boolean"
+},
+"modelId": {
+"description": "Output only. Unique identifier of the model (e.g. `gemini-2.5-flash`, `gemini-3.1-pro-preview`). This is the same identifier that clients pass back to the assistant service to select this model. Virtual / \"pseudo\" models (e.g. `gemini-fast`) are also valid values here; they are resolved to the underlying concrete model on the backend.",
+"readOnly": true,
+"type": "string"
+}
+},
+"type": "object"
+},
 "GoogleCloudDiscoveryengineV1WorkspaceConfig": {
 "description": "Config to store data store type configuration for workspace data",
 "id": "GoogleCloudDiscoveryengineV1WorkspaceConfig",
 "properties": {
 "dasherCustomerId": {
-"description": "Obfuscated Dasher customer ID.",
+"description": "Output only. Obfuscated Dasher customer ID. Derived by the server from the project's GCP organization at data store creation time; any value supplied in the request payload is ignored.",
+"readOnly": true,
 "type": "string"
 },
 "superAdminEmailAddress": {
@@ -23342,14 +23875,16 @@ false
 "IN_PROGRESS",
 "FAILED",
 "SUCCEEDED",
-"SKIPPED"
+"SKIPPED",
+"CANCELLED"
 ],
 "enumDescriptions": [
 "Unknown.",
 "Assist operation is currently in progress.",
 "Assist operation has failed.",
 "Assist operation has succeeded.",
-"Assist operation has been skipped."
+"Assist operation has been skipped.",
+"Assist operation has been cancelled (e.g. client closed the stream). May contain a partial response."
 ],
 "type": "string"
 }
@@ -23589,6 +24124,13 @@ false
 "$ref": "GoogleCloudDiscoveryengineV1alphaAssistantGroundedContentTextGroundingMetadataSegment"
 },
 "type": "array"
+},
+"visualSegments": {
+"description": "Grounding information for parts of the visual content.",
+"items": {
+"$ref": "GoogleCloudDiscoveryengineV1alphaAssistantGroundedContentTextGroundingMetadataVisualSegment"
+},
+"type": "array"
 }
 },
 "type": "object"
@@ -23597,6 +24139,10 @@ false
 "description": "Referenced content and related document metadata.",
 "id": "GoogleCloudDiscoveryengineV1alphaAssistantGroundedContentTextGroundingMetadataReference",
 "properties": {
+"codeSnippet": {
+"description": "Chunk of code snippet from the referenced document.",
+"type": "string"
+},
 "content": {
 "description": "Referenced text content.",
 "type": "string"
@@ -23618,6 +24164,19 @@ false
 },
 "domain": {
 "description": "Domain name from the document URI. Note that the `uri` field may contain a URL that redirects to the actual website, in which case this will contain the domain name of the target site.",
+"type": "string"
+},
+"language": {
+"enum": [
+"LANGUAGE_UNSPECIFIED",
+"PYTHON",
+"SQL"
+],
+"enumDescriptions": [
+"",
+"",
+""
+],
 "type": "string"
 },
 "mimeType": {
@@ -23673,6 +24232,25 @@ false
 },
 "type": "object"
 },
+"GoogleCloudDiscoveryengineV1alphaAssistantGroundedContentTextGroundingMetadataVisualSegment": {
+"description": "Grounding information for a visual segment.",
+"id": "GoogleCloudDiscoveryengineV1alphaAssistantGroundedContentTextGroundingMetadataVisualSegment",
+"properties": {
+"contentId": {
+"description": "The content id of the visual segment. In order to display the citation of the visual element, this content_id needs to match with the `grounded_content.content_metadata.content_id` field.",
+"type": "string"
+},
+"referenceIndices": {
+"description": "References for the visual segment.",
+"items": {
+"format": "int32",
+"type": "integer"
+},
+"type": "array"
+}
+},
+"type": "object"
+},
 "GoogleCloudDiscoveryengineV1alphaBAPConfig": {
 "description": "The configuration for the BAP connector.",
 "id": "GoogleCloudDiscoveryengineV1alphaBAPConfig",
@@ -23700,6 +24278,32 @@ false
 "Connector utilized for End User Authentication."
 ],
 "type": "string"
+},
+"type": "array"
+},
+"toolspecOverride": {
+"$ref": "GoogleCloudDiscoveryengineV1alphaBAPConfigToolspecOverride",
+"description": "Optional. Custom toolspec overrides for this connection. For Enterprise BAP connectors that support admin-curated tool definitions, this holds the (simplified) per-tool overrides. On Get, populated by the server by merging persisted overrides with live runtime tool definitions and trimming the result for UI consumption. On Update, the supplied value replaces the persisted overrides after server-side validation and merging: the `base_version` field MUST match the server's current base toolspec version (otherwise the request is rejected with a user-facing error directing the admin to re-download the latest tools first)."
+}
+},
+"type": "object"
+},
+"GoogleCloudDiscoveryengineV1alphaBAPConfigToolspecOverride": {
+"description": "Customer-facing view of the admin-curated toolspec for a BAP connection. Holds the (simplified) per-tool definitions surfaced to and editable by the admin in the Discovery Engine UI. Mirrors the shape of the backend `google.cloud.connectorexecution.v1.ToolspecOverride` message, but is intentionally kept as a separate public type so the Discovery Engine API surface can evolve independently of the fed-API surface (AIP-215). Handlers convert between the two via helpers in //cloud/ml/discoveryengine/external_service/v1main/data_connector_service/lib:bap_custom_tool_util.",
+"id": "GoogleCloudDiscoveryengineV1alphaBAPConfigToolspecOverride",
+"properties": {
+"baseVersion": {
+"description": "Required. Base toolspec version against which `tools` were authored. On Update, MUST match the server's current stable toolspec version for the connection; mismatch is rejected with a user-facing error directing the admin to re-download the latest tools first.",
+"type": "string"
+},
+"tools": {
+"description": "Required. Tool definitions (one Struct per tool) that the admin has customised on top of the base toolspec returned by the fed API. REQUIRED because it is the only user-editable field in the modify API; the request must carry at least one tool.",
+"items": {
+"additionalProperties": {
+"description": "Properties of the object.",
+"type": "any"
+},
+"type": "object"
 },
 "type": "array"
 }
@@ -24699,6 +25303,10 @@ false
 },
 "type": "array"
 },
+"connectorSourceId": {
+"description": "Optional. If set, this value instead of `data_source` is used to fetch the corresponding connector source.",
+"type": "string"
+},
 "connectorType": {
 "description": "Output only. The type of connector. Each source can only map to one type. For example, salesforce, confluence and jira have THIRD_PARTY connector type. It is not mutable once set by system.",
 "enum": [
@@ -24716,7 +25324,8 @@ false
 "GCNV",
 "GOOGLE_CHAT",
 "GOOGLE_SITES",
-"REMOTE_MCP"
+"REMOTE_MCP",
+"GOOGLE_WORKSPACE"
 ],
 "enumDescriptions": [
 "Default value.",
@@ -24733,7 +25342,8 @@ false
 "Google Cloud NetApp Volumes connector.",
 "Google Chat connector.",
 "Google Sites connector.",
-"Remote MCP based connector."
+"Remote MCP based connector.",
+"Google Workspace connector."
 ],
 "readOnly": true,
 "type": "string"
@@ -25980,6 +26590,10 @@ false
 ],
 "type": "string"
 },
+"associatedAgentRegistry": {
+"description": "Optional. The Agent registry containing the agents, MCP servers and tools associated with this engine. Field is required if the engine has an Agent Gateway setting.",
+"type": "string"
+},
 "chatEngineConfig": {
 "$ref": "GoogleCloudDiscoveryengineV1alphaEngineChatEngineConfig",
 "description": "Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT."
@@ -26052,7 +26666,7 @@ false
 ],
 "type": "string"
 },
-"description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `disable-canvas-workspace` * `disable-skills`",
+"description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `disable-skills` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `deep-research`",
 "type": "object"
 },
 "industryVertical": {
@@ -26458,7 +27072,8 @@ false
 "SUBSCRIPTION_TIER_EDU_PRO",
 "SUBSCRIPTION_TIER_EDU_EMERGING",
 "SUBSCRIPTION_TIER_EDU_PRO_EMERGING",
-"SUBSCRIPTION_TIER_FRONTLINE_STARTER"
+"SUBSCRIPTION_TIER_FRONTLINE_STARTER",
+"SUBSCRIPTION_TIER_CONSUMPTION_ONLY"
 ],
 "enumDescriptions": [
 "Default value.",
@@ -26474,7 +27089,8 @@ false
 "Gemini Enterprise EDU Pro tier.",
 "Gemini Enterprise EDU tier for emerging market only.",
 "Gemini Enterprise EDU Pro tier for emerging market.",
-"Gemini Frontline Starter tier."
+"Gemini Frontline Starter tier.",
+"Represents the Gemini Enterprise Consumption-only tier: $0 subscription billed purely on usage (PAYG)."
 ],
 "type": "string"
 },
@@ -26799,7 +27415,7 @@ false
 "type": "array"
 },
 "searchableFieldImportance": {
-"description": "Optional. Specifies the importance of the field when `searchable_option` is `SEARCHABLE_ENABLED`. If `searchable_option` is `SEARCHABLE_DISABLED`, this field is ignored. If `searchable_option` is `SEARCHABLE_ENABLED` and this is `SEARCHABLE_FIELD_IMPORTANCE_UNSPECIFIED`, it behaves as `DEFAULT_IMPORTANCE`.",
+"description": "Optional. Specifies the importance of the field when `searchable_option` is `SEARCHABLE_ENABLED`. If `searchable_option` is `SEARCHABLE_DISABLED`, this field is ignored. If `searchable_option` is `SEARCHABLE_ENABLED` and this is `SEARCHABLE_FIELD_IMPORTANCE_UNSPECIFIED`, it behaves as `DEFAULT_IMPORTANCE`. For more information, see [Weight searchable fields](https://cloud.google.com/generative-ai-app-builder/docs/configure-field-settings#weight-search).",
 "enum": [
 "SEARCHABLE_FIELD_IMPORTANCE_UNSPECIFIED",
 "VERY_LOW_IMPORTANCE",
@@ -27387,7 +28003,8 @@ false
 "SUBSCRIPTION_TIER_EDU_PRO",
 "SUBSCRIPTION_TIER_EDU_EMERGING",
 "SUBSCRIPTION_TIER_EDU_PRO_EMERGING",
-"SUBSCRIPTION_TIER_FRONTLINE_STARTER"
+"SUBSCRIPTION_TIER_FRONTLINE_STARTER",
+"SUBSCRIPTION_TIER_CONSUMPTION_ONLY"
 ],
 "enumDescriptions": [
 "Default value.",
@@ -27403,7 +28020,8 @@ false
 "Gemini Enterprise EDU Pro tier.",
 "Gemini Enterprise EDU tier for emerging market only.",
 "Gemini Enterprise EDU Pro tier for emerging market.",
-"Gemini Frontline Starter tier."
+"Gemini Frontline Starter tier.",
+"Represents the Gemini Enterprise Consumption-only tier: $0 subscription billed purely on usage (PAYG)."
 ],
 "type": "string"
 }
@@ -27419,7 +28037,7 @@ false
 "type": "string"
 },
 "orderBy": {
-"description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.",
+"description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` * `display_name` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.",
 "type": "string"
 },
 "pageSize": {
@@ -27610,9 +28228,17 @@ false
 "type": "object"
 },
 "GoogleCloudDiscoveryengineV1alphaProjectConfigurableBillingStatus": {
-"description": "Represents the currently effective configurable billing parameters. These values are derived from the customer's subscription history stored internally and reflect the thresholds actively being used for billing purposes at the time of the GetProject call. This includes the start_time of the subscription and may differ from the values in `customer_provided_config` due to billing rules (e.g., scale-downs taking effect only at the start of a new month).",
+"description": "Represents the currently effective configurable billing parameters. These values are derived from the customer's subscription history stored internally and reflect the thresholds actively being used for billing purposes at the time of the GetProject call. This includes the start_time of the subscription and may differ from the values in `customer_provided_config` due to billing rules (e.g., scale-downs taking effect only at the start of a new month). We also include the update type to indicate the type of update performed on the configurable billing configuration in the UpdateProject operation.",
 "id": "GoogleCloudDiscoveryengineV1alphaProjectConfigurableBillingStatus",
 "properties": {
+"agentSearchTokenSubscriptionStatuses": {
+"description": "Output only. Per-model Agent Search TPM subscription status.",
+"items": {
+"$ref": "GoogleCloudDiscoveryengineV1alphaProjectConfigurableBillingStatusAgentSearchTokenSubscriptionStatus"
+},
+"readOnly": true,
+"type": "array"
+},
 "effectiveIndexingCoreThreshold": {
 "description": "Optional. The currently effective Indexing Core threshold. This is the threshold against which Indexing Core usage is compared for overage calculations.",
 "format": "int64",
@@ -27643,6 +28269,80 @@ false
 "terminateTime": {
 "description": "Output only. The latest terminate effective time of search qpm and indexing core subscriptions.",
 "format": "google-datetime",
+"readOnly": true,
+"type": "string"
+},
+"updateType": {
+"description": "Output only. The type of update performed in this operation. This field is populated in the response of UpdateProject.",
+"enum": [
+"UPDATE_TYPE_UNSPECIFIED",
+"CREATE",
+"DELETE",
+"SCALE_UP",
+"SCALE_DOWN"
+],
+"enumDescriptions": [
+"Unspecified update type.",
+"Configurable billing was created/enabled.",
+"Configurable billing was deleted/disabled.",
+"Subscription was scaled up (thresholds increased).",
+"Subscription was scaled down (thresholds decreased)."
+],
+"readOnly": true,
+"type": "string"
+}
+},
+"type": "object"
+},
+"GoogleCloudDiscoveryengineV1alphaProjectConfigurableBillingStatusAgentSearchTokenSubscriptionStatus": {
+"description": "Per-model Agent Search TPM subscription status. One entry per active `core_subscription.agent_search_token_subscriptions[*]` entry in the customer-provided config; populated by UpdateProject and GetProject. The lifecycle scalars on this message (`start_time`, `terminate_time`, `update_type`, `tpm_threshold_next_update_time`) are per (project, model_version) \u2014 siblings of the whole-relationship `start_time` / `terminate_time` / `update_type` on the enclosing ConfigurableBillingStatus, but scoped to this specific Agent Search TPM subscription instead of to the overall customer-configurable- pricing relationship. This per-instance granularity is intentional: the underlying SubV3 storage is per-(project, model_version), so each model has its own activation, termination, and deferred-update clock; surfacing that on the response gives customers the granularity they need to manage per-model commitments independently. QPM / IndexingCore differ \u2014 their storage is one row per (project, location), so their lifecycle is represented only by the whole- relationship scalars on ConfigurableBillingStatus.",
+"id": "GoogleCloudDiscoveryengineV1alphaProjectConfigurableBillingStatusAgentSearchTokenSubscriptionStatus",
+"properties": {
+"effectiveTpmThreshold": {
+"description": "Output only. The currently effective TPM threshold. Reflects scale-up immediately and scale-down at the next billing cycle, matching `effective_search_qpm_threshold` semantics.",
+"format": "int64",
+"readOnly": true,
+"type": "string"
+},
+"modelVersion": {
+"description": "Output only. The Gemini model version this status corresponds to. Matches CoreSubscription.AgentSearchTokenSubscription.model_version (a stable Gemini model version from the Gemini Enterprise Agent Platform model-versions registry; see https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/model-versions#gemini-models).",
+"readOnly": true,
+"type": "string"
+},
+"startTime": {
+"description": "Output only. When this (project, model_version) Agent Search TPM subscription was first activated. Set once on first activation of this model version and never moved by subsequent threshold updates; on termination + re-activation a new value is recorded. Does NOT move the whole-relationship `start_time` on the enclosing ConfigurableBillingStatus, which continues to represent the first activation of the overall customer-configurable-pricing relationship.",
+"format": "google-datetime",
+"readOnly": true,
+"type": "string"
+},
+"terminateTime": {
+"description": "Output only. If set, the scheduled effective time at which this (project, model_version) Agent Search TPM subscription will terminate. Populated when the customer removes this entry from `core_subscription.agent_search_token_subscriptions[*]`. Does NOT move the whole-relationship `terminate_time` on the enclosing ConfigurableBillingStatus, which is populated only when the entire customer-configurable-pricing relationship is being torn down.",
+"format": "google-datetime",
+"readOnly": true,
+"type": "string"
+},
+"tpmThresholdNextUpdateTime": {
+"description": "Output only. The earliest next update time for the TPM subscription threshold for this (project, model_version). Populated only after a successful update.",
+"format": "google-datetime",
+"readOnly": true,
+"type": "string"
+},
+"updateType": {
+"description": "Output only. The type of the most recent update to this (project, model_version) subscription, as performed by the most recent UpdateProject call. `UPDATE_TYPE_UNSPECIFIED` indicates this model_version was not touched by the most recent UpdateProject (its `effective_tpm_threshold` reflects an earlier update). The whole-relationship `update_type` on the enclosing ConfigurableBillingStatus continues to summarize the direction of the most recent update across all surfaces in the project (QPM, IndexingCore, and Agent Search TPM together).",
+"enum": [
+"UPDATE_TYPE_UNSPECIFIED",
+"CREATE",
+"DELETE",
+"SCALE_UP",
+"SCALE_DOWN"
+],
+"enumDescriptions": [
+"Unspecified update type.",
+"Configurable billing was created/enabled.",
+"Configurable billing was deleted/disabled.",
+"Subscription was scaled up (thresholds increased).",
+"Subscription was scaled down (thresholds decreased)."
+],
 "readOnly": true,
 "type": "string"
 }
@@ -27986,6 +28686,12 @@ false
 "description": "Defines a user inputed query.",
 "id": "GoogleCloudDiscoveryengineV1alphaQuery",
 "properties": {
+"createTime": {
+"description": "Output only. The time at which the server accepted this query.",
+"format": "google-datetime",
+"readOnly": true,
+"type": "string"
+},
 "parts": {
 "description": "Query content parts.",
 "items": {
@@ -28629,7 +29335,7 @@ false
 "description": "The query expansion specification that specifies the conditions under which query expansion occurs."
 },
 "rankingExpression": {
-"description": "Optional. The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the `ranking_expression_backend` value. If `ranking_expression_backend` is not provided, it defaults to `RANK_BY_EMBEDDING`. If ranking_expression_backend is not provided or set to `RANK_BY_EMBEDDING`, it should be a single function or multiple functions that are joined by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between `embedding_field_path` and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. If ranking_expression_backend is set to `RANK_BY_FORMULA`, the following expression types (and combinations of those chained using + or * operators) are supported: * `double` * `signal` * `log(signal)` * `exp(signal)` * `rr(signal, double > 0)` -- reciprocal rank transformation with second argument being a denominator constant. * `is_nan(signal)` -- returns 0 if signal is NaN, 1 otherwise. * `fill_nan(signal1, signal2 | double)` -- if signal1 is NaN, returns signal2 | double, else returns signal1. Here are a few examples of ranking formulas that use the supported ranking expression types: - `0.2 * semantic_similarity_score + 0.8 * log(keyword_similarity_score)` -- mostly rank by the logarithm of `keyword_similarity_score` with slight `semantic_smilarity_score` adjustment. - `0.2 * exp(fill_nan(semantic_similarity_score, 0)) + 0.3 * is_nan(keyword_similarity_score)` -- rank by the exponent of `semantic_similarity_score` filling the value with 0 if it's NaN, also add constant 0.3 adjustment to the final score if `semantic_similarity_score` is NaN. - `0.2 * rr(semantic_similarity_score, 16) + 0.8 * rr(keyword_similarity_score, 16)` -- mostly rank by the reciprocal rank of `keyword_similarity_score` with slight adjustment of reciprocal rank of `semantic_smilarity_score`. The following signals are supported: * `semantic_similarity_score`: semantic similarity adjustment that is calculated using the embeddings generated by a proprietary Google model. This score determines how semantically similar a search query is to a document. * `keyword_similarity_score`: keyword match adjustment uses the Best Match 25 (BM25) ranking function. This score is calculated using a probabilistic model to estimate the probability that a document is relevant to a given query. * `relevance_score`: semantic relevance adjustment that uses a proprietary Google model to determine the meaning and intent behind a user's query in context with the content in the documents. * `pctr_rank`: predicted conversion rate adjustment as a rank use predicted Click-through rate (pCTR) to gauge the relevance and attractiveness of a search result from a user's perspective. A higher pCTR suggests that the result is more likely to satisfy the user's query and intent, making it a valuable signal for ranking. * `freshness_rank`: freshness adjustment as a rank * `document_age`: The time in hours elapsed since the document was last updated, a floating-point number (e.g., 0.25 means 15 minutes). * `topicality_rank`: topicality adjustment as a rank. Uses proprietary Google model to determine the keyword-based overlap between the query and the document. * `base_rank`: the default rank of the result",
+"description": "Optional. The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the `ranking_expression_backend` value. If `ranking_expression_backend` is not provided, it defaults to `RANK_BY_EMBEDDING`. If ranking_expression_backend is not provided or set to `RANK_BY_EMBEDDING`, it should be a single function or multiple functions that are joined by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between `embedding_field_path` and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. If ranking_expression_backend is set to `RANK_BY_FORMULA`, the following expression types (and combinations of those chained using + or * operators) are supported: * `double` * `signal` * `log(signal)` * `exp(signal)` * `rr(signal, double > 0)` -- reciprocal rank transformation with second argument being a denominator constant. * `is_nan(signal)` -- returns 0 if signal is NaN, 1 otherwise. * `fill_nan(signal1, signal2 | double)` -- if signal1 is NaN, returns signal2 | double, else returns signal1. Here are a few examples of ranking formulas that use the supported ranking expression types: - `0.2 * semantic_similarity_score + 0.8 * log(keyword_similarity_score)` -- mostly rank by the logarithm of `keyword_similarity_score` with slight `semantic_smilarity_score` adjustment. - `0.2 * exp(fill_nan(semantic_similarity_score, 0)) + 0.3 * is_nan(keyword_similarity_score)` -- rank by the exponent of `semantic_similarity_score` filling the value with 0 if it's NaN, also add constant 0.3 adjustment to the final score if `semantic_similarity_score` is NaN. - `0.2 * rr(semantic_similarity_score, 16) + 0.8 * rr(keyword_similarity_score, 16)` -- mostly rank by the reciprocal rank of `keyword_similarity_score` with slight adjustment of reciprocal rank of `semantic_smilarity_score`. The following signals are supported: * `semantic_similarity_score`: semantic similarity adjustment that is calculated using the embeddings generated by a proprietary Google model. This score determines how semantically similar a search query is to a document. * `keyword_similarity_score`: keyword match adjustment uses the Best Match 25 (BM25) ranking function. This score is calculated using a probabilistic model to estimate the probability that a document is relevant to a given query. * `relevance_score`: semantic relevance adjustment that uses a proprietary Google model to determine the meaning and intent behind a user's query in context with the content in the documents. * `pctr_rank`: predicted conversion rate adjustment as a rank use predicted Click-through rate (pCTR) to gauge the relevance and attractiveness of a search result from a user's perspective. A higher pCTR suggests that the result is more likely to satisfy the user's query and intent, making it a valuable signal for ranking. * `freshness_rank`: freshness adjustment as a rank * `document_age`: The time in hours elapsed since the document was last updated, a floating-point number (e.g., 0.25 means 15 minutes). * `topicality_rank`: topicality adjustment as a rank. Uses proprietary Google model to determine the keyword-based overlap between the query and the document. * `base_rank`: the default rank of the result * `media_actor_match`: whether the media actor matches the query * `media_director_match`: whether the media director matches the query * `media_genre_match`: whether the media genre matches the query * `media_language_match`: whether the media language matches the query * `media_title_match`: whether the media title matches the query * `media_prefix_similarity_rank`: prefix similarity rank for media results * `media_semantic_similarity_rank`: semantic similarity rank for media results",
 "type": "string"
 },
 "rankingExpressionBackend": {
@@ -29505,6 +30211,11 @@ false
 "description": "Immutable. Fully qualified name `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/*`",
 "type": "string"
 },
+"pendingAsyncAssistOperationId": {
+"description": "Output only. Full resource name of an in-progress AsyncAssist operation for this session, e.g. `projects/*/locations/*/collections/*/engines/*/sessions/*/operations/*`. Set when the operation starts and cleared when it finishes.",
+"readOnly": true,
+"type": "string"
+},
 "startTime": {
 "description": "Output only. The time the session started.",
 "format": "google-datetime",
@@ -29554,6 +30265,10 @@ false
 "$ref": "GoogleCloudDiscoveryengineV1alphaAssistAnswer",
 "description": "Output only. In ConversationalSearchService.GetSession API, if GetSessionRequest.include_answer_details is set to true, this field will be populated when getting assistant session.",
 "readOnly": true
+},
+"live": {
+"description": "Optional. Indicates whether this turn is a live turn.",
+"type": "boolean"
 },
 "query": {
 "$ref": "GoogleCloudDiscoveryengineV1alphaQuery",
@@ -30080,7 +30795,8 @@ false
 "id": "GoogleCloudDiscoveryengineV1alphaWorkspaceConfig",
 "properties": {
 "dasherCustomerId": {
-"description": "Obfuscated Dasher customer ID.",
+"description": "Output only. Obfuscated Dasher customer ID. Derived by the server from the project's GCP organization at data store creation time; any value supplied in the request payload is ignored.",
+"readOnly": true,
 "type": "string"
 },
 "superAdminEmailAddress": {
@@ -31397,6 +32113,10 @@ false
 ],
 "type": "string"
 },
+"associatedAgentRegistry": {
+"description": "Optional. The Agent registry containing the agents, MCP servers and tools associated with this engine. Field is required if the engine has an Agent Gateway setting.",
+"type": "string"
+},
 "chatEngineConfig": {
 "$ref": "GoogleCloudDiscoveryengineV1betaEngineChatEngineConfig",
 "description": "Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT."
@@ -31469,7 +32189,7 @@ false
 ],
 "type": "string"
 },
-"description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `disable-canvas-workspace` * `disable-skills`",
+"description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `disable-skills` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `deep-research`",
 "type": "object"
 },
 "industryVertical": {
@@ -31810,7 +32530,8 @@ false
 "SUBSCRIPTION_TIER_EDU_PRO",
 "SUBSCRIPTION_TIER_EDU_EMERGING",
 "SUBSCRIPTION_TIER_EDU_PRO_EMERGING",
-"SUBSCRIPTION_TIER_FRONTLINE_STARTER"
+"SUBSCRIPTION_TIER_FRONTLINE_STARTER",
+"SUBSCRIPTION_TIER_CONSUMPTION_ONLY"
 ],
 "enumDescriptions": [
 "Default value.",
@@ -31826,7 +32547,8 @@ false
 "Gemini Enterprise EDU Pro tier.",
 "Gemini Enterprise EDU tier for emerging market only.",
 "Gemini Enterprise EDU Pro tier for emerging market.",
-"Gemini Frontline Starter tier."
+"Gemini Frontline Starter tier.",
+"Represents the Gemini Enterprise Consumption-only tier: $0 subscription billed purely on usage (PAYG)."
 ],
 "type": "string"
 },
@@ -32451,7 +33173,8 @@ false
 "SUBSCRIPTION_TIER_EDU_PRO",
 "SUBSCRIPTION_TIER_EDU_EMERGING",
 "SUBSCRIPTION_TIER_EDU_PRO_EMERGING",
-"SUBSCRIPTION_TIER_FRONTLINE_STARTER"
+"SUBSCRIPTION_TIER_FRONTLINE_STARTER",
+"SUBSCRIPTION_TIER_CONSUMPTION_ONLY"
 ],
 "enumDescriptions": [
 "Default value.",
@@ -32467,7 +33190,8 @@ false
 "Gemini Enterprise EDU Pro tier.",
 "Gemini Enterprise EDU tier for emerging market only.",
 "Gemini Enterprise EDU Pro tier for emerging market.",
-"Gemini Frontline Starter tier."
+"Gemini Frontline Starter tier.",
+"Represents the Gemini Enterprise Consumption-only tier: $0 subscription billed purely on usage (PAYG)."
 ],
 "type": "string"
 }
@@ -32601,9 +33325,17 @@ false
 "type": "object"
 },
 "GoogleCloudDiscoveryengineV1betaProjectConfigurableBillingStatus": {
-"description": "Represents the currently effective configurable billing parameters. These values are derived from the customer's subscription history stored internally and reflect the thresholds actively being used for billing purposes at the time of the GetProject call. This includes the start_time of the subscription and may differ from the values in `customer_provided_config` due to billing rules (e.g., scale-downs taking effect only at the start of a new month).",
+"description": "Represents the currently effective configurable billing parameters. These values are derived from the customer's subscription history stored internally and reflect the thresholds actively being used for billing purposes at the time of the GetProject call. This includes the start_time of the subscription and may differ from the values in `customer_provided_config` due to billing rules (e.g., scale-downs taking effect only at the start of a new month). We also include the update type to indicate the type of update performed on the configurable billing configuration in the UpdateProject operation.",
 "id": "GoogleCloudDiscoveryengineV1betaProjectConfigurableBillingStatus",
 "properties": {
+"agentSearchTokenSubscriptionStatuses": {
+"description": "Output only. Per-model Agent Search TPM subscription status.",
+"items": {
+"$ref": "GoogleCloudDiscoveryengineV1betaProjectConfigurableBillingStatusAgentSearchTokenSubscriptionStatus"
+},
+"readOnly": true,
+"type": "array"
+},
 "effectiveIndexingCoreThreshold": {
 "description": "Optional. The currently effective Indexing Core threshold. This is the threshold against which Indexing Core usage is compared for overage calculations.",
 "format": "int64",
@@ -32634,6 +33366,80 @@ false
 "terminateTime": {
 "description": "Output only. The latest terminate effective time of search qpm and indexing core subscriptions.",
 "format": "google-datetime",
+"readOnly": true,
+"type": "string"
+},
+"updateType": {
+"description": "Output only. The type of update performed in this operation. This field is populated in the response of UpdateProject.",
+"enum": [
+"UPDATE_TYPE_UNSPECIFIED",
+"CREATE",
+"DELETE",
+"SCALE_UP",
+"SCALE_DOWN"
+],
+"enumDescriptions": [
+"Unspecified update type.",
+"Configurable billing was created/enabled.",
+"Configurable billing was deleted/disabled.",
+"Subscription was scaled up (thresholds increased).",
+"Subscription was scaled down (thresholds decreased)."
+],
+"readOnly": true,
+"type": "string"
+}
+},
+"type": "object"
+},
+"GoogleCloudDiscoveryengineV1betaProjectConfigurableBillingStatusAgentSearchTokenSubscriptionStatus": {
+"description": "Per-model Agent Search TPM subscription status. One entry per active `core_subscription.agent_search_token_subscriptions[*]` entry in the customer-provided config; populated by UpdateProject and GetProject. The lifecycle scalars on this message (`start_time`, `terminate_time`, `update_type`, `tpm_threshold_next_update_time`) are per (project, model_version) \u2014 siblings of the whole-relationship `start_time` / `terminate_time` / `update_type` on the enclosing ConfigurableBillingStatus, but scoped to this specific Agent Search TPM subscription instead of to the overall customer-configurable- pricing relationship. This per-instance granularity is intentional: the underlying SubV3 storage is per-(project, model_version), so each model has its own activation, termination, and deferred-update clock; surfacing that on the response gives customers the granularity they need to manage per-model commitments independently. QPM / IndexingCore differ \u2014 their storage is one row per (project, location), so their lifecycle is represented only by the whole- relationship scalars on ConfigurableBillingStatus.",
+"id": "GoogleCloudDiscoveryengineV1betaProjectConfigurableBillingStatusAgentSearchTokenSubscriptionStatus",
+"properties": {
+"effectiveTpmThreshold": {
+"description": "Output only. The currently effective TPM threshold. Reflects scale-up immediately and scale-down at the next billing cycle, matching `effective_search_qpm_threshold` semantics.",
+"format": "int64",
+"readOnly": true,
+"type": "string"
+},
+"modelVersion": {
+"description": "Output only. The Gemini model version this status corresponds to. Matches CoreSubscription.AgentSearchTokenSubscription.model_version (a stable Gemini model version from the Gemini Enterprise Agent Platform model-versions registry; see https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/model-versions#gemini-models).",
+"readOnly": true,
+"type": "string"
+},
+"startTime": {
+"description": "Output only. When this (project, model_version) Agent Search TPM subscription was first activated. Set once on first activation of this model version and never moved by subsequent threshold updates; on termination + re-activation a new value is recorded. Does NOT move the whole-relationship `start_time` on the enclosing ConfigurableBillingStatus, which continues to represent the first activation of the overall customer-configurable-pricing relationship.",
+"format": "google-datetime",
+"readOnly": true,
+"type": "string"
+},
+"terminateTime": {
+"description": "Output only. If set, the scheduled effective time at which this (project, model_version) Agent Search TPM subscription will terminate. Populated when the customer removes this entry from `core_subscription.agent_search_token_subscriptions[*]`. Does NOT move the whole-relationship `terminate_time` on the enclosing ConfigurableBillingStatus, which is populated only when the entire customer-configurable-pricing relationship is being torn down.",
+"format": "google-datetime",
+"readOnly": true,
+"type": "string"
+},
+"tpmThresholdNextUpdateTime": {
+"description": "Output only. The earliest next update time for the TPM subscription threshold for this (project, model_version). Populated only after a successful update.",
+"format": "google-datetime",
+"readOnly": true,
+"type": "string"
+},
+"updateType": {
+"description": "Output only. The type of the most recent update to this (project, model_version) subscription, as performed by the most recent UpdateProject call. `UPDATE_TYPE_UNSPECIFIED` indicates this model_version was not touched by the most recent UpdateProject (its `effective_tpm_threshold` reflects an earlier update). The whole-relationship `update_type` on the enclosing ConfigurableBillingStatus continues to summarize the direction of the most recent update across all surfaces in the project (QPM, IndexingCore, and Agent Search TPM together).",
+"enum": [
+"UPDATE_TYPE_UNSPECIFIED",
+"CREATE",
+"DELETE",
+"SCALE_UP",
+"SCALE_DOWN"
+],
+"enumDescriptions": [
+"Unspecified update type.",
+"Configurable billing was created/enabled.",
+"Configurable billing was deleted/disabled.",
+"Subscription was scaled up (thresholds increased).",
+"Subscription was scaled down (thresholds decreased)."
+],
 "readOnly": true,
 "type": "string"
 }
@@ -33124,7 +33930,7 @@ false
 "description": "The query expansion specification that specifies the conditions under which query expansion occurs."
 },
 "rankingExpression": {
-"description": "Optional. The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the `ranking_expression_backend` value. If `ranking_expression_backend` is not provided, it defaults to `RANK_BY_EMBEDDING`. If ranking_expression_backend is not provided or set to `RANK_BY_EMBEDDING`, it should be a single function or multiple functions that are joined by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between `embedding_field_path` and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. If ranking_expression_backend is set to `RANK_BY_FORMULA`, the following expression types (and combinations of those chained using + or * operators) are supported: * `double` * `signal` * `log(signal)` * `exp(signal)` * `rr(signal, double > 0)` -- reciprocal rank transformation with second argument being a denominator constant. * `is_nan(signal)` -- returns 0 if signal is NaN, 1 otherwise. * `fill_nan(signal1, signal2 | double)` -- if signal1 is NaN, returns signal2 | double, else returns signal1. Here are a few examples of ranking formulas that use the supported ranking expression types: - `0.2 * semantic_similarity_score + 0.8 * log(keyword_similarity_score)` -- mostly rank by the logarithm of `keyword_similarity_score` with slight `semantic_smilarity_score` adjustment. - `0.2 * exp(fill_nan(semantic_similarity_score, 0)) + 0.3 * is_nan(keyword_similarity_score)` -- rank by the exponent of `semantic_similarity_score` filling the value with 0 if it's NaN, also add constant 0.3 adjustment to the final score if `semantic_similarity_score` is NaN. - `0.2 * rr(semantic_similarity_score, 16) + 0.8 * rr(keyword_similarity_score, 16)` -- mostly rank by the reciprocal rank of `keyword_similarity_score` with slight adjustment of reciprocal rank of `semantic_smilarity_score`. The following signals are supported: * `semantic_similarity_score`: semantic similarity adjustment that is calculated using the embeddings generated by a proprietary Google model. This score determines how semantically similar a search query is to a document. * `keyword_similarity_score`: keyword match adjustment uses the Best Match 25 (BM25) ranking function. This score is calculated using a probabilistic model to estimate the probability that a document is relevant to a given query. * `relevance_score`: semantic relevance adjustment that uses a proprietary Google model to determine the meaning and intent behind a user's query in context with the content in the documents. * `pctr_rank`: predicted conversion rate adjustment as a rank use predicted Click-through rate (pCTR) to gauge the relevance and attractiveness of a search result from a user's perspective. A higher pCTR suggests that the result is more likely to satisfy the user's query and intent, making it a valuable signal for ranking. * `freshness_rank`: freshness adjustment as a rank * `document_age`: The time in hours elapsed since the document was last updated, a floating-point number (e.g., 0.25 means 15 minutes). * `topicality_rank`: topicality adjustment as a rank. Uses proprietary Google model to determine the keyword-based overlap between the query and the document. * `base_rank`: the default rank of the result",
+"description": "Optional. The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the `ranking_expression_backend` value. If `ranking_expression_backend` is not provided, it defaults to `RANK_BY_EMBEDDING`. If ranking_expression_backend is not provided or set to `RANK_BY_EMBEDDING`, it should be a single function or multiple functions that are joined by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between `embedding_field_path` and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. If ranking_expression_backend is set to `RANK_BY_FORMULA`, the following expression types (and combinations of those chained using + or * operators) are supported: * `double` * `signal` * `log(signal)` * `exp(signal)` * `rr(signal, double > 0)` -- reciprocal rank transformation with second argument being a denominator constant. * `is_nan(signal)` -- returns 0 if signal is NaN, 1 otherwise. * `fill_nan(signal1, signal2 | double)` -- if signal1 is NaN, returns signal2 | double, else returns signal1. Here are a few examples of ranking formulas that use the supported ranking expression types: - `0.2 * semantic_similarity_score + 0.8 * log(keyword_similarity_score)` -- mostly rank by the logarithm of `keyword_similarity_score` with slight `semantic_smilarity_score` adjustment. - `0.2 * exp(fill_nan(semantic_similarity_score, 0)) + 0.3 * is_nan(keyword_similarity_score)` -- rank by the exponent of `semantic_similarity_score` filling the value with 0 if it's NaN, also add constant 0.3 adjustment to the final score if `semantic_similarity_score` is NaN. - `0.2 * rr(semantic_similarity_score, 16) + 0.8 * rr(keyword_similarity_score, 16)` -- mostly rank by the reciprocal rank of `keyword_similarity_score` with slight adjustment of reciprocal rank of `semantic_smilarity_score`. The following signals are supported: * `semantic_similarity_score`: semantic similarity adjustment that is calculated using the embeddings generated by a proprietary Google model. This score determines how semantically similar a search query is to a document. * `keyword_similarity_score`: keyword match adjustment uses the Best Match 25 (BM25) ranking function. This score is calculated using a probabilistic model to estimate the probability that a document is relevant to a given query. * `relevance_score`: semantic relevance adjustment that uses a proprietary Google model to determine the meaning and intent behind a user's query in context with the content in the documents. * `pctr_rank`: predicted conversion rate adjustment as a rank use predicted Click-through rate (pCTR) to gauge the relevance and attractiveness of a search result from a user's perspective. A higher pCTR suggests that the result is more likely to satisfy the user's query and intent, making it a valuable signal for ranking. * `freshness_rank`: freshness adjustment as a rank * `document_age`: The time in hours elapsed since the document was last updated, a floating-point number (e.g., 0.25 means 15 minutes). * `topicality_rank`: topicality adjustment as a rank. Uses proprietary Google model to determine the keyword-based overlap between the query and the document. * `base_rank`: the default rank of the result * `media_actor_match`: whether the media actor matches the query * `media_director_match`: whether the media director matches the query * `media_genre_match`: whether the media genre matches the query * `media_language_match`: whether the media language matches the query * `media_title_match`: whether the media title matches the query * `media_prefix_similarity_rank`: prefix similarity rank for media results * `media_semantic_similarity_rank`: semantic similarity rank for media results",
 "type": "string"
 },
 "rankingExpressionBackend": {
@@ -34407,7 +35213,8 @@ false
 "id": "GoogleCloudDiscoveryengineV1betaWorkspaceConfig",
 "properties": {
 "dasherCustomerId": {
-"description": "Obfuscated Dasher customer ID.",
+"description": "Output only. Obfuscated Dasher customer ID. Derived by the server from the project's GCP organization at data store creation time; any value supplied in the request payload is ignored.",
+"readOnly": true,
 "type": "string"
 },
 "superAdminEmailAddress": {

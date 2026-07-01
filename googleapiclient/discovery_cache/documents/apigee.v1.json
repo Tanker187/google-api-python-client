@@ -1123,7 +1123,7 @@
 ]
 },
 "update": {
-"description": "Updates an existing API product. You must include all required values, whether or not you are updating them, as well as any optional values that you are updating. The API product name required in the request URL is the internal name of the product, not the display name. While they may be the same, it depends on whether the API product was created via UI or API. View the list of API products to identify their internal names.",
+"description": "Updates an existing API product. You must include all required values, whether or not you are updating them, as well as any optional values that you are updating. The API product name required in the request URL is the internal name of the product, not the display name. While they may be the same, it depends on whether the API product was created via UI or API. View the list of API products to identify their internal names. **Note:** We recommend that you avoid making concurrent update requests for the same resource. Near-simultaneous writes to the same entity can result in conflicts and unexpected behavior. Ensure operations are sequential when modifying a single resource.",
 "flatPath": "v1/organizations/{organizationsId}/apiproducts/{apiproductsId}",
 "httpMethod": "PUT",
 "id": "apigee.organizations.apiproducts.update",
@@ -2260,7 +2260,7 @@
 ]
 },
 "update": {
-"description": "Updates an AppGroup. This API replaces the existing AppGroup details with those specified in the request. Include or exclude any existing details that you want to retain or delete, respectively. Note that the state of the AppGroup should be updated using `action`, and not via AppGroup.",
+"description": "Updates an AppGroup. This API replaces the existing AppGroup details with those specified in the request. Include or exclude any existing details that you want to retain or delete, respectively. Note that the state of the AppGroup should be updated using `action`, and not via AppGroup. **Note:** We recommend that you avoid making concurrent update requests for the same resource. Near-simultaneous writes to the same entity can result in conflicts and unexpected behavior. Ensure operations are sequential when modifying a single resource.",
 "flatPath": "v1/organizations/{organizationsId}/appgroups/{appgroupsId}",
 "httpMethod": "PUT",
 "id": "apigee.organizations.appgroups.update",
@@ -2293,7 +2293,7 @@
 ]
 },
 "updateMonetizationConfig": {
-"description": "Updates the monetization configuration for the AppGroup.",
+"description": "Updates the monetization configuration for the AppGroup. **Note:** We recommend that you avoid making concurrent update requests for the same resource. Near-simultaneous writes to the same entity can result in conflicts and unexpected behavior. Ensure operations are sequential when modifying a single resource.",
 "flatPath": "v1/organizations/{organizationsId}/appgroups/{appgroupsId}/monetizationConfig",
 "httpMethod": "PUT",
 "id": "apigee.organizations.appgroups.updateMonetizationConfig",
@@ -2439,7 +2439,7 @@
 ]
 },
 "update": {
-"description": "Updates the details for an AppGroup app. In addition, you can add an API product to an AppGroup app and automatically generate an API key for the app to use when calling APIs in the API product. If you want to use an existing API key for the API product, add the API product to the API key using the UpdateAppGroupAppKey API. Using this API, you cannot update the app name, as it is the primary key used to identify the app and cannot be changed. This API replaces the existing attributes with those specified in the request. Include or exclude any existing attributes that you want to retain or delete, respectively.",
+"description": "Updates the details for an AppGroup app. In addition, you can add an API product to an AppGroup app and automatically generate an API key for the app to use when calling APIs in the API product. If you want to use an existing API key for the API product, add the API product to the API key using the UpdateAppGroupAppKey API. Using this API, you cannot update the app name, as it is the primary key used to identify the app and cannot be changed. This API replaces the existing attributes with those specified in the request. Include or exclude any existing attributes that you want to retain or delete, respectively. **Note:** We recommend that you avoid making concurrent update requests for the same resource. Near-simultaneous writes to the same entity can result in conflicts and unexpected behavior. Ensure operations are sequential when modifying a single resource.",
 "flatPath": "v1/organizations/{organizationsId}/appgroups/{appgroupsId}/apps/{appsId}",
 "httpMethod": "PUT",
 "id": "apigee.organizations.appgroups.apps.update",
@@ -3386,7 +3386,7 @@
 ]
 },
 "update": {
-"description": "Updates a developer. This API replaces the existing developer details with those specified in the request. Include or exclude any existing details that you want to retain or delete, respectively. The custom attribute limit is 18. **Note**: OAuth access tokens and Key Management Service (KMS) entities (apps, developers, and API products) are cached for 180 seconds (current default). Any custom attributes associated with these entities are cached for at least 180 seconds after the entity is accessed at runtime. Therefore, an `ExpiresIn` element on the OAuthV2 policy won't be able to expire an access token in less than 180 seconds.",
+"description": "Updates a developer. This API replaces the existing developer details with those specified in the request. Include or exclude any existing details that you want to retain or delete, respectively. The custom attribute limit is 18. **Note**: OAuth access tokens and Key Management Service (KMS) entities (apps, developers, and API products) are cached for 180 seconds (current default). Any custom attributes associated with these entities are cached for at least 180 seconds after the entity is accessed at runtime. Therefore, an `ExpiresIn` element on the OAuthV2 policy won't be able to expire an access token in less than 180 seconds. **Note:** We recommend that you avoid making concurrent update requests for the same resource. Near-simultaneous writes to the same entity can result in conflicts and unexpected behavior. Ensure operations are sequential when modifying a single resource.",
 "flatPath": "v1/organizations/{organizationsId}/developers/{developersId}",
 "httpMethod": "PUT",
 "id": "apigee.organizations.developers.update",
@@ -3641,7 +3641,7 @@
 ]
 },
 "update": {
-"description": "Updates the details for a developer app. In addition, you can add an API product to a developer app and automatically generate an API key for the app to use when calling APIs in the API product. If you want to use an existing API key for the API product, add the API product to the API key using the UpdateDeveloperAppKey API. Using this API, you cannot update the following: * App name as it is the primary key used to identify the app and cannot be changed. * Scopes associated with the app. Instead, use the ReplaceDeveloperAppKey API. This API replaces the existing attributes with those specified in the request. Include or exclude any existing attributes that you want to retain or delete, respectively.",
+"description": "Updates the details for a developer app. In addition, you can add an API product to a developer app and automatically generate an API key for the app to use when calling APIs in the API product. If you want to use an existing API key for the API product, add the API product to the API key using the UpdateDeveloperAppKey API. Using this API, you cannot update the following: * App name as it is the primary key used to identify the app and cannot be changed. * Scopes associated with the app. Instead, use the ReplaceDeveloperAppKey API. This API replaces the existing attributes with those specified in the request. Include or exclude any existing attributes that you want to retain or delete, respectively. **Note:** We recommend that you avoid making concurrent update requests for the same resource. Near-simultaneous writes to the same entity can result in conflicts and unexpected behavior. Ensure operations are sequential when modifying a single resource.",
 "flatPath": "v1/organizations/{organizationsId}/developers/{developersId}/apps/{appsId}",
 "httpMethod": "PUT",
 "id": "apigee.organizations.developers.apps.update",
@@ -11964,7 +11964,7 @@
 }
 }
 },
-"revision": "20260327",
+"revision": "20260622",
 "rootUrl": "https://apigee.googleapis.com/",
 "schemas": {
 "EdgeConfigstoreBundleBadBundle": {
@@ -12596,6 +12596,10 @@
 "$ref": "GoogleCloudApigeeV1OperationGroup",
 "description": "Configuration used to group Apigee proxies or remote services with resources, method types, and quotas. The resource refers to the resource URI (excluding the base path). With this grouping, the API product creator is able to fine-tune and give precise control over which REST methods have access to specific resources and how many calls can be made (using the `quota` setting). **Note:** The `api_resources` setting cannot be specified for both the API product and operation group; otherwise the call will fail."
 },
+"payloadOperationGroup": {
+"$ref": "GoogleCloudApigeeV1PayloadOperationGroup",
+"description": "Optional. Configuration used to group Apigee proxies with payload-based operations and quotas. Unlike `operation_group`, which matches on the URL path, this grouping matches on operation identifiers extracted from the request payload (for example, JSON-RPC method and tool names). This enables fine-grained authorization and quota enforcement for protocols such as MCP where multiple operations share a single endpoint. **Note:** The `proxies` and `api_resources` settings cannot be specified for both the API product and payload operation group; otherwise the call will fail."
+},
 "proxies": {
 "description": "Comma-separated list of API proxy names to which this API product is bound. By specifying API proxies, you can associate resources in the API product with specific API proxies, preventing developers from accessing those resources through other API proxies. Apigee rejects requests to API proxies that are not listed. **Note:** The API proxy names must already exist in the specified environment as they will be validated upon creation.",
 "items": {
@@ -12780,6 +12784,11 @@
 "description": "Time that the API proxy revision was last modified in milliseconds since epoch.",
 "format": "int64",
 "type": "string"
+},
+"mcp": {
+"description": "Output only. Whether this proxy revision is detected as an MCP (Model Context Protocol) proxy. A proxy revision is identified as MCP if it has a proxy endpoint with the `/mcp` base path that routes to the MCP target URL.",
+"readOnly": true,
+"type": "boolean"
 },
 "name": {
 "description": "Name of the API proxy.",
@@ -18060,6 +18069,60 @@
 },
 "type": "object"
 },
+"GoogleCloudApigeeV1PayloadOperation": {
+"description": "Represents a single operation identifier extracted from the request payload.",
+"id": "GoogleCloudApigeeV1PayloadOperation",
+"properties": {
+"operation": {
+"description": "Required. The operation name extracted from the request payload at runtime by the ParsePayload policy. For example, for MCP protocol requests, this could be `\"tools/list\"` or `\"tools/call/get_weather\"`. Wildcards are not supported.",
+"type": "string"
+}
+},
+"type": "object"
+},
+"GoogleCloudApigeeV1PayloadOperationConfig": {
+"description": "Binds the payload operations in an API proxy with the associated quota enforcement.",
+"id": "GoogleCloudApigeeV1PayloadOperationConfig",
+"properties": {
+"apiSource": {
+"description": "Required. Name of the API proxy with which the payload operations and quota are associated.",
+"type": "string"
+},
+"attributes": {
+"description": "Optional. Custom attributes associated with the operation.",
+"items": {
+"$ref": "GoogleCloudApigeeV1Attribute"
+},
+"type": "array"
+},
+"operations": {
+"description": "Required. List of payload operations for the API proxy to which quota will be applied.",
+"items": {
+"$ref": "GoogleCloudApigeeV1PayloadOperation"
+},
+"type": "array"
+},
+"quota": {
+"$ref": "GoogleCloudApigeeV1Quota",
+"description": "Optional. Quota parameters to be enforced for the operations and API source combination. If none are specified, quota enforcement will not be done unless a quota is defined at the API product level."
+}
+},
+"type": "object"
+},
+"GoogleCloudApigeeV1PayloadOperationGroup": {
+"description": "List of payload operation configuration details associated with Apigee API proxies. Payload operations enable governance of protocols where operations are embedded in the request body (such as JSON-RPC) rather than defined by the URL path.",
+"id": "GoogleCloudApigeeV1PayloadOperationGroup",
+"properties": {
+"operationConfigs": {
+"description": "Required. List of payload operation configurations for Apigee API proxies that are associated with this API product.",
+"items": {
+"$ref": "GoogleCloudApigeeV1PayloadOperationConfig"
+},
+"type": "array"
+}
+},
+"type": "object"
+},
 "GoogleCloudApigeeV1PodStatus": {
 "id": "GoogleCloudApigeeV1PodStatus",
 "properties": {
@@ -21238,6 +21301,20 @@
 "samplingConfig": {
 "$ref": "GoogleCloudApigeeV1TraceSamplingConfig",
 "description": "Distributed trace configuration for all API proxies in an environment. You can also override the configuration for a specific API proxy using the distributed trace configuration overrides API."
+},
+"traceProtocol": {
+"description": "Optional. The trace protocol to use. Configuration Requirements (if trace_protocol is OTLP): - Allowed Exporters: CLOUD_TRACE or OPEN_TELEMETRY_COLLECTOR. - If Exporter is OPEN_TELEMETRY_COLLECTOR: - endpoint refers to a valid OTLP collector URL. - If Exporter is CLOUD_TRACE: - endpoint refers to a valid project ID.",
+"enum": [
+"TRACE_PROTOCOL_UNSPECIFIED",
+"OPEN_CENSUS",
+"OTLP"
+],
+"enumDescriptions": [
+"Protocol unspecified. Defaults to OPEN_CENSUS.",
+"Uses OpenCensus protocol.",
+"Uses OpenTelemetry Protocol (OTLP)."
+],
+"type": "string"
 }
 },
 "type": "object"

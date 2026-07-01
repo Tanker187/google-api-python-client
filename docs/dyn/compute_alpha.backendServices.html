@@ -317,12 +317,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -1459,6 +1459,16 @@ Returns:
               # backend service.
             &quot;enable&quot;: True or False, # Denotes whether to enable logging for the load balancer
                 # traffic served by this backend service. The default value is false.
+            &quot;loggingHttpRequestHeaders&quot;: [ # The list of request headers that will be logged to Stackdriver.
+              { # Determines which HTTP headers will be logged to Stackdriver.
+                &quot;headerName&quot;: &quot;A String&quot;, # The name of the header to be logged.
+              },
+            ],
+            &quot;loggingHttpResponseHeaders&quot;: [ # The list of response headers that will be logged to Stackdriver.
+              { # Determines which HTTP headers will be logged to Stackdriver.
+                &quot;headerName&quot;: &quot;A String&quot;, # The name of the header to be logged.
+              },
+            ],
             &quot;optional&quot;: &quot;A String&quot;, # Deprecated in favor of optionalMode.
                 # This field can only be specified if logging is enabled for this backend
                 # service. Configures whether all, none or a subset of optional fields
@@ -2561,12 +2571,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -2857,12 +2867,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -3899,6 +3909,16 @@ Returns:
       # backend service.
     &quot;enable&quot;: True or False, # Denotes whether to enable logging for the load balancer
         # traffic served by this backend service. The default value is false.
+    &quot;loggingHttpRequestHeaders&quot;: [ # The list of request headers that will be logged to Stackdriver.
+      { # Determines which HTTP headers will be logged to Stackdriver.
+        &quot;headerName&quot;: &quot;A String&quot;, # The name of the header to be logged.
+      },
+    ],
+    &quot;loggingHttpResponseHeaders&quot;: [ # The list of response headers that will be logged to Stackdriver.
+      { # Determines which HTTP headers will be logged to Stackdriver.
+        &quot;headerName&quot;: &quot;A String&quot;, # The name of the header to be logged.
+      },
+    ],
     &quot;optional&quot;: &quot;A String&quot;, # Deprecated in favor of optionalMode.
         # This field can only be specified if logging is enabled for this backend
         # service. Configures whether all, none or a subset of optional fields
@@ -6861,6 +6881,16 @@ Args:
       # backend service.
     &quot;enable&quot;: True or False, # Denotes whether to enable logging for the load balancer
         # traffic served by this backend service. The default value is false.
+    &quot;loggingHttpRequestHeaders&quot;: [ # The list of request headers that will be logged to Stackdriver.
+      { # Determines which HTTP headers will be logged to Stackdriver.
+        &quot;headerName&quot;: &quot;A String&quot;, # The name of the header to be logged.
+      },
+    ],
+    &quot;loggingHttpResponseHeaders&quot;: [ # The list of response headers that will be logged to Stackdriver.
+      { # Determines which HTTP headers will be logged to Stackdriver.
+        &quot;headerName&quot;: &quot;A String&quot;, # The name of the header to be logged.
+      },
+    ],
     &quot;optional&quot;: &quot;A String&quot;, # Deprecated in favor of optionalMode.
         # This field can only be specified if logging is enabled for this backend
         # service. Configures whether all, none or a subset of optional fields
@@ -7871,12 +7901,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -8999,6 +9029,16 @@ Returns:
           # backend service.
         &quot;enable&quot;: True or False, # Denotes whether to enable logging for the load balancer
             # traffic served by this backend service. The default value is false.
+        &quot;loggingHttpRequestHeaders&quot;: [ # The list of request headers that will be logged to Stackdriver.
+          { # Determines which HTTP headers will be logged to Stackdriver.
+            &quot;headerName&quot;: &quot;A String&quot;, # The name of the header to be logged.
+          },
+        ],
+        &quot;loggingHttpResponseHeaders&quot;: [ # The list of response headers that will be logged to Stackdriver.
+          { # Determines which HTTP headers will be logged to Stackdriver.
+            &quot;headerName&quot;: &quot;A String&quot;, # The name of the header to be logged.
+          },
+        ],
         &quot;optional&quot;: &quot;A String&quot;, # Deprecated in favor of optionalMode.
             # This field can only be specified if logging is enabled for this backend
             # service. Configures whether all, none or a subset of optional fields
@@ -10885,6 +10925,16 @@ Returns:
           # backend service.
         &quot;enable&quot;: True or False, # Denotes whether to enable logging for the load balancer
             # traffic served by this backend service. The default value is false.
+        &quot;loggingHttpRequestHeaders&quot;: [ # The list of request headers that will be logged to Stackdriver.
+          { # Determines which HTTP headers will be logged to Stackdriver.
+            &quot;headerName&quot;: &quot;A String&quot;, # The name of the header to be logged.
+          },
+        ],
+        &quot;loggingHttpResponseHeaders&quot;: [ # The list of response headers that will be logged to Stackdriver.
+          { # Determines which HTTP headers will be logged to Stackdriver.
+            &quot;headerName&quot;: &quot;A String&quot;, # The name of the header to be logged.
+          },
+        ],
         &quot;optional&quot;: &quot;A String&quot;, # Deprecated in favor of optionalMode.
             # This field can only be specified if logging is enabled for this backend
             # service. Configures whether all, none or a subset of optional fields
@@ -12714,6 +12764,16 @@ Args:
       # backend service.
     &quot;enable&quot;: True or False, # Denotes whether to enable logging for the load balancer
         # traffic served by this backend service. The default value is false.
+    &quot;loggingHttpRequestHeaders&quot;: [ # The list of request headers that will be logged to Stackdriver.
+      { # Determines which HTTP headers will be logged to Stackdriver.
+        &quot;headerName&quot;: &quot;A String&quot;, # The name of the header to be logged.
+      },
+    ],
+    &quot;loggingHttpResponseHeaders&quot;: [ # The list of response headers that will be logged to Stackdriver.
+      { # Determines which HTTP headers will be logged to Stackdriver.
+        &quot;headerName&quot;: &quot;A String&quot;, # The name of the header to be logged.
+      },
+    ],
     &quot;optional&quot;: &quot;A String&quot;, # Deprecated in favor of optionalMode.
         # This field can only be specified if logging is enabled for this backend
         # service. Configures whether all, none or a subset of optional fields
@@ -13724,12 +13784,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -14025,12 +14085,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -15202,12 +15262,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -16274,6 +16334,16 @@ Args:
       # backend service.
     &quot;enable&quot;: True or False, # Denotes whether to enable logging for the load balancer
         # traffic served by this backend service. The default value is false.
+    &quot;loggingHttpRequestHeaders&quot;: [ # The list of request headers that will be logged to Stackdriver.
+      { # Determines which HTTP headers will be logged to Stackdriver.
+        &quot;headerName&quot;: &quot;A String&quot;, # The name of the header to be logged.
+      },
+    ],
+    &quot;loggingHttpResponseHeaders&quot;: [ # The list of response headers that will be logged to Stackdriver.
+      { # Determines which HTTP headers will be logged to Stackdriver.
+        &quot;headerName&quot;: &quot;A String&quot;, # The name of the header to be logged.
+      },
+    ],
     &quot;optional&quot;: &quot;A String&quot;, # Deprecated in favor of optionalMode.
         # This field can only be specified if logging is enabled for this backend
         # service. Configures whether all, none or a subset of optional fields
@@ -17284,12 +17354,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },

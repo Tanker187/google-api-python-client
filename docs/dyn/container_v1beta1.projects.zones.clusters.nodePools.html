@@ -425,6 +425,16 @@ Args:
           &quot;enablePtpKvmTimeSync&quot;: True or False, # Enables enhanced time synchronization using PTP-KVM.
         },
         &quot;cgroupMode&quot;: &quot;A String&quot;, # cgroup_mode specifies the cgroup mode to be used on the node.
+        &quot;customNodeInit&quot;: { # Support for running custom init code while bootstrapping nodes. # Optional. Allow users to run arbitrary bash script or container on the node.
+          &quot;initScript&quot;: { # InitScript provide a simply bash script to be executed on the node. # Optional. The init script to be executed on the node.
+            &quot;args&quot;: [ # Optional. The optional arguments line to be passed to the init script.
+              &quot;A String&quot;,
+            ],
+            &quot;gcpSecretManagerSecretUri&quot;: &quot;A String&quot;, # The resource name of the secret manager secret hosting the init script. Both global and regional secrets are supported with format below: Global secret: projects/{project}/secrets/{secret}/versions/{version} Regional secret: projects/{project}/locations/{location}/secrets/{secret}/versions/{version} Example: projects/1234567890/secrets/script_1/versions/1. Accept version number only, not support version alias. User can&#x27;t configure both gcp_secret_manager_secret_uri and gcs_uri.
+            &quot;gcsGeneration&quot;: &quot;A String&quot;, # The generation of the init script stored in Gloud Storage. This is the required field to identify the version of the init script. User can get the genetaion from `gcloud storage objects describe gs://BUCKET_NAME/OBJECT_NAME --format=&quot;value(generation)&quot;` or from the &quot;Version history&quot; tab of the object in the Cloud Console UI.
+            &quot;gcsUri&quot;: &quot;A String&quot;, # The Cloud Storage URI for storing the init script. Format: gs://BUCKET_NAME/OBJECT_NAME The service account on the node pool must have read access to the object. User can&#x27;t configure both gcs_uri and gcp_secret_manager_secret_uri.
+          },
+        },
         &quot;hugepages&quot;: { # Hugepages amount in both 2m and 1g size # Optional. Amounts for 2M and 1G hugepages
           &quot;hugepageSize1g&quot;: 42, # Optional. Amount of 1G hugepages
           &quot;hugepageSize2m&quot;: 42, # Optional. Amount of 2M hugepages
@@ -449,7 +459,7 @@ Args:
             &quot;swapSizePercent&quot;: 42, # Specifies the size of the swap space as a percentage of the ephemeral local SSD capacity.
           },
         },
-        &quot;sysctls&quot;: { # The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.busy_poll net.core.busy_read net.core.netdev_max_backlog net.core.rmem_max net.core.rmem_default net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse net.ipv4.tcp_mtu_probing net.ipv4.tcp_max_orphans net.ipv4.tcp_max_tw_buckets net.ipv4.tcp_syn_retries net.ipv4.tcp_ecn net.ipv4.tcp_congestion_control net.netfilter.nf_conntrack_max net.netfilter.nf_conntrack_buckets net.netfilter.nf_conntrack_tcp_timeout_close_wait net.netfilter.nf_conntrack_tcp_timeout_time_wait net.netfilter.nf_conntrack_tcp_timeout_established net.netfilter.nf_conntrack_acct kernel.shmmni kernel.shmmax kernel.shmall kernel.perf_event_paranoid kernel.sched_rt_runtime_us kernel.softlockup_panic kernel.yama.ptrace_scope kernel.kptr_restrict kernel.dmesg_restrict kernel.sysrq fs.aio-max-nr fs.file-max fs.inotify.max_user_instances fs.inotify.max_user_watches fs.nr_open vm.dirty_background_ratio vm.dirty_background_bytes vm.dirty_expire_centisecs vm.dirty_ratio vm.dirty_bytes vm.dirty_writeback_centisecs vm.max_map_count vm.overcommit_memory vm.overcommit_ratio vm.vfs_cache_pressure vm.swappiness vm.watermark_scale_factor vm.min_free_kbytes
+        &quot;sysctls&quot;: { # The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.busy_poll net.core.busy_read net.core.netdev_max_backlog net.core.rmem_max net.core.rmem_default net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.neigh.default.gc_thresh1 net.ipv4.neigh.default.gc_thresh2 net.ipv4.neigh.default.gc_thresh3 net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse net.ipv4.tcp_mtu_probing net.ipv4.tcp_max_orphans net.ipv4.tcp_max_tw_buckets net.ipv4.tcp_syn_retries net.ipv4.tcp_ecn net.ipv4.tcp_congestion_control net.netfilter.nf_conntrack_max net.netfilter.nf_conntrack_buckets net.netfilter.nf_conntrack_tcp_timeout_close_wait net.netfilter.nf_conntrack_tcp_timeout_time_wait net.netfilter.nf_conntrack_tcp_timeout_established net.netfilter.nf_conntrack_acct kernel.keys.maxkeys kernel.keys.maxbytes kernel.shmmni kernel.shmmax kernel.shmall kernel.perf_event_paranoid kernel.sched_rt_runtime_us kernel.softlockup_panic kernel.yama.ptrace_scope kernel.kptr_restrict kernel.dmesg_restrict kernel.sysrq fs.aio-max-nr fs.file-max fs.inotify.max_user_instances fs.inotify.max_user_watches fs.nr_open vm.dirty_background_ratio vm.dirty_background_bytes vm.dirty_expire_centisecs vm.dirty_ratio vm.dirty_bytes vm.dirty_writeback_centisecs vm.max_map_count vm.overcommit_memory vm.overcommit_ratio vm.vfs_cache_pressure vm.swappiness vm.watermark_scale_factor vm.min_free_kbytes
           &quot;a_key&quot;: &quot;A String&quot;,
         },
         &quot;transparentHugepageDefrag&quot;: &quot;A String&quot;, # Optional. Defines the transparent hugepage defrag configuration on the node. VM hugepage allocation can be managed by either limiting defragmentation for delayed allocation or skipping it entirely for immediate allocation only. See https://docs.kernel.org/admin-guide/mm/transhuge.html for more details.
@@ -472,6 +482,10 @@ Args:
       },
       &quot;minCpuPlatform&quot;: &quot;A String&quot;, # Minimum CPU platform to be used by this instance. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as `minCpuPlatform: &quot;Intel Haswell&quot;` or `minCpuPlatform: &quot;Intel Sandy Bridge&quot;`. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform).
       &quot;nodeGroup&quot;: &quot;A String&quot;, # Setting this field will assign instances of this pool to run on the specified node group. This is useful for running workloads on [sole tenant nodes](https://cloud.google.com/compute/docs/nodes/sole-tenant-nodes).
+      &quot;nodeImageConfig&quot;: { # CustomImageConfig contains the information r # The node image configuration to use for this node pool. Note that this is only applicable for node pools using image_type=CUSTOM.
+        &quot;image&quot;: &quot;A String&quot;, # The name of the image to use for this node.
+        &quot;imageProject&quot;: &quot;A String&quot;, # The project containing the image to use for this node.
+      },
       &quot;oauthScopes&quot;: [ # The set of Google API scopes to be made available on all of the node VMs under the &quot;default&quot; service account. The following scopes are recommended, but not required, and by default are not included: * `https://www.googleapis.com/auth/compute` is required for mounting persistent storage on your nodes. * `https://www.googleapis.com/auth/devstorage.read_only` is required for communicating with **gcr.io** (the [Artifact Registry](https://cloud.google.com/artifact-registry/)). If unspecified, no scopes are added, unless Cloud Logging or Cloud Monitoring are enabled, in which case their required scopes will be added.
         &quot;A String&quot;,
       ],
@@ -553,6 +567,13 @@ Args:
     &quot;locations&quot;: [ # The list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the NodePool&#x27;s nodes should be located. If this value is unspecified during node pool creation, the [Cluster.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters#Cluster.FIELDS.locations) value will be used, instead. Warning: changing node pool locations will result in nodes being added and/or removed.
       &quot;A String&quot;,
     ],
+    &quot;maintenancePolicy&quot;: { # Defines the maintenance policy for the node pool. # Optional. Specifies the maintenance policy for the node pool.
+      &quot;exclusionUntilEndOfSupport&quot;: { # Defines the maintenance exclusion for the node pool. # Optional. The exclusion until end of support for the node pool.
+        &quot;enabled&quot;: True or False, # Optional. Indicates whether the exclusion is enabled.
+        &quot;endTime&quot;: &quot;A String&quot;, # Output only. The end time of the maintenance exclusion. It is output only. It is the cluster control plane version&#x27;s end of support time, or end of extended support time when the cluster is on extended support channel.
+        &quot;startTime&quot;: &quot;A String&quot;, # Output only. The start time of the maintenance exclusion. It is output only. It is the exclusion creation time.
+      },
+    },
     &quot;management&quot;: { # NodeManagement defines the set of node management services turned on for the node pool. # NodeManagement configuration for this NodePool.
       &quot;autoRepair&quot;: True or False, # Whether the nodes will be automatically repaired.
       &quot;autoUpgrade&quot;: True or False, # Whether the nodes will be automatically upgraded.
@@ -585,6 +606,7 @@ Args:
       ],
       &quot;createPodRange&quot;: True or False, # Input only. Whether to create a new range for pod IPs in this node pool. Defaults are provided for `pod_range` and `pod_ipv4_cidr_block` if they are not specified. If neither `create_pod_range` or `pod_range` are specified, the cluster-level default (`ip_allocation_policy.cluster_ipv4_cidr_block`) is used. Only applicable if `ip_allocation_policy.use_ip_aliases` is true. This field cannot be changed after the node pool has been created.
       &quot;enablePrivateNodes&quot;: True or False, # Whether nodes have internal IP addresses only. If enable_private_nodes is not specified, then the value is derived from Cluster.NetworkConfig.default_enable_private_nodes
+      &quot;network&quot;: &quot;A String&quot;, # Optional. Immutable. The VPC network for the node pool.
       &quot;networkPerformanceConfig&quot;: { # Configuration of all network bandwidth tiers # Network bandwidth tier configuration.
         &quot;externalIpEgressBandwidthTier&quot;: &quot;A String&quot;, # Specifies the network bandwidth tier for the NodePool for traffic to external/public IP addresses.
         &quot;totalEgressBandwidthTier&quot;: &quot;A String&quot;, # Specifies the total network bandwidth tier for the NodePool.
@@ -601,6 +623,8 @@ Args:
       &quot;subnetwork&quot;: &quot;A String&quot;, # Optional. The subnetwork name/path for the node pool. Format: projects/{project}/regions/{region}/subnetworks/{subnetwork} If the cluster is associated with multiple subnetworks, the subnetwork can be either: - A user supplied subnetwork name during node pool creation (e.g., `my-subnet`). The name must be between 1 and 63 characters long, start with a letter, contain only letters, numbers, and hyphens, and end with a letter or a number. - A full subnetwork path during node pool creation, such as `projects/gke-project/regions/us-central1/subnetworks/my-subnet` - A subnetwork path picked based on the IP utilization during node pool creation and is immutable.
     },
     &quot;nodeDrainConfig&quot;: { # NodeDrainConfig contains the node drain related configurations for this node pool. # Specifies the node drain configuration for this node pool.
+      &quot;graceTerminationDuration&quot;: &quot;A String&quot;, # The duration of the grace termination period for node drain.
+      &quot;pdbTimeoutDuration&quot;: &quot;A String&quot;, # The duration of the PDB timeout period for node drain.
       &quot;respectPdbDuringNodePoolDeletion&quot;: True or False, # Whether to respect PDB during node pool deletion.
     },
     &quot;placementPolicy&quot;: { # PlacementPolicy defines the placement policy used by the node pool. # Specifies the node placement policy.
@@ -802,6 +826,9 @@ Returns:
   &quot;autoUpgradeStatus&quot;: [ # The auto upgrade status.
     &quot;A String&quot;,
   ],
+  &quot;customImageInfo&quot;: { # Contains the custom image info for a node pool. # Output only. Upgrade info for the node pool specific to the usage of custom images.
+    &quot;upgradeMessage&quot;: &quot;A String&quot;, # Output only. The human-readable upgrade message for the custom image.
+  },
   &quot;endOfExtendedSupportTimestamp&quot;: &quot;A String&quot;, # The node pool&#x27;s current minor version&#x27;s end of extended support timestamp.
   &quot;endOfStandardSupportTimestamp&quot;: &quot;A String&quot;, # The node pool&#x27;s current minor version&#x27;s end of standard support timestamp.
   &quot;minorTargetVersion&quot;: &quot;A String&quot;, # minor_target_version indicates the target version for minor upgrade.
@@ -1051,6 +1078,16 @@ Returns:
         &quot;enablePtpKvmTimeSync&quot;: True or False, # Enables enhanced time synchronization using PTP-KVM.
       },
       &quot;cgroupMode&quot;: &quot;A String&quot;, # cgroup_mode specifies the cgroup mode to be used on the node.
+      &quot;customNodeInit&quot;: { # Support for running custom init code while bootstrapping nodes. # Optional. Allow users to run arbitrary bash script or container on the node.
+        &quot;initScript&quot;: { # InitScript provide a simply bash script to be executed on the node. # Optional. The init script to be executed on the node.
+          &quot;args&quot;: [ # Optional. The optional arguments line to be passed to the init script.
+            &quot;A String&quot;,
+          ],
+          &quot;gcpSecretManagerSecretUri&quot;: &quot;A String&quot;, # The resource name of the secret manager secret hosting the init script. Both global and regional secrets are supported with format below: Global secret: projects/{project}/secrets/{secret}/versions/{version} Regional secret: projects/{project}/locations/{location}/secrets/{secret}/versions/{version} Example: projects/1234567890/secrets/script_1/versions/1. Accept version number only, not support version alias. User can&#x27;t configure both gcp_secret_manager_secret_uri and gcs_uri.
+          &quot;gcsGeneration&quot;: &quot;A String&quot;, # The generation of the init script stored in Gloud Storage. This is the required field to identify the version of the init script. User can get the genetaion from `gcloud storage objects describe gs://BUCKET_NAME/OBJECT_NAME --format=&quot;value(generation)&quot;` or from the &quot;Version history&quot; tab of the object in the Cloud Console UI.
+          &quot;gcsUri&quot;: &quot;A String&quot;, # The Cloud Storage URI for storing the init script. Format: gs://BUCKET_NAME/OBJECT_NAME The service account on the node pool must have read access to the object. User can&#x27;t configure both gcs_uri and gcp_secret_manager_secret_uri.
+        },
+      },
       &quot;hugepages&quot;: { # Hugepages amount in both 2m and 1g size # Optional. Amounts for 2M and 1G hugepages
         &quot;hugepageSize1g&quot;: 42, # Optional. Amount of 1G hugepages
         &quot;hugepageSize2m&quot;: 42, # Optional. Amount of 2M hugepages
@@ -1075,7 +1112,7 @@ Returns:
           &quot;swapSizePercent&quot;: 42, # Specifies the size of the swap space as a percentage of the ephemeral local SSD capacity.
         },
       },
-      &quot;sysctls&quot;: { # The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.busy_poll net.core.busy_read net.core.netdev_max_backlog net.core.rmem_max net.core.rmem_default net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse net.ipv4.tcp_mtu_probing net.ipv4.tcp_max_orphans net.ipv4.tcp_max_tw_buckets net.ipv4.tcp_syn_retries net.ipv4.tcp_ecn net.ipv4.tcp_congestion_control net.netfilter.nf_conntrack_max net.netfilter.nf_conntrack_buckets net.netfilter.nf_conntrack_tcp_timeout_close_wait net.netfilter.nf_conntrack_tcp_timeout_time_wait net.netfilter.nf_conntrack_tcp_timeout_established net.netfilter.nf_conntrack_acct kernel.shmmni kernel.shmmax kernel.shmall kernel.perf_event_paranoid kernel.sched_rt_runtime_us kernel.softlockup_panic kernel.yama.ptrace_scope kernel.kptr_restrict kernel.dmesg_restrict kernel.sysrq fs.aio-max-nr fs.file-max fs.inotify.max_user_instances fs.inotify.max_user_watches fs.nr_open vm.dirty_background_ratio vm.dirty_background_bytes vm.dirty_expire_centisecs vm.dirty_ratio vm.dirty_bytes vm.dirty_writeback_centisecs vm.max_map_count vm.overcommit_memory vm.overcommit_ratio vm.vfs_cache_pressure vm.swappiness vm.watermark_scale_factor vm.min_free_kbytes
+      &quot;sysctls&quot;: { # The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.busy_poll net.core.busy_read net.core.netdev_max_backlog net.core.rmem_max net.core.rmem_default net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.neigh.default.gc_thresh1 net.ipv4.neigh.default.gc_thresh2 net.ipv4.neigh.default.gc_thresh3 net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse net.ipv4.tcp_mtu_probing net.ipv4.tcp_max_orphans net.ipv4.tcp_max_tw_buckets net.ipv4.tcp_syn_retries net.ipv4.tcp_ecn net.ipv4.tcp_congestion_control net.netfilter.nf_conntrack_max net.netfilter.nf_conntrack_buckets net.netfilter.nf_conntrack_tcp_timeout_close_wait net.netfilter.nf_conntrack_tcp_timeout_time_wait net.netfilter.nf_conntrack_tcp_timeout_established net.netfilter.nf_conntrack_acct kernel.keys.maxkeys kernel.keys.maxbytes kernel.shmmni kernel.shmmax kernel.shmall kernel.perf_event_paranoid kernel.sched_rt_runtime_us kernel.softlockup_panic kernel.yama.ptrace_scope kernel.kptr_restrict kernel.dmesg_restrict kernel.sysrq fs.aio-max-nr fs.file-max fs.inotify.max_user_instances fs.inotify.max_user_watches fs.nr_open vm.dirty_background_ratio vm.dirty_background_bytes vm.dirty_expire_centisecs vm.dirty_ratio vm.dirty_bytes vm.dirty_writeback_centisecs vm.max_map_count vm.overcommit_memory vm.overcommit_ratio vm.vfs_cache_pressure vm.swappiness vm.watermark_scale_factor vm.min_free_kbytes
         &quot;a_key&quot;: &quot;A String&quot;,
       },
       &quot;transparentHugepageDefrag&quot;: &quot;A String&quot;, # Optional. Defines the transparent hugepage defrag configuration on the node. VM hugepage allocation can be managed by either limiting defragmentation for delayed allocation or skipping it entirely for immediate allocation only. See https://docs.kernel.org/admin-guide/mm/transhuge.html for more details.
@@ -1098,6 +1135,10 @@ Returns:
     },
     &quot;minCpuPlatform&quot;: &quot;A String&quot;, # Minimum CPU platform to be used by this instance. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as `minCpuPlatform: &quot;Intel Haswell&quot;` or `minCpuPlatform: &quot;Intel Sandy Bridge&quot;`. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform).
     &quot;nodeGroup&quot;: &quot;A String&quot;, # Setting this field will assign instances of this pool to run on the specified node group. This is useful for running workloads on [sole tenant nodes](https://cloud.google.com/compute/docs/nodes/sole-tenant-nodes).
+    &quot;nodeImageConfig&quot;: { # CustomImageConfig contains the information r # The node image configuration to use for this node pool. Note that this is only applicable for node pools using image_type=CUSTOM.
+      &quot;image&quot;: &quot;A String&quot;, # The name of the image to use for this node.
+      &quot;imageProject&quot;: &quot;A String&quot;, # The project containing the image to use for this node.
+    },
     &quot;oauthScopes&quot;: [ # The set of Google API scopes to be made available on all of the node VMs under the &quot;default&quot; service account. The following scopes are recommended, but not required, and by default are not included: * `https://www.googleapis.com/auth/compute` is required for mounting persistent storage on your nodes. * `https://www.googleapis.com/auth/devstorage.read_only` is required for communicating with **gcr.io** (the [Artifact Registry](https://cloud.google.com/artifact-registry/)). If unspecified, no scopes are added, unless Cloud Logging or Cloud Monitoring are enabled, in which case their required scopes will be added.
       &quot;A String&quot;,
     ],
@@ -1179,6 +1220,13 @@ Returns:
   &quot;locations&quot;: [ # The list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the NodePool&#x27;s nodes should be located. If this value is unspecified during node pool creation, the [Cluster.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters#Cluster.FIELDS.locations) value will be used, instead. Warning: changing node pool locations will result in nodes being added and/or removed.
     &quot;A String&quot;,
   ],
+  &quot;maintenancePolicy&quot;: { # Defines the maintenance policy for the node pool. # Optional. Specifies the maintenance policy for the node pool.
+    &quot;exclusionUntilEndOfSupport&quot;: { # Defines the maintenance exclusion for the node pool. # Optional. The exclusion until end of support for the node pool.
+      &quot;enabled&quot;: True or False, # Optional. Indicates whether the exclusion is enabled.
+      &quot;endTime&quot;: &quot;A String&quot;, # Output only. The end time of the maintenance exclusion. It is output only. It is the cluster control plane version&#x27;s end of support time, or end of extended support time when the cluster is on extended support channel.
+      &quot;startTime&quot;: &quot;A String&quot;, # Output only. The start time of the maintenance exclusion. It is output only. It is the exclusion creation time.
+    },
+  },
   &quot;management&quot;: { # NodeManagement defines the set of node management services turned on for the node pool. # NodeManagement configuration for this NodePool.
     &quot;autoRepair&quot;: True or False, # Whether the nodes will be automatically repaired.
     &quot;autoUpgrade&quot;: True or False, # Whether the nodes will be automatically upgraded.
@@ -1211,6 +1259,7 @@ Returns:
     ],
     &quot;createPodRange&quot;: True or False, # Input only. Whether to create a new range for pod IPs in this node pool. Defaults are provided for `pod_range` and `pod_ipv4_cidr_block` if they are not specified. If neither `create_pod_range` or `pod_range` are specified, the cluster-level default (`ip_allocation_policy.cluster_ipv4_cidr_block`) is used. Only applicable if `ip_allocation_policy.use_ip_aliases` is true. This field cannot be changed after the node pool has been created.
     &quot;enablePrivateNodes&quot;: True or False, # Whether nodes have internal IP addresses only. If enable_private_nodes is not specified, then the value is derived from Cluster.NetworkConfig.default_enable_private_nodes
+    &quot;network&quot;: &quot;A String&quot;, # Optional. Immutable. The VPC network for the node pool.
     &quot;networkPerformanceConfig&quot;: { # Configuration of all network bandwidth tiers # Network bandwidth tier configuration.
       &quot;externalIpEgressBandwidthTier&quot;: &quot;A String&quot;, # Specifies the network bandwidth tier for the NodePool for traffic to external/public IP addresses.
       &quot;totalEgressBandwidthTier&quot;: &quot;A String&quot;, # Specifies the total network bandwidth tier for the NodePool.
@@ -1227,6 +1276,8 @@ Returns:
     &quot;subnetwork&quot;: &quot;A String&quot;, # Optional. The subnetwork name/path for the node pool. Format: projects/{project}/regions/{region}/subnetworks/{subnetwork} If the cluster is associated with multiple subnetworks, the subnetwork can be either: - A user supplied subnetwork name during node pool creation (e.g., `my-subnet`). The name must be between 1 and 63 characters long, start with a letter, contain only letters, numbers, and hyphens, and end with a letter or a number. - A full subnetwork path during node pool creation, such as `projects/gke-project/regions/us-central1/subnetworks/my-subnet` - A subnetwork path picked based on the IP utilization during node pool creation and is immutable.
   },
   &quot;nodeDrainConfig&quot;: { # NodeDrainConfig contains the node drain related configurations for this node pool. # Specifies the node drain configuration for this node pool.
+    &quot;graceTerminationDuration&quot;: &quot;A String&quot;, # The duration of the grace termination period for node drain.
+    &quot;pdbTimeoutDuration&quot;: &quot;A String&quot;, # The duration of the PDB timeout period for node drain.
     &quot;respectPdbDuringNodePoolDeletion&quot;: True or False, # Whether to respect PDB during node pool deletion.
   },
   &quot;placementPolicy&quot;: { # PlacementPolicy defines the placement policy used by the node pool. # Specifies the node placement policy.
@@ -1502,6 +1553,16 @@ Returns:
             &quot;enablePtpKvmTimeSync&quot;: True or False, # Enables enhanced time synchronization using PTP-KVM.
           },
           &quot;cgroupMode&quot;: &quot;A String&quot;, # cgroup_mode specifies the cgroup mode to be used on the node.
+          &quot;customNodeInit&quot;: { # Support for running custom init code while bootstrapping nodes. # Optional. Allow users to run arbitrary bash script or container on the node.
+            &quot;initScript&quot;: { # InitScript provide a simply bash script to be executed on the node. # Optional. The init script to be executed on the node.
+              &quot;args&quot;: [ # Optional. The optional arguments line to be passed to the init script.
+                &quot;A String&quot;,
+              ],
+              &quot;gcpSecretManagerSecretUri&quot;: &quot;A String&quot;, # The resource name of the secret manager secret hosting the init script. Both global and regional secrets are supported with format below: Global secret: projects/{project}/secrets/{secret}/versions/{version} Regional secret: projects/{project}/locations/{location}/secrets/{secret}/versions/{version} Example: projects/1234567890/secrets/script_1/versions/1. Accept version number only, not support version alias. User can&#x27;t configure both gcp_secret_manager_secret_uri and gcs_uri.
+              &quot;gcsGeneration&quot;: &quot;A String&quot;, # The generation of the init script stored in Gloud Storage. This is the required field to identify the version of the init script. User can get the genetaion from `gcloud storage objects describe gs://BUCKET_NAME/OBJECT_NAME --format=&quot;value(generation)&quot;` or from the &quot;Version history&quot; tab of the object in the Cloud Console UI.
+              &quot;gcsUri&quot;: &quot;A String&quot;, # The Cloud Storage URI for storing the init script. Format: gs://BUCKET_NAME/OBJECT_NAME The service account on the node pool must have read access to the object. User can&#x27;t configure both gcs_uri and gcp_secret_manager_secret_uri.
+            },
+          },
           &quot;hugepages&quot;: { # Hugepages amount in both 2m and 1g size # Optional. Amounts for 2M and 1G hugepages
             &quot;hugepageSize1g&quot;: 42, # Optional. Amount of 1G hugepages
             &quot;hugepageSize2m&quot;: 42, # Optional. Amount of 2M hugepages
@@ -1526,7 +1587,7 @@ Returns:
               &quot;swapSizePercent&quot;: 42, # Specifies the size of the swap space as a percentage of the ephemeral local SSD capacity.
             },
           },
-          &quot;sysctls&quot;: { # The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.busy_poll net.core.busy_read net.core.netdev_max_backlog net.core.rmem_max net.core.rmem_default net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse net.ipv4.tcp_mtu_probing net.ipv4.tcp_max_orphans net.ipv4.tcp_max_tw_buckets net.ipv4.tcp_syn_retries net.ipv4.tcp_ecn net.ipv4.tcp_congestion_control net.netfilter.nf_conntrack_max net.netfilter.nf_conntrack_buckets net.netfilter.nf_conntrack_tcp_timeout_close_wait net.netfilter.nf_conntrack_tcp_timeout_time_wait net.netfilter.nf_conntrack_tcp_timeout_established net.netfilter.nf_conntrack_acct kernel.shmmni kernel.shmmax kernel.shmall kernel.perf_event_paranoid kernel.sched_rt_runtime_us kernel.softlockup_panic kernel.yama.ptrace_scope kernel.kptr_restrict kernel.dmesg_restrict kernel.sysrq fs.aio-max-nr fs.file-max fs.inotify.max_user_instances fs.inotify.max_user_watches fs.nr_open vm.dirty_background_ratio vm.dirty_background_bytes vm.dirty_expire_centisecs vm.dirty_ratio vm.dirty_bytes vm.dirty_writeback_centisecs vm.max_map_count vm.overcommit_memory vm.overcommit_ratio vm.vfs_cache_pressure vm.swappiness vm.watermark_scale_factor vm.min_free_kbytes
+          &quot;sysctls&quot;: { # The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.busy_poll net.core.busy_read net.core.netdev_max_backlog net.core.rmem_max net.core.rmem_default net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.neigh.default.gc_thresh1 net.ipv4.neigh.default.gc_thresh2 net.ipv4.neigh.default.gc_thresh3 net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse net.ipv4.tcp_mtu_probing net.ipv4.tcp_max_orphans net.ipv4.tcp_max_tw_buckets net.ipv4.tcp_syn_retries net.ipv4.tcp_ecn net.ipv4.tcp_congestion_control net.netfilter.nf_conntrack_max net.netfilter.nf_conntrack_buckets net.netfilter.nf_conntrack_tcp_timeout_close_wait net.netfilter.nf_conntrack_tcp_timeout_time_wait net.netfilter.nf_conntrack_tcp_timeout_established net.netfilter.nf_conntrack_acct kernel.keys.maxkeys kernel.keys.maxbytes kernel.shmmni kernel.shmmax kernel.shmall kernel.perf_event_paranoid kernel.sched_rt_runtime_us kernel.softlockup_panic kernel.yama.ptrace_scope kernel.kptr_restrict kernel.dmesg_restrict kernel.sysrq fs.aio-max-nr fs.file-max fs.inotify.max_user_instances fs.inotify.max_user_watches fs.nr_open vm.dirty_background_ratio vm.dirty_background_bytes vm.dirty_expire_centisecs vm.dirty_ratio vm.dirty_bytes vm.dirty_writeback_centisecs vm.max_map_count vm.overcommit_memory vm.overcommit_ratio vm.vfs_cache_pressure vm.swappiness vm.watermark_scale_factor vm.min_free_kbytes
             &quot;a_key&quot;: &quot;A String&quot;,
           },
           &quot;transparentHugepageDefrag&quot;: &quot;A String&quot;, # Optional. Defines the transparent hugepage defrag configuration on the node. VM hugepage allocation can be managed by either limiting defragmentation for delayed allocation or skipping it entirely for immediate allocation only. See https://docs.kernel.org/admin-guide/mm/transhuge.html for more details.
@@ -1549,6 +1610,10 @@ Returns:
         },
         &quot;minCpuPlatform&quot;: &quot;A String&quot;, # Minimum CPU platform to be used by this instance. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as `minCpuPlatform: &quot;Intel Haswell&quot;` or `minCpuPlatform: &quot;Intel Sandy Bridge&quot;`. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform).
         &quot;nodeGroup&quot;: &quot;A String&quot;, # Setting this field will assign instances of this pool to run on the specified node group. This is useful for running workloads on [sole tenant nodes](https://cloud.google.com/compute/docs/nodes/sole-tenant-nodes).
+        &quot;nodeImageConfig&quot;: { # CustomImageConfig contains the information r # The node image configuration to use for this node pool. Note that this is only applicable for node pools using image_type=CUSTOM.
+          &quot;image&quot;: &quot;A String&quot;, # The name of the image to use for this node.
+          &quot;imageProject&quot;: &quot;A String&quot;, # The project containing the image to use for this node.
+        },
         &quot;oauthScopes&quot;: [ # The set of Google API scopes to be made available on all of the node VMs under the &quot;default&quot; service account. The following scopes are recommended, but not required, and by default are not included: * `https://www.googleapis.com/auth/compute` is required for mounting persistent storage on your nodes. * `https://www.googleapis.com/auth/devstorage.read_only` is required for communicating with **gcr.io** (the [Artifact Registry](https://cloud.google.com/artifact-registry/)). If unspecified, no scopes are added, unless Cloud Logging or Cloud Monitoring are enabled, in which case their required scopes will be added.
           &quot;A String&quot;,
         ],
@@ -1630,6 +1695,13 @@ Returns:
       &quot;locations&quot;: [ # The list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the NodePool&#x27;s nodes should be located. If this value is unspecified during node pool creation, the [Cluster.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters#Cluster.FIELDS.locations) value will be used, instead. Warning: changing node pool locations will result in nodes being added and/or removed.
         &quot;A String&quot;,
       ],
+      &quot;maintenancePolicy&quot;: { # Defines the maintenance policy for the node pool. # Optional. Specifies the maintenance policy for the node pool.
+        &quot;exclusionUntilEndOfSupport&quot;: { # Defines the maintenance exclusion for the node pool. # Optional. The exclusion until end of support for the node pool.
+          &quot;enabled&quot;: True or False, # Optional. Indicates whether the exclusion is enabled.
+          &quot;endTime&quot;: &quot;A String&quot;, # Output only. The end time of the maintenance exclusion. It is output only. It is the cluster control plane version&#x27;s end of support time, or end of extended support time when the cluster is on extended support channel.
+          &quot;startTime&quot;: &quot;A String&quot;, # Output only. The start time of the maintenance exclusion. It is output only. It is the exclusion creation time.
+        },
+      },
       &quot;management&quot;: { # NodeManagement defines the set of node management services turned on for the node pool. # NodeManagement configuration for this NodePool.
         &quot;autoRepair&quot;: True or False, # Whether the nodes will be automatically repaired.
         &quot;autoUpgrade&quot;: True or False, # Whether the nodes will be automatically upgraded.
@@ -1662,6 +1734,7 @@ Returns:
         ],
         &quot;createPodRange&quot;: True or False, # Input only. Whether to create a new range for pod IPs in this node pool. Defaults are provided for `pod_range` and `pod_ipv4_cidr_block` if they are not specified. If neither `create_pod_range` or `pod_range` are specified, the cluster-level default (`ip_allocation_policy.cluster_ipv4_cidr_block`) is used. Only applicable if `ip_allocation_policy.use_ip_aliases` is true. This field cannot be changed after the node pool has been created.
         &quot;enablePrivateNodes&quot;: True or False, # Whether nodes have internal IP addresses only. If enable_private_nodes is not specified, then the value is derived from Cluster.NetworkConfig.default_enable_private_nodes
+        &quot;network&quot;: &quot;A String&quot;, # Optional. Immutable. The VPC network for the node pool.
         &quot;networkPerformanceConfig&quot;: { # Configuration of all network bandwidth tiers # Network bandwidth tier configuration.
           &quot;externalIpEgressBandwidthTier&quot;: &quot;A String&quot;, # Specifies the network bandwidth tier for the NodePool for traffic to external/public IP addresses.
           &quot;totalEgressBandwidthTier&quot;: &quot;A String&quot;, # Specifies the total network bandwidth tier for the NodePool.
@@ -1678,6 +1751,8 @@ Returns:
         &quot;subnetwork&quot;: &quot;A String&quot;, # Optional. The subnetwork name/path for the node pool. Format: projects/{project}/regions/{region}/subnetworks/{subnetwork} If the cluster is associated with multiple subnetworks, the subnetwork can be either: - A user supplied subnetwork name during node pool creation (e.g., `my-subnet`). The name must be between 1 and 63 characters long, start with a letter, contain only letters, numbers, and hyphens, and end with a letter or a number. - A full subnetwork path during node pool creation, such as `projects/gke-project/regions/us-central1/subnetworks/my-subnet` - A subnetwork path picked based on the IP utilization during node pool creation and is immutable.
       },
       &quot;nodeDrainConfig&quot;: { # NodeDrainConfig contains the node drain related configurations for this node pool. # Specifies the node drain configuration for this node pool.
+        &quot;graceTerminationDuration&quot;: &quot;A String&quot;, # The duration of the grace termination period for node drain.
+        &quot;pdbTimeoutDuration&quot;: &quot;A String&quot;, # The duration of the PDB timeout period for node drain.
         &quot;respectPdbDuringNodePoolDeletion&quot;: True or False, # Whether to respect PDB during node pool deletion.
       },
       &quot;placementPolicy&quot;: { # PlacementPolicy defines the placement policy used by the node pool. # Specifies the node placement policy.
@@ -2089,6 +2164,8 @@ Args:
   &quot;gvnic&quot;: { # Configuration of gVNIC feature. # Enable or disable gvnic on the node pool.
     &quot;enabled&quot;: True or False, # Whether gVNIC features are enabled in the node pool.
   },
+  &quot;image&quot;: &quot;A String&quot;, # The desired name of the image name to use for this node. This is used to create clusters using a custom image.
+  &quot;imageProject&quot;: &quot;A String&quot;, # The project containing the desired image to use for this node pool. This is used to create clusters using a custom image.
   &quot;imageType&quot;: &quot;A String&quot;, # Required. The desired image type for the node pool. Please see https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for available image types.
   &quot;kubeletConfig&quot;: { # Node kubelet configs. # Node kubelet configs.
     &quot;allowedUnsafeSysctls&quot;: [ # Optional. Defines a comma-separated allowlist of unsafe sysctls or sysctl patterns (ending in `*`). The unsafe namespaced sysctl groups are `kernel.shm*`, `kernel.msg*`, `kernel.sem`, `fs.mqueue.*`, and `net.*`. Leaving this allowlist empty means they cannot be set on Pods. To allow certain sysctls or sysctl patterns to be set on Pods, list them separated by commas. For example: `kernel.msg*,net.ipv4.route.min_pmtu`. See https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/ for more details.
@@ -2155,6 +2232,16 @@ Args:
       &quot;enablePtpKvmTimeSync&quot;: True or False, # Enables enhanced time synchronization using PTP-KVM.
     },
     &quot;cgroupMode&quot;: &quot;A String&quot;, # cgroup_mode specifies the cgroup mode to be used on the node.
+    &quot;customNodeInit&quot;: { # Support for running custom init code while bootstrapping nodes. # Optional. Allow users to run arbitrary bash script or container on the node.
+      &quot;initScript&quot;: { # InitScript provide a simply bash script to be executed on the node. # Optional. The init script to be executed on the node.
+        &quot;args&quot;: [ # Optional. The optional arguments line to be passed to the init script.
+          &quot;A String&quot;,
+        ],
+        &quot;gcpSecretManagerSecretUri&quot;: &quot;A String&quot;, # The resource name of the secret manager secret hosting the init script. Both global and regional secrets are supported with format below: Global secret: projects/{project}/secrets/{secret}/versions/{version} Regional secret: projects/{project}/locations/{location}/secrets/{secret}/versions/{version} Example: projects/1234567890/secrets/script_1/versions/1. Accept version number only, not support version alias. User can&#x27;t configure both gcp_secret_manager_secret_uri and gcs_uri.
+        &quot;gcsGeneration&quot;: &quot;A String&quot;, # The generation of the init script stored in Gloud Storage. This is the required field to identify the version of the init script. User can get the genetaion from `gcloud storage objects describe gs://BUCKET_NAME/OBJECT_NAME --format=&quot;value(generation)&quot;` or from the &quot;Version history&quot; tab of the object in the Cloud Console UI.
+        &quot;gcsUri&quot;: &quot;A String&quot;, # The Cloud Storage URI for storing the init script. Format: gs://BUCKET_NAME/OBJECT_NAME The service account on the node pool must have read access to the object. User can&#x27;t configure both gcs_uri and gcp_secret_manager_secret_uri.
+      },
+    },
     &quot;hugepages&quot;: { # Hugepages amount in both 2m and 1g size # Optional. Amounts for 2M and 1G hugepages
       &quot;hugepageSize1g&quot;: 42, # Optional. Amount of 1G hugepages
       &quot;hugepageSize2m&quot;: 42, # Optional. Amount of 2M hugepages
@@ -2179,7 +2266,7 @@ Args:
         &quot;swapSizePercent&quot;: 42, # Specifies the size of the swap space as a percentage of the ephemeral local SSD capacity.
       },
     },
-    &quot;sysctls&quot;: { # The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.busy_poll net.core.busy_read net.core.netdev_max_backlog net.core.rmem_max net.core.rmem_default net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse net.ipv4.tcp_mtu_probing net.ipv4.tcp_max_orphans net.ipv4.tcp_max_tw_buckets net.ipv4.tcp_syn_retries net.ipv4.tcp_ecn net.ipv4.tcp_congestion_control net.netfilter.nf_conntrack_max net.netfilter.nf_conntrack_buckets net.netfilter.nf_conntrack_tcp_timeout_close_wait net.netfilter.nf_conntrack_tcp_timeout_time_wait net.netfilter.nf_conntrack_tcp_timeout_established net.netfilter.nf_conntrack_acct kernel.shmmni kernel.shmmax kernel.shmall kernel.perf_event_paranoid kernel.sched_rt_runtime_us kernel.softlockup_panic kernel.yama.ptrace_scope kernel.kptr_restrict kernel.dmesg_restrict kernel.sysrq fs.aio-max-nr fs.file-max fs.inotify.max_user_instances fs.inotify.max_user_watches fs.nr_open vm.dirty_background_ratio vm.dirty_background_bytes vm.dirty_expire_centisecs vm.dirty_ratio vm.dirty_bytes vm.dirty_writeback_centisecs vm.max_map_count vm.overcommit_memory vm.overcommit_ratio vm.vfs_cache_pressure vm.swappiness vm.watermark_scale_factor vm.min_free_kbytes
+    &quot;sysctls&quot;: { # The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.busy_poll net.core.busy_read net.core.netdev_max_backlog net.core.rmem_max net.core.rmem_default net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.neigh.default.gc_thresh1 net.ipv4.neigh.default.gc_thresh2 net.ipv4.neigh.default.gc_thresh3 net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse net.ipv4.tcp_mtu_probing net.ipv4.tcp_max_orphans net.ipv4.tcp_max_tw_buckets net.ipv4.tcp_syn_retries net.ipv4.tcp_ecn net.ipv4.tcp_congestion_control net.netfilter.nf_conntrack_max net.netfilter.nf_conntrack_buckets net.netfilter.nf_conntrack_tcp_timeout_close_wait net.netfilter.nf_conntrack_tcp_timeout_time_wait net.netfilter.nf_conntrack_tcp_timeout_established net.netfilter.nf_conntrack_acct kernel.keys.maxkeys kernel.keys.maxbytes kernel.shmmni kernel.shmmax kernel.shmall kernel.perf_event_paranoid kernel.sched_rt_runtime_us kernel.softlockup_panic kernel.yama.ptrace_scope kernel.kptr_restrict kernel.dmesg_restrict kernel.sysrq fs.aio-max-nr fs.file-max fs.inotify.max_user_instances fs.inotify.max_user_watches fs.nr_open vm.dirty_background_ratio vm.dirty_background_bytes vm.dirty_expire_centisecs vm.dirty_ratio vm.dirty_bytes vm.dirty_writeback_centisecs vm.max_map_count vm.overcommit_memory vm.overcommit_ratio vm.vfs_cache_pressure vm.swappiness vm.watermark_scale_factor vm.min_free_kbytes
       &quot;a_key&quot;: &quot;A String&quot;,
     },
     &quot;transparentHugepageDefrag&quot;: &quot;A String&quot;, # Optional. Defines the transparent hugepage defrag configuration on the node. VM hugepage allocation can be managed by either limiting defragmentation for delayed allocation or skipping it entirely for immediate allocation only. See https://docs.kernel.org/admin-guide/mm/transhuge.html for more details.
@@ -2194,9 +2281,18 @@ Args:
     },
   },
   &quot;machineType&quot;: &quot;A String&quot;, # Optional. The desired machine type for nodes in the node pool. Initiates an upgrade operation that migrates the nodes in the node pool to the specified machine type.
+  &quot;maintenancePolicy&quot;: { # Defines the maintenance policy for the node pool. # Optional. Specifies the maintenance policy for the node pool, including maintenance exclusion options.
+    &quot;exclusionUntilEndOfSupport&quot;: { # Defines the maintenance exclusion for the node pool. # Optional. The exclusion until end of support for the node pool.
+      &quot;enabled&quot;: True or False, # Optional. Indicates whether the exclusion is enabled.
+      &quot;endTime&quot;: &quot;A String&quot;, # Output only. The end time of the maintenance exclusion. It is output only. It is the cluster control plane version&#x27;s end of support time, or end of extended support time when the cluster is on extended support channel.
+      &quot;startTime&quot;: &quot;A String&quot;, # Output only. The start time of the maintenance exclusion. It is output only. It is the exclusion creation time.
+    },
+  },
   &quot;maxRunDuration&quot;: &quot;A String&quot;, # The maximum duration for the nodes to exist. If unspecified, the nodes can exist indefinitely.
   &quot;name&quot;: &quot;A String&quot;, # The name (project, location, cluster, node pool) of the node pool to update. Specified in the format `projects/*/locations/*/clusters/*/nodePools/*`.
   &quot;nodeDrainConfig&quot;: { # NodeDrainConfig contains the node drain related configurations for this node pool. # The desired node drain configuration for nodes in the node pool.
+    &quot;graceTerminationDuration&quot;: &quot;A String&quot;, # The duration of the grace termination period for node drain.
+    &quot;pdbTimeoutDuration&quot;: &quot;A String&quot;, # The duration of the PDB timeout period for node drain.
     &quot;respectPdbDuringNodePoolDeletion&quot;: True or False, # Whether to respect PDB during node pool deletion.
   },
   &quot;nodeNetworkConfig&quot;: { # Parameters for node pool-level network config. # Node network config.
@@ -2219,6 +2315,7 @@ Args:
     ],
     &quot;createPodRange&quot;: True or False, # Input only. Whether to create a new range for pod IPs in this node pool. Defaults are provided for `pod_range` and `pod_ipv4_cidr_block` if they are not specified. If neither `create_pod_range` or `pod_range` are specified, the cluster-level default (`ip_allocation_policy.cluster_ipv4_cidr_block`) is used. Only applicable if `ip_allocation_policy.use_ip_aliases` is true. This field cannot be changed after the node pool has been created.
     &quot;enablePrivateNodes&quot;: True or False, # Whether nodes have internal IP addresses only. If enable_private_nodes is not specified, then the value is derived from Cluster.NetworkConfig.default_enable_private_nodes
+    &quot;network&quot;: &quot;A String&quot;, # Optional. Immutable. The VPC network for the node pool.
     &quot;networkPerformanceConfig&quot;: { # Configuration of all network bandwidth tiers # Network bandwidth tier configuration.
       &quot;externalIpEgressBandwidthTier&quot;: &quot;A String&quot;, # Specifies the network bandwidth tier for the NodePool for traffic to external/public IP addresses.
       &quot;totalEgressBandwidthTier&quot;: &quot;A String&quot;, # Specifies the total network bandwidth tier for the NodePool.
@@ -2257,6 +2354,9 @@ Args:
     &quot;tags&quot;: [ # List of network tags.
       &quot;A String&quot;,
     ],
+  },
+  &quot;taintConfig&quot;: { # TaintConfig contains the configuration for the taints of the node pool. # The taint configuration for the node pool.
+    &quot;architectureTaintBehavior&quot;: &quot;A String&quot;, # Optional. Controls architecture tainting behavior.
   },
   &quot;taints&quot;: { # Collection of Kubernetes [node taints](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration). # The desired node taints to be applied to all nodes in the node pool. If this field is not present, the taints will not be changed. Otherwise, the existing node taints will be *replaced* with the provided taints.
     &quot;taints&quot;: [ # List of node taints.

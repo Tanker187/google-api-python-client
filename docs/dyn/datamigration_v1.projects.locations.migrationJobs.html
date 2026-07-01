@@ -192,6 +192,9 @@ Args:
   &quot;labels&quot;: { # The resource labels for migration job to use to annotate any related underlying resources such as Compute Engine VMs. An object containing a list of &quot;key&quot;: &quot;value&quot; pairs. Example: `{ &quot;name&quot;: &quot;wrench&quot;, &quot;mass&quot;: &quot;1.3kg&quot;, &quot;count&quot;: &quot;3&quot; }`.
     &quot;a_key&quot;: &quot;A String&quot;,
   },
+  &quot;mysqlHomogeneousConfig&quot;: { # Configuration for MySQL to MySQL migrations. # Optional. Configuration for MySQL homogeneous migration.
+    &quot;isPrimaryDestination&quot;: True or False, # Optional. Whether the destination for the migration job is a primary instance.
+  },
   &quot;name&quot;: &quot;A String&quot;, # The name (URI) of this migration job resource, in the form of: projects/{project}/locations/{location}/migrationJobs/{migrationJob}.
   &quot;objectsConfig&quot;: { # Configuration for the objects to be migrated. # Optional. The objects that need to be migrated.
     &quot;sourceObjectsConfig&quot;: { # List of configurations for the source objects to be migrated. # The list of the migration job objects.
@@ -235,6 +238,10 @@ Args:
     &quot;dumpParallelLevel&quot;: &quot;A String&quot;, # Initial dump parallelism level.
   },
   &quot;phase&quot;: &quot;A String&quot;, # Output only. The current migration job phase.
+  &quot;postgresHomogeneousConfig&quot;: { # Configuration for PostgreSQL to PostgreSQL migrations. # Optional. Configuration for PostgreSQL homogeneous migration.
+    &quot;isNativeLogical&quot;: True or False, # Required. Whether the migration is native logical.
+    &quot;maxAdditionalSubscriptions&quot;: 42, # Optional. Maximum number of additional subscriptions to use for the migration job.
+  },
   &quot;postgresToSqlserverConfig&quot;: { # Configuration for heterogeneous failback migrations from **PostgreSQL to SQL Server**. # Configuration for heterogeneous failback migrations from **PostgreSQL to SQL Server**.
     &quot;postgresSourceConfig&quot;: { # Configuration for Postgres as a source in a migration. # Optional. Configuration for PostgreSQL source.
       &quot;skipFullDump&quot;: True or False, # Optional. Whether to skip full dump or not.
@@ -559,6 +566,9 @@ Returns:
   &quot;labels&quot;: { # The resource labels for migration job to use to annotate any related underlying resources such as Compute Engine VMs. An object containing a list of &quot;key&quot;: &quot;value&quot; pairs. Example: `{ &quot;name&quot;: &quot;wrench&quot;, &quot;mass&quot;: &quot;1.3kg&quot;, &quot;count&quot;: &quot;3&quot; }`.
     &quot;a_key&quot;: &quot;A String&quot;,
   },
+  &quot;mysqlHomogeneousConfig&quot;: { # Configuration for MySQL to MySQL migrations. # Optional. Configuration for MySQL homogeneous migration.
+    &quot;isPrimaryDestination&quot;: True or False, # Optional. Whether the destination for the migration job is a primary instance.
+  },
   &quot;name&quot;: &quot;A String&quot;, # The name (URI) of this migration job resource, in the form of: projects/{project}/locations/{location}/migrationJobs/{migrationJob}.
   &quot;objectsConfig&quot;: { # Configuration for the objects to be migrated. # Optional. The objects that need to be migrated.
     &quot;sourceObjectsConfig&quot;: { # List of configurations for the source objects to be migrated. # The list of the migration job objects.
@@ -602,6 +612,10 @@ Returns:
     &quot;dumpParallelLevel&quot;: &quot;A String&quot;, # Initial dump parallelism level.
   },
   &quot;phase&quot;: &quot;A String&quot;, # Output only. The current migration job phase.
+  &quot;postgresHomogeneousConfig&quot;: { # Configuration for PostgreSQL to PostgreSQL migrations. # Optional. Configuration for PostgreSQL homogeneous migration.
+    &quot;isNativeLogical&quot;: True or False, # Required. Whether the migration is native logical.
+    &quot;maxAdditionalSubscriptions&quot;: 42, # Optional. Maximum number of additional subscriptions to use for the migration job.
+  },
   &quot;postgresToSqlserverConfig&quot;: { # Configuration for heterogeneous failback migrations from **PostgreSQL to SQL Server**. # Configuration for heterogeneous failback migrations from **PostgreSQL to SQL Server**.
     &quot;postgresSourceConfig&quot;: { # Configuration for Postgres as a source in a migration. # Optional. Configuration for PostgreSQL source.
       &quot;skipFullDump&quot;: True or False, # Optional. Whether to skip full dump or not.
@@ -773,6 +787,9 @@ Returns:
       &quot;labels&quot;: { # The resource labels for migration job to use to annotate any related underlying resources such as Compute Engine VMs. An object containing a list of &quot;key&quot;: &quot;value&quot; pairs. Example: `{ &quot;name&quot;: &quot;wrench&quot;, &quot;mass&quot;: &quot;1.3kg&quot;, &quot;count&quot;: &quot;3&quot; }`.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
+      &quot;mysqlHomogeneousConfig&quot;: { # Configuration for MySQL to MySQL migrations. # Optional. Configuration for MySQL homogeneous migration.
+        &quot;isPrimaryDestination&quot;: True or False, # Optional. Whether the destination for the migration job is a primary instance.
+      },
       &quot;name&quot;: &quot;A String&quot;, # The name (URI) of this migration job resource, in the form of: projects/{project}/locations/{location}/migrationJobs/{migrationJob}.
       &quot;objectsConfig&quot;: { # Configuration for the objects to be migrated. # Optional. The objects that need to be migrated.
         &quot;sourceObjectsConfig&quot;: { # List of configurations for the source objects to be migrated. # The list of the migration job objects.
@@ -816,6 +833,10 @@ Returns:
         &quot;dumpParallelLevel&quot;: &quot;A String&quot;, # Initial dump parallelism level.
       },
       &quot;phase&quot;: &quot;A String&quot;, # Output only. The current migration job phase.
+      &quot;postgresHomogeneousConfig&quot;: { # Configuration for PostgreSQL to PostgreSQL migrations. # Optional. Configuration for PostgreSQL homogeneous migration.
+        &quot;isNativeLogical&quot;: True or False, # Required. Whether the migration is native logical.
+        &quot;maxAdditionalSubscriptions&quot;: 42, # Optional. Maximum number of additional subscriptions to use for the migration job.
+      },
       &quot;postgresToSqlserverConfig&quot;: { # Configuration for heterogeneous failback migrations from **PostgreSQL to SQL Server**. # Configuration for heterogeneous failback migrations from **PostgreSQL to SQL Server**.
         &quot;postgresSourceConfig&quot;: { # Configuration for Postgres as a source in a migration. # Optional. Configuration for PostgreSQL source.
           &quot;skipFullDump&quot;: True or False, # Optional. Whether to skip full dump or not.
@@ -948,6 +969,9 @@ Args:
   &quot;labels&quot;: { # The resource labels for migration job to use to annotate any related underlying resources such as Compute Engine VMs. An object containing a list of &quot;key&quot;: &quot;value&quot; pairs. Example: `{ &quot;name&quot;: &quot;wrench&quot;, &quot;mass&quot;: &quot;1.3kg&quot;, &quot;count&quot;: &quot;3&quot; }`.
     &quot;a_key&quot;: &quot;A String&quot;,
   },
+  &quot;mysqlHomogeneousConfig&quot;: { # Configuration for MySQL to MySQL migrations. # Optional. Configuration for MySQL homogeneous migration.
+    &quot;isPrimaryDestination&quot;: True or False, # Optional. Whether the destination for the migration job is a primary instance.
+  },
   &quot;name&quot;: &quot;A String&quot;, # The name (URI) of this migration job resource, in the form of: projects/{project}/locations/{location}/migrationJobs/{migrationJob}.
   &quot;objectsConfig&quot;: { # Configuration for the objects to be migrated. # Optional. The objects that need to be migrated.
     &quot;sourceObjectsConfig&quot;: { # List of configurations for the source objects to be migrated. # The list of the migration job objects.
@@ -991,6 +1015,10 @@ Args:
     &quot;dumpParallelLevel&quot;: &quot;A String&quot;, # Initial dump parallelism level.
   },
   &quot;phase&quot;: &quot;A String&quot;, # Output only. The current migration job phase.
+  &quot;postgresHomogeneousConfig&quot;: { # Configuration for PostgreSQL to PostgreSQL migrations. # Optional. Configuration for PostgreSQL homogeneous migration.
+    &quot;isNativeLogical&quot;: True or False, # Required. Whether the migration is native logical.
+    &quot;maxAdditionalSubscriptions&quot;: 42, # Optional. Maximum number of additional subscriptions to use for the migration job.
+  },
   &quot;postgresToSqlserverConfig&quot;: { # Configuration for heterogeneous failback migrations from **PostgreSQL to SQL Server**. # Configuration for heterogeneous failback migrations from **PostgreSQL to SQL Server**.
     &quot;postgresSourceConfig&quot;: { # Configuration for Postgres as a source in a migration. # Optional. Configuration for PostgreSQL source.
       &quot;skipFullDump&quot;: True or False, # Optional. Whether to skip full dump or not.
@@ -1488,6 +1516,9 @@ Args:
     &quot;labels&quot;: { # The resource labels for migration job to use to annotate any related underlying resources such as Compute Engine VMs. An object containing a list of &quot;key&quot;: &quot;value&quot; pairs. Example: `{ &quot;name&quot;: &quot;wrench&quot;, &quot;mass&quot;: &quot;1.3kg&quot;, &quot;count&quot;: &quot;3&quot; }`.
       &quot;a_key&quot;: &quot;A String&quot;,
     },
+    &quot;mysqlHomogeneousConfig&quot;: { # Configuration for MySQL to MySQL migrations. # Optional. Configuration for MySQL homogeneous migration.
+      &quot;isPrimaryDestination&quot;: True or False, # Optional. Whether the destination for the migration job is a primary instance.
+    },
     &quot;name&quot;: &quot;A String&quot;, # The name (URI) of this migration job resource, in the form of: projects/{project}/locations/{location}/migrationJobs/{migrationJob}.
     &quot;objectsConfig&quot;: { # Configuration for the objects to be migrated. # Optional. The objects that need to be migrated.
       &quot;sourceObjectsConfig&quot;: { # List of configurations for the source objects to be migrated. # The list of the migration job objects.
@@ -1531,6 +1562,10 @@ Args:
       &quot;dumpParallelLevel&quot;: &quot;A String&quot;, # Initial dump parallelism level.
     },
     &quot;phase&quot;: &quot;A String&quot;, # Output only. The current migration job phase.
+    &quot;postgresHomogeneousConfig&quot;: { # Configuration for PostgreSQL to PostgreSQL migrations. # Optional. Configuration for PostgreSQL homogeneous migration.
+      &quot;isNativeLogical&quot;: True or False, # Required. Whether the migration is native logical.
+      &quot;maxAdditionalSubscriptions&quot;: 42, # Optional. Maximum number of additional subscriptions to use for the migration job.
+    },
     &quot;postgresToSqlserverConfig&quot;: { # Configuration for heterogeneous failback migrations from **PostgreSQL to SQL Server**. # Configuration for heterogeneous failback migrations from **PostgreSQL to SQL Server**.
       &quot;postgresSourceConfig&quot;: { # Configuration for Postgres as a source in a migration. # Optional. Configuration for PostgreSQL source.
         &quot;skipFullDump&quot;: True or False, # Optional. Whether to skip full dump or not.

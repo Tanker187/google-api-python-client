@@ -72,7 +72,7 @@ h1, h2, h3 {
 
 </style>
 
-<h1><a href="aiplatform_v1beta1.html">Vertex AI API</a> . <a href="aiplatform_v1beta1.reasoningEngines.html">reasoningEngines</a> . <a href="aiplatform_v1beta1.reasoningEngines.memories.html">memories</a></h1>
+<h1><a href="aiplatform_v1beta1.html">Agent Platform API</a> . <a href="aiplatform_v1beta1.reasoningEngines.html">reasoningEngines</a> . <a href="aiplatform_v1beta1.reasoningEngines.memories.html">memories</a></h1>
 <h2>Instance Methods</h2>
 <p class="toc_element">
   <code><a href="aiplatform_v1beta1.reasoningEngines.memories.operations.html">operations()</a></code>
@@ -732,7 +732,7 @@ Args:
   &quot;updateTime&quot;: &quot;A String&quot;, # Output only. Represents the timestamp when this Memory was most recently updated.
 }
 
-  updateMask: string, Optional. Mask specifying which fields to update. Supported fields: * `display_name` * `description` * `fact`
+  updateMask: string, Optional. Mask specifying which fields to update. The following fields are immutable: * `scope` * `memory_type`
   x__xgafv: string, V1 error format.
     Allowed values
       1 - v1 error format

@@ -506,6 +506,14 @@ Returns:
   },
   &quot;conversationTtl&quot;: &quot;A String&quot;, # The default TTL for newly-created conversations. If a conversation has a specified expiration, that value will be used instead. Changing this value will not change the expiration of existing conversations. Conversations with no expire time persist until they are deleted.
   &quot;createTime&quot;: &quot;A String&quot;, # Output only. The time at which the settings was created.
+  &quot;diagnosticMetricConfig&quot;: { # Configuration for diagnostic metrics. # Optional. Configuration for diagnostic metrics.
+    &quot;metrics&quot;: { # Optional. A map of diagnostic metrics. The key is a unique identifier for the metric (e.g., &quot;containment&quot;).
+      &quot;a_key&quot;: { # A definition for a metric to be calculated during analysis.
+        &quot;displayName&quot;: &quot;A String&quot;, # Output only. The user-visible name of the metric (e.g., &quot;Containment Rate&quot;).
+        &quot;sourceId&quot;: &quot;A String&quot;, # Output only. The resource name of the underlying Insights primitive (e.g., Tag or QaQuestion) used to calculate this metric.
+      },
+    },
+  },
   &quot;languageCode&quot;: &quot;A String&quot;, # A language code to be applied to each transcript segment unless the segment already specifies a language code. Language code defaults to &quot;en-US&quot; if it is neither specified on the segment nor here.
   &quot;name&quot;: &quot;A String&quot;, # Immutable. The resource name of the settings resource. Format: projects/{project}/locations/{location}/settings
   &quot;pubsubNotificationSettings&quot;: { # A map that maps a notification trigger to a Pub/Sub topic. Each time a specified trigger occurs, Insights will notify the corresponding Pub/Sub topic. Keys are notification triggers. Supported keys are: * &quot;all-triggers&quot;: Notify each time any of the supported triggers occurs. * &quot;create-analysis&quot;: Notify each time an analysis is created. * &quot;create-conversation&quot;: Notify each time a conversation is created. * &quot;export-insights-data&quot;: Notify each time an export is complete. * &quot;ingest-conversations&quot;: Notify each time an IngestConversations LRO is complete. * &quot;update-conversation&quot;: Notify each time a conversation is updated via UpdateConversation. * &quot;upload-conversation&quot;: Notify when an UploadConversation LRO is complete. * &quot;update-or-analyze-conversation&quot;: Notify when an analysis for a conversation is completed or when the conversation is updated. The message will contain the conversation with transcript, analysis and other metadata. Values are Pub/Sub topics. The format of each Pub/Sub topic is: projects/{project}/topics/{topic}
@@ -1007,7 +1015,7 @@ Args:
           },
         },
         &quot;medium&quot;: &quot;A String&quot;, # Immutable. The conversation medium.
-        &quot;metadataJson&quot;: &quot;A String&quot;, # Input only. JSON metadata encoded as a string. This field is primarily used by Insights integrations with various telephony systems and must be in one of Insight&#x27;s supported formats.
+        &quot;metadataJson&quot;: &quot;A String&quot;, # Optional. JSON metadata encoded as a string. This field is primarily used by Insights integrations with various telephony systems and must be in one of Insight&#x27;s supported formats.
         &quot;name&quot;: &quot;A String&quot;, # Immutable. The resource name of the conversation. Format: projects/{project}/locations/{location}/conversations/{conversation}
         &quot;obfuscatedUserId&quot;: &quot;A String&quot;, # Obfuscated user ID which the customer sent to us.
         &quot;qualityMetadata&quot;: { # Conversation metadata related to quality management. # Conversation metadata related to quality management.
@@ -1020,6 +1028,7 @@ Args:
               &quot;displayName&quot;: &quot;A String&quot;, # The agent&#x27;s name.
               &quot;dispositionCode&quot;: &quot;A String&quot;, # A user-provided string indicating the outcome of the agent&#x27;s segment of the call.
               &quot;entrySubagentDisplayName&quot;: &quot;A String&quot;, # The entry subagent&#x27;s display name.
+              &quot;entrySubagentId&quot;: &quot;A String&quot;, # The entry subagent&#x27;s ID.
               &quot;location&quot;: &quot;A String&quot;, # The agent&#x27;s location.
               &quot;team&quot;: &quot;A String&quot;, # A user-specified string representing the agent&#x27;s team. Deprecated in favor of the `teams` field.
               &quot;teams&quot;: [ # User-specified strings representing the agent&#x27;s teams.
@@ -1070,6 +1079,84 @@ Args:
               &quot;source&quot;: &quot;A String&quot;, # The knowledge document that this answer was extracted from. Format: projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}
               &quot;title&quot;: &quot;A String&quot;, # Article title.
               &quot;uri&quot;: &quot;A String&quot;, # Article URI.
+            },
+            &quot;cesEndSessionAnnotation&quot;: { # The CES end session annotation. # The CES end session annotation.
+              &quot;endSession&quot;: { # Indicates the session has terminated, due to either successful completion (e.g. user says &quot;Good bye!&quot; ) or an agent escalation. The agent will not process any further inputs after session is terminated and the client should half-close and disconnect after receiving all remaining responses from the agent. # End session signal from CES.
+                &quot;metadata&quot;: { # Optional. Provides additional information about the end session signal, such as the reason for ending the session.
+                  &quot;a_key&quot;: &quot;&quot;, # Properties of the object.
+                },
+              },
+            },
+            &quot;cesTurnAnnotation&quot;: { # The CES diagnostic information. # The CES turn annotation.
+              &quot;messages&quot;: [ # The messages in the turn.
+                { # A message within a conversation.
+                  &quot;chunks&quot;: [ # Optional. Content of the message as a series of chunks.
+                    { # A chunk of content within a message.
+                      &quot;agentTransfer&quot;: { # Represents an event indicating the transfer of a conversation to a different agent. # Optional. Agent transfer event.
+                        &quot;displayName&quot;: &quot;A String&quot;, # Output only. Display name of the agent.
+                        &quot;targetAgent&quot;: &quot;A String&quot;, # Required. The agent to which the conversation is being transferred. The agent will handle the conversation from this point forward. Format: `projects/{project}/locations/{location}/apps/{app}/agents/{agent}`
+                      },
+                      &quot;blob&quot;: { # Represents a blob input or output in the conversation. # Optional. Blob data.
+                        &quot;data&quot;: &quot;A String&quot;, # Required. Raw bytes of the blob.
+                        &quot;mimeType&quot;: &quot;A String&quot;, # Required. The IANA standard MIME type of the source data.
+                      },
+                      &quot;defaultVariables&quot;: { # A struct represents default variables at the start of the conversation, keyed by variable names.
+                        &quot;a_key&quot;: &quot;&quot;, # Properties of the object.
+                      },
+                      &quot;image&quot;: { # Represents an image input or output in the conversation. # Optional. Image data.
+                        &quot;data&quot;: &quot;A String&quot;, # Required. Raw bytes of the image.
+                        &quot;mimeType&quot;: &quot;A String&quot;, # Required. The IANA standard MIME type of the source data. Supported image types includes: * image/png * image/jpeg * image/webp
+                      },
+                      &quot;payload&quot;: { # Optional. Custom payload data.
+                        &quot;a_key&quot;: &quot;&quot;, # Properties of the object.
+                      },
+                      &quot;text&quot;: &quot;A String&quot;, # Optional. Text data.
+                      &quot;toolCall&quot;: { # Request for the client or the agent to execute the specified tool. # Optional. Tool execution request.
+                        &quot;args&quot;: { # Optional. The input parameters and values for the tool in JSON object format.
+                          &quot;a_key&quot;: &quot;&quot;, # Properties of the object.
+                        },
+                        &quot;displayName&quot;: &quot;A String&quot;, # Output only. Display name of the tool.
+                        &quot;id&quot;: &quot;A String&quot;, # Optional. The unique identifier of the tool call. If populated, the client should return the execution result with the matching ID in ToolResponse.
+                        &quot;tool&quot;: &quot;A String&quot;, # Optional. The name of the tool to execute. Format: `projects/{project}/locations/{location}/apps/{app}/tools/{tool}`
+                        &quot;toolsetTool&quot;: { # A tool that is created from a toolset. # Optional. The toolset tool to execute.
+                          &quot;toolId&quot;: &quot;A String&quot;, # Optional. The tool ID to filter the tools to retrieve the schema for.
+                          &quot;toolset&quot;: &quot;A String&quot;, # Required. The resource name of the Toolset from which this tool is derived. Format: `projects/{project}/locations/{location}/apps/{app}/toolsets/{toolset}`
+                        },
+                      },
+                      &quot;toolResponse&quot;: { # The execution result of a specific tool from the client or the agent. # Optional. Tool execution response.
+                        &quot;displayName&quot;: &quot;A String&quot;, # Output only. Display name of the tool.
+                        &quot;id&quot;: &quot;A String&quot;, # Optional. The matching ID of the tool call the response is for.
+                        &quot;response&quot;: { # Required. The tool execution result in JSON object format. Use &quot;output&quot; key to specify tool response and &quot;error&quot; key to specify error details (if any). If &quot;output&quot; and &quot;error&quot; keys are not specified, then whole &quot;response&quot; is treated as tool execution result.
+                          &quot;a_key&quot;: &quot;&quot;, # Properties of the object.
+                        },
+                        &quot;tool&quot;: &quot;A String&quot;, # Optional. The name of the tool to execute. Format: `projects/{project}/locations/{location}/apps/{app}/tools/{tool}`
+                        &quot;toolsetTool&quot;: { # A tool that is created from a toolset. # Optional. The toolset tool that got executed.
+                          &quot;toolId&quot;: &quot;A String&quot;, # Optional. The tool ID to filter the tools to retrieve the schema for.
+                          &quot;toolset&quot;: &quot;A String&quot;, # Required. The resource name of the Toolset from which this tool is derived. Format: `projects/{project}/locations/{location}/apps/{app}/toolsets/{toolset}`
+                        },
+                      },
+                      &quot;transcript&quot;: &quot;A String&quot;, # Optional. Transcript associated with the audio.
+                      &quot;updatedVariables&quot;: { # A struct represents variables that were updated in the conversation, keyed by variable names.
+                        &quot;a_key&quot;: &quot;&quot;, # Properties of the object.
+                      },
+                    },
+                  ],
+                  &quot;eventTime&quot;: &quot;A String&quot;, # Optional. Timestamp when the message was sent or received. Should not be used if the message is part of an example.
+                  &quot;role&quot;: &quot;A String&quot;, # Optional. The role within the conversation, e.g., user, agent.
+                },
+              ],
+              &quot;rootSpan&quot;: { # A span is a unit of work or a single operation during the request processing. # The root span of the action processing.
+                &quot;attributes&quot;: { # Output only. Key-value attributes associated with the span.
+                  &quot;a_key&quot;: &quot;&quot;, # Properties of the object.
+                },
+                &quot;childSpans&quot;: [ # Output only. The child spans that are nested under this span.
+                  # Object with schema name: GoogleCloudCesV1mainSpan
+                ],
+                &quot;duration&quot;: &quot;A String&quot;, # Output only. The duration of the span.
+                &quot;endTime&quot;: &quot;A String&quot;, # Output only. The end time of the span.
+                &quot;name&quot;: &quot;A String&quot;, # Output only. The name of the span.
+                &quot;startTime&quot;: &quot;A String&quot;, # Output only. The start time of the span.
+              },
             },
             &quot;conversationSummarizationSuggestion&quot;: { # Conversation summarization suggestion data. # Conversation summarization suggestion data.
               &quot;answerRecord&quot;: &quot;A String&quot;, # The name of the answer record. Format: projects/{project}/locations/{location}/answerRecords/{answer_record}
@@ -1319,6 +1406,14 @@ Args:
   },
   &quot;conversationTtl&quot;: &quot;A String&quot;, # The default TTL for newly-created conversations. If a conversation has a specified expiration, that value will be used instead. Changing this value will not change the expiration of existing conversations. Conversations with no expire time persist until they are deleted.
   &quot;createTime&quot;: &quot;A String&quot;, # Output only. The time at which the settings was created.
+  &quot;diagnosticMetricConfig&quot;: { # Configuration for diagnostic metrics. # Optional. Configuration for diagnostic metrics.
+    &quot;metrics&quot;: { # Optional. A map of diagnostic metrics. The key is a unique identifier for the metric (e.g., &quot;containment&quot;).
+      &quot;a_key&quot;: { # A definition for a metric to be calculated during analysis.
+        &quot;displayName&quot;: &quot;A String&quot;, # Output only. The user-visible name of the metric (e.g., &quot;Containment Rate&quot;).
+        &quot;sourceId&quot;: &quot;A String&quot;, # Output only. The resource name of the underlying Insights primitive (e.g., Tag or QaQuestion) used to calculate this metric.
+      },
+    },
+  },
   &quot;languageCode&quot;: &quot;A String&quot;, # A language code to be applied to each transcript segment unless the segment already specifies a language code. Language code defaults to &quot;en-US&quot; if it is neither specified on the segment nor here.
   &quot;name&quot;: &quot;A String&quot;, # Immutable. The resource name of the settings resource. Format: projects/{project}/locations/{location}/settings
   &quot;pubsubNotificationSettings&quot;: { # A map that maps a notification trigger to a Pub/Sub topic. Each time a specified trigger occurs, Insights will notify the corresponding Pub/Sub topic. Keys are notification triggers. Supported keys are: * &quot;all-triggers&quot;: Notify each time any of the supported triggers occurs. * &quot;create-analysis&quot;: Notify each time an analysis is created. * &quot;create-conversation&quot;: Notify each time a conversation is created. * &quot;export-insights-data&quot;: Notify each time an export is complete. * &quot;ingest-conversations&quot;: Notify each time an IngestConversations LRO is complete. * &quot;update-conversation&quot;: Notify each time a conversation is updated via UpdateConversation. * &quot;upload-conversation&quot;: Notify when an UploadConversation LRO is complete. * &quot;update-or-analyze-conversation&quot;: Notify when an analysis for a conversation is completed or when the conversation is updated. The message will contain the conversation with transcript, analysis and other metadata. Values are Pub/Sub topics. The format of each Pub/Sub topic is: projects/{project}/topics/{topic}
@@ -1383,6 +1478,14 @@ Returns:
   },
   &quot;conversationTtl&quot;: &quot;A String&quot;, # The default TTL for newly-created conversations. If a conversation has a specified expiration, that value will be used instead. Changing this value will not change the expiration of existing conversations. Conversations with no expire time persist until they are deleted.
   &quot;createTime&quot;: &quot;A String&quot;, # Output only. The time at which the settings was created.
+  &quot;diagnosticMetricConfig&quot;: { # Configuration for diagnostic metrics. # Optional. Configuration for diagnostic metrics.
+    &quot;metrics&quot;: { # Optional. A map of diagnostic metrics. The key is a unique identifier for the metric (e.g., &quot;containment&quot;).
+      &quot;a_key&quot;: { # A definition for a metric to be calculated during analysis.
+        &quot;displayName&quot;: &quot;A String&quot;, # Output only. The user-visible name of the metric (e.g., &quot;Containment Rate&quot;).
+        &quot;sourceId&quot;: &quot;A String&quot;, # Output only. The resource name of the underlying Insights primitive (e.g., Tag or QaQuestion) used to calculate this metric.
+      },
+    },
+  },
   &quot;languageCode&quot;: &quot;A String&quot;, # A language code to be applied to each transcript segment unless the segment already specifies a language code. Language code defaults to &quot;en-US&quot; if it is neither specified on the segment nor here.
   &quot;name&quot;: &quot;A String&quot;, # Immutable. The resource name of the settings resource. Format: projects/{project}/locations/{location}/settings
   &quot;pubsubNotificationSettings&quot;: { # A map that maps a notification trigger to a Pub/Sub topic. Each time a specified trigger occurs, Insights will notify the corresponding Pub/Sub topic. Keys are notification triggers. Supported keys are: * &quot;all-triggers&quot;: Notify each time any of the supported triggers occurs. * &quot;create-analysis&quot;: Notify each time an analysis is created. * &quot;create-conversation&quot;: Notify each time a conversation is created. * &quot;export-insights-data&quot;: Notify each time an export is complete. * &quot;ingest-conversations&quot;: Notify each time an IngestConversations LRO is complete. * &quot;update-conversation&quot;: Notify each time a conversation is updated via UpdateConversation. * &quot;upload-conversation&quot;: Notify when an UploadConversation LRO is complete. * &quot;update-or-analyze-conversation&quot;: Notify when an analysis for a conversation is completed or when the conversation is updated. The message will contain the conversation with transcript, analysis and other metadata. Values are Pub/Sub topics. The format of each Pub/Sub topic is: projects/{project}/topics/{topic}

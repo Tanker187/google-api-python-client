@@ -266,12 +266,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -869,7 +869,7 @@ Returns:
             # The value must be from 0.0 to 100.0 inclusive.
       },
     },
-    &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map’s route. Available only for
+    &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map&#x27;s route. Available only for
         # Global EXTERNAL_MANAGED load balancer schemes.
         # Either Cloud CDN must be enabled on the backend service or backend bucket
         # serving the route, or cache policy must be configured on the same route
@@ -1050,6 +1050,34 @@ Returns:
           # required.
           #
           # Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
+      &quot;regexRewrite&quot;: { # The spec for modifying the path using a regular expression. # The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
+        &quot;pathPattern&quot;: &quot;A String&quot;, # The regular expression used to match against the URL path.
+            # It uses RE2 syntax with the following constraints:
+            #
+            #
+            #      - Any single character operators
+            #      - Groups are allowed to have only submatch operator inside
+            #      - Groups are allowed only without any char repetition, e.g.
+            #      .*
+            #      - Any char repetition, e.g. .*, is
+            #      only allowed to be used in a single regex together with:
+            #
+            #
+            #             - Empty string operators
+            #             - Other repetitions
+            #             - Ranges
+            #             - Repetitions of ranges
+            #
+            #
+            #      - Ranges are only allowed to have:
+            #
+            #
+            #             - Character range
+            #             - Digits range
+            #             - Symbols listed in characters allowed for ranges
+        &quot;pathSubstitution&quot;: &quot;A String&quot;, # Required when path pattern is specified. Used to rewrite matching parts of
+            # the path.
+      },
     },
     &quot;weightedBackendServices&quot;: [ # A list of weighted backend services to send traffic to when a route match
         # occurs. The weights determine the fraction of traffic that flows to
@@ -1726,7 +1754,7 @@ Returns:
                 # The value must be from 0.0 to 100.0 inclusive.
           },
         },
-        &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map’s route. Available only for
+        &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map&#x27;s route. Available only for
             # Global EXTERNAL_MANAGED load balancer schemes.
             # Either Cloud CDN must be enabled on the backend service or backend bucket
             # serving the route, or cache policy must be configured on the same route
@@ -1907,6 +1935,34 @@ Returns:
               # required.
               #
               # Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
+          &quot;regexRewrite&quot;: { # The spec for modifying the path using a regular expression. # The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
+            &quot;pathPattern&quot;: &quot;A String&quot;, # The regular expression used to match against the URL path.
+                # It uses RE2 syntax with the following constraints:
+                #
+                #
+                #      - Any single character operators
+                #      - Groups are allowed to have only submatch operator inside
+                #      - Groups are allowed only without any char repetition, e.g.
+                #      .*
+                #      - Any char repetition, e.g. .*, is
+                #      only allowed to be used in a single regex together with:
+                #
+                #
+                #             - Empty string operators
+                #             - Other repetitions
+                #             - Ranges
+                #             - Repetitions of ranges
+                #
+                #
+                #      - Ranges are only allowed to have:
+                #
+                #
+                #             - Character range
+                #             - Digits range
+                #             - Symbols listed in characters allowed for ranges
+            &quot;pathSubstitution&quot;: &quot;A String&quot;, # Required when path pattern is specified. Used to rewrite matching parts of
+                # the path.
+          },
         },
         &quot;weightedBackendServices&quot;: [ # A list of weighted backend services to send traffic to when a route match
             # occurs. The weights determine the fraction of traffic that flows to
@@ -2564,7 +2620,7 @@ Returns:
                     # The value must be from 0.0 to 100.0 inclusive.
               },
             },
-            &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map’s route. Available only for
+            &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map&#x27;s route. Available only for
                 # Global EXTERNAL_MANAGED load balancer schemes.
                 # Either Cloud CDN must be enabled on the backend service or backend bucket
                 # serving the route, or cache policy must be configured on the same route
@@ -2745,6 +2801,34 @@ Returns:
                   # required.
                   #
                   # Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
+              &quot;regexRewrite&quot;: { # The spec for modifying the path using a regular expression. # The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
+                &quot;pathPattern&quot;: &quot;A String&quot;, # The regular expression used to match against the URL path.
+                    # It uses RE2 syntax with the following constraints:
+                    #
+                    #
+                    #      - Any single character operators
+                    #      - Groups are allowed to have only submatch operator inside
+                    #      - Groups are allowed only without any char repetition, e.g.
+                    #      .*
+                    #      - Any char repetition, e.g. .*, is
+                    #      only allowed to be used in a single regex together with:
+                    #
+                    #
+                    #             - Empty string operators
+                    #             - Other repetitions
+                    #             - Ranges
+                    #             - Repetitions of ranges
+                    #
+                    #
+                    #      - Ranges are only allowed to have:
+                    #
+                    #
+                    #             - Character range
+                    #             - Digits range
+                    #             - Symbols listed in characters allowed for ranges
+                &quot;pathSubstitution&quot;: &quot;A String&quot;, # Required when path pattern is specified. Used to rewrite matching parts of
+                    # the path.
+              },
             },
             &quot;weightedBackendServices&quot;: [ # A list of weighted backend services to send traffic to when a route match
                 # occurs. The weights determine the fraction of traffic that flows to
@@ -3664,7 +3748,7 @@ Returns:
                     # The value must be from 0.0 to 100.0 inclusive.
               },
             },
-            &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map’s route. Available only for
+            &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map&#x27;s route. Available only for
                 # Global EXTERNAL_MANAGED load balancer schemes.
                 # Either Cloud CDN must be enabled on the backend service or backend bucket
                 # serving the route, or cache policy must be configured on the same route
@@ -3845,6 +3929,34 @@ Returns:
                   # required.
                   #
                   # Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
+              &quot;regexRewrite&quot;: { # The spec for modifying the path using a regular expression. # The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
+                &quot;pathPattern&quot;: &quot;A String&quot;, # The regular expression used to match against the URL path.
+                    # It uses RE2 syntax with the following constraints:
+                    #
+                    #
+                    #      - Any single character operators
+                    #      - Groups are allowed to have only submatch operator inside
+                    #      - Groups are allowed only without any char repetition, e.g.
+                    #      .*
+                    #      - Any char repetition, e.g. .*, is
+                    #      only allowed to be used in a single regex together with:
+                    #
+                    #
+                    #             - Empty string operators
+                    #             - Other repetitions
+                    #             - Ranges
+                    #             - Repetitions of ranges
+                    #
+                    #
+                    #      - Ranges are only allowed to have:
+                    #
+                    #
+                    #             - Character range
+                    #             - Digits range
+                    #             - Symbols listed in characters allowed for ranges
+                &quot;pathSubstitution&quot;: &quot;A String&quot;, # Required when path pattern is specified. Used to rewrite matching parts of
+                    # the path.
+              },
             },
             &quot;weightedBackendServices&quot;: [ # A list of weighted backend services to send traffic to when a route match
                 # occurs. The weights determine the fraction of traffic that flows to
@@ -4527,7 +4639,7 @@ Args:
             # The value must be from 0.0 to 100.0 inclusive.
       },
     },
-    &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map’s route. Available only for
+    &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map&#x27;s route. Available only for
         # Global EXTERNAL_MANAGED load balancer schemes.
         # Either Cloud CDN must be enabled on the backend service or backend bucket
         # serving the route, or cache policy must be configured on the same route
@@ -4708,6 +4820,34 @@ Args:
           # required.
           #
           # Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
+      &quot;regexRewrite&quot;: { # The spec for modifying the path using a regular expression. # The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
+        &quot;pathPattern&quot;: &quot;A String&quot;, # The regular expression used to match against the URL path.
+            # It uses RE2 syntax with the following constraints:
+            #
+            #
+            #      - Any single character operators
+            #      - Groups are allowed to have only submatch operator inside
+            #      - Groups are allowed only without any char repetition, e.g.
+            #      .*
+            #      - Any char repetition, e.g. .*, is
+            #      only allowed to be used in a single regex together with:
+            #
+            #
+            #             - Empty string operators
+            #             - Other repetitions
+            #             - Ranges
+            #             - Repetitions of ranges
+            #
+            #
+            #      - Ranges are only allowed to have:
+            #
+            #
+            #             - Character range
+            #             - Digits range
+            #             - Symbols listed in characters allowed for ranges
+        &quot;pathSubstitution&quot;: &quot;A String&quot;, # Required when path pattern is specified. Used to rewrite matching parts of
+            # the path.
+      },
     },
     &quot;weightedBackendServices&quot;: [ # A list of weighted backend services to send traffic to when a route match
         # occurs. The weights determine the fraction of traffic that flows to
@@ -5384,7 +5524,7 @@ Args:
                 # The value must be from 0.0 to 100.0 inclusive.
           },
         },
-        &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map’s route. Available only for
+        &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map&#x27;s route. Available only for
             # Global EXTERNAL_MANAGED load balancer schemes.
             # Either Cloud CDN must be enabled on the backend service or backend bucket
             # serving the route, or cache policy must be configured on the same route
@@ -5565,6 +5705,34 @@ Args:
               # required.
               #
               # Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
+          &quot;regexRewrite&quot;: { # The spec for modifying the path using a regular expression. # The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
+            &quot;pathPattern&quot;: &quot;A String&quot;, # The regular expression used to match against the URL path.
+                # It uses RE2 syntax with the following constraints:
+                #
+                #
+                #      - Any single character operators
+                #      - Groups are allowed to have only submatch operator inside
+                #      - Groups are allowed only without any char repetition, e.g.
+                #      .*
+                #      - Any char repetition, e.g. .*, is
+                #      only allowed to be used in a single regex together with:
+                #
+                #
+                #             - Empty string operators
+                #             - Other repetitions
+                #             - Ranges
+                #             - Repetitions of ranges
+                #
+                #
+                #      - Ranges are only allowed to have:
+                #
+                #
+                #             - Character range
+                #             - Digits range
+                #             - Symbols listed in characters allowed for ranges
+            &quot;pathSubstitution&quot;: &quot;A String&quot;, # Required when path pattern is specified. Used to rewrite matching parts of
+                # the path.
+          },
         },
         &quot;weightedBackendServices&quot;: [ # A list of weighted backend services to send traffic to when a route match
             # occurs. The weights determine the fraction of traffic that flows to
@@ -6222,7 +6390,7 @@ Args:
                     # The value must be from 0.0 to 100.0 inclusive.
               },
             },
-            &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map’s route. Available only for
+            &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map&#x27;s route. Available only for
                 # Global EXTERNAL_MANAGED load balancer schemes.
                 # Either Cloud CDN must be enabled on the backend service or backend bucket
                 # serving the route, or cache policy must be configured on the same route
@@ -6403,6 +6571,34 @@ Args:
                   # required.
                   #
                   # Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
+              &quot;regexRewrite&quot;: { # The spec for modifying the path using a regular expression. # The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
+                &quot;pathPattern&quot;: &quot;A String&quot;, # The regular expression used to match against the URL path.
+                    # It uses RE2 syntax with the following constraints:
+                    #
+                    #
+                    #      - Any single character operators
+                    #      - Groups are allowed to have only submatch operator inside
+                    #      - Groups are allowed only without any char repetition, e.g.
+                    #      .*
+                    #      - Any char repetition, e.g. .*, is
+                    #      only allowed to be used in a single regex together with:
+                    #
+                    #
+                    #             - Empty string operators
+                    #             - Other repetitions
+                    #             - Ranges
+                    #             - Repetitions of ranges
+                    #
+                    #
+                    #      - Ranges are only allowed to have:
+                    #
+                    #
+                    #             - Character range
+                    #             - Digits range
+                    #             - Symbols listed in characters allowed for ranges
+                &quot;pathSubstitution&quot;: &quot;A String&quot;, # Required when path pattern is specified. Used to rewrite matching parts of
+                    # the path.
+              },
             },
             &quot;weightedBackendServices&quot;: [ # A list of weighted backend services to send traffic to when a route match
                 # occurs. The weights determine the fraction of traffic that flows to
@@ -7322,7 +7518,7 @@ Args:
                     # The value must be from 0.0 to 100.0 inclusive.
               },
             },
-            &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map’s route. Available only for
+            &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map&#x27;s route. Available only for
                 # Global EXTERNAL_MANAGED load balancer schemes.
                 # Either Cloud CDN must be enabled on the backend service or backend bucket
                 # serving the route, or cache policy must be configured on the same route
@@ -7503,6 +7699,34 @@ Args:
                   # required.
                   #
                   # Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
+              &quot;regexRewrite&quot;: { # The spec for modifying the path using a regular expression. # The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
+                &quot;pathPattern&quot;: &quot;A String&quot;, # The regular expression used to match against the URL path.
+                    # It uses RE2 syntax with the following constraints:
+                    #
+                    #
+                    #      - Any single character operators
+                    #      - Groups are allowed to have only submatch operator inside
+                    #      - Groups are allowed only without any char repetition, e.g.
+                    #      .*
+                    #      - Any char repetition, e.g. .*, is
+                    #      only allowed to be used in a single regex together with:
+                    #
+                    #
+                    #             - Empty string operators
+                    #             - Other repetitions
+                    #             - Ranges
+                    #             - Repetitions of ranges
+                    #
+                    #
+                    #      - Ranges are only allowed to have:
+                    #
+                    #
+                    #             - Character range
+                    #             - Digits range
+                    #             - Symbols listed in characters allowed for ranges
+                &quot;pathSubstitution&quot;: &quot;A String&quot;, # Required when path pattern is specified. Used to rewrite matching parts of
+                    # the path.
+              },
             },
             &quot;weightedBackendServices&quot;: [ # A list of weighted backend services to send traffic to when a route match
                 # occurs. The weights determine the fraction of traffic that flows to
@@ -7861,12 +8085,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -8182,12 +8406,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -8871,7 +9095,7 @@ Returns:
                 # The value must be from 0.0 to 100.0 inclusive.
           },
         },
-        &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map’s route. Available only for
+        &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map&#x27;s route. Available only for
             # Global EXTERNAL_MANAGED load balancer schemes.
             # Either Cloud CDN must be enabled on the backend service or backend bucket
             # serving the route, or cache policy must be configured on the same route
@@ -9052,6 +9276,34 @@ Returns:
               # required.
               #
               # Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
+          &quot;regexRewrite&quot;: { # The spec for modifying the path using a regular expression. # The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
+            &quot;pathPattern&quot;: &quot;A String&quot;, # The regular expression used to match against the URL path.
+                # It uses RE2 syntax with the following constraints:
+                #
+                #
+                #      - Any single character operators
+                #      - Groups are allowed to have only submatch operator inside
+                #      - Groups are allowed only without any char repetition, e.g.
+                #      .*
+                #      - Any char repetition, e.g. .*, is
+                #      only allowed to be used in a single regex together with:
+                #
+                #
+                #             - Empty string operators
+                #             - Other repetitions
+                #             - Ranges
+                #             - Repetitions of ranges
+                #
+                #
+                #      - Ranges are only allowed to have:
+                #
+                #
+                #             - Character range
+                #             - Digits range
+                #             - Symbols listed in characters allowed for ranges
+            &quot;pathSubstitution&quot;: &quot;A String&quot;, # Required when path pattern is specified. Used to rewrite matching parts of
+                # the path.
+          },
         },
         &quot;weightedBackendServices&quot;: [ # A list of weighted backend services to send traffic to when a route match
             # occurs. The weights determine the fraction of traffic that flows to
@@ -9728,7 +9980,7 @@ Returns:
                     # The value must be from 0.0 to 100.0 inclusive.
               },
             },
-            &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map’s route. Available only for
+            &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map&#x27;s route. Available only for
                 # Global EXTERNAL_MANAGED load balancer schemes.
                 # Either Cloud CDN must be enabled on the backend service or backend bucket
                 # serving the route, or cache policy must be configured on the same route
@@ -9909,6 +10161,34 @@ Returns:
                   # required.
                   #
                   # Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
+              &quot;regexRewrite&quot;: { # The spec for modifying the path using a regular expression. # The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
+                &quot;pathPattern&quot;: &quot;A String&quot;, # The regular expression used to match against the URL path.
+                    # It uses RE2 syntax with the following constraints:
+                    #
+                    #
+                    #      - Any single character operators
+                    #      - Groups are allowed to have only submatch operator inside
+                    #      - Groups are allowed only without any char repetition, e.g.
+                    #      .*
+                    #      - Any char repetition, e.g. .*, is
+                    #      only allowed to be used in a single regex together with:
+                    #
+                    #
+                    #             - Empty string operators
+                    #             - Other repetitions
+                    #             - Ranges
+                    #             - Repetitions of ranges
+                    #
+                    #
+                    #      - Ranges are only allowed to have:
+                    #
+                    #
+                    #             - Character range
+                    #             - Digits range
+                    #             - Symbols listed in characters allowed for ranges
+                &quot;pathSubstitution&quot;: &quot;A String&quot;, # Required when path pattern is specified. Used to rewrite matching parts of
+                    # the path.
+              },
             },
             &quot;weightedBackendServices&quot;: [ # A list of weighted backend services to send traffic to when a route match
                 # occurs. The weights determine the fraction of traffic that flows to
@@ -10566,7 +10846,7 @@ Returns:
                         # The value must be from 0.0 to 100.0 inclusive.
                   },
                 },
-                &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map’s route. Available only for
+                &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map&#x27;s route. Available only for
                     # Global EXTERNAL_MANAGED load balancer schemes.
                     # Either Cloud CDN must be enabled on the backend service or backend bucket
                     # serving the route, or cache policy must be configured on the same route
@@ -10747,6 +11027,34 @@ Returns:
                       # required.
                       #
                       # Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
+                  &quot;regexRewrite&quot;: { # The spec for modifying the path using a regular expression. # The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
+                    &quot;pathPattern&quot;: &quot;A String&quot;, # The regular expression used to match against the URL path.
+                        # It uses RE2 syntax with the following constraints:
+                        #
+                        #
+                        #      - Any single character operators
+                        #      - Groups are allowed to have only submatch operator inside
+                        #      - Groups are allowed only without any char repetition, e.g.
+                        #      .*
+                        #      - Any char repetition, e.g. .*, is
+                        #      only allowed to be used in a single regex together with:
+                        #
+                        #
+                        #             - Empty string operators
+                        #             - Other repetitions
+                        #             - Ranges
+                        #             - Repetitions of ranges
+                        #
+                        #
+                        #      - Ranges are only allowed to have:
+                        #
+                        #
+                        #             - Character range
+                        #             - Digits range
+                        #             - Symbols listed in characters allowed for ranges
+                    &quot;pathSubstitution&quot;: &quot;A String&quot;, # Required when path pattern is specified. Used to rewrite matching parts of
+                        # the path.
+                  },
                 },
                 &quot;weightedBackendServices&quot;: [ # A list of weighted backend services to send traffic to when a route match
                     # occurs. The weights determine the fraction of traffic that flows to
@@ -11666,7 +11974,7 @@ Returns:
                         # The value must be from 0.0 to 100.0 inclusive.
                   },
                 },
-                &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map’s route. Available only for
+                &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map&#x27;s route. Available only for
                     # Global EXTERNAL_MANAGED load balancer schemes.
                     # Either Cloud CDN must be enabled on the backend service or backend bucket
                     # serving the route, or cache policy must be configured on the same route
@@ -11847,6 +12155,34 @@ Returns:
                       # required.
                       #
                       # Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
+                  &quot;regexRewrite&quot;: { # The spec for modifying the path using a regular expression. # The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
+                    &quot;pathPattern&quot;: &quot;A String&quot;, # The regular expression used to match against the URL path.
+                        # It uses RE2 syntax with the following constraints:
+                        #
+                        #
+                        #      - Any single character operators
+                        #      - Groups are allowed to have only submatch operator inside
+                        #      - Groups are allowed only without any char repetition, e.g.
+                        #      .*
+                        #      - Any char repetition, e.g. .*, is
+                        #      only allowed to be used in a single regex together with:
+                        #
+                        #
+                        #             - Empty string operators
+                        #             - Other repetitions
+                        #             - Ranges
+                        #             - Repetitions of ranges
+                        #
+                        #
+                        #      - Ranges are only allowed to have:
+                        #
+                        #
+                        #             - Character range
+                        #             - Digits range
+                        #             - Symbols listed in characters allowed for ranges
+                    &quot;pathSubstitution&quot;: &quot;A String&quot;, # Required when path pattern is specified. Used to rewrite matching parts of
+                        # the path.
+                  },
                 },
                 &quot;weightedBackendServices&quot;: [ # A list of weighted backend services to send traffic to when a route match
                     # occurs. The weights determine the fraction of traffic that flows to
@@ -12580,7 +12916,7 @@ Args:
             # The value must be from 0.0 to 100.0 inclusive.
       },
     },
-    &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map’s route. Available only for
+    &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map&#x27;s route. Available only for
         # Global EXTERNAL_MANAGED load balancer schemes.
         # Either Cloud CDN must be enabled on the backend service or backend bucket
         # serving the route, or cache policy must be configured on the same route
@@ -12761,6 +13097,34 @@ Args:
           # required.
           #
           # Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
+      &quot;regexRewrite&quot;: { # The spec for modifying the path using a regular expression. # The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
+        &quot;pathPattern&quot;: &quot;A String&quot;, # The regular expression used to match against the URL path.
+            # It uses RE2 syntax with the following constraints:
+            #
+            #
+            #      - Any single character operators
+            #      - Groups are allowed to have only submatch operator inside
+            #      - Groups are allowed only without any char repetition, e.g.
+            #      .*
+            #      - Any char repetition, e.g. .*, is
+            #      only allowed to be used in a single regex together with:
+            #
+            #
+            #             - Empty string operators
+            #             - Other repetitions
+            #             - Ranges
+            #             - Repetitions of ranges
+            #
+            #
+            #      - Ranges are only allowed to have:
+            #
+            #
+            #             - Character range
+            #             - Digits range
+            #             - Symbols listed in characters allowed for ranges
+        &quot;pathSubstitution&quot;: &quot;A String&quot;, # Required when path pattern is specified. Used to rewrite matching parts of
+            # the path.
+      },
     },
     &quot;weightedBackendServices&quot;: [ # A list of weighted backend services to send traffic to when a route match
         # occurs. The weights determine the fraction of traffic that flows to
@@ -13437,7 +13801,7 @@ Args:
                 # The value must be from 0.0 to 100.0 inclusive.
           },
         },
-        &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map’s route. Available only for
+        &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map&#x27;s route. Available only for
             # Global EXTERNAL_MANAGED load balancer schemes.
             # Either Cloud CDN must be enabled on the backend service or backend bucket
             # serving the route, or cache policy must be configured on the same route
@@ -13618,6 +13982,34 @@ Args:
               # required.
               #
               # Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
+          &quot;regexRewrite&quot;: { # The spec for modifying the path using a regular expression. # The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
+            &quot;pathPattern&quot;: &quot;A String&quot;, # The regular expression used to match against the URL path.
+                # It uses RE2 syntax with the following constraints:
+                #
+                #
+                #      - Any single character operators
+                #      - Groups are allowed to have only submatch operator inside
+                #      - Groups are allowed only without any char repetition, e.g.
+                #      .*
+                #      - Any char repetition, e.g. .*, is
+                #      only allowed to be used in a single regex together with:
+                #
+                #
+                #             - Empty string operators
+                #             - Other repetitions
+                #             - Ranges
+                #             - Repetitions of ranges
+                #
+                #
+                #      - Ranges are only allowed to have:
+                #
+                #
+                #             - Character range
+                #             - Digits range
+                #             - Symbols listed in characters allowed for ranges
+            &quot;pathSubstitution&quot;: &quot;A String&quot;, # Required when path pattern is specified. Used to rewrite matching parts of
+                # the path.
+          },
         },
         &quot;weightedBackendServices&quot;: [ # A list of weighted backend services to send traffic to when a route match
             # occurs. The weights determine the fraction of traffic that flows to
@@ -14275,7 +14667,7 @@ Args:
                     # The value must be from 0.0 to 100.0 inclusive.
               },
             },
-            &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map’s route. Available only for
+            &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map&#x27;s route. Available only for
                 # Global EXTERNAL_MANAGED load balancer schemes.
                 # Either Cloud CDN must be enabled on the backend service or backend bucket
                 # serving the route, or cache policy must be configured on the same route
@@ -14456,6 +14848,34 @@ Args:
                   # required.
                   #
                   # Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
+              &quot;regexRewrite&quot;: { # The spec for modifying the path using a regular expression. # The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
+                &quot;pathPattern&quot;: &quot;A String&quot;, # The regular expression used to match against the URL path.
+                    # It uses RE2 syntax with the following constraints:
+                    #
+                    #
+                    #      - Any single character operators
+                    #      - Groups are allowed to have only submatch operator inside
+                    #      - Groups are allowed only without any char repetition, e.g.
+                    #      .*
+                    #      - Any char repetition, e.g. .*, is
+                    #      only allowed to be used in a single regex together with:
+                    #
+                    #
+                    #             - Empty string operators
+                    #             - Other repetitions
+                    #             - Ranges
+                    #             - Repetitions of ranges
+                    #
+                    #
+                    #      - Ranges are only allowed to have:
+                    #
+                    #
+                    #             - Character range
+                    #             - Digits range
+                    #             - Symbols listed in characters allowed for ranges
+                &quot;pathSubstitution&quot;: &quot;A String&quot;, # Required when path pattern is specified. Used to rewrite matching parts of
+                    # the path.
+              },
             },
             &quot;weightedBackendServices&quot;: [ # A list of weighted backend services to send traffic to when a route match
                 # occurs. The weights determine the fraction of traffic that flows to
@@ -15375,7 +15795,7 @@ Args:
                     # The value must be from 0.0 to 100.0 inclusive.
               },
             },
-            &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map’s route. Available only for
+            &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map&#x27;s route. Available only for
                 # Global EXTERNAL_MANAGED load balancer schemes.
                 # Either Cloud CDN must be enabled on the backend service or backend bucket
                 # serving the route, or cache policy must be configured on the same route
@@ -15556,6 +15976,34 @@ Args:
                   # required.
                   #
                   # Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
+              &quot;regexRewrite&quot;: { # The spec for modifying the path using a regular expression. # The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
+                &quot;pathPattern&quot;: &quot;A String&quot;, # The regular expression used to match against the URL path.
+                    # It uses RE2 syntax with the following constraints:
+                    #
+                    #
+                    #      - Any single character operators
+                    #      - Groups are allowed to have only submatch operator inside
+                    #      - Groups are allowed only without any char repetition, e.g.
+                    #      .*
+                    #      - Any char repetition, e.g. .*, is
+                    #      only allowed to be used in a single regex together with:
+                    #
+                    #
+                    #             - Empty string operators
+                    #             - Other repetitions
+                    #             - Ranges
+                    #             - Repetitions of ranges
+                    #
+                    #
+                    #      - Ranges are only allowed to have:
+                    #
+                    #
+                    #             - Character range
+                    #             - Digits range
+                    #             - Symbols listed in characters allowed for ranges
+                &quot;pathSubstitution&quot;: &quot;A String&quot;, # Required when path pattern is specified. Used to rewrite matching parts of
+                    # the path.
+              },
             },
             &quot;weightedBackendServices&quot;: [ # A list of weighted backend services to send traffic to when a route match
                 # occurs. The weights determine the fraction of traffic that flows to
@@ -15914,12 +16362,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -16547,7 +16995,7 @@ Args:
             # The value must be from 0.0 to 100.0 inclusive.
       },
     },
-    &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map’s route. Available only for
+    &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map&#x27;s route. Available only for
         # Global EXTERNAL_MANAGED load balancer schemes.
         # Either Cloud CDN must be enabled on the backend service or backend bucket
         # serving the route, or cache policy must be configured on the same route
@@ -16728,6 +17176,34 @@ Args:
           # required.
           #
           # Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
+      &quot;regexRewrite&quot;: { # The spec for modifying the path using a regular expression. # The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
+        &quot;pathPattern&quot;: &quot;A String&quot;, # The regular expression used to match against the URL path.
+            # It uses RE2 syntax with the following constraints:
+            #
+            #
+            #      - Any single character operators
+            #      - Groups are allowed to have only submatch operator inside
+            #      - Groups are allowed only without any char repetition, e.g.
+            #      .*
+            #      - Any char repetition, e.g. .*, is
+            #      only allowed to be used in a single regex together with:
+            #
+            #
+            #             - Empty string operators
+            #             - Other repetitions
+            #             - Ranges
+            #             - Repetitions of ranges
+            #
+            #
+            #      - Ranges are only allowed to have:
+            #
+            #
+            #             - Character range
+            #             - Digits range
+            #             - Symbols listed in characters allowed for ranges
+        &quot;pathSubstitution&quot;: &quot;A String&quot;, # Required when path pattern is specified. Used to rewrite matching parts of
+            # the path.
+      },
     },
     &quot;weightedBackendServices&quot;: [ # A list of weighted backend services to send traffic to when a route match
         # occurs. The weights determine the fraction of traffic that flows to
@@ -17404,7 +17880,7 @@ Args:
                 # The value must be from 0.0 to 100.0 inclusive.
           },
         },
-        &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map’s route. Available only for
+        &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map&#x27;s route. Available only for
             # Global EXTERNAL_MANAGED load balancer schemes.
             # Either Cloud CDN must be enabled on the backend service or backend bucket
             # serving the route, or cache policy must be configured on the same route
@@ -17585,6 +18061,34 @@ Args:
               # required.
               #
               # Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
+          &quot;regexRewrite&quot;: { # The spec for modifying the path using a regular expression. # The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
+            &quot;pathPattern&quot;: &quot;A String&quot;, # The regular expression used to match against the URL path.
+                # It uses RE2 syntax with the following constraints:
+                #
+                #
+                #      - Any single character operators
+                #      - Groups are allowed to have only submatch operator inside
+                #      - Groups are allowed only without any char repetition, e.g.
+                #      .*
+                #      - Any char repetition, e.g. .*, is
+                #      only allowed to be used in a single regex together with:
+                #
+                #
+                #             - Empty string operators
+                #             - Other repetitions
+                #             - Ranges
+                #             - Repetitions of ranges
+                #
+                #
+                #      - Ranges are only allowed to have:
+                #
+                #
+                #             - Character range
+                #             - Digits range
+                #             - Symbols listed in characters allowed for ranges
+            &quot;pathSubstitution&quot;: &quot;A String&quot;, # Required when path pattern is specified. Used to rewrite matching parts of
+                # the path.
+          },
         },
         &quot;weightedBackendServices&quot;: [ # A list of weighted backend services to send traffic to when a route match
             # occurs. The weights determine the fraction of traffic that flows to
@@ -18242,7 +18746,7 @@ Args:
                     # The value must be from 0.0 to 100.0 inclusive.
               },
             },
-            &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map’s route. Available only for
+            &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map&#x27;s route. Available only for
                 # Global EXTERNAL_MANAGED load balancer schemes.
                 # Either Cloud CDN must be enabled on the backend service or backend bucket
                 # serving the route, or cache policy must be configured on the same route
@@ -18423,6 +18927,34 @@ Args:
                   # required.
                   #
                   # Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
+              &quot;regexRewrite&quot;: { # The spec for modifying the path using a regular expression. # The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
+                &quot;pathPattern&quot;: &quot;A String&quot;, # The regular expression used to match against the URL path.
+                    # It uses RE2 syntax with the following constraints:
+                    #
+                    #
+                    #      - Any single character operators
+                    #      - Groups are allowed to have only submatch operator inside
+                    #      - Groups are allowed only without any char repetition, e.g.
+                    #      .*
+                    #      - Any char repetition, e.g. .*, is
+                    #      only allowed to be used in a single regex together with:
+                    #
+                    #
+                    #             - Empty string operators
+                    #             - Other repetitions
+                    #             - Ranges
+                    #             - Repetitions of ranges
+                    #
+                    #
+                    #      - Ranges are only allowed to have:
+                    #
+                    #
+                    #             - Character range
+                    #             - Digits range
+                    #             - Symbols listed in characters allowed for ranges
+                &quot;pathSubstitution&quot;: &quot;A String&quot;, # Required when path pattern is specified. Used to rewrite matching parts of
+                    # the path.
+              },
             },
             &quot;weightedBackendServices&quot;: [ # A list of weighted backend services to send traffic to when a route match
                 # occurs. The weights determine the fraction of traffic that flows to
@@ -19342,7 +19874,7 @@ Args:
                     # The value must be from 0.0 to 100.0 inclusive.
               },
             },
-            &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map’s route. Available only for
+            &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map&#x27;s route. Available only for
                 # Global EXTERNAL_MANAGED load balancer schemes.
                 # Either Cloud CDN must be enabled on the backend service or backend bucket
                 # serving the route, or cache policy must be configured on the same route
@@ -19523,6 +20055,34 @@ Args:
                   # required.
                   #
                   # Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
+              &quot;regexRewrite&quot;: { # The spec for modifying the path using a regular expression. # The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
+                &quot;pathPattern&quot;: &quot;A String&quot;, # The regular expression used to match against the URL path.
+                    # It uses RE2 syntax with the following constraints:
+                    #
+                    #
+                    #      - Any single character operators
+                    #      - Groups are allowed to have only submatch operator inside
+                    #      - Groups are allowed only without any char repetition, e.g.
+                    #      .*
+                    #      - Any char repetition, e.g. .*, is
+                    #      only allowed to be used in a single regex together with:
+                    #
+                    #
+                    #             - Empty string operators
+                    #             - Other repetitions
+                    #             - Ranges
+                    #             - Repetitions of ranges
+                    #
+                    #
+                    #      - Ranges are only allowed to have:
+                    #
+                    #
+                    #             - Character range
+                    #             - Digits range
+                    #             - Symbols listed in characters allowed for ranges
+                &quot;pathSubstitution&quot;: &quot;A String&quot;, # Required when path pattern is specified. Used to rewrite matching parts of
+                    # the path.
+              },
             },
             &quot;weightedBackendServices&quot;: [ # A list of weighted backend services to send traffic to when a route match
                 # occurs. The weights determine the fraction of traffic that flows to
@@ -19881,12 +20441,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -20482,7 +21042,7 @@ Args:
               # The value must be from 0.0 to 100.0 inclusive.
         },
       },
-      &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map’s route. Available only for
+      &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map&#x27;s route. Available only for
           # Global EXTERNAL_MANAGED load balancer schemes.
           # Either Cloud CDN must be enabled on the backend service or backend bucket
           # serving the route, or cache policy must be configured on the same route
@@ -20663,6 +21223,34 @@ Args:
             # required.
             #
             # Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
+        &quot;regexRewrite&quot;: { # The spec for modifying the path using a regular expression. # The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
+          &quot;pathPattern&quot;: &quot;A String&quot;, # The regular expression used to match against the URL path.
+              # It uses RE2 syntax with the following constraints:
+              #
+              #
+              #      - Any single character operators
+              #      - Groups are allowed to have only submatch operator inside
+              #      - Groups are allowed only without any char repetition, e.g.
+              #      .*
+              #      - Any char repetition, e.g. .*, is
+              #      only allowed to be used in a single regex together with:
+              #
+              #
+              #             - Empty string operators
+              #             - Other repetitions
+              #             - Ranges
+              #             - Repetitions of ranges
+              #
+              #
+              #      - Ranges are only allowed to have:
+              #
+              #
+              #             - Character range
+              #             - Digits range
+              #             - Symbols listed in characters allowed for ranges
+          &quot;pathSubstitution&quot;: &quot;A String&quot;, # Required when path pattern is specified. Used to rewrite matching parts of
+              # the path.
+        },
       },
       &quot;weightedBackendServices&quot;: [ # A list of weighted backend services to send traffic to when a route match
           # occurs. The weights determine the fraction of traffic that flows to
@@ -21339,7 +21927,7 @@ Args:
                   # The value must be from 0.0 to 100.0 inclusive.
             },
           },
-          &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map’s route. Available only for
+          &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map&#x27;s route. Available only for
               # Global EXTERNAL_MANAGED load balancer schemes.
               # Either Cloud CDN must be enabled on the backend service or backend bucket
               # serving the route, or cache policy must be configured on the same route
@@ -21520,6 +22108,34 @@ Args:
                 # required.
                 #
                 # Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
+            &quot;regexRewrite&quot;: { # The spec for modifying the path using a regular expression. # The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
+              &quot;pathPattern&quot;: &quot;A String&quot;, # The regular expression used to match against the URL path.
+                  # It uses RE2 syntax with the following constraints:
+                  #
+                  #
+                  #      - Any single character operators
+                  #      - Groups are allowed to have only submatch operator inside
+                  #      - Groups are allowed only without any char repetition, e.g.
+                  #      .*
+                  #      - Any char repetition, e.g. .*, is
+                  #      only allowed to be used in a single regex together with:
+                  #
+                  #
+                  #             - Empty string operators
+                  #             - Other repetitions
+                  #             - Ranges
+                  #             - Repetitions of ranges
+                  #
+                  #
+                  #      - Ranges are only allowed to have:
+                  #
+                  #
+                  #             - Character range
+                  #             - Digits range
+                  #             - Symbols listed in characters allowed for ranges
+              &quot;pathSubstitution&quot;: &quot;A String&quot;, # Required when path pattern is specified. Used to rewrite matching parts of
+                  # the path.
+            },
           },
           &quot;weightedBackendServices&quot;: [ # A list of weighted backend services to send traffic to when a route match
               # occurs. The weights determine the fraction of traffic that flows to
@@ -22177,7 +22793,7 @@ Args:
                       # The value must be from 0.0 to 100.0 inclusive.
                 },
               },
-              &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map’s route. Available only for
+              &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map&#x27;s route. Available only for
                   # Global EXTERNAL_MANAGED load balancer schemes.
                   # Either Cloud CDN must be enabled on the backend service or backend bucket
                   # serving the route, or cache policy must be configured on the same route
@@ -22358,6 +22974,34 @@ Args:
                     # required.
                     #
                     # Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
+                &quot;regexRewrite&quot;: { # The spec for modifying the path using a regular expression. # The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
+                  &quot;pathPattern&quot;: &quot;A String&quot;, # The regular expression used to match against the URL path.
+                      # It uses RE2 syntax with the following constraints:
+                      #
+                      #
+                      #      - Any single character operators
+                      #      - Groups are allowed to have only submatch operator inside
+                      #      - Groups are allowed only without any char repetition, e.g.
+                      #      .*
+                      #      - Any char repetition, e.g. .*, is
+                      #      only allowed to be used in a single regex together with:
+                      #
+                      #
+                      #             - Empty string operators
+                      #             - Other repetitions
+                      #             - Ranges
+                      #             - Repetitions of ranges
+                      #
+                      #
+                      #      - Ranges are only allowed to have:
+                      #
+                      #
+                      #             - Character range
+                      #             - Digits range
+                      #             - Symbols listed in characters allowed for ranges
+                  &quot;pathSubstitution&quot;: &quot;A String&quot;, # Required when path pattern is specified. Used to rewrite matching parts of
+                      # the path.
+                },
               },
               &quot;weightedBackendServices&quot;: [ # A list of weighted backend services to send traffic to when a route match
                   # occurs. The weights determine the fraction of traffic that flows to
@@ -23277,7 +23921,7 @@ Args:
                       # The value must be from 0.0 to 100.0 inclusive.
                 },
               },
-              &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map’s route. Available only for
+              &quot;imageOptimizationPolicy&quot;: { # The configuration for Cloud CDN&#x27;s image optimization feature. This feature # Image optimization policy for this URL Map&#x27;s route. Available only for
                   # Global EXTERNAL_MANAGED load balancer schemes.
                   # Either Cloud CDN must be enabled on the backend service or backend bucket
                   # serving the route, or cache policy must be configured on the same route
@@ -23458,6 +24102,34 @@ Args:
                     # required.
                     #
                     # Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
+                &quot;regexRewrite&quot;: { # The spec for modifying the path using a regular expression. # The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
+                  &quot;pathPattern&quot;: &quot;A String&quot;, # The regular expression used to match against the URL path.
+                      # It uses RE2 syntax with the following constraints:
+                      #
+                      #
+                      #      - Any single character operators
+                      #      - Groups are allowed to have only submatch operator inside
+                      #      - Groups are allowed only without any char repetition, e.g.
+                      #      .*
+                      #      - Any char repetition, e.g. .*, is
+                      #      only allowed to be used in a single regex together with:
+                      #
+                      #
+                      #             - Empty string operators
+                      #             - Other repetitions
+                      #             - Ranges
+                      #             - Repetitions of ranges
+                      #
+                      #
+                      #      - Ranges are only allowed to have:
+                      #
+                      #
+                      #             - Character range
+                      #             - Digits range
+                      #             - Symbols listed in characters allowed for ranges
+                  &quot;pathSubstitution&quot;: &quot;A String&quot;, # Required when path pattern is specified. Used to rewrite matching parts of
+                      # the path.
+                },
               },
               &quot;weightedBackendServices&quot;: [ # A list of weighted backend services to send traffic to when a route match
                   # occurs. The weights determine the fraction of traffic that flows to

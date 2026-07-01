@@ -72,7 +72,7 @@ h1, h2, h3 {
 
 </style>
 
-<h1><a href="aiplatform_v1.html">Vertex AI API</a> . <a href="aiplatform_v1.reasoningEngines.html">reasoningEngines</a></h1>
+<h1><a href="aiplatform_v1.html">Agent Platform API</a> . <a href="aiplatform_v1.reasoningEngines.html">reasoningEngines</a></h1>
 <h2>Instance Methods</h2>
 <p class="toc_element">
   <code><a href="aiplatform_v1.reasoningEngines.memories.html">memories()</a></code>
@@ -110,6 +110,12 @@ h1, h2, h3 {
 <p class="firstline">Returns the sessions Resource.</p>
 
 <p class="toc_element">
+  <code><a href="#asyncQuery">asyncQuery(name, body=None, x__xgafv=None)</a></code></p>
+<p class="firstline">Async query using a reasoning engine.</p>
+<p class="toc_element">
+  <code><a href="#cancelAsyncQuery">cancelAsyncQuery(name, body=None, x__xgafv=None)</a></code></p>
+<p class="firstline">Cancels an AsyncQueryReasoningEngine operation.</p>
+<p class="toc_element">
   <code><a href="#close">close()</a></code></p>
 <p class="firstline">Close httplib2 connections.</p>
 <p class="toc_element">
@@ -140,6 +146,74 @@ h1, h2, h3 {
   <code><a href="#streamQuery">streamQuery(name, body=None, x__xgafv=None)</a></code></p>
 <p class="firstline">Streams queries using a reasoning engine.</p>
 <h3>Method Details</h3>
+<div class="method">
+    <code class="details" id="asyncQuery">asyncQuery(name, body=None, x__xgafv=None)</code>
+  <pre>Async query using a reasoning engine.
+
+Args:
+  name: string, Required. The name of the ReasoningEngine resource to use. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}` (required)
+  body: object, The request body.
+    The object takes the form of:
+
+{ # Request message for ReasoningEngineExecutionService.AsyncQueryReasoningEngine.
+  &quot;inputGcsUri&quot;: &quot;A String&quot;, # Optional. Input Cloud Storage URI for the Async query. If you are not bringing your own container (BYOC), the content of the file should be a JSON object with an `input` field matching the `input` field of `QueryReasoningEngineRequest` (e.g. `{ &quot;input&quot;: { &quot;user_id&quot;: &quot;hello&quot;, &quot;message&quot;:&quot;$QUERY&quot;} }`). For BYOC, the content of the file depends on the the agent application.
+  &quot;outputGcsUri&quot;: &quot;A String&quot;, # Optional. Output Cloud Storage URI for the Async query. This contains the final response of the query.
+}
+
+  x__xgafv: string, V1 error format.
+    Allowed values
+      1 - v1 error format
+      2 - v2 error format
+
+Returns:
+  An object of the form:
+
+    { # This resource represents a long-running operation that is the result of a network API call.
+  &quot;done&quot;: True or False, # If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
+  &quot;error&quot;: { # The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors). # The error result of the operation in case of failure or cancellation.
+    &quot;code&quot;: 42, # The status code, which should be an enum value of google.rpc.Code.
+    &quot;details&quot;: [ # A list of messages that carry the error details. There is a common set of message types for APIs to use.
+      {
+        &quot;a_key&quot;: &quot;&quot;, # Properties of the object. Contains field @type with type URL.
+      },
+    ],
+    &quot;message&quot;: &quot;A String&quot;, # A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
+  },
+  &quot;metadata&quot;: { # Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
+    &quot;a_key&quot;: &quot;&quot;, # Properties of the object. Contains field @type with type URL.
+  },
+  &quot;name&quot;: &quot;A String&quot;, # The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+  &quot;response&quot;: { # The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+    &quot;a_key&quot;: &quot;&quot;, # Properties of the object. Contains field @type with type URL.
+  },
+}</pre>
+</div>
+
+<div class="method">
+    <code class="details" id="cancelAsyncQuery">cancelAsyncQuery(name, body=None, x__xgafv=None)</code>
+  <pre>Cancels an AsyncQueryReasoningEngine operation.
+
+Args:
+  name: string, Required. The name of the ReasoningEngine resource to use. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}` (required)
+  body: object, The request body.
+    The object takes the form of:
+
+{ # Request message for ReasoningEngineExecutionService.CancelAsyncQueryReasoningEngine.
+  &quot;operationName&quot;: &quot;A String&quot;, # Required. The name of the longrunning operation returned from AsyncQueryReasoningEngine. Format: `projects/{project}/locations/{location}/operations/{operation}`
+}
+
+  x__xgafv: string, V1 error format.
+    Allowed values
+      1 - v1 error format
+      2 - v2 error format
+
+Returns:
+  An object of the form:
+
+    { # Response message for ReasoningEngineExecutionService.CancelAsyncQueryReasoningEngine.
+}</pre>
+</div>
+
 <div class="method">
     <code class="details" id="close">close()</code>
   <pre>Close httplib2 connections.</pre>
@@ -321,6 +395,14 @@ Args:
       &quot;imageUri&quot;: &quot;A String&quot;, # Required. The Artifact Registry Docker image URI (e.g., us-central1-docker.pkg.dev/my-project/my-repo/my-image:tag) of the container image that is to be run on each worker replica.
     },
     &quot;deploymentSpec&quot;: { # The specification of a Reasoning Engine deployment. # Optional. The specification of a Reasoning Engine deployment.
+      &quot;agentGatewayConfig&quot;: { # Agent Gateway configuration for a Reasoning Engine deployment. # Optional. Agent Gateway configuration for the Reasoning Engine deployment.
+        &quot;agentToAnywhereConfig&quot;: { # Configuration for traffic originating from a Reasoning Engine. # Optional. Configuration for traffic originating from the Reasoning Engine. When unset, outgoing traffic is not routed through an Agent Gateway.
+          &quot;agentGateway&quot;: &quot;A String&quot;, # Required. The resource name of the Agent Gateway for outbound traffic. It must be set to a Google-managed gateway whose `governed_access_path` is `AGENT_TO_ANYWHERE`. Format: `projects/{project}/locations/{location}/agentGateways/{agent_gateway}`
+        },
+        &quot;clientToAgentConfig&quot;: { # Configuration for traffic targeting a Reasoning Engine. # Optional. Configuration for traffic targeting the Reasoning Engine. When unset, incoming traffic is not routed through an Agent Gateway.
+          &quot;agentGateway&quot;: &quot;A String&quot;, # Required. The resource name of the Agent Gateway to use for inbound traffic. It must be set to a Google-managed gateway whose `governed_access_path` is `CLIENT_TO_AGENT`. Format: `projects/{project}/locations/{location}/agentGateways/{agent_gateway}`
+        },
+      },
       &quot;containerConcurrency&quot;: 42, # Optional. Concurrency for each container and agent server. Recommended value: 2 * cpu + 1. Defaults to 9.
       &quot;env&quot;: [ # Optional. Environment variables to be set with the Reasoning Engine deployment. The environment variables can be updated through the UpdateReasoningEngine API.
         { # Represents an environment variable present in a Container or Python Module.
@@ -336,7 +418,7 @@ Args:
         &quot;maxSeconds&quot;: 42, # Optional. Specifies the maximum duration (in seconds) to keep the instance alive via this probe. Can be a maximum of 3600 seconds (1 hour).
       },
       &quot;maxInstances&quot;: 42, # Optional. The maximum number of application instances that can be launched to handle increased traffic. Defaults to 100. Range: [1, 1000]. If VPC-SC or PSC-I is enabled, the acceptable range is [1, 100].
-      &quot;minInstances&quot;: 42, # Optional. The minimum number of application instances that will be kept running at all times. Defaults to 1. Range: [0, 10].
+      &quot;minInstances&quot;: 42, # Optional. The minimum number of application instances that will be kept running at all times. Defaults to 1. Range: [0, 75].
       &quot;pscInterfaceConfig&quot;: { # Configuration for PSC-I. # Optional. Configuration for PSC-I.
         &quot;dnsPeeringConfigs&quot;: [ # Optional. DNS peering configurations. When specified, Vertex AI will attempt to configure DNS peering zones in the tenant project VPC to resolve the specified domains using the target network&#x27;s Cloud DNS. The user must grant the dns.peer role to the Vertex AI Service Agent on the target project.
           { # DNS peering configuration. These configurations are used to create DNS peering zones in the Vertex tenant project VPC, enabling resolution of records within the specified domain hosted in the target network&#x27;s Cloud DNS.
@@ -365,7 +447,7 @@ Args:
     &quot;packageSpec&quot;: { # User-provided package specification, containing pickled object and package requirements. # Optional. User provided package spec of the ReasoningEngine. Ignored when users directly specify a deployment image through `deployment_spec.first_party_image_override`, but keeping the field_behavior to avoid introducing breaking changes. The `deployment_source` field should not be set if `package_spec` is specified.
       &quot;dependencyFilesGcsUri&quot;: &quot;A String&quot;, # Optional. The Cloud Storage URI of the dependency files in tar.gz format.
       &quot;pickleObjectGcsUri&quot;: &quot;A String&quot;, # Optional. The Cloud Storage URI of the pickled python object.
-      &quot;pythonVersion&quot;: &quot;A String&quot;, # Optional. The Python version. Supported values are 3.9, 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, the default value is 3.10.
+      &quot;pythonVersion&quot;: &quot;A String&quot;, # Optional. The Python version. Supported values are 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, the default value is 3.10.
       &quot;requirementsGcsUri&quot;: &quot;A String&quot;, # Optional. The Cloud Storage URI of the `requirements.txt` file
     },
     &quot;serviceAccount&quot;: &quot;A String&quot;, # Optional. The service account that the Reasoning Engine artifact runs as. It should have &quot;roles/storage.objectViewer&quot; for reading the user project&#x27;s Cloud Storage and &quot;roles/aiplatform.user&quot; for using Vertex extensions. If not specified, the Vertex AI Reasoning Engine Service Agent in the project will be used.
@@ -399,7 +481,7 @@ Args:
         &quot;entrypointModule&quot;: &quot;A String&quot;, # Optional. The Python module to load as the entrypoint, specified as a fully qualified module name. For example: path.to.agent. If not specified, defaults to &quot;agent&quot;. The project root will be added to Python sys.path, allowing imports to be specified relative to the root. This field should not be set if the source is `agent_config_source`.
         &quot;entrypointObject&quot;: &quot;A String&quot;, # Optional. The name of the callable object within the `entrypoint_module` to use as the application If not specified, defaults to &quot;root_agent&quot;. This field should not be set if the source is `agent_config_source`.
         &quot;requirementsFile&quot;: &quot;A String&quot;, # Optional. The path to the requirements file, relative to the source root. If not specified, defaults to &quot;requirements.txt&quot;.
-        &quot;version&quot;: &quot;A String&quot;, # Optional. The version of Python to use. Support version includes 3.9, 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, default value is 3.10.
+        &quot;version&quot;: &quot;A String&quot;, # Optional. The version of Python to use. Supported versions include 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, default value is 3.10.
       },
     },
   },
@@ -700,6 +782,14 @@ Returns:
       &quot;imageUri&quot;: &quot;A String&quot;, # Required. The Artifact Registry Docker image URI (e.g., us-central1-docker.pkg.dev/my-project/my-repo/my-image:tag) of the container image that is to be run on each worker replica.
     },
     &quot;deploymentSpec&quot;: { # The specification of a Reasoning Engine deployment. # Optional. The specification of a Reasoning Engine deployment.
+      &quot;agentGatewayConfig&quot;: { # Agent Gateway configuration for a Reasoning Engine deployment. # Optional. Agent Gateway configuration for the Reasoning Engine deployment.
+        &quot;agentToAnywhereConfig&quot;: { # Configuration for traffic originating from a Reasoning Engine. # Optional. Configuration for traffic originating from the Reasoning Engine. When unset, outgoing traffic is not routed through an Agent Gateway.
+          &quot;agentGateway&quot;: &quot;A String&quot;, # Required. The resource name of the Agent Gateway for outbound traffic. It must be set to a Google-managed gateway whose `governed_access_path` is `AGENT_TO_ANYWHERE`. Format: `projects/{project}/locations/{location}/agentGateways/{agent_gateway}`
+        },
+        &quot;clientToAgentConfig&quot;: { # Configuration for traffic targeting a Reasoning Engine. # Optional. Configuration for traffic targeting the Reasoning Engine. When unset, incoming traffic is not routed through an Agent Gateway.
+          &quot;agentGateway&quot;: &quot;A String&quot;, # Required. The resource name of the Agent Gateway to use for inbound traffic. It must be set to a Google-managed gateway whose `governed_access_path` is `CLIENT_TO_AGENT`. Format: `projects/{project}/locations/{location}/agentGateways/{agent_gateway}`
+        },
+      },
       &quot;containerConcurrency&quot;: 42, # Optional. Concurrency for each container and agent server. Recommended value: 2 * cpu + 1. Defaults to 9.
       &quot;env&quot;: [ # Optional. Environment variables to be set with the Reasoning Engine deployment. The environment variables can be updated through the UpdateReasoningEngine API.
         { # Represents an environment variable present in a Container or Python Module.
@@ -715,7 +805,7 @@ Returns:
         &quot;maxSeconds&quot;: 42, # Optional. Specifies the maximum duration (in seconds) to keep the instance alive via this probe. Can be a maximum of 3600 seconds (1 hour).
       },
       &quot;maxInstances&quot;: 42, # Optional. The maximum number of application instances that can be launched to handle increased traffic. Defaults to 100. Range: [1, 1000]. If VPC-SC or PSC-I is enabled, the acceptable range is [1, 100].
-      &quot;minInstances&quot;: 42, # Optional. The minimum number of application instances that will be kept running at all times. Defaults to 1. Range: [0, 10].
+      &quot;minInstances&quot;: 42, # Optional. The minimum number of application instances that will be kept running at all times. Defaults to 1. Range: [0, 75].
       &quot;pscInterfaceConfig&quot;: { # Configuration for PSC-I. # Optional. Configuration for PSC-I.
         &quot;dnsPeeringConfigs&quot;: [ # Optional. DNS peering configurations. When specified, Vertex AI will attempt to configure DNS peering zones in the tenant project VPC to resolve the specified domains using the target network&#x27;s Cloud DNS. The user must grant the dns.peer role to the Vertex AI Service Agent on the target project.
           { # DNS peering configuration. These configurations are used to create DNS peering zones in the Vertex tenant project VPC, enabling resolution of records within the specified domain hosted in the target network&#x27;s Cloud DNS.
@@ -744,7 +834,7 @@ Returns:
     &quot;packageSpec&quot;: { # User-provided package specification, containing pickled object and package requirements. # Optional. User provided package spec of the ReasoningEngine. Ignored when users directly specify a deployment image through `deployment_spec.first_party_image_override`, but keeping the field_behavior to avoid introducing breaking changes. The `deployment_source` field should not be set if `package_spec` is specified.
       &quot;dependencyFilesGcsUri&quot;: &quot;A String&quot;, # Optional. The Cloud Storage URI of the dependency files in tar.gz format.
       &quot;pickleObjectGcsUri&quot;: &quot;A String&quot;, # Optional. The Cloud Storage URI of the pickled python object.
-      &quot;pythonVersion&quot;: &quot;A String&quot;, # Optional. The Python version. Supported values are 3.9, 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, the default value is 3.10.
+      &quot;pythonVersion&quot;: &quot;A String&quot;, # Optional. The Python version. Supported values are 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, the default value is 3.10.
       &quot;requirementsGcsUri&quot;: &quot;A String&quot;, # Optional. The Cloud Storage URI of the `requirements.txt` file
     },
     &quot;serviceAccount&quot;: &quot;A String&quot;, # Optional. The service account that the Reasoning Engine artifact runs as. It should have &quot;roles/storage.objectViewer&quot; for reading the user project&#x27;s Cloud Storage and &quot;roles/aiplatform.user&quot; for using Vertex extensions. If not specified, the Vertex AI Reasoning Engine Service Agent in the project will be used.
@@ -778,7 +868,7 @@ Returns:
         &quot;entrypointModule&quot;: &quot;A String&quot;, # Optional. The Python module to load as the entrypoint, specified as a fully qualified module name. For example: path.to.agent. If not specified, defaults to &quot;agent&quot;. The project root will be added to Python sys.path, allowing imports to be specified relative to the root. This field should not be set if the source is `agent_config_source`.
         &quot;entrypointObject&quot;: &quot;A String&quot;, # Optional. The name of the callable object within the `entrypoint_module` to use as the application If not specified, defaults to &quot;root_agent&quot;. This field should not be set if the source is `agent_config_source`.
         &quot;requirementsFile&quot;: &quot;A String&quot;, # Optional. The path to the requirements file, relative to the source root. If not specified, defaults to &quot;requirements.txt&quot;.
-        &quot;version&quot;: &quot;A String&quot;, # Optional. The version of Python to use. Support version includes 3.9, 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, default value is 3.10.
+        &quot;version&quot;: &quot;A String&quot;, # Optional. The version of Python to use. Supported versions include 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, default value is 3.10.
       },
     },
   },
@@ -974,6 +1064,14 @@ Returns:
           &quot;imageUri&quot;: &quot;A String&quot;, # Required. The Artifact Registry Docker image URI (e.g., us-central1-docker.pkg.dev/my-project/my-repo/my-image:tag) of the container image that is to be run on each worker replica.
         },
         &quot;deploymentSpec&quot;: { # The specification of a Reasoning Engine deployment. # Optional. The specification of a Reasoning Engine deployment.
+          &quot;agentGatewayConfig&quot;: { # Agent Gateway configuration for a Reasoning Engine deployment. # Optional. Agent Gateway configuration for the Reasoning Engine deployment.
+            &quot;agentToAnywhereConfig&quot;: { # Configuration for traffic originating from a Reasoning Engine. # Optional. Configuration for traffic originating from the Reasoning Engine. When unset, outgoing traffic is not routed through an Agent Gateway.
+              &quot;agentGateway&quot;: &quot;A String&quot;, # Required. The resource name of the Agent Gateway for outbound traffic. It must be set to a Google-managed gateway whose `governed_access_path` is `AGENT_TO_ANYWHERE`. Format: `projects/{project}/locations/{location}/agentGateways/{agent_gateway}`
+            },
+            &quot;clientToAgentConfig&quot;: { # Configuration for traffic targeting a Reasoning Engine. # Optional. Configuration for traffic targeting the Reasoning Engine. When unset, incoming traffic is not routed through an Agent Gateway.
+              &quot;agentGateway&quot;: &quot;A String&quot;, # Required. The resource name of the Agent Gateway to use for inbound traffic. It must be set to a Google-managed gateway whose `governed_access_path` is `CLIENT_TO_AGENT`. Format: `projects/{project}/locations/{location}/agentGateways/{agent_gateway}`
+            },
+          },
           &quot;containerConcurrency&quot;: 42, # Optional. Concurrency for each container and agent server. Recommended value: 2 * cpu + 1. Defaults to 9.
           &quot;env&quot;: [ # Optional. Environment variables to be set with the Reasoning Engine deployment. The environment variables can be updated through the UpdateReasoningEngine API.
             { # Represents an environment variable present in a Container or Python Module.
@@ -989,7 +1087,7 @@ Returns:
             &quot;maxSeconds&quot;: 42, # Optional. Specifies the maximum duration (in seconds) to keep the instance alive via this probe. Can be a maximum of 3600 seconds (1 hour).
           },
           &quot;maxInstances&quot;: 42, # Optional. The maximum number of application instances that can be launched to handle increased traffic. Defaults to 100. Range: [1, 1000]. If VPC-SC or PSC-I is enabled, the acceptable range is [1, 100].
-          &quot;minInstances&quot;: 42, # Optional. The minimum number of application instances that will be kept running at all times. Defaults to 1. Range: [0, 10].
+          &quot;minInstances&quot;: 42, # Optional. The minimum number of application instances that will be kept running at all times. Defaults to 1. Range: [0, 75].
           &quot;pscInterfaceConfig&quot;: { # Configuration for PSC-I. # Optional. Configuration for PSC-I.
             &quot;dnsPeeringConfigs&quot;: [ # Optional. DNS peering configurations. When specified, Vertex AI will attempt to configure DNS peering zones in the tenant project VPC to resolve the specified domains using the target network&#x27;s Cloud DNS. The user must grant the dns.peer role to the Vertex AI Service Agent on the target project.
               { # DNS peering configuration. These configurations are used to create DNS peering zones in the Vertex tenant project VPC, enabling resolution of records within the specified domain hosted in the target network&#x27;s Cloud DNS.
@@ -1018,7 +1116,7 @@ Returns:
         &quot;packageSpec&quot;: { # User-provided package specification, containing pickled object and package requirements. # Optional. User provided package spec of the ReasoningEngine. Ignored when users directly specify a deployment image through `deployment_spec.first_party_image_override`, but keeping the field_behavior to avoid introducing breaking changes. The `deployment_source` field should not be set if `package_spec` is specified.
           &quot;dependencyFilesGcsUri&quot;: &quot;A String&quot;, # Optional. The Cloud Storage URI of the dependency files in tar.gz format.
           &quot;pickleObjectGcsUri&quot;: &quot;A String&quot;, # Optional. The Cloud Storage URI of the pickled python object.
-          &quot;pythonVersion&quot;: &quot;A String&quot;, # Optional. The Python version. Supported values are 3.9, 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, the default value is 3.10.
+          &quot;pythonVersion&quot;: &quot;A String&quot;, # Optional. The Python version. Supported values are 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, the default value is 3.10.
           &quot;requirementsGcsUri&quot;: &quot;A String&quot;, # Optional. The Cloud Storage URI of the `requirements.txt` file
         },
         &quot;serviceAccount&quot;: &quot;A String&quot;, # Optional. The service account that the Reasoning Engine artifact runs as. It should have &quot;roles/storage.objectViewer&quot; for reading the user project&#x27;s Cloud Storage and &quot;roles/aiplatform.user&quot; for using Vertex extensions. If not specified, the Vertex AI Reasoning Engine Service Agent in the project will be used.
@@ -1052,7 +1150,7 @@ Returns:
             &quot;entrypointModule&quot;: &quot;A String&quot;, # Optional. The Python module to load as the entrypoint, specified as a fully qualified module name. For example: path.to.agent. If not specified, defaults to &quot;agent&quot;. The project root will be added to Python sys.path, allowing imports to be specified relative to the root. This field should not be set if the source is `agent_config_source`.
             &quot;entrypointObject&quot;: &quot;A String&quot;, # Optional. The name of the callable object within the `entrypoint_module` to use as the application If not specified, defaults to &quot;root_agent&quot;. This field should not be set if the source is `agent_config_source`.
             &quot;requirementsFile&quot;: &quot;A String&quot;, # Optional. The path to the requirements file, relative to the source root. If not specified, defaults to &quot;requirements.txt&quot;.
-            &quot;version&quot;: &quot;A String&quot;, # Optional. The version of Python to use. Support version includes 3.9, 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, default value is 3.10.
+            &quot;version&quot;: &quot;A String&quot;, # Optional. The version of Python to use. Supported versions include 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, default value is 3.10.
           },
         },
       },
@@ -1253,6 +1351,14 @@ Args:
       &quot;imageUri&quot;: &quot;A String&quot;, # Required. The Artifact Registry Docker image URI (e.g., us-central1-docker.pkg.dev/my-project/my-repo/my-image:tag) of the container image that is to be run on each worker replica.
     },
     &quot;deploymentSpec&quot;: { # The specification of a Reasoning Engine deployment. # Optional. The specification of a Reasoning Engine deployment.
+      &quot;agentGatewayConfig&quot;: { # Agent Gateway configuration for a Reasoning Engine deployment. # Optional. Agent Gateway configuration for the Reasoning Engine deployment.
+        &quot;agentToAnywhereConfig&quot;: { # Configuration for traffic originating from a Reasoning Engine. # Optional. Configuration for traffic originating from the Reasoning Engine. When unset, outgoing traffic is not routed through an Agent Gateway.
+          &quot;agentGateway&quot;: &quot;A String&quot;, # Required. The resource name of the Agent Gateway for outbound traffic. It must be set to a Google-managed gateway whose `governed_access_path` is `AGENT_TO_ANYWHERE`. Format: `projects/{project}/locations/{location}/agentGateways/{agent_gateway}`
+        },
+        &quot;clientToAgentConfig&quot;: { # Configuration for traffic targeting a Reasoning Engine. # Optional. Configuration for traffic targeting the Reasoning Engine. When unset, incoming traffic is not routed through an Agent Gateway.
+          &quot;agentGateway&quot;: &quot;A String&quot;, # Required. The resource name of the Agent Gateway to use for inbound traffic. It must be set to a Google-managed gateway whose `governed_access_path` is `CLIENT_TO_AGENT`. Format: `projects/{project}/locations/{location}/agentGateways/{agent_gateway}`
+        },
+      },
       &quot;containerConcurrency&quot;: 42, # Optional. Concurrency for each container and agent server. Recommended value: 2 * cpu + 1. Defaults to 9.
       &quot;env&quot;: [ # Optional. Environment variables to be set with the Reasoning Engine deployment. The environment variables can be updated through the UpdateReasoningEngine API.
         { # Represents an environment variable present in a Container or Python Module.
@@ -1268,7 +1374,7 @@ Args:
         &quot;maxSeconds&quot;: 42, # Optional. Specifies the maximum duration (in seconds) to keep the instance alive via this probe. Can be a maximum of 3600 seconds (1 hour).
       },
       &quot;maxInstances&quot;: 42, # Optional. The maximum number of application instances that can be launched to handle increased traffic. Defaults to 100. Range: [1, 1000]. If VPC-SC or PSC-I is enabled, the acceptable range is [1, 100].
-      &quot;minInstances&quot;: 42, # Optional. The minimum number of application instances that will be kept running at all times. Defaults to 1. Range: [0, 10].
+      &quot;minInstances&quot;: 42, # Optional. The minimum number of application instances that will be kept running at all times. Defaults to 1. Range: [0, 75].
       &quot;pscInterfaceConfig&quot;: { # Configuration for PSC-I. # Optional. Configuration for PSC-I.
         &quot;dnsPeeringConfigs&quot;: [ # Optional. DNS peering configurations. When specified, Vertex AI will attempt to configure DNS peering zones in the tenant project VPC to resolve the specified domains using the target network&#x27;s Cloud DNS. The user must grant the dns.peer role to the Vertex AI Service Agent on the target project.
           { # DNS peering configuration. These configurations are used to create DNS peering zones in the Vertex tenant project VPC, enabling resolution of records within the specified domain hosted in the target network&#x27;s Cloud DNS.
@@ -1297,7 +1403,7 @@ Args:
     &quot;packageSpec&quot;: { # User-provided package specification, containing pickled object and package requirements. # Optional. User provided package spec of the ReasoningEngine. Ignored when users directly specify a deployment image through `deployment_spec.first_party_image_override`, but keeping the field_behavior to avoid introducing breaking changes. The `deployment_source` field should not be set if `package_spec` is specified.
       &quot;dependencyFilesGcsUri&quot;: &quot;A String&quot;, # Optional. The Cloud Storage URI of the dependency files in tar.gz format.
       &quot;pickleObjectGcsUri&quot;: &quot;A String&quot;, # Optional. The Cloud Storage URI of the pickled python object.
-      &quot;pythonVersion&quot;: &quot;A String&quot;, # Optional. The Python version. Supported values are 3.9, 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, the default value is 3.10.
+      &quot;pythonVersion&quot;: &quot;A String&quot;, # Optional. The Python version. Supported values are 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, the default value is 3.10.
       &quot;requirementsGcsUri&quot;: &quot;A String&quot;, # Optional. The Cloud Storage URI of the `requirements.txt` file
     },
     &quot;serviceAccount&quot;: &quot;A String&quot;, # Optional. The service account that the Reasoning Engine artifact runs as. It should have &quot;roles/storage.objectViewer&quot; for reading the user project&#x27;s Cloud Storage and &quot;roles/aiplatform.user&quot; for using Vertex extensions. If not specified, the Vertex AI Reasoning Engine Service Agent in the project will be used.
@@ -1331,7 +1437,7 @@ Args:
         &quot;entrypointModule&quot;: &quot;A String&quot;, # Optional. The Python module to load as the entrypoint, specified as a fully qualified module name. For example: path.to.agent. If not specified, defaults to &quot;agent&quot;. The project root will be added to Python sys.path, allowing imports to be specified relative to the root. This field should not be set if the source is `agent_config_source`.
         &quot;entrypointObject&quot;: &quot;A String&quot;, # Optional. The name of the callable object within the `entrypoint_module` to use as the application If not specified, defaults to &quot;root_agent&quot;. This field should not be set if the source is `agent_config_source`.
         &quot;requirementsFile&quot;: &quot;A String&quot;, # Optional. The path to the requirements file, relative to the source root. If not specified, defaults to &quot;requirements.txt&quot;.
-        &quot;version&quot;: &quot;A String&quot;, # Optional. The version of Python to use. Support version includes 3.9, 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, default value is 3.10.
+        &quot;version&quot;: &quot;A String&quot;, # Optional. The version of Python to use. Supported versions include 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, default value is 3.10.
       },
     },
   },

@@ -123,6 +123,7 @@ Args:
     &quot;A String&quot;,
   ],
   &quot;name&quot;: &quot;A String&quot;, # Immutable. Fully qualified name `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/*`
+  &quot;pendingAsyncAssistOperationId&quot;: &quot;A String&quot;, # Output only. Full resource name of an in-progress AsyncAssist operation for this session, e.g. `projects/*/locations/*/collections/*/engines/*/sessions/*/operations/*`. Set when the operation starts and cleared when it finishes.
   &quot;startTime&quot;: &quot;A String&quot;, # Output only. The time the session started.
   &quot;state&quot;: &quot;A String&quot;, # The state of the session.
   &quot;turns&quot;: [ # Turns.
@@ -351,10 +352,12 @@ Args:
               &quot;textGroundingMetadata&quot;: { # Grounding details for text sources. # Metadata for grounding based on text sources.
                 &quot;references&quot;: [ # References for the grounded text.
                   { # Referenced content and related document metadata.
+                    &quot;codeSnippet&quot;: &quot;A String&quot;, # Chunk of code snippet from the referenced document.
                     &quot;content&quot;: &quot;A String&quot;, # Referenced text content.
                     &quot;documentMetadata&quot;: { # Document metadata. # Document metadata.
                       &quot;document&quot;: &quot;A String&quot;, # Document resource name.
                       &quot;domain&quot;: &quot;A String&quot;, # Domain name from the document URI. Note that the `uri` field may contain a URL that redirects to the actual website, in which case this will contain the domain name of the target site.
+                      &quot;language&quot;: &quot;A String&quot;,
                       &quot;mimeType&quot;: &quot;A String&quot;, # The mime type of the document. https://www.iana.org/assignments/media-types/media-types.xhtml.
                       &quot;pageIdentifier&quot;: &quot;A String&quot;, # Page identifier.
                       &quot;title&quot;: &quot;A String&quot;, # Title.
@@ -373,6 +376,14 @@ Args:
                     &quot;text&quot;: &quot;A String&quot;, # The text segment itself.
                   },
                 ],
+                &quot;visualSegments&quot;: [ # Grounding information for parts of the visual content.
+                  { # Grounding information for a visual segment.
+                    &quot;contentId&quot;: &quot;A String&quot;, # The content id of the visual segment. In order to display the citation of the visual element, this content_id needs to match with the `grounded_content.content_metadata.content_id` field.
+                    &quot;referenceIndices&quot;: [ # References for the visual segment.
+                      42,
+                    ],
+                  },
+                ],
               },
             },
             &quot;replyId&quot;: &quot;A String&quot;, # Output only. When set, uniquely identifies a reply within the `AssistAnswer` resource. During an AssistantService.StreamAssist call, multiple `Reply` messages with the same ID can occur within the response stream (across multiple StreamAssistResponse messages). These represent parts of a single `Reply` message in the final `AssistAnswer` resource.
@@ -380,7 +391,9 @@ Args:
         ],
         &quot;state&quot;: &quot;A String&quot;, # State of the answer generation.
       },
+      &quot;live&quot;: True or False, # Optional. Indicates whether this turn is a live turn.
       &quot;query&quot;: { # Defines a user inputed query. # Optional. The user query. May not be set if this turn is merely regenerating an answer to a different turn
+        &quot;createTime&quot;: &quot;A String&quot;, # Output only. The time at which the server accepted this query.
         &quot;parts&quot;: [ # Query content parts.
           { # Represents a part or the whole of a content, used to represent a query. A query can be made up of multiple parts.
             &quot;documentReference&quot;: { # Represents a document reference. # Other VAIS Document references.
@@ -441,6 +454,7 @@ Returns:
     &quot;A String&quot;,
   ],
   &quot;name&quot;: &quot;A String&quot;, # Immutable. Fully qualified name `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/*`
+  &quot;pendingAsyncAssistOperationId&quot;: &quot;A String&quot;, # Output only. Full resource name of an in-progress AsyncAssist operation for this session, e.g. `projects/*/locations/*/collections/*/engines/*/sessions/*/operations/*`. Set when the operation starts and cleared when it finishes.
   &quot;startTime&quot;: &quot;A String&quot;, # Output only. The time the session started.
   &quot;state&quot;: &quot;A String&quot;, # The state of the session.
   &quot;turns&quot;: [ # Turns.
@@ -669,10 +683,12 @@ Returns:
               &quot;textGroundingMetadata&quot;: { # Grounding details for text sources. # Metadata for grounding based on text sources.
                 &quot;references&quot;: [ # References for the grounded text.
                   { # Referenced content and related document metadata.
+                    &quot;codeSnippet&quot;: &quot;A String&quot;, # Chunk of code snippet from the referenced document.
                     &quot;content&quot;: &quot;A String&quot;, # Referenced text content.
                     &quot;documentMetadata&quot;: { # Document metadata. # Document metadata.
                       &quot;document&quot;: &quot;A String&quot;, # Document resource name.
                       &quot;domain&quot;: &quot;A String&quot;, # Domain name from the document URI. Note that the `uri` field may contain a URL that redirects to the actual website, in which case this will contain the domain name of the target site.
+                      &quot;language&quot;: &quot;A String&quot;,
                       &quot;mimeType&quot;: &quot;A String&quot;, # The mime type of the document. https://www.iana.org/assignments/media-types/media-types.xhtml.
                       &quot;pageIdentifier&quot;: &quot;A String&quot;, # Page identifier.
                       &quot;title&quot;: &quot;A String&quot;, # Title.
@@ -691,6 +707,14 @@ Returns:
                     &quot;text&quot;: &quot;A String&quot;, # The text segment itself.
                   },
                 ],
+                &quot;visualSegments&quot;: [ # Grounding information for parts of the visual content.
+                  { # Grounding information for a visual segment.
+                    &quot;contentId&quot;: &quot;A String&quot;, # The content id of the visual segment. In order to display the citation of the visual element, this content_id needs to match with the `grounded_content.content_metadata.content_id` field.
+                    &quot;referenceIndices&quot;: [ # References for the visual segment.
+                      42,
+                    ],
+                  },
+                ],
               },
             },
             &quot;replyId&quot;: &quot;A String&quot;, # Output only. When set, uniquely identifies a reply within the `AssistAnswer` resource. During an AssistantService.StreamAssist call, multiple `Reply` messages with the same ID can occur within the response stream (across multiple StreamAssistResponse messages). These represent parts of a single `Reply` message in the final `AssistAnswer` resource.
@@ -698,7 +722,9 @@ Returns:
         ],
         &quot;state&quot;: &quot;A String&quot;, # State of the answer generation.
       },
+      &quot;live&quot;: True or False, # Optional. Indicates whether this turn is a live turn.
       &quot;query&quot;: { # Defines a user inputed query. # Optional. The user query. May not be set if this turn is merely regenerating an answer to a different turn
+        &quot;createTime&quot;: &quot;A String&quot;, # Output only. The time at which the server accepted this query.
         &quot;parts&quot;: [ # Query content parts.
           { # Represents a part or the whole of a content, used to represent a query. A query can be made up of multiple parts.
             &quot;documentReference&quot;: { # Represents a document reference. # Other VAIS Document references.
@@ -784,6 +810,7 @@ Returns:
     &quot;A String&quot;,
   ],
   &quot;name&quot;: &quot;A String&quot;, # Immutable. Fully qualified name `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/*`
+  &quot;pendingAsyncAssistOperationId&quot;: &quot;A String&quot;, # Output only. Full resource name of an in-progress AsyncAssist operation for this session, e.g. `projects/*/locations/*/collections/*/engines/*/sessions/*/operations/*`. Set when the operation starts and cleared when it finishes.
   &quot;startTime&quot;: &quot;A String&quot;, # Output only. The time the session started.
   &quot;state&quot;: &quot;A String&quot;, # The state of the session.
   &quot;turns&quot;: [ # Turns.
@@ -1012,10 +1039,12 @@ Returns:
               &quot;textGroundingMetadata&quot;: { # Grounding details for text sources. # Metadata for grounding based on text sources.
                 &quot;references&quot;: [ # References for the grounded text.
                   { # Referenced content and related document metadata.
+                    &quot;codeSnippet&quot;: &quot;A String&quot;, # Chunk of code snippet from the referenced document.
                     &quot;content&quot;: &quot;A String&quot;, # Referenced text content.
                     &quot;documentMetadata&quot;: { # Document metadata. # Document metadata.
                       &quot;document&quot;: &quot;A String&quot;, # Document resource name.
                       &quot;domain&quot;: &quot;A String&quot;, # Domain name from the document URI. Note that the `uri` field may contain a URL that redirects to the actual website, in which case this will contain the domain name of the target site.
+                      &quot;language&quot;: &quot;A String&quot;,
                       &quot;mimeType&quot;: &quot;A String&quot;, # The mime type of the document. https://www.iana.org/assignments/media-types/media-types.xhtml.
                       &quot;pageIdentifier&quot;: &quot;A String&quot;, # Page identifier.
                       &quot;title&quot;: &quot;A String&quot;, # Title.
@@ -1034,6 +1063,14 @@ Returns:
                     &quot;text&quot;: &quot;A String&quot;, # The text segment itself.
                   },
                 ],
+                &quot;visualSegments&quot;: [ # Grounding information for parts of the visual content.
+                  { # Grounding information for a visual segment.
+                    &quot;contentId&quot;: &quot;A String&quot;, # The content id of the visual segment. In order to display the citation of the visual element, this content_id needs to match with the `grounded_content.content_metadata.content_id` field.
+                    &quot;referenceIndices&quot;: [ # References for the visual segment.
+                      42,
+                    ],
+                  },
+                ],
               },
             },
             &quot;replyId&quot;: &quot;A String&quot;, # Output only. When set, uniquely identifies a reply within the `AssistAnswer` resource. During an AssistantService.StreamAssist call, multiple `Reply` messages with the same ID can occur within the response stream (across multiple StreamAssistResponse messages). These represent parts of a single `Reply` message in the final `AssistAnswer` resource.
@@ -1041,7 +1078,9 @@ Returns:
         ],
         &quot;state&quot;: &quot;A String&quot;, # State of the answer generation.
       },
+      &quot;live&quot;: True or False, # Optional. Indicates whether this turn is a live turn.
       &quot;query&quot;: { # Defines a user inputed query. # Optional. The user query. May not be set if this turn is merely regenerating an answer to a different turn
+        &quot;createTime&quot;: &quot;A String&quot;, # Output only. The time at which the server accepted this query.
         &quot;parts&quot;: [ # Query content parts.
           { # Represents a part or the whole of a content, used to represent a query. A query can be made up of multiple parts.
             &quot;documentReference&quot;: { # Represents a document reference. # Other VAIS Document references.
@@ -1093,7 +1132,7 @@ Returns:
 Args:
   parent: string, Required. The data store resource name. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}` (required)
   filter: string, A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` * `collaborative_project` Examples: * `user_pseudo_id = some_id` * `display_name = &quot;some_name&quot;` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time &gt; &quot;1970-01-01T12:00:00Z&quot;` * `collaborative_project = &quot;projects/123/locations/global/collections/default_collection/engines/&quot; &quot;default_engine/collaborative_projects/cp1&quot;`
-  orderBy: string, A comma-separated list of fields to order by, sorted in ascending order. Use &quot;desc&quot; after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
+  orderBy: string, A comma-separated list of fields to order by, sorted in ascending order. Use &quot;desc&quot; after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` * `display_name` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
   pageSize: integer, Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
   pageToken: string, A page token, received from a previous `ListSessions` call. Provide this to retrieve the subsequent page.
   x__xgafv: string, V1 error format.
@@ -1115,6 +1154,7 @@ Returns:
         &quot;A String&quot;,
       ],
       &quot;name&quot;: &quot;A String&quot;, # Immutable. Fully qualified name `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/*`
+      &quot;pendingAsyncAssistOperationId&quot;: &quot;A String&quot;, # Output only. Full resource name of an in-progress AsyncAssist operation for this session, e.g. `projects/*/locations/*/collections/*/engines/*/sessions/*/operations/*`. Set when the operation starts and cleared when it finishes.
       &quot;startTime&quot;: &quot;A String&quot;, # Output only. The time the session started.
       &quot;state&quot;: &quot;A String&quot;, # The state of the session.
       &quot;turns&quot;: [ # Turns.
@@ -1343,10 +1383,12 @@ Returns:
                   &quot;textGroundingMetadata&quot;: { # Grounding details for text sources. # Metadata for grounding based on text sources.
                     &quot;references&quot;: [ # References for the grounded text.
                       { # Referenced content and related document metadata.
+                        &quot;codeSnippet&quot;: &quot;A String&quot;, # Chunk of code snippet from the referenced document.
                         &quot;content&quot;: &quot;A String&quot;, # Referenced text content.
                         &quot;documentMetadata&quot;: { # Document metadata. # Document metadata.
                           &quot;document&quot;: &quot;A String&quot;, # Document resource name.
                           &quot;domain&quot;: &quot;A String&quot;, # Domain name from the document URI. Note that the `uri` field may contain a URL that redirects to the actual website, in which case this will contain the domain name of the target site.
+                          &quot;language&quot;: &quot;A String&quot;,
                           &quot;mimeType&quot;: &quot;A String&quot;, # The mime type of the document. https://www.iana.org/assignments/media-types/media-types.xhtml.
                           &quot;pageIdentifier&quot;: &quot;A String&quot;, # Page identifier.
                           &quot;title&quot;: &quot;A String&quot;, # Title.
@@ -1365,6 +1407,14 @@ Returns:
                         &quot;text&quot;: &quot;A String&quot;, # The text segment itself.
                       },
                     ],
+                    &quot;visualSegments&quot;: [ # Grounding information for parts of the visual content.
+                      { # Grounding information for a visual segment.
+                        &quot;contentId&quot;: &quot;A String&quot;, # The content id of the visual segment. In order to display the citation of the visual element, this content_id needs to match with the `grounded_content.content_metadata.content_id` field.
+                        &quot;referenceIndices&quot;: [ # References for the visual segment.
+                          42,
+                        ],
+                      },
+                    ],
                   },
                 },
                 &quot;replyId&quot;: &quot;A String&quot;, # Output only. When set, uniquely identifies a reply within the `AssistAnswer` resource. During an AssistantService.StreamAssist call, multiple `Reply` messages with the same ID can occur within the response stream (across multiple StreamAssistResponse messages). These represent parts of a single `Reply` message in the final `AssistAnswer` resource.
@@ -1372,7 +1422,9 @@ Returns:
             ],
             &quot;state&quot;: &quot;A String&quot;, # State of the answer generation.
           },
+          &quot;live&quot;: True or False, # Optional. Indicates whether this turn is a live turn.
           &quot;query&quot;: { # Defines a user inputed query. # Optional. The user query. May not be set if this turn is merely regenerating an answer to a different turn
+            &quot;createTime&quot;: &quot;A String&quot;, # Output only. The time at which the server accepted this query.
             &quot;parts&quot;: [ # Query content parts.
               { # Represents a part or the whole of a content, used to represent a query. A query can be made up of multiple parts.
                 &quot;documentReference&quot;: { # Represents a document reference. # Other VAIS Document references.
@@ -1450,6 +1502,7 @@ Args:
     &quot;A String&quot;,
   ],
   &quot;name&quot;: &quot;A String&quot;, # Immutable. Fully qualified name `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/*`
+  &quot;pendingAsyncAssistOperationId&quot;: &quot;A String&quot;, # Output only. Full resource name of an in-progress AsyncAssist operation for this session, e.g. `projects/*/locations/*/collections/*/engines/*/sessions/*/operations/*`. Set when the operation starts and cleared when it finishes.
   &quot;startTime&quot;: &quot;A String&quot;, # Output only. The time the session started.
   &quot;state&quot;: &quot;A String&quot;, # The state of the session.
   &quot;turns&quot;: [ # Turns.
@@ -1678,10 +1731,12 @@ Args:
               &quot;textGroundingMetadata&quot;: { # Grounding details for text sources. # Metadata for grounding based on text sources.
                 &quot;references&quot;: [ # References for the grounded text.
                   { # Referenced content and related document metadata.
+                    &quot;codeSnippet&quot;: &quot;A String&quot;, # Chunk of code snippet from the referenced document.
                     &quot;content&quot;: &quot;A String&quot;, # Referenced text content.
                     &quot;documentMetadata&quot;: { # Document metadata. # Document metadata.
                       &quot;document&quot;: &quot;A String&quot;, # Document resource name.
                       &quot;domain&quot;: &quot;A String&quot;, # Domain name from the document URI. Note that the `uri` field may contain a URL that redirects to the actual website, in which case this will contain the domain name of the target site.
+                      &quot;language&quot;: &quot;A String&quot;,
                       &quot;mimeType&quot;: &quot;A String&quot;, # The mime type of the document. https://www.iana.org/assignments/media-types/media-types.xhtml.
                       &quot;pageIdentifier&quot;: &quot;A String&quot;, # Page identifier.
                       &quot;title&quot;: &quot;A String&quot;, # Title.
@@ -1700,6 +1755,14 @@ Args:
                     &quot;text&quot;: &quot;A String&quot;, # The text segment itself.
                   },
                 ],
+                &quot;visualSegments&quot;: [ # Grounding information for parts of the visual content.
+                  { # Grounding information for a visual segment.
+                    &quot;contentId&quot;: &quot;A String&quot;, # The content id of the visual segment. In order to display the citation of the visual element, this content_id needs to match with the `grounded_content.content_metadata.content_id` field.
+                    &quot;referenceIndices&quot;: [ # References for the visual segment.
+                      42,
+                    ],
+                  },
+                ],
               },
             },
             &quot;replyId&quot;: &quot;A String&quot;, # Output only. When set, uniquely identifies a reply within the `AssistAnswer` resource. During an AssistantService.StreamAssist call, multiple `Reply` messages with the same ID can occur within the response stream (across multiple StreamAssistResponse messages). These represent parts of a single `Reply` message in the final `AssistAnswer` resource.
@@ -1707,7 +1770,9 @@ Args:
         ],
         &quot;state&quot;: &quot;A String&quot;, # State of the answer generation.
       },
+      &quot;live&quot;: True or False, # Optional. Indicates whether this turn is a live turn.
       &quot;query&quot;: { # Defines a user inputed query. # Optional. The user query. May not be set if this turn is merely regenerating an answer to a different turn
+        &quot;createTime&quot;: &quot;A String&quot;, # Output only. The time at which the server accepted this query.
         &quot;parts&quot;: [ # Query content parts.
           { # Represents a part or the whole of a content, used to represent a query. A query can be made up of multiple parts.
             &quot;documentReference&quot;: { # Represents a document reference. # Other VAIS Document references.
@@ -1768,6 +1833,7 @@ Returns:
     &quot;A String&quot;,
   ],
   &quot;name&quot;: &quot;A String&quot;, # Immutable. Fully qualified name `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/*`
+  &quot;pendingAsyncAssistOperationId&quot;: &quot;A String&quot;, # Output only. Full resource name of an in-progress AsyncAssist operation for this session, e.g. `projects/*/locations/*/collections/*/engines/*/sessions/*/operations/*`. Set when the operation starts and cleared when it finishes.
   &quot;startTime&quot;: &quot;A String&quot;, # Output only. The time the session started.
   &quot;state&quot;: &quot;A String&quot;, # The state of the session.
   &quot;turns&quot;: [ # Turns.
@@ -1996,10 +2062,12 @@ Returns:
               &quot;textGroundingMetadata&quot;: { # Grounding details for text sources. # Metadata for grounding based on text sources.
                 &quot;references&quot;: [ # References for the grounded text.
                   { # Referenced content and related document metadata.
+                    &quot;codeSnippet&quot;: &quot;A String&quot;, # Chunk of code snippet from the referenced document.
                     &quot;content&quot;: &quot;A String&quot;, # Referenced text content.
                     &quot;documentMetadata&quot;: { # Document metadata. # Document metadata.
                       &quot;document&quot;: &quot;A String&quot;, # Document resource name.
                       &quot;domain&quot;: &quot;A String&quot;, # Domain name from the document URI. Note that the `uri` field may contain a URL that redirects to the actual website, in which case this will contain the domain name of the target site.
+                      &quot;language&quot;: &quot;A String&quot;,
                       &quot;mimeType&quot;: &quot;A String&quot;, # The mime type of the document. https://www.iana.org/assignments/media-types/media-types.xhtml.
                       &quot;pageIdentifier&quot;: &quot;A String&quot;, # Page identifier.
                       &quot;title&quot;: &quot;A String&quot;, # Title.
@@ -2018,6 +2086,14 @@ Returns:
                     &quot;text&quot;: &quot;A String&quot;, # The text segment itself.
                   },
                 ],
+                &quot;visualSegments&quot;: [ # Grounding information for parts of the visual content.
+                  { # Grounding information for a visual segment.
+                    &quot;contentId&quot;: &quot;A String&quot;, # The content id of the visual segment. In order to display the citation of the visual element, this content_id needs to match with the `grounded_content.content_metadata.content_id` field.
+                    &quot;referenceIndices&quot;: [ # References for the visual segment.
+                      42,
+                    ],
+                  },
+                ],
               },
             },
             &quot;replyId&quot;: &quot;A String&quot;, # Output only. When set, uniquely identifies a reply within the `AssistAnswer` resource. During an AssistantService.StreamAssist call, multiple `Reply` messages with the same ID can occur within the response stream (across multiple StreamAssistResponse messages). These represent parts of a single `Reply` message in the final `AssistAnswer` resource.
@@ -2025,7 +2101,9 @@ Returns:
         ],
         &quot;state&quot;: &quot;A String&quot;, # State of the answer generation.
       },
+      &quot;live&quot;: True or False, # Optional. Indicates whether this turn is a live turn.
       &quot;query&quot;: { # Defines a user inputed query. # Optional. The user query. May not be set if this turn is merely regenerating an answer to a different turn
+        &quot;createTime&quot;: &quot;A String&quot;, # Output only. The time at which the server accepted this query.
         &quot;parts&quot;: [ # Query content parts.
           { # Represents a part or the whole of a content, used to represent a query. A query can be made up of multiple parts.
             &quot;documentReference&quot;: { # Represents a document reference. # Other VAIS Document references.

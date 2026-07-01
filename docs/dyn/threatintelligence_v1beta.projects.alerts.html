@@ -143,7 +143,7 @@ Returns:
   An object of the form:
 
     { # Stateful object representing a group of Findings. Key feature to an Alert is that it expresses the user&#x27;s intent towards the findings of that group, even those that haven&#x27;t occurred yet.
-  &quot;aiSummary&quot;: &quot;A String&quot;, # Optional. AI summary of the finding.
+  &quot;aiSummary&quot;: &quot;A String&quot;, # Optional. AI summary of the alert.
   &quot;audit&quot;: { # Tracks basic CRUD facts. # Output only. Audit information for the alert.
     &quot;createTime&quot;: &quot;A String&quot;, # Output only. Time of creation.
     &quot;creator&quot;: &quot;A String&quot;, # Output only. Agent that created or updated the record, could be a UserId or a JobId.
@@ -158,20 +158,70 @@ Returns:
       &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
         &quot;A String&quot;,
       ],
-      &quot;severity&quot;: &quot;A String&quot;, # Required. Data Leak specific severity This will be the string representation of the DataLeakFindingDetail.Severityenum. (e.g., &quot;LOW&quot;, &quot;MEDIUM&quot;, &quot;HIGH&quot;, &quot;CRITICAL&quot;)
+      &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Data Leak alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
     },
     &quot;detailType&quot;: &quot;A String&quot;, # Output only. Name of the detail type. Will be set by the server during creation to the name of the field that is set in the detail union.
     &quot;initialAccessBroker&quot;: { # Captures the specific details of InitialAccessBroker (IAB) alert. # Initial Access Broker alert detail type.
       &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
         &quot;A String&quot;,
       ],
-      &quot;severity&quot;: &quot;A String&quot;, # Required. IAB specific severity
+      &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Initial Access Broker (IAB) alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
     },
     &quot;insiderThreat&quot;: { # Captures the specific details of InsiderThreat alert. # Insider Threat alert detail type.
       &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
         &quot;A String&quot;,
       ],
-      &quot;severity&quot;: &quot;A String&quot;, # Required. InsiderThreat specific severity This will be the string representation of the InsiderThreatFindingDetail.Severityenum. (e.g., &quot;LOW&quot;, &quot;MEDIUM&quot;, &quot;HIGH&quot;, &quot;CRITICAL&quot;)
+      &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Insider Threat alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
+    },
+    &quot;targetTechnology&quot;: { # Contains details for a technology watchlist alert. # Technology Watchlist alert detail type.
+      &quot;vulnerabilityMatch&quot;: { # Contains details about a vulnerability match. # Optional. The vulnerability match details.
+        &quot;associations&quot;: [ # Optional. Associated threat actors, malware, etc. This is embedded as a snapshot because the details of the association at the time of the vulnerability match are important for context and reporting.
+          { # Represents an association with a vulnerability.
+            &quot;id&quot;: &quot;A String&quot;, # Required. The ID of the association.
+            &quot;type&quot;: &quot;A String&quot;, # Required. The type of the association.
+          },
+        ],
+        &quot;collectionId&quot;: &quot;A String&quot;, # Required. The collection ID of the vulnerability. Ex: &quot;vulnerability--cve-2025-9876&quot;.
+        &quot;cveId&quot;: &quot;A String&quot;, # Required. The CVE ID of the vulnerability. Ex: &quot;CVE-2025-9876&quot;. See https://www.cve.org/ for more information.
+        &quot;cvss3Score&quot;: 3.14, # Required. The CVSS score of the vulnerability. Evaluates to CVSS v3 when available with a fallback to v2 and v4. Example: 6.4.
+        &quot;description&quot;: &quot;A String&quot;, # Required. A description of the vulnerability.
+        &quot;disclosureTime&quot;: &quot;A String&quot;, # Optional. The disclosure time of the vulnerability.
+        &quot;epssScore&quot;: 3.14, # Optional. The EPSS score, representing the probability of exploitation. Example: 0.87.
+        &quot;exploitationConsequences&quot;: [ # Optional. List of exploitation consequences for the vulnerability.
+          &quot;A String&quot;,
+        ],
+        &quot;exploitationState&quot;: &quot;A String&quot;, # Required. The exploitation state of the vulnerability.
+        &quot;exploitationVectors&quot;: [ # Optional. List of exploitation vectors for the vulnerability.
+          &quot;A String&quot;,
+        ],
+        &quot;matchedTechnologies&quot;: [ # Optional. The specific technologies from the configured watchlist that triggered the match. Ex: &quot;Apache Struts&quot;.
+          &quot;A String&quot;,
+        ],
+        &quot;priority&quot;: &quot;A String&quot;, # Optional. The priority level of the vulnerability data. Ex: &quot;P1&quot;.
+        &quot;productFixes&quot;: [ # Optional. List of product fixes for the vulnerability.
+          { # Contains details about a product fix.
+            &quot;displayName&quot;: &quot;A String&quot;, # Required. The name of the fix. Ex: &quot;Magento&quot;.
+            &quot;publishTime&quot;: &quot;A String&quot;, # Optional. The published time of the fix.
+            &quot;sourceId&quot;: &quot;A String&quot;, # Required. The source ID of the fix. Ex: &quot;APPSEC-1420&quot;.
+            &quot;uri&quot;: &quot;A String&quot;, # Optional. The URI of the fix.
+          },
+        ],
+        &quot;publicExploits&quot;: [ # Optional. List of public exploits.
+          { # Contains details about a public exploit.
+            &quot;exploitGrade&quot;: &quot;A String&quot;, # Optional. The grade of the exploit. Ex: &quot;non-weaponized&quot;.
+            &quot;exploitName&quot;: &quot;A String&quot;, # Required. The name of the exploit. Ex: &quot;Magentounauth.php.txt&quot;.
+            &quot;exploitReliability&quot;: &quot;A String&quot;, # Optional. The reliability of the exploit. Ex: &quot;Unreviewed&quot;.
+            &quot;releaseTime&quot;: &quot;A String&quot;, # Optional. The release time of the exploit.
+            &quot;sizeBytes&quot;: &quot;A String&quot;, # Optional. The size of the exploit.
+            &quot;uri&quot;: &quot;A String&quot;, # Optional. The URI of the exploit.
+          },
+        ],
+        &quot;publiclyAvailableExploit&quot;: True or False, # Output only. Whether a publicly available exploit exists.
+        &quot;riskRating&quot;: &quot;A String&quot;, # Required. The risk rating of the vulnerability.
+        &quot;technologies&quot;: [ # Required. All technologies affected by the vulnerability. Ex: &quot;Apache Struts&quot;.
+          &quot;A String&quot;,
+        ],
+      },
     },
   },
   &quot;displayName&quot;: &quot;A String&quot;, # Output only. A short title for the alert.
@@ -241,7 +291,7 @@ Returns:
   An object of the form:
 
     { # Stateful object representing a group of Findings. Key feature to an Alert is that it expresses the user&#x27;s intent towards the findings of that group, even those that haven&#x27;t occurred yet.
-  &quot;aiSummary&quot;: &quot;A String&quot;, # Optional. AI summary of the finding.
+  &quot;aiSummary&quot;: &quot;A String&quot;, # Optional. AI summary of the alert.
   &quot;audit&quot;: { # Tracks basic CRUD facts. # Output only. Audit information for the alert.
     &quot;createTime&quot;: &quot;A String&quot;, # Output only. Time of creation.
     &quot;creator&quot;: &quot;A String&quot;, # Output only. Agent that created or updated the record, could be a UserId or a JobId.
@@ -256,20 +306,70 @@ Returns:
       &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
         &quot;A String&quot;,
       ],
-      &quot;severity&quot;: &quot;A String&quot;, # Required. Data Leak specific severity This will be the string representation of the DataLeakFindingDetail.Severityenum. (e.g., &quot;LOW&quot;, &quot;MEDIUM&quot;, &quot;HIGH&quot;, &quot;CRITICAL&quot;)
+      &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Data Leak alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
     },
     &quot;detailType&quot;: &quot;A String&quot;, # Output only. Name of the detail type. Will be set by the server during creation to the name of the field that is set in the detail union.
     &quot;initialAccessBroker&quot;: { # Captures the specific details of InitialAccessBroker (IAB) alert. # Initial Access Broker alert detail type.
       &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
         &quot;A String&quot;,
       ],
-      &quot;severity&quot;: &quot;A String&quot;, # Required. IAB specific severity
+      &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Initial Access Broker (IAB) alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
     },
     &quot;insiderThreat&quot;: { # Captures the specific details of InsiderThreat alert. # Insider Threat alert detail type.
       &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
         &quot;A String&quot;,
       ],
-      &quot;severity&quot;: &quot;A String&quot;, # Required. InsiderThreat specific severity This will be the string representation of the InsiderThreatFindingDetail.Severityenum. (e.g., &quot;LOW&quot;, &quot;MEDIUM&quot;, &quot;HIGH&quot;, &quot;CRITICAL&quot;)
+      &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Insider Threat alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
+    },
+    &quot;targetTechnology&quot;: { # Contains details for a technology watchlist alert. # Technology Watchlist alert detail type.
+      &quot;vulnerabilityMatch&quot;: { # Contains details about a vulnerability match. # Optional. The vulnerability match details.
+        &quot;associations&quot;: [ # Optional. Associated threat actors, malware, etc. This is embedded as a snapshot because the details of the association at the time of the vulnerability match are important for context and reporting.
+          { # Represents an association with a vulnerability.
+            &quot;id&quot;: &quot;A String&quot;, # Required. The ID of the association.
+            &quot;type&quot;: &quot;A String&quot;, # Required. The type of the association.
+          },
+        ],
+        &quot;collectionId&quot;: &quot;A String&quot;, # Required. The collection ID of the vulnerability. Ex: &quot;vulnerability--cve-2025-9876&quot;.
+        &quot;cveId&quot;: &quot;A String&quot;, # Required. The CVE ID of the vulnerability. Ex: &quot;CVE-2025-9876&quot;. See https://www.cve.org/ for more information.
+        &quot;cvss3Score&quot;: 3.14, # Required. The CVSS score of the vulnerability. Evaluates to CVSS v3 when available with a fallback to v2 and v4. Example: 6.4.
+        &quot;description&quot;: &quot;A String&quot;, # Required. A description of the vulnerability.
+        &quot;disclosureTime&quot;: &quot;A String&quot;, # Optional. The disclosure time of the vulnerability.
+        &quot;epssScore&quot;: 3.14, # Optional. The EPSS score, representing the probability of exploitation. Example: 0.87.
+        &quot;exploitationConsequences&quot;: [ # Optional. List of exploitation consequences for the vulnerability.
+          &quot;A String&quot;,
+        ],
+        &quot;exploitationState&quot;: &quot;A String&quot;, # Required. The exploitation state of the vulnerability.
+        &quot;exploitationVectors&quot;: [ # Optional. List of exploitation vectors for the vulnerability.
+          &quot;A String&quot;,
+        ],
+        &quot;matchedTechnologies&quot;: [ # Optional. The specific technologies from the configured watchlist that triggered the match. Ex: &quot;Apache Struts&quot;.
+          &quot;A String&quot;,
+        ],
+        &quot;priority&quot;: &quot;A String&quot;, # Optional. The priority level of the vulnerability data. Ex: &quot;P1&quot;.
+        &quot;productFixes&quot;: [ # Optional. List of product fixes for the vulnerability.
+          { # Contains details about a product fix.
+            &quot;displayName&quot;: &quot;A String&quot;, # Required. The name of the fix. Ex: &quot;Magento&quot;.
+            &quot;publishTime&quot;: &quot;A String&quot;, # Optional. The published time of the fix.
+            &quot;sourceId&quot;: &quot;A String&quot;, # Required. The source ID of the fix. Ex: &quot;APPSEC-1420&quot;.
+            &quot;uri&quot;: &quot;A String&quot;, # Optional. The URI of the fix.
+          },
+        ],
+        &quot;publicExploits&quot;: [ # Optional. List of public exploits.
+          { # Contains details about a public exploit.
+            &quot;exploitGrade&quot;: &quot;A String&quot;, # Optional. The grade of the exploit. Ex: &quot;non-weaponized&quot;.
+            &quot;exploitName&quot;: &quot;A String&quot;, # Required. The name of the exploit. Ex: &quot;Magentounauth.php.txt&quot;.
+            &quot;exploitReliability&quot;: &quot;A String&quot;, # Optional. The reliability of the exploit. Ex: &quot;Unreviewed&quot;.
+            &quot;releaseTime&quot;: &quot;A String&quot;, # Optional. The release time of the exploit.
+            &quot;sizeBytes&quot;: &quot;A String&quot;, # Optional. The size of the exploit.
+            &quot;uri&quot;: &quot;A String&quot;, # Optional. The URI of the exploit.
+          },
+        ],
+        &quot;publiclyAvailableExploit&quot;: True or False, # Output only. Whether a publicly available exploit exists.
+        &quot;riskRating&quot;: &quot;A String&quot;, # Required. The risk rating of the vulnerability.
+        &quot;technologies&quot;: [ # Required. All technologies affected by the vulnerability. Ex: &quot;Apache Struts&quot;.
+          &quot;A String&quot;,
+        ],
+      },
     },
   },
   &quot;displayName&quot;: &quot;A String&quot;, # Output only. A short title for the alert.
@@ -367,7 +467,7 @@ Returns:
   An object of the form:
 
     { # Stateful object representing a group of Findings. Key feature to an Alert is that it expresses the user&#x27;s intent towards the findings of that group, even those that haven&#x27;t occurred yet.
-  &quot;aiSummary&quot;: &quot;A String&quot;, # Optional. AI summary of the finding.
+  &quot;aiSummary&quot;: &quot;A String&quot;, # Optional. AI summary of the alert.
   &quot;audit&quot;: { # Tracks basic CRUD facts. # Output only. Audit information for the alert.
     &quot;createTime&quot;: &quot;A String&quot;, # Output only. Time of creation.
     &quot;creator&quot;: &quot;A String&quot;, # Output only. Agent that created or updated the record, could be a UserId or a JobId.
@@ -382,20 +482,70 @@ Returns:
       &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
         &quot;A String&quot;,
       ],
-      &quot;severity&quot;: &quot;A String&quot;, # Required. Data Leak specific severity This will be the string representation of the DataLeakFindingDetail.Severityenum. (e.g., &quot;LOW&quot;, &quot;MEDIUM&quot;, &quot;HIGH&quot;, &quot;CRITICAL&quot;)
+      &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Data Leak alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
     },
     &quot;detailType&quot;: &quot;A String&quot;, # Output only. Name of the detail type. Will be set by the server during creation to the name of the field that is set in the detail union.
     &quot;initialAccessBroker&quot;: { # Captures the specific details of InitialAccessBroker (IAB) alert. # Initial Access Broker alert detail type.
       &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
         &quot;A String&quot;,
       ],
-      &quot;severity&quot;: &quot;A String&quot;, # Required. IAB specific severity
+      &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Initial Access Broker (IAB) alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
     },
     &quot;insiderThreat&quot;: { # Captures the specific details of InsiderThreat alert. # Insider Threat alert detail type.
       &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
         &quot;A String&quot;,
       ],
-      &quot;severity&quot;: &quot;A String&quot;, # Required. InsiderThreat specific severity This will be the string representation of the InsiderThreatFindingDetail.Severityenum. (e.g., &quot;LOW&quot;, &quot;MEDIUM&quot;, &quot;HIGH&quot;, &quot;CRITICAL&quot;)
+      &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Insider Threat alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
+    },
+    &quot;targetTechnology&quot;: { # Contains details for a technology watchlist alert. # Technology Watchlist alert detail type.
+      &quot;vulnerabilityMatch&quot;: { # Contains details about a vulnerability match. # Optional. The vulnerability match details.
+        &quot;associations&quot;: [ # Optional. Associated threat actors, malware, etc. This is embedded as a snapshot because the details of the association at the time of the vulnerability match are important for context and reporting.
+          { # Represents an association with a vulnerability.
+            &quot;id&quot;: &quot;A String&quot;, # Required. The ID of the association.
+            &quot;type&quot;: &quot;A String&quot;, # Required. The type of the association.
+          },
+        ],
+        &quot;collectionId&quot;: &quot;A String&quot;, # Required. The collection ID of the vulnerability. Ex: &quot;vulnerability--cve-2025-9876&quot;.
+        &quot;cveId&quot;: &quot;A String&quot;, # Required. The CVE ID of the vulnerability. Ex: &quot;CVE-2025-9876&quot;. See https://www.cve.org/ for more information.
+        &quot;cvss3Score&quot;: 3.14, # Required. The CVSS score of the vulnerability. Evaluates to CVSS v3 when available with a fallback to v2 and v4. Example: 6.4.
+        &quot;description&quot;: &quot;A String&quot;, # Required. A description of the vulnerability.
+        &quot;disclosureTime&quot;: &quot;A String&quot;, # Optional. The disclosure time of the vulnerability.
+        &quot;epssScore&quot;: 3.14, # Optional. The EPSS score, representing the probability of exploitation. Example: 0.87.
+        &quot;exploitationConsequences&quot;: [ # Optional. List of exploitation consequences for the vulnerability.
+          &quot;A String&quot;,
+        ],
+        &quot;exploitationState&quot;: &quot;A String&quot;, # Required. The exploitation state of the vulnerability.
+        &quot;exploitationVectors&quot;: [ # Optional. List of exploitation vectors for the vulnerability.
+          &quot;A String&quot;,
+        ],
+        &quot;matchedTechnologies&quot;: [ # Optional. The specific technologies from the configured watchlist that triggered the match. Ex: &quot;Apache Struts&quot;.
+          &quot;A String&quot;,
+        ],
+        &quot;priority&quot;: &quot;A String&quot;, # Optional. The priority level of the vulnerability data. Ex: &quot;P1&quot;.
+        &quot;productFixes&quot;: [ # Optional. List of product fixes for the vulnerability.
+          { # Contains details about a product fix.
+            &quot;displayName&quot;: &quot;A String&quot;, # Required. The name of the fix. Ex: &quot;Magento&quot;.
+            &quot;publishTime&quot;: &quot;A String&quot;, # Optional. The published time of the fix.
+            &quot;sourceId&quot;: &quot;A String&quot;, # Required. The source ID of the fix. Ex: &quot;APPSEC-1420&quot;.
+            &quot;uri&quot;: &quot;A String&quot;, # Optional. The URI of the fix.
+          },
+        ],
+        &quot;publicExploits&quot;: [ # Optional. List of public exploits.
+          { # Contains details about a public exploit.
+            &quot;exploitGrade&quot;: &quot;A String&quot;, # Optional. The grade of the exploit. Ex: &quot;non-weaponized&quot;.
+            &quot;exploitName&quot;: &quot;A String&quot;, # Required. The name of the exploit. Ex: &quot;Magentounauth.php.txt&quot;.
+            &quot;exploitReliability&quot;: &quot;A String&quot;, # Optional. The reliability of the exploit. Ex: &quot;Unreviewed&quot;.
+            &quot;releaseTime&quot;: &quot;A String&quot;, # Optional. The release time of the exploit.
+            &quot;sizeBytes&quot;: &quot;A String&quot;, # Optional. The size of the exploit.
+            &quot;uri&quot;: &quot;A String&quot;, # Optional. The URI of the exploit.
+          },
+        ],
+        &quot;publiclyAvailableExploit&quot;: True or False, # Output only. Whether a publicly available exploit exists.
+        &quot;riskRating&quot;: &quot;A String&quot;, # Required. The risk rating of the vulnerability.
+        &quot;technologies&quot;: [ # Required. All technologies affected by the vulnerability. Ex: &quot;Apache Struts&quot;.
+          &quot;A String&quot;,
+        ],
+      },
     },
   },
   &quot;displayName&quot;: &quot;A String&quot;, # Output only. A short title for the alert.
@@ -459,7 +609,7 @@ Returns:
   An object of the form:
 
     { # Stateful object representing a group of Findings. Key feature to an Alert is that it expresses the user&#x27;s intent towards the findings of that group, even those that haven&#x27;t occurred yet.
-  &quot;aiSummary&quot;: &quot;A String&quot;, # Optional. AI summary of the finding.
+  &quot;aiSummary&quot;: &quot;A String&quot;, # Optional. AI summary of the alert.
   &quot;audit&quot;: { # Tracks basic CRUD facts. # Output only. Audit information for the alert.
     &quot;createTime&quot;: &quot;A String&quot;, # Output only. Time of creation.
     &quot;creator&quot;: &quot;A String&quot;, # Output only. Agent that created or updated the record, could be a UserId or a JobId.
@@ -474,20 +624,70 @@ Returns:
       &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
         &quot;A String&quot;,
       ],
-      &quot;severity&quot;: &quot;A String&quot;, # Required. Data Leak specific severity This will be the string representation of the DataLeakFindingDetail.Severityenum. (e.g., &quot;LOW&quot;, &quot;MEDIUM&quot;, &quot;HIGH&quot;, &quot;CRITICAL&quot;)
+      &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Data Leak alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
     },
     &quot;detailType&quot;: &quot;A String&quot;, # Output only. Name of the detail type. Will be set by the server during creation to the name of the field that is set in the detail union.
     &quot;initialAccessBroker&quot;: { # Captures the specific details of InitialAccessBroker (IAB) alert. # Initial Access Broker alert detail type.
       &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
         &quot;A String&quot;,
       ],
-      &quot;severity&quot;: &quot;A String&quot;, # Required. IAB specific severity
+      &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Initial Access Broker (IAB) alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
     },
     &quot;insiderThreat&quot;: { # Captures the specific details of InsiderThreat alert. # Insider Threat alert detail type.
       &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
         &quot;A String&quot;,
       ],
-      &quot;severity&quot;: &quot;A String&quot;, # Required. InsiderThreat specific severity This will be the string representation of the InsiderThreatFindingDetail.Severityenum. (e.g., &quot;LOW&quot;, &quot;MEDIUM&quot;, &quot;HIGH&quot;, &quot;CRITICAL&quot;)
+      &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Insider Threat alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
+    },
+    &quot;targetTechnology&quot;: { # Contains details for a technology watchlist alert. # Technology Watchlist alert detail type.
+      &quot;vulnerabilityMatch&quot;: { # Contains details about a vulnerability match. # Optional. The vulnerability match details.
+        &quot;associations&quot;: [ # Optional. Associated threat actors, malware, etc. This is embedded as a snapshot because the details of the association at the time of the vulnerability match are important for context and reporting.
+          { # Represents an association with a vulnerability.
+            &quot;id&quot;: &quot;A String&quot;, # Required. The ID of the association.
+            &quot;type&quot;: &quot;A String&quot;, # Required. The type of the association.
+          },
+        ],
+        &quot;collectionId&quot;: &quot;A String&quot;, # Required. The collection ID of the vulnerability. Ex: &quot;vulnerability--cve-2025-9876&quot;.
+        &quot;cveId&quot;: &quot;A String&quot;, # Required. The CVE ID of the vulnerability. Ex: &quot;CVE-2025-9876&quot;. See https://www.cve.org/ for more information.
+        &quot;cvss3Score&quot;: 3.14, # Required. The CVSS score of the vulnerability. Evaluates to CVSS v3 when available with a fallback to v2 and v4. Example: 6.4.
+        &quot;description&quot;: &quot;A String&quot;, # Required. A description of the vulnerability.
+        &quot;disclosureTime&quot;: &quot;A String&quot;, # Optional. The disclosure time of the vulnerability.
+        &quot;epssScore&quot;: 3.14, # Optional. The EPSS score, representing the probability of exploitation. Example: 0.87.
+        &quot;exploitationConsequences&quot;: [ # Optional. List of exploitation consequences for the vulnerability.
+          &quot;A String&quot;,
+        ],
+        &quot;exploitationState&quot;: &quot;A String&quot;, # Required. The exploitation state of the vulnerability.
+        &quot;exploitationVectors&quot;: [ # Optional. List of exploitation vectors for the vulnerability.
+          &quot;A String&quot;,
+        ],
+        &quot;matchedTechnologies&quot;: [ # Optional. The specific technologies from the configured watchlist that triggered the match. Ex: &quot;Apache Struts&quot;.
+          &quot;A String&quot;,
+        ],
+        &quot;priority&quot;: &quot;A String&quot;, # Optional. The priority level of the vulnerability data. Ex: &quot;P1&quot;.
+        &quot;productFixes&quot;: [ # Optional. List of product fixes for the vulnerability.
+          { # Contains details about a product fix.
+            &quot;displayName&quot;: &quot;A String&quot;, # Required. The name of the fix. Ex: &quot;Magento&quot;.
+            &quot;publishTime&quot;: &quot;A String&quot;, # Optional. The published time of the fix.
+            &quot;sourceId&quot;: &quot;A String&quot;, # Required. The source ID of the fix. Ex: &quot;APPSEC-1420&quot;.
+            &quot;uri&quot;: &quot;A String&quot;, # Optional. The URI of the fix.
+          },
+        ],
+        &quot;publicExploits&quot;: [ # Optional. List of public exploits.
+          { # Contains details about a public exploit.
+            &quot;exploitGrade&quot;: &quot;A String&quot;, # Optional. The grade of the exploit. Ex: &quot;non-weaponized&quot;.
+            &quot;exploitName&quot;: &quot;A String&quot;, # Required. The name of the exploit. Ex: &quot;Magentounauth.php.txt&quot;.
+            &quot;exploitReliability&quot;: &quot;A String&quot;, # Optional. The reliability of the exploit. Ex: &quot;Unreviewed&quot;.
+            &quot;releaseTime&quot;: &quot;A String&quot;, # Optional. The release time of the exploit.
+            &quot;sizeBytes&quot;: &quot;A String&quot;, # Optional. The size of the exploit.
+            &quot;uri&quot;: &quot;A String&quot;, # Optional. The URI of the exploit.
+          },
+        ],
+        &quot;publiclyAvailableExploit&quot;: True or False, # Output only. Whether a publicly available exploit exists.
+        &quot;riskRating&quot;: &quot;A String&quot;, # Required. The risk rating of the vulnerability.
+        &quot;technologies&quot;: [ # Required. All technologies affected by the vulnerability. Ex: &quot;Apache Struts&quot;.
+          &quot;A String&quot;,
+        ],
+      },
     },
   },
   &quot;displayName&quot;: &quot;A String&quot;, # Output only. A short title for the alert.
@@ -545,7 +745,7 @@ Returns:
   An object of the form:
 
     { # Stateful object representing a group of Findings. Key feature to an Alert is that it expresses the user&#x27;s intent towards the findings of that group, even those that haven&#x27;t occurred yet.
-  &quot;aiSummary&quot;: &quot;A String&quot;, # Optional. AI summary of the finding.
+  &quot;aiSummary&quot;: &quot;A String&quot;, # Optional. AI summary of the alert.
   &quot;audit&quot;: { # Tracks basic CRUD facts. # Output only. Audit information for the alert.
     &quot;createTime&quot;: &quot;A String&quot;, # Output only. Time of creation.
     &quot;creator&quot;: &quot;A String&quot;, # Output only. Agent that created or updated the record, could be a UserId or a JobId.
@@ -560,20 +760,70 @@ Returns:
       &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
         &quot;A String&quot;,
       ],
-      &quot;severity&quot;: &quot;A String&quot;, # Required. Data Leak specific severity This will be the string representation of the DataLeakFindingDetail.Severityenum. (e.g., &quot;LOW&quot;, &quot;MEDIUM&quot;, &quot;HIGH&quot;, &quot;CRITICAL&quot;)
+      &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Data Leak alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
     },
     &quot;detailType&quot;: &quot;A String&quot;, # Output only. Name of the detail type. Will be set by the server during creation to the name of the field that is set in the detail union.
     &quot;initialAccessBroker&quot;: { # Captures the specific details of InitialAccessBroker (IAB) alert. # Initial Access Broker alert detail type.
       &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
         &quot;A String&quot;,
       ],
-      &quot;severity&quot;: &quot;A String&quot;, # Required. IAB specific severity
+      &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Initial Access Broker (IAB) alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
     },
     &quot;insiderThreat&quot;: { # Captures the specific details of InsiderThreat alert. # Insider Threat alert detail type.
       &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
         &quot;A String&quot;,
       ],
-      &quot;severity&quot;: &quot;A String&quot;, # Required. InsiderThreat specific severity This will be the string representation of the InsiderThreatFindingDetail.Severityenum. (e.g., &quot;LOW&quot;, &quot;MEDIUM&quot;, &quot;HIGH&quot;, &quot;CRITICAL&quot;)
+      &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Insider Threat alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
+    },
+    &quot;targetTechnology&quot;: { # Contains details for a technology watchlist alert. # Technology Watchlist alert detail type.
+      &quot;vulnerabilityMatch&quot;: { # Contains details about a vulnerability match. # Optional. The vulnerability match details.
+        &quot;associations&quot;: [ # Optional. Associated threat actors, malware, etc. This is embedded as a snapshot because the details of the association at the time of the vulnerability match are important for context and reporting.
+          { # Represents an association with a vulnerability.
+            &quot;id&quot;: &quot;A String&quot;, # Required. The ID of the association.
+            &quot;type&quot;: &quot;A String&quot;, # Required. The type of the association.
+          },
+        ],
+        &quot;collectionId&quot;: &quot;A String&quot;, # Required. The collection ID of the vulnerability. Ex: &quot;vulnerability--cve-2025-9876&quot;.
+        &quot;cveId&quot;: &quot;A String&quot;, # Required. The CVE ID of the vulnerability. Ex: &quot;CVE-2025-9876&quot;. See https://www.cve.org/ for more information.
+        &quot;cvss3Score&quot;: 3.14, # Required. The CVSS score of the vulnerability. Evaluates to CVSS v3 when available with a fallback to v2 and v4. Example: 6.4.
+        &quot;description&quot;: &quot;A String&quot;, # Required. A description of the vulnerability.
+        &quot;disclosureTime&quot;: &quot;A String&quot;, # Optional. The disclosure time of the vulnerability.
+        &quot;epssScore&quot;: 3.14, # Optional. The EPSS score, representing the probability of exploitation. Example: 0.87.
+        &quot;exploitationConsequences&quot;: [ # Optional. List of exploitation consequences for the vulnerability.
+          &quot;A String&quot;,
+        ],
+        &quot;exploitationState&quot;: &quot;A String&quot;, # Required. The exploitation state of the vulnerability.
+        &quot;exploitationVectors&quot;: [ # Optional. List of exploitation vectors for the vulnerability.
+          &quot;A String&quot;,
+        ],
+        &quot;matchedTechnologies&quot;: [ # Optional. The specific technologies from the configured watchlist that triggered the match. Ex: &quot;Apache Struts&quot;.
+          &quot;A String&quot;,
+        ],
+        &quot;priority&quot;: &quot;A String&quot;, # Optional. The priority level of the vulnerability data. Ex: &quot;P1&quot;.
+        &quot;productFixes&quot;: [ # Optional. List of product fixes for the vulnerability.
+          { # Contains details about a product fix.
+            &quot;displayName&quot;: &quot;A String&quot;, # Required. The name of the fix. Ex: &quot;Magento&quot;.
+            &quot;publishTime&quot;: &quot;A String&quot;, # Optional. The published time of the fix.
+            &quot;sourceId&quot;: &quot;A String&quot;, # Required. The source ID of the fix. Ex: &quot;APPSEC-1420&quot;.
+            &quot;uri&quot;: &quot;A String&quot;, # Optional. The URI of the fix.
+          },
+        ],
+        &quot;publicExploits&quot;: [ # Optional. List of public exploits.
+          { # Contains details about a public exploit.
+            &quot;exploitGrade&quot;: &quot;A String&quot;, # Optional. The grade of the exploit. Ex: &quot;non-weaponized&quot;.
+            &quot;exploitName&quot;: &quot;A String&quot;, # Required. The name of the exploit. Ex: &quot;Magentounauth.php.txt&quot;.
+            &quot;exploitReliability&quot;: &quot;A String&quot;, # Optional. The reliability of the exploit. Ex: &quot;Unreviewed&quot;.
+            &quot;releaseTime&quot;: &quot;A String&quot;, # Optional. The release time of the exploit.
+            &quot;sizeBytes&quot;: &quot;A String&quot;, # Optional. The size of the exploit.
+            &quot;uri&quot;: &quot;A String&quot;, # Optional. The URI of the exploit.
+          },
+        ],
+        &quot;publiclyAvailableExploit&quot;: True or False, # Output only. Whether a publicly available exploit exists.
+        &quot;riskRating&quot;: &quot;A String&quot;, # Required. The risk rating of the vulnerability.
+        &quot;technologies&quot;: [ # Required. All technologies affected by the vulnerability. Ex: &quot;Apache Struts&quot;.
+          &quot;A String&quot;,
+        ],
+      },
     },
   },
   &quot;displayName&quot;: &quot;A String&quot;, # Output only. A short title for the alert.
@@ -622,10 +872,10 @@ Returns:
 
 Args:
   parent: string, Required. Parent of the alerts. Format: projects/{project} (required)
-  filter: string, Optional. Filter criteria.
-  orderBy: string, Optional. Order by criteria in the csv format: &quot;field1,field2 desc&quot; or &quot;field1,field2&quot; or &quot;field1 asc, field2&quot;.
-  pageSize: integer, Optional. Page size.
-  pageToken: string, Optional. Page token.
+  filter: string, Optional. Filter criteria. Supported fields for filtering include: * `audit.create_time` * `audit.creator` * `audit.update_time` * `audit.updater` * `detail.data_leak.discovery_document_ids` * `detail.data_leak.severity` * `detail.detail_type` * `detail.initial_access_broker.discovery_document_ids` * `detail.initial_access_broker.severity` * `detail.insider_threat.discovery_document_ids` * `detail.insider_threat.severity` * `finding_count` * `priority_analysis.priority_level` * `relevance_analysis.confidence` * `relevance_analysis.relevance_level` * `relevance_analysis.relevant` * `severity_analysis.severity_level` * `state` Examples: * `detail.detail_type = &quot;initial_access_broker&quot;` * `detail.detail_type != &quot;data_leak&quot;` * `detail.insider_threat.severity = &quot;HIGH&quot;` * `audit.create_time &gt;= &quot;2026-04-03T00:00:00Z&quot; AND audit.create_time &lt; &quot;2026-04-06T00:00:00Z&quot;` * `state = &quot;NEW&quot; OR state = &quot;TRIAGED&quot;` * `severity_analysis.severity_level = &quot;SEVERITY_LEVEL_CRITICAL&quot;`
+  orderBy: string, Optional. Order by criteria in the csv format: &quot;field1, field2 desc&quot; or &quot;field1, field2&quot; or &quot;field1 asc, field2&quot;. If a field is specified without `asc` or `desc`, ascending order is used by default. Supported fields for ordering are identical to those supported for filtering. Examples: * `audit.create_time desc` * `audit.update_time asc` * `audit.create_time desc, severity_analysis.severity_level desc`
+  pageSize: integer, Optional. Page size. Default to 100 alerts per page. Maximum is 1000 alerts per page.
+  pageToken: string, Optional. Page token to retrieve the next page of results.
   x__xgafv: string, V1 error format.
     Allowed values
       1 - v1 error format
@@ -637,7 +887,7 @@ Returns:
     { # Response message for ListAlerts.
   &quot;alerts&quot;: [ # List of alerts.
     { # Stateful object representing a group of Findings. Key feature to an Alert is that it expresses the user&#x27;s intent towards the findings of that group, even those that haven&#x27;t occurred yet.
-      &quot;aiSummary&quot;: &quot;A String&quot;, # Optional. AI summary of the finding.
+      &quot;aiSummary&quot;: &quot;A String&quot;, # Optional. AI summary of the alert.
       &quot;audit&quot;: { # Tracks basic CRUD facts. # Output only. Audit information for the alert.
         &quot;createTime&quot;: &quot;A String&quot;, # Output only. Time of creation.
         &quot;creator&quot;: &quot;A String&quot;, # Output only. Agent that created or updated the record, could be a UserId or a JobId.
@@ -652,20 +902,70 @@ Returns:
           &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
             &quot;A String&quot;,
           ],
-          &quot;severity&quot;: &quot;A String&quot;, # Required. Data Leak specific severity This will be the string representation of the DataLeakFindingDetail.Severityenum. (e.g., &quot;LOW&quot;, &quot;MEDIUM&quot;, &quot;HIGH&quot;, &quot;CRITICAL&quot;)
+          &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Data Leak alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
         },
         &quot;detailType&quot;: &quot;A String&quot;, # Output only. Name of the detail type. Will be set by the server during creation to the name of the field that is set in the detail union.
         &quot;initialAccessBroker&quot;: { # Captures the specific details of InitialAccessBroker (IAB) alert. # Initial Access Broker alert detail type.
           &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
             &quot;A String&quot;,
           ],
-          &quot;severity&quot;: &quot;A String&quot;, # Required. IAB specific severity
+          &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Initial Access Broker (IAB) alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
         },
         &quot;insiderThreat&quot;: { # Captures the specific details of InsiderThreat alert. # Insider Threat alert detail type.
           &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
             &quot;A String&quot;,
           ],
-          &quot;severity&quot;: &quot;A String&quot;, # Required. InsiderThreat specific severity This will be the string representation of the InsiderThreatFindingDetail.Severityenum. (e.g., &quot;LOW&quot;, &quot;MEDIUM&quot;, &quot;HIGH&quot;, &quot;CRITICAL&quot;)
+          &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Insider Threat alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
+        },
+        &quot;targetTechnology&quot;: { # Contains details for a technology watchlist alert. # Technology Watchlist alert detail type.
+          &quot;vulnerabilityMatch&quot;: { # Contains details about a vulnerability match. # Optional. The vulnerability match details.
+            &quot;associations&quot;: [ # Optional. Associated threat actors, malware, etc. This is embedded as a snapshot because the details of the association at the time of the vulnerability match are important for context and reporting.
+              { # Represents an association with a vulnerability.
+                &quot;id&quot;: &quot;A String&quot;, # Required. The ID of the association.
+                &quot;type&quot;: &quot;A String&quot;, # Required. The type of the association.
+              },
+            ],
+            &quot;collectionId&quot;: &quot;A String&quot;, # Required. The collection ID of the vulnerability. Ex: &quot;vulnerability--cve-2025-9876&quot;.
+            &quot;cveId&quot;: &quot;A String&quot;, # Required. The CVE ID of the vulnerability. Ex: &quot;CVE-2025-9876&quot;. See https://www.cve.org/ for more information.
+            &quot;cvss3Score&quot;: 3.14, # Required. The CVSS score of the vulnerability. Evaluates to CVSS v3 when available with a fallback to v2 and v4. Example: 6.4.
+            &quot;description&quot;: &quot;A String&quot;, # Required. A description of the vulnerability.
+            &quot;disclosureTime&quot;: &quot;A String&quot;, # Optional. The disclosure time of the vulnerability.
+            &quot;epssScore&quot;: 3.14, # Optional. The EPSS score, representing the probability of exploitation. Example: 0.87.
+            &quot;exploitationConsequences&quot;: [ # Optional. List of exploitation consequences for the vulnerability.
+              &quot;A String&quot;,
+            ],
+            &quot;exploitationState&quot;: &quot;A String&quot;, # Required. The exploitation state of the vulnerability.
+            &quot;exploitationVectors&quot;: [ # Optional. List of exploitation vectors for the vulnerability.
+              &quot;A String&quot;,
+            ],
+            &quot;matchedTechnologies&quot;: [ # Optional. The specific technologies from the configured watchlist that triggered the match. Ex: &quot;Apache Struts&quot;.
+              &quot;A String&quot;,
+            ],
+            &quot;priority&quot;: &quot;A String&quot;, # Optional. The priority level of the vulnerability data. Ex: &quot;P1&quot;.
+            &quot;productFixes&quot;: [ # Optional. List of product fixes for the vulnerability.
+              { # Contains details about a product fix.
+                &quot;displayName&quot;: &quot;A String&quot;, # Required. The name of the fix. Ex: &quot;Magento&quot;.
+                &quot;publishTime&quot;: &quot;A String&quot;, # Optional. The published time of the fix.
+                &quot;sourceId&quot;: &quot;A String&quot;, # Required. The source ID of the fix. Ex: &quot;APPSEC-1420&quot;.
+                &quot;uri&quot;: &quot;A String&quot;, # Optional. The URI of the fix.
+              },
+            ],
+            &quot;publicExploits&quot;: [ # Optional. List of public exploits.
+              { # Contains details about a public exploit.
+                &quot;exploitGrade&quot;: &quot;A String&quot;, # Optional. The grade of the exploit. Ex: &quot;non-weaponized&quot;.
+                &quot;exploitName&quot;: &quot;A String&quot;, # Required. The name of the exploit. Ex: &quot;Magentounauth.php.txt&quot;.
+                &quot;exploitReliability&quot;: &quot;A String&quot;, # Optional. The reliability of the exploit. Ex: &quot;Unreviewed&quot;.
+                &quot;releaseTime&quot;: &quot;A String&quot;, # Optional. The release time of the exploit.
+                &quot;sizeBytes&quot;: &quot;A String&quot;, # Optional. The size of the exploit.
+                &quot;uri&quot;: &quot;A String&quot;, # Optional. The URI of the exploit.
+              },
+            ],
+            &quot;publiclyAvailableExploit&quot;: True or False, # Output only. Whether a publicly available exploit exists.
+            &quot;riskRating&quot;: &quot;A String&quot;, # Required. The risk rating of the vulnerability.
+            &quot;technologies&quot;: [ # Required. All technologies affected by the vulnerability. Ex: &quot;Apache Struts&quot;.
+              &quot;A String&quot;,
+            ],
+          },
         },
       },
       &quot;displayName&quot;: &quot;A String&quot;, # Output only. A short title for the alert.
@@ -746,7 +1046,7 @@ Returns:
   An object of the form:
 
     { # Stateful object representing a group of Findings. Key feature to an Alert is that it expresses the user&#x27;s intent towards the findings of that group, even those that haven&#x27;t occurred yet.
-  &quot;aiSummary&quot;: &quot;A String&quot;, # Optional. AI summary of the finding.
+  &quot;aiSummary&quot;: &quot;A String&quot;, # Optional. AI summary of the alert.
   &quot;audit&quot;: { # Tracks basic CRUD facts. # Output only. Audit information for the alert.
     &quot;createTime&quot;: &quot;A String&quot;, # Output only. Time of creation.
     &quot;creator&quot;: &quot;A String&quot;, # Output only. Agent that created or updated the record, could be a UserId or a JobId.
@@ -761,20 +1061,70 @@ Returns:
       &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
         &quot;A String&quot;,
       ],
-      &quot;severity&quot;: &quot;A String&quot;, # Required. Data Leak specific severity This will be the string representation of the DataLeakFindingDetail.Severityenum. (e.g., &quot;LOW&quot;, &quot;MEDIUM&quot;, &quot;HIGH&quot;, &quot;CRITICAL&quot;)
+      &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Data Leak alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
     },
     &quot;detailType&quot;: &quot;A String&quot;, # Output only. Name of the detail type. Will be set by the server during creation to the name of the field that is set in the detail union.
     &quot;initialAccessBroker&quot;: { # Captures the specific details of InitialAccessBroker (IAB) alert. # Initial Access Broker alert detail type.
       &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
         &quot;A String&quot;,
       ],
-      &quot;severity&quot;: &quot;A String&quot;, # Required. IAB specific severity
+      &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Initial Access Broker (IAB) alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
     },
     &quot;insiderThreat&quot;: { # Captures the specific details of InsiderThreat alert. # Insider Threat alert detail type.
       &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
         &quot;A String&quot;,
       ],
-      &quot;severity&quot;: &quot;A String&quot;, # Required. InsiderThreat specific severity This will be the string representation of the InsiderThreatFindingDetail.Severityenum. (e.g., &quot;LOW&quot;, &quot;MEDIUM&quot;, &quot;HIGH&quot;, &quot;CRITICAL&quot;)
+      &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Insider Threat alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
+    },
+    &quot;targetTechnology&quot;: { # Contains details for a technology watchlist alert. # Technology Watchlist alert detail type.
+      &quot;vulnerabilityMatch&quot;: { # Contains details about a vulnerability match. # Optional. The vulnerability match details.
+        &quot;associations&quot;: [ # Optional. Associated threat actors, malware, etc. This is embedded as a snapshot because the details of the association at the time of the vulnerability match are important for context and reporting.
+          { # Represents an association with a vulnerability.
+            &quot;id&quot;: &quot;A String&quot;, # Required. The ID of the association.
+            &quot;type&quot;: &quot;A String&quot;, # Required. The type of the association.
+          },
+        ],
+        &quot;collectionId&quot;: &quot;A String&quot;, # Required. The collection ID of the vulnerability. Ex: &quot;vulnerability--cve-2025-9876&quot;.
+        &quot;cveId&quot;: &quot;A String&quot;, # Required. The CVE ID of the vulnerability. Ex: &quot;CVE-2025-9876&quot;. See https://www.cve.org/ for more information.
+        &quot;cvss3Score&quot;: 3.14, # Required. The CVSS score of the vulnerability. Evaluates to CVSS v3 when available with a fallback to v2 and v4. Example: 6.4.
+        &quot;description&quot;: &quot;A String&quot;, # Required. A description of the vulnerability.
+        &quot;disclosureTime&quot;: &quot;A String&quot;, # Optional. The disclosure time of the vulnerability.
+        &quot;epssScore&quot;: 3.14, # Optional. The EPSS score, representing the probability of exploitation. Example: 0.87.
+        &quot;exploitationConsequences&quot;: [ # Optional. List of exploitation consequences for the vulnerability.
+          &quot;A String&quot;,
+        ],
+        &quot;exploitationState&quot;: &quot;A String&quot;, # Required. The exploitation state of the vulnerability.
+        &quot;exploitationVectors&quot;: [ # Optional. List of exploitation vectors for the vulnerability.
+          &quot;A String&quot;,
+        ],
+        &quot;matchedTechnologies&quot;: [ # Optional. The specific technologies from the configured watchlist that triggered the match. Ex: &quot;Apache Struts&quot;.
+          &quot;A String&quot;,
+        ],
+        &quot;priority&quot;: &quot;A String&quot;, # Optional. The priority level of the vulnerability data. Ex: &quot;P1&quot;.
+        &quot;productFixes&quot;: [ # Optional. List of product fixes for the vulnerability.
+          { # Contains details about a product fix.
+            &quot;displayName&quot;: &quot;A String&quot;, # Required. The name of the fix. Ex: &quot;Magento&quot;.
+            &quot;publishTime&quot;: &quot;A String&quot;, # Optional. The published time of the fix.
+            &quot;sourceId&quot;: &quot;A String&quot;, # Required. The source ID of the fix. Ex: &quot;APPSEC-1420&quot;.
+            &quot;uri&quot;: &quot;A String&quot;, # Optional. The URI of the fix.
+          },
+        ],
+        &quot;publicExploits&quot;: [ # Optional. List of public exploits.
+          { # Contains details about a public exploit.
+            &quot;exploitGrade&quot;: &quot;A String&quot;, # Optional. The grade of the exploit. Ex: &quot;non-weaponized&quot;.
+            &quot;exploitName&quot;: &quot;A String&quot;, # Required. The name of the exploit. Ex: &quot;Magentounauth.php.txt&quot;.
+            &quot;exploitReliability&quot;: &quot;A String&quot;, # Optional. The reliability of the exploit. Ex: &quot;Unreviewed&quot;.
+            &quot;releaseTime&quot;: &quot;A String&quot;, # Optional. The release time of the exploit.
+            &quot;sizeBytes&quot;: &quot;A String&quot;, # Optional. The size of the exploit.
+            &quot;uri&quot;: &quot;A String&quot;, # Optional. The URI of the exploit.
+          },
+        ],
+        &quot;publiclyAvailableExploit&quot;: True or False, # Output only. Whether a publicly available exploit exists.
+        &quot;riskRating&quot;: &quot;A String&quot;, # Required. The risk rating of the vulnerability.
+        &quot;technologies&quot;: [ # Required. All technologies affected by the vulnerability. Ex: &quot;Apache Struts&quot;.
+          &quot;A String&quot;,
+        ],
+      },
     },
   },
   &quot;displayName&quot;: &quot;A String&quot;, # Output only. A short title for the alert.
@@ -838,7 +1188,7 @@ Returns:
   An object of the form:
 
     { # Stateful object representing a group of Findings. Key feature to an Alert is that it expresses the user&#x27;s intent towards the findings of that group, even those that haven&#x27;t occurred yet.
-  &quot;aiSummary&quot;: &quot;A String&quot;, # Optional. AI summary of the finding.
+  &quot;aiSummary&quot;: &quot;A String&quot;, # Optional. AI summary of the alert.
   &quot;audit&quot;: { # Tracks basic CRUD facts. # Output only. Audit information for the alert.
     &quot;createTime&quot;: &quot;A String&quot;, # Output only. Time of creation.
     &quot;creator&quot;: &quot;A String&quot;, # Output only. Agent that created or updated the record, could be a UserId or a JobId.
@@ -853,20 +1203,70 @@ Returns:
       &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
         &quot;A String&quot;,
       ],
-      &quot;severity&quot;: &quot;A String&quot;, # Required. Data Leak specific severity This will be the string representation of the DataLeakFindingDetail.Severityenum. (e.g., &quot;LOW&quot;, &quot;MEDIUM&quot;, &quot;HIGH&quot;, &quot;CRITICAL&quot;)
+      &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Data Leak alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
     },
     &quot;detailType&quot;: &quot;A String&quot;, # Output only. Name of the detail type. Will be set by the server during creation to the name of the field that is set in the detail union.
     &quot;initialAccessBroker&quot;: { # Captures the specific details of InitialAccessBroker (IAB) alert. # Initial Access Broker alert detail type.
       &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
         &quot;A String&quot;,
       ],
-      &quot;severity&quot;: &quot;A String&quot;, # Required. IAB specific severity
+      &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Initial Access Broker (IAB) alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
     },
     &quot;insiderThreat&quot;: { # Captures the specific details of InsiderThreat alert. # Insider Threat alert detail type.
       &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
         &quot;A String&quot;,
       ],
-      &quot;severity&quot;: &quot;A String&quot;, # Required. InsiderThreat specific severity This will be the string representation of the InsiderThreatFindingDetail.Severityenum. (e.g., &quot;LOW&quot;, &quot;MEDIUM&quot;, &quot;HIGH&quot;, &quot;CRITICAL&quot;)
+      &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Insider Threat alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
+    },
+    &quot;targetTechnology&quot;: { # Contains details for a technology watchlist alert. # Technology Watchlist alert detail type.
+      &quot;vulnerabilityMatch&quot;: { # Contains details about a vulnerability match. # Optional. The vulnerability match details.
+        &quot;associations&quot;: [ # Optional. Associated threat actors, malware, etc. This is embedded as a snapshot because the details of the association at the time of the vulnerability match are important for context and reporting.
+          { # Represents an association with a vulnerability.
+            &quot;id&quot;: &quot;A String&quot;, # Required. The ID of the association.
+            &quot;type&quot;: &quot;A String&quot;, # Required. The type of the association.
+          },
+        ],
+        &quot;collectionId&quot;: &quot;A String&quot;, # Required. The collection ID of the vulnerability. Ex: &quot;vulnerability--cve-2025-9876&quot;.
+        &quot;cveId&quot;: &quot;A String&quot;, # Required. The CVE ID of the vulnerability. Ex: &quot;CVE-2025-9876&quot;. See https://www.cve.org/ for more information.
+        &quot;cvss3Score&quot;: 3.14, # Required. The CVSS score of the vulnerability. Evaluates to CVSS v3 when available with a fallback to v2 and v4. Example: 6.4.
+        &quot;description&quot;: &quot;A String&quot;, # Required. A description of the vulnerability.
+        &quot;disclosureTime&quot;: &quot;A String&quot;, # Optional. The disclosure time of the vulnerability.
+        &quot;epssScore&quot;: 3.14, # Optional. The EPSS score, representing the probability of exploitation. Example: 0.87.
+        &quot;exploitationConsequences&quot;: [ # Optional. List of exploitation consequences for the vulnerability.
+          &quot;A String&quot;,
+        ],
+        &quot;exploitationState&quot;: &quot;A String&quot;, # Required. The exploitation state of the vulnerability.
+        &quot;exploitationVectors&quot;: [ # Optional. List of exploitation vectors for the vulnerability.
+          &quot;A String&quot;,
+        ],
+        &quot;matchedTechnologies&quot;: [ # Optional. The specific technologies from the configured watchlist that triggered the match. Ex: &quot;Apache Struts&quot;.
+          &quot;A String&quot;,
+        ],
+        &quot;priority&quot;: &quot;A String&quot;, # Optional. The priority level of the vulnerability data. Ex: &quot;P1&quot;.
+        &quot;productFixes&quot;: [ # Optional. List of product fixes for the vulnerability.
+          { # Contains details about a product fix.
+            &quot;displayName&quot;: &quot;A String&quot;, # Required. The name of the fix. Ex: &quot;Magento&quot;.
+            &quot;publishTime&quot;: &quot;A String&quot;, # Optional. The published time of the fix.
+            &quot;sourceId&quot;: &quot;A String&quot;, # Required. The source ID of the fix. Ex: &quot;APPSEC-1420&quot;.
+            &quot;uri&quot;: &quot;A String&quot;, # Optional. The URI of the fix.
+          },
+        ],
+        &quot;publicExploits&quot;: [ # Optional. List of public exploits.
+          { # Contains details about a public exploit.
+            &quot;exploitGrade&quot;: &quot;A String&quot;, # Optional. The grade of the exploit. Ex: &quot;non-weaponized&quot;.
+            &quot;exploitName&quot;: &quot;A String&quot;, # Required. The name of the exploit. Ex: &quot;Magentounauth.php.txt&quot;.
+            &quot;exploitReliability&quot;: &quot;A String&quot;, # Optional. The reliability of the exploit. Ex: &quot;Unreviewed&quot;.
+            &quot;releaseTime&quot;: &quot;A String&quot;, # Optional. The release time of the exploit.
+            &quot;sizeBytes&quot;: &quot;A String&quot;, # Optional. The size of the exploit.
+            &quot;uri&quot;: &quot;A String&quot;, # Optional. The URI of the exploit.
+          },
+        ],
+        &quot;publiclyAvailableExploit&quot;: True or False, # Output only. Whether a publicly available exploit exists.
+        &quot;riskRating&quot;: &quot;A String&quot;, # Required. The risk rating of the vulnerability.
+        &quot;technologies&quot;: [ # Required. All technologies affected by the vulnerability. Ex: &quot;Apache Struts&quot;.
+          &quot;A String&quot;,
+        ],
+      },
     },
   },
   &quot;displayName&quot;: &quot;A String&quot;, # Output only. A short title for the alert.
@@ -930,7 +1330,7 @@ Returns:
   An object of the form:
 
     { # Stateful object representing a group of Findings. Key feature to an Alert is that it expresses the user&#x27;s intent towards the findings of that group, even those that haven&#x27;t occurred yet.
-  &quot;aiSummary&quot;: &quot;A String&quot;, # Optional. AI summary of the finding.
+  &quot;aiSummary&quot;: &quot;A String&quot;, # Optional. AI summary of the alert.
   &quot;audit&quot;: { # Tracks basic CRUD facts. # Output only. Audit information for the alert.
     &quot;createTime&quot;: &quot;A String&quot;, # Output only. Time of creation.
     &quot;creator&quot;: &quot;A String&quot;, # Output only. Agent that created or updated the record, could be a UserId or a JobId.
@@ -945,20 +1345,70 @@ Returns:
       &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
         &quot;A String&quot;,
       ],
-      &quot;severity&quot;: &quot;A String&quot;, # Required. Data Leak specific severity This will be the string representation of the DataLeakFindingDetail.Severityenum. (e.g., &quot;LOW&quot;, &quot;MEDIUM&quot;, &quot;HIGH&quot;, &quot;CRITICAL&quot;)
+      &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Data Leak alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
     },
     &quot;detailType&quot;: &quot;A String&quot;, # Output only. Name of the detail type. Will be set by the server during creation to the name of the field that is set in the detail union.
     &quot;initialAccessBroker&quot;: { # Captures the specific details of InitialAccessBroker (IAB) alert. # Initial Access Broker alert detail type.
       &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
         &quot;A String&quot;,
       ],
-      &quot;severity&quot;: &quot;A String&quot;, # Required. IAB specific severity
+      &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Initial Access Broker (IAB) alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
     },
     &quot;insiderThreat&quot;: { # Captures the specific details of InsiderThreat alert. # Insider Threat alert detail type.
       &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
         &quot;A String&quot;,
       ],
-      &quot;severity&quot;: &quot;A String&quot;, # Required. InsiderThreat specific severity This will be the string representation of the InsiderThreatFindingDetail.Severityenum. (e.g., &quot;LOW&quot;, &quot;MEDIUM&quot;, &quot;HIGH&quot;, &quot;CRITICAL&quot;)
+      &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Insider Threat alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
+    },
+    &quot;targetTechnology&quot;: { # Contains details for a technology watchlist alert. # Technology Watchlist alert detail type.
+      &quot;vulnerabilityMatch&quot;: { # Contains details about a vulnerability match. # Optional. The vulnerability match details.
+        &quot;associations&quot;: [ # Optional. Associated threat actors, malware, etc. This is embedded as a snapshot because the details of the association at the time of the vulnerability match are important for context and reporting.
+          { # Represents an association with a vulnerability.
+            &quot;id&quot;: &quot;A String&quot;, # Required. The ID of the association.
+            &quot;type&quot;: &quot;A String&quot;, # Required. The type of the association.
+          },
+        ],
+        &quot;collectionId&quot;: &quot;A String&quot;, # Required. The collection ID of the vulnerability. Ex: &quot;vulnerability--cve-2025-9876&quot;.
+        &quot;cveId&quot;: &quot;A String&quot;, # Required. The CVE ID of the vulnerability. Ex: &quot;CVE-2025-9876&quot;. See https://www.cve.org/ for more information.
+        &quot;cvss3Score&quot;: 3.14, # Required. The CVSS score of the vulnerability. Evaluates to CVSS v3 when available with a fallback to v2 and v4. Example: 6.4.
+        &quot;description&quot;: &quot;A String&quot;, # Required. A description of the vulnerability.
+        &quot;disclosureTime&quot;: &quot;A String&quot;, # Optional. The disclosure time of the vulnerability.
+        &quot;epssScore&quot;: 3.14, # Optional. The EPSS score, representing the probability of exploitation. Example: 0.87.
+        &quot;exploitationConsequences&quot;: [ # Optional. List of exploitation consequences for the vulnerability.
+          &quot;A String&quot;,
+        ],
+        &quot;exploitationState&quot;: &quot;A String&quot;, # Required. The exploitation state of the vulnerability.
+        &quot;exploitationVectors&quot;: [ # Optional. List of exploitation vectors for the vulnerability.
+          &quot;A String&quot;,
+        ],
+        &quot;matchedTechnologies&quot;: [ # Optional. The specific technologies from the configured watchlist that triggered the match. Ex: &quot;Apache Struts&quot;.
+          &quot;A String&quot;,
+        ],
+        &quot;priority&quot;: &quot;A String&quot;, # Optional. The priority level of the vulnerability data. Ex: &quot;P1&quot;.
+        &quot;productFixes&quot;: [ # Optional. List of product fixes for the vulnerability.
+          { # Contains details about a product fix.
+            &quot;displayName&quot;: &quot;A String&quot;, # Required. The name of the fix. Ex: &quot;Magento&quot;.
+            &quot;publishTime&quot;: &quot;A String&quot;, # Optional. The published time of the fix.
+            &quot;sourceId&quot;: &quot;A String&quot;, # Required. The source ID of the fix. Ex: &quot;APPSEC-1420&quot;.
+            &quot;uri&quot;: &quot;A String&quot;, # Optional. The URI of the fix.
+          },
+        ],
+        &quot;publicExploits&quot;: [ # Optional. List of public exploits.
+          { # Contains details about a public exploit.
+            &quot;exploitGrade&quot;: &quot;A String&quot;, # Optional. The grade of the exploit. Ex: &quot;non-weaponized&quot;.
+            &quot;exploitName&quot;: &quot;A String&quot;, # Required. The name of the exploit. Ex: &quot;Magentounauth.php.txt&quot;.
+            &quot;exploitReliability&quot;: &quot;A String&quot;, # Optional. The reliability of the exploit. Ex: &quot;Unreviewed&quot;.
+            &quot;releaseTime&quot;: &quot;A String&quot;, # Optional. The release time of the exploit.
+            &quot;sizeBytes&quot;: &quot;A String&quot;, # Optional. The size of the exploit.
+            &quot;uri&quot;: &quot;A String&quot;, # Optional. The URI of the exploit.
+          },
+        ],
+        &quot;publiclyAvailableExploit&quot;: True or False, # Output only. Whether a publicly available exploit exists.
+        &quot;riskRating&quot;: &quot;A String&quot;, # Required. The risk rating of the vulnerability.
+        &quot;technologies&quot;: [ # Required. All technologies affected by the vulnerability. Ex: &quot;Apache Struts&quot;.
+          &quot;A String&quot;,
+        ],
+      },
     },
   },
   &quot;displayName&quot;: &quot;A String&quot;, # Output only. A short title for the alert.
@@ -1022,7 +1472,7 @@ Returns:
   An object of the form:
 
     { # Stateful object representing a group of Findings. Key feature to an Alert is that it expresses the user&#x27;s intent towards the findings of that group, even those that haven&#x27;t occurred yet.
-  &quot;aiSummary&quot;: &quot;A String&quot;, # Optional. AI summary of the finding.
+  &quot;aiSummary&quot;: &quot;A String&quot;, # Optional. AI summary of the alert.
   &quot;audit&quot;: { # Tracks basic CRUD facts. # Output only. Audit information for the alert.
     &quot;createTime&quot;: &quot;A String&quot;, # Output only. Time of creation.
     &quot;creator&quot;: &quot;A String&quot;, # Output only. Agent that created or updated the record, could be a UserId or a JobId.
@@ -1037,20 +1487,70 @@ Returns:
       &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
         &quot;A String&quot;,
       ],
-      &quot;severity&quot;: &quot;A String&quot;, # Required. Data Leak specific severity This will be the string representation of the DataLeakFindingDetail.Severityenum. (e.g., &quot;LOW&quot;, &quot;MEDIUM&quot;, &quot;HIGH&quot;, &quot;CRITICAL&quot;)
+      &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Data Leak alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
     },
     &quot;detailType&quot;: &quot;A String&quot;, # Output only. Name of the detail type. Will be set by the server during creation to the name of the field that is set in the detail union.
     &quot;initialAccessBroker&quot;: { # Captures the specific details of InitialAccessBroker (IAB) alert. # Initial Access Broker alert detail type.
       &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
         &quot;A String&quot;,
       ],
-      &quot;severity&quot;: &quot;A String&quot;, # Required. IAB specific severity
+      &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Initial Access Broker (IAB) alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
     },
     &quot;insiderThreat&quot;: { # Captures the specific details of InsiderThreat alert. # Insider Threat alert detail type.
       &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
         &quot;A String&quot;,
       ],
-      &quot;severity&quot;: &quot;A String&quot;, # Required. InsiderThreat specific severity This will be the string representation of the InsiderThreatFindingDetail.Severityenum. (e.g., &quot;LOW&quot;, &quot;MEDIUM&quot;, &quot;HIGH&quot;, &quot;CRITICAL&quot;)
+      &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Insider Threat alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
+    },
+    &quot;targetTechnology&quot;: { # Contains details for a technology watchlist alert. # Technology Watchlist alert detail type.
+      &quot;vulnerabilityMatch&quot;: { # Contains details about a vulnerability match. # Optional. The vulnerability match details.
+        &quot;associations&quot;: [ # Optional. Associated threat actors, malware, etc. This is embedded as a snapshot because the details of the association at the time of the vulnerability match are important for context and reporting.
+          { # Represents an association with a vulnerability.
+            &quot;id&quot;: &quot;A String&quot;, # Required. The ID of the association.
+            &quot;type&quot;: &quot;A String&quot;, # Required. The type of the association.
+          },
+        ],
+        &quot;collectionId&quot;: &quot;A String&quot;, # Required. The collection ID of the vulnerability. Ex: &quot;vulnerability--cve-2025-9876&quot;.
+        &quot;cveId&quot;: &quot;A String&quot;, # Required. The CVE ID of the vulnerability. Ex: &quot;CVE-2025-9876&quot;. See https://www.cve.org/ for more information.
+        &quot;cvss3Score&quot;: 3.14, # Required. The CVSS score of the vulnerability. Evaluates to CVSS v3 when available with a fallback to v2 and v4. Example: 6.4.
+        &quot;description&quot;: &quot;A String&quot;, # Required. A description of the vulnerability.
+        &quot;disclosureTime&quot;: &quot;A String&quot;, # Optional. The disclosure time of the vulnerability.
+        &quot;epssScore&quot;: 3.14, # Optional. The EPSS score, representing the probability of exploitation. Example: 0.87.
+        &quot;exploitationConsequences&quot;: [ # Optional. List of exploitation consequences for the vulnerability.
+          &quot;A String&quot;,
+        ],
+        &quot;exploitationState&quot;: &quot;A String&quot;, # Required. The exploitation state of the vulnerability.
+        &quot;exploitationVectors&quot;: [ # Optional. List of exploitation vectors for the vulnerability.
+          &quot;A String&quot;,
+        ],
+        &quot;matchedTechnologies&quot;: [ # Optional. The specific technologies from the configured watchlist that triggered the match. Ex: &quot;Apache Struts&quot;.
+          &quot;A String&quot;,
+        ],
+        &quot;priority&quot;: &quot;A String&quot;, # Optional. The priority level of the vulnerability data. Ex: &quot;P1&quot;.
+        &quot;productFixes&quot;: [ # Optional. List of product fixes for the vulnerability.
+          { # Contains details about a product fix.
+            &quot;displayName&quot;: &quot;A String&quot;, # Required. The name of the fix. Ex: &quot;Magento&quot;.
+            &quot;publishTime&quot;: &quot;A String&quot;, # Optional. The published time of the fix.
+            &quot;sourceId&quot;: &quot;A String&quot;, # Required. The source ID of the fix. Ex: &quot;APPSEC-1420&quot;.
+            &quot;uri&quot;: &quot;A String&quot;, # Optional. The URI of the fix.
+          },
+        ],
+        &quot;publicExploits&quot;: [ # Optional. List of public exploits.
+          { # Contains details about a public exploit.
+            &quot;exploitGrade&quot;: &quot;A String&quot;, # Optional. The grade of the exploit. Ex: &quot;non-weaponized&quot;.
+            &quot;exploitName&quot;: &quot;A String&quot;, # Required. The name of the exploit. Ex: &quot;Magentounauth.php.txt&quot;.
+            &quot;exploitReliability&quot;: &quot;A String&quot;, # Optional. The reliability of the exploit. Ex: &quot;Unreviewed&quot;.
+            &quot;releaseTime&quot;: &quot;A String&quot;, # Optional. The release time of the exploit.
+            &quot;sizeBytes&quot;: &quot;A String&quot;, # Optional. The size of the exploit.
+            &quot;uri&quot;: &quot;A String&quot;, # Optional. The URI of the exploit.
+          },
+        ],
+        &quot;publiclyAvailableExploit&quot;: True or False, # Output only. Whether a publicly available exploit exists.
+        &quot;riskRating&quot;: &quot;A String&quot;, # Required. The risk rating of the vulnerability.
+        &quot;technologies&quot;: [ # Required. All technologies affected by the vulnerability. Ex: &quot;Apache Struts&quot;.
+          &quot;A String&quot;,
+        ],
+      },
     },
   },
   &quot;displayName&quot;: &quot;A String&quot;, # Output only. A short title for the alert.
@@ -1114,7 +1614,7 @@ Returns:
   An object of the form:
 
     { # Stateful object representing a group of Findings. Key feature to an Alert is that it expresses the user&#x27;s intent towards the findings of that group, even those that haven&#x27;t occurred yet.
-  &quot;aiSummary&quot;: &quot;A String&quot;, # Optional. AI summary of the finding.
+  &quot;aiSummary&quot;: &quot;A String&quot;, # Optional. AI summary of the alert.
   &quot;audit&quot;: { # Tracks basic CRUD facts. # Output only. Audit information for the alert.
     &quot;createTime&quot;: &quot;A String&quot;, # Output only. Time of creation.
     &quot;creator&quot;: &quot;A String&quot;, # Output only. Agent that created or updated the record, could be a UserId or a JobId.
@@ -1129,20 +1629,70 @@ Returns:
       &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
         &quot;A String&quot;,
       ],
-      &quot;severity&quot;: &quot;A String&quot;, # Required. Data Leak specific severity This will be the string representation of the DataLeakFindingDetail.Severityenum. (e.g., &quot;LOW&quot;, &quot;MEDIUM&quot;, &quot;HIGH&quot;, &quot;CRITICAL&quot;)
+      &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Data Leak alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
     },
     &quot;detailType&quot;: &quot;A String&quot;, # Output only. Name of the detail type. Will be set by the server during creation to the name of the field that is set in the detail union.
     &quot;initialAccessBroker&quot;: { # Captures the specific details of InitialAccessBroker (IAB) alert. # Initial Access Broker alert detail type.
       &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
         &quot;A String&quot;,
       ],
-      &quot;severity&quot;: &quot;A String&quot;, # Required. IAB specific severity
+      &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Initial Access Broker (IAB) alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
     },
     &quot;insiderThreat&quot;: { # Captures the specific details of InsiderThreat alert. # Insider Threat alert detail type.
       &quot;discoveryDocumentIds&quot;: [ # Required. Array of ids to accommodate multiple discovery documents
         &quot;A String&quot;,
       ],
-      &quot;severity&quot;: &quot;A String&quot;, # Required. InsiderThreat specific severity This will be the string representation of the InsiderThreatFindingDetail.Severityenum. (e.g., &quot;LOW&quot;, &quot;MEDIUM&quot;, &quot;HIGH&quot;, &quot;CRITICAL&quot;)
+      &quot;severity&quot;: &quot;A String&quot;, # Required. The severity of the Insider Threat alert. Allowed values are: * `LOW` * `MEDIUM` * `HIGH` * `CRITICAL`
+    },
+    &quot;targetTechnology&quot;: { # Contains details for a technology watchlist alert. # Technology Watchlist alert detail type.
+      &quot;vulnerabilityMatch&quot;: { # Contains details about a vulnerability match. # Optional. The vulnerability match details.
+        &quot;associations&quot;: [ # Optional. Associated threat actors, malware, etc. This is embedded as a snapshot because the details of the association at the time of the vulnerability match are important for context and reporting.
+          { # Represents an association with a vulnerability.
+            &quot;id&quot;: &quot;A String&quot;, # Required. The ID of the association.
+            &quot;type&quot;: &quot;A String&quot;, # Required. The type of the association.
+          },
+        ],
+        &quot;collectionId&quot;: &quot;A String&quot;, # Required. The collection ID of the vulnerability. Ex: &quot;vulnerability--cve-2025-9876&quot;.
+        &quot;cveId&quot;: &quot;A String&quot;, # Required. The CVE ID of the vulnerability. Ex: &quot;CVE-2025-9876&quot;. See https://www.cve.org/ for more information.
+        &quot;cvss3Score&quot;: 3.14, # Required. The CVSS score of the vulnerability. Evaluates to CVSS v3 when available with a fallback to v2 and v4. Example: 6.4.
+        &quot;description&quot;: &quot;A String&quot;, # Required. A description of the vulnerability.
+        &quot;disclosureTime&quot;: &quot;A String&quot;, # Optional. The disclosure time of the vulnerability.
+        &quot;epssScore&quot;: 3.14, # Optional. The EPSS score, representing the probability of exploitation. Example: 0.87.
+        &quot;exploitationConsequences&quot;: [ # Optional. List of exploitation consequences for the vulnerability.
+          &quot;A String&quot;,
+        ],
+        &quot;exploitationState&quot;: &quot;A String&quot;, # Required. The exploitation state of the vulnerability.
+        &quot;exploitationVectors&quot;: [ # Optional. List of exploitation vectors for the vulnerability.
+          &quot;A String&quot;,
+        ],
+        &quot;matchedTechnologies&quot;: [ # Optional. The specific technologies from the configured watchlist that triggered the match. Ex: &quot;Apache Struts&quot;.
+          &quot;A String&quot;,
+        ],
+        &quot;priority&quot;: &quot;A String&quot;, # Optional. The priority level of the vulnerability data. Ex: &quot;P1&quot;.
+        &quot;productFixes&quot;: [ # Optional. List of product fixes for the vulnerability.
+          { # Contains details about a product fix.
+            &quot;displayName&quot;: &quot;A String&quot;, # Required. The name of the fix. Ex: &quot;Magento&quot;.
+            &quot;publishTime&quot;: &quot;A String&quot;, # Optional. The published time of the fix.
+            &quot;sourceId&quot;: &quot;A String&quot;, # Required. The source ID of the fix. Ex: &quot;APPSEC-1420&quot;.
+            &quot;uri&quot;: &quot;A String&quot;, # Optional. The URI of the fix.
+          },
+        ],
+        &quot;publicExploits&quot;: [ # Optional. List of public exploits.
+          { # Contains details about a public exploit.
+            &quot;exploitGrade&quot;: &quot;A String&quot;, # Optional. The grade of the exploit. Ex: &quot;non-weaponized&quot;.
+            &quot;exploitName&quot;: &quot;A String&quot;, # Required. The name of the exploit. Ex: &quot;Magentounauth.php.txt&quot;.
+            &quot;exploitReliability&quot;: &quot;A String&quot;, # Optional. The reliability of the exploit. Ex: &quot;Unreviewed&quot;.
+            &quot;releaseTime&quot;: &quot;A String&quot;, # Optional. The release time of the exploit.
+            &quot;sizeBytes&quot;: &quot;A String&quot;, # Optional. The size of the exploit.
+            &quot;uri&quot;: &quot;A String&quot;, # Optional. The URI of the exploit.
+          },
+        ],
+        &quot;publiclyAvailableExploit&quot;: True or False, # Output only. Whether a publicly available exploit exists.
+        &quot;riskRating&quot;: &quot;A String&quot;, # Required. The risk rating of the vulnerability.
+        &quot;technologies&quot;: [ # Required. All technologies affected by the vulnerability. Ex: &quot;Apache Struts&quot;.
+          &quot;A String&quot;,
+        ],
+      },
     },
   },
   &quot;displayName&quot;: &quot;A String&quot;, # Output only. A short title for the alert.

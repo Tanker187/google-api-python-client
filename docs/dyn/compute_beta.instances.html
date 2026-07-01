@@ -468,12 +468,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -659,6 +659,17 @@ Name should conform to RFC1035 or be an unsigned long integer. (required)
     },
   ],
   &quot;aliasIpRanges&quot;: [ # An array of alias IP ranges for this network interface.
+      # You can only specify this field for network interfaces in VPC networks.
+    { # An alias IP range attached to an instance&#x27;s network interface.
+      &quot;ipCidrRange&quot;: &quot;A String&quot;, # The IP alias ranges to allocate for this interface. This IP CIDR range
+          # must belong to the specified subnetwork and cannot contain IP addresses
+          # reserved by system or used by other network interfaces. This range may be
+          # a single IP address (such as 10.2.3.4), a netmask (such as/24) or a CIDR-formatted string (such as10.1.2.0/24).
+      &quot;subnetworkRangeName&quot;: &quot;A String&quot;, # The name of a subnetwork secondary IP range from which to allocate an IP
+          # alias range. If not specified, the primary range of the subnetwork is used.
+    },
+  ],
+  &quot;aliasIpv6Ranges&quot;: [ # An array of alias IPv6 ranges for this network interface.
       # You can only specify this field for network interfaces in VPC networks.
     { # An alias IP range attached to an instance&#x27;s network interface.
       &quot;ipCidrRange&quot;: &quot;A String&quot;, # The IP alias ranges to allocate for this interface. This IP CIDR range
@@ -947,12 +958,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -1251,12 +1262,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -1691,27 +1702,7 @@ Returns:
                     # boot disks, the default size is the size of the sourceImage.
                     # If you do not specify a sourceImage, the default disk size
                     # is 500 GB.
-                &quot;diskType&quot;: &quot;A String&quot;, # Specifies the disk type to use to create the instance. If not specified,
-                    # the default is pd-standard, specified using the full URL.
-                    # For example:
-                    #
-                    # https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/pd-standard
-                    #
-                    #
-                    # For a full list of acceptable values, seePersistent disk
-                    # types. If you specify this field when creating a VM, you can provide
-                    # either the full or partial URL. For example, the following values are
-                    # valid:
-                    #
-                    #
-                    #      - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType
-                    #    - projects/project/zones/zone/diskTypes/diskType
-                    #    - zones/zone/diskTypes/diskType
-                    #
-                    #
-                    # If you specify this field when creating or updating an instance template
-                    # or all-instances configuration, specify the type of the disk, not the
-                    # URL. For example: pd-standard.
+                &quot;diskType&quot;: &quot;A String&quot;,
                 &quot;enableConfidentialCompute&quot;: True or False, # Whether this disk is using confidential compute mode.
                 &quot;guestOsFeatures&quot;: [ # A list of features to enable on the guest operating system. Applicable
                     # only for bootable images. Read
@@ -1769,8 +1760,8 @@ Returns:
                 &quot;resourceManagerTags&quot;: { # Input only. Resource manager tags to be bound to the disk. Tag keys and values
                     # have the same definition as resource
                     # manager tags. Keys and values can be either in numeric format,
-                    # such as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced
-                    # format such as `{org_id|project_id}/{tag_key_short_name}` and
+                    # such as `tagKeys/{tag_key_id}` and `tagValues/{tag_value_id}` or in
+                    # namespaced format such as `{org_id|project_id}/{tag_key_short_name}` and
                     # `{tag_value_short_name}`. The field is ignored (both PUT &amp; PATCH) when
                     # empty.
                   &quot;a_key&quot;: &quot;A String&quot;,
@@ -2256,6 +2247,17 @@ Returns:
                       # alias range. If not specified, the primary range of the subnetwork is used.
                 },
               ],
+              &quot;aliasIpv6Ranges&quot;: [ # An array of alias IPv6 ranges for this network interface.
+                  # You can only specify this field for network interfaces in VPC networks.
+                { # An alias IP range attached to an instance&#x27;s network interface.
+                  &quot;ipCidrRange&quot;: &quot;A String&quot;, # The IP alias ranges to allocate for this interface. This IP CIDR range
+                      # must belong to the specified subnetwork and cannot contain IP addresses
+                      # reserved by system or used by other network interfaces. This range may be
+                      # a single IP address (such as 10.2.3.4), a netmask (such as/24) or a CIDR-formatted string (such as10.1.2.0/24).
+                  &quot;subnetworkRangeName&quot;: &quot;A String&quot;, # The name of a subnetwork secondary IP range from which to allocate an IP
+                      # alias range. If not specified, the primary range of the subnetwork is used.
+                },
+              ],
               &quot;enableVpcScopedDns&quot;: True or False, # Optional. If true, DNS resolution will be enabled over this interface. Only valid
                   # with network_attachment.
               &quot;fingerprint&quot;: &quot;A String&quot;, # Fingerprint hash of contents stored in this network interface.
@@ -2399,8 +2401,8 @@ Returns:
             &quot;resourceManagerTags&quot;: { # Input only. Resource manager tags to be bound to the instance. Tag keys and values
                 # have the same definition as resource
                 # manager tags. Keys and values can be either in numeric format,
-                # such as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced
-                # format such as `{org_id|project_id}/{tag_key_short_name}` and
+                # such as `tagKeys/{tag_key_id}` and `tagValues/{tag_value_id}` or in
+                # namespaced format such as `{org_id|project_id}/{tag_key_short_name}` and
                 # `{tag_value_short_name}`. The field is ignored (both PUT &amp;
                 # PATCH) when empty.
               &quot;a_key&quot;: &quot;A String&quot;,
@@ -2459,6 +2461,14 @@ Returns:
                 # Engine cluster, as well as the ID of the block, sub-block, and host on
                 # which the running instance is located.
                 # running.
+              &quot;additionalAttributes&quot;: { # Additional location information of the running instance. # Output only. [Output Only] Additional location information of the running instance.
+                &quot;acceleratorTopologyIds&quot;: { # Output only. The IDs of the accelerator topologies the instance belongs to. For
+                    # example
+                    # The key will be topologies like &quot;4x4&quot;, &quot;2x2x2&quot; and the value will be
+                    # the location ID of the topologies.
+                  &quot;a_key&quot;: &quot;A String&quot;,
+                },
+              },
               &quot;block&quot;: &quot;A String&quot;, # [Output Only] The ID of the block in which the running instance is
                   # located. Instances within the same block experience low network latency.
               &quot;cluster&quot;: &quot;A String&quot;, # [Output Only] The global name of the Compute Engine cluster where the
@@ -2473,6 +2483,10 @@ Returns:
             &quot;reservationConsumptionInfo&quot;: { # Reservation consumption information that the instance is consuming from. # Output only. [Output Only] Reservation information that the instance is consuming from.
               &quot;consumedReservation&quot;: &quot;A String&quot;, # Output only. [Output Only] The full resource name of the reservation that this
                   # instance is consuming from.
+              &quot;consumedReservationBlock&quot;: &quot;A String&quot;, # Output only. [Output Only] The full resource name of the reservation block that this
+                  # instance is consuming from.
+              &quot;consumedReservationSubBlock&quot;: &quot;A String&quot;, # Output only. [Output Only] The full resource name of the reservation sub-block that
+                  # this instance is consuming from.
             },
             &quot;scheduling&quot;: {
               &quot;availabilityDomain&quot;: 42, # Specifies the availability domain to place the instance in. The value
@@ -3008,27 +3022,7 @@ Args:
         # boot disks, the default size is the size of the sourceImage.
         # If you do not specify a sourceImage, the default disk size
         # is 500 GB.
-    &quot;diskType&quot;: &quot;A String&quot;, # Specifies the disk type to use to create the instance. If not specified,
-        # the default is pd-standard, specified using the full URL.
-        # For example:
-        #
-        # https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/pd-standard
-        #
-        #
-        # For a full list of acceptable values, seePersistent disk
-        # types. If you specify this field when creating a VM, you can provide
-        # either the full or partial URL. For example, the following values are
-        # valid:
-        #
-        #
-        #      - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType
-        #    - projects/project/zones/zone/diskTypes/diskType
-        #    - zones/zone/diskTypes/diskType
-        #
-        #
-        # If you specify this field when creating or updating an instance template
-        # or all-instances configuration, specify the type of the disk, not the
-        # URL. For example: pd-standard.
+    &quot;diskType&quot;: &quot;A String&quot;,
     &quot;enableConfidentialCompute&quot;: True or False, # Whether this disk is using confidential compute mode.
     &quot;guestOsFeatures&quot;: [ # A list of features to enable on the guest operating system. Applicable
         # only for bootable images. Read
@@ -3086,8 +3080,8 @@ Args:
     &quot;resourceManagerTags&quot;: { # Input only. Resource manager tags to be bound to the disk. Tag keys and values
         # have the same definition as resource
         # manager tags. Keys and values can be either in numeric format,
-        # such as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced
-        # format such as `{org_id|project_id}/{tag_key_short_name}` and
+        # such as `tagKeys/{tag_key_id}` and `tagValues/{tag_value_id}` or in
+        # namespaced format such as `{org_id|project_id}/{tag_key_short_name}` and
         # `{tag_value_short_name}`. The field is ignored (both PUT &amp; PATCH) when
         # empty.
       &quot;a_key&quot;: &quot;A String&quot;,
@@ -3494,12 +3488,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -3809,27 +3803,7 @@ Args:
                   # boot disks, the default size is the size of the sourceImage.
                   # If you do not specify a sourceImage, the default disk size
                   # is 500 GB.
-              &quot;diskType&quot;: &quot;A String&quot;, # Specifies the disk type to use to create the instance. If not specified,
-                  # the default is pd-standard, specified using the full URL.
-                  # For example:
-                  #
-                  # https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/pd-standard
-                  #
-                  #
-                  # For a full list of acceptable values, seePersistent disk
-                  # types. If you specify this field when creating a VM, you can provide
-                  # either the full or partial URL. For example, the following values are
-                  # valid:
-                  #
-                  #
-                  #      - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType
-                  #    - projects/project/zones/zone/diskTypes/diskType
-                  #    - zones/zone/diskTypes/diskType
-                  #
-                  #
-                  # If you specify this field when creating or updating an instance template
-                  # or all-instances configuration, specify the type of the disk, not the
-                  # URL. For example: pd-standard.
+              &quot;diskType&quot;: &quot;A String&quot;,
               &quot;enableConfidentialCompute&quot;: True or False, # Whether this disk is using confidential compute mode.
               &quot;guestOsFeatures&quot;: [ # A list of features to enable on the guest operating system. Applicable
                   # only for bootable images. Read
@@ -3887,8 +3861,8 @@ Args:
               &quot;resourceManagerTags&quot;: { # Input only. Resource manager tags to be bound to the disk. Tag keys and values
                   # have the same definition as resource
                   # manager tags. Keys and values can be either in numeric format,
-                  # such as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced
-                  # format such as `{org_id|project_id}/{tag_key_short_name}` and
+                  # such as `tagKeys/{tag_key_id}` and `tagValues/{tag_value_id}` or in
+                  # namespaced format such as `{org_id|project_id}/{tag_key_short_name}` and
                   # `{tag_value_short_name}`. The field is ignored (both PUT &amp; PATCH) when
                   # empty.
                 &quot;a_key&quot;: &quot;A String&quot;,
@@ -4341,27 +4315,7 @@ Args:
               # boot disks, the default size is the size of the sourceImage.
               # If you do not specify a sourceImage, the default disk size
               # is 500 GB.
-          &quot;diskType&quot;: &quot;A String&quot;, # Specifies the disk type to use to create the instance. If not specified,
-              # the default is pd-standard, specified using the full URL.
-              # For example:
-              #
-              # https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/pd-standard
-              #
-              #
-              # For a full list of acceptable values, seePersistent disk
-              # types. If you specify this field when creating a VM, you can provide
-              # either the full or partial URL. For example, the following values are
-              # valid:
-              #
-              #
-              #      - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType
-              #    - projects/project/zones/zone/diskTypes/diskType
-              #    - zones/zone/diskTypes/diskType
-              #
-              #
-              # If you specify this field when creating or updating an instance template
-              # or all-instances configuration, specify the type of the disk, not the
-              # URL. For example: pd-standard.
+          &quot;diskType&quot;: &quot;A String&quot;,
           &quot;enableConfidentialCompute&quot;: True or False, # Whether this disk is using confidential compute mode.
           &quot;guestOsFeatures&quot;: [ # A list of features to enable on the guest operating system. Applicable
               # only for bootable images. Read
@@ -4419,8 +4373,8 @@ Args:
           &quot;resourceManagerTags&quot;: { # Input only. Resource manager tags to be bound to the disk. Tag keys and values
               # have the same definition as resource
               # manager tags. Keys and values can be either in numeric format,
-              # such as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced
-              # format such as `{org_id|project_id}/{tag_key_short_name}` and
+              # such as `tagKeys/{tag_key_id}` and `tagValues/{tag_value_id}` or in
+              # namespaced format such as `{org_id|project_id}/{tag_key_short_name}` and
               # `{tag_value_short_name}`. The field is ignored (both PUT &amp; PATCH) when
               # empty.
             &quot;a_key&quot;: &quot;A String&quot;,
@@ -4794,6 +4748,17 @@ Args:
                 # alias range. If not specified, the primary range of the subnetwork is used.
           },
         ],
+        &quot;aliasIpv6Ranges&quot;: [ # An array of alias IPv6 ranges for this network interface.
+            # You can only specify this field for network interfaces in VPC networks.
+          { # An alias IP range attached to an instance&#x27;s network interface.
+            &quot;ipCidrRange&quot;: &quot;A String&quot;, # The IP alias ranges to allocate for this interface. This IP CIDR range
+                # must belong to the specified subnetwork and cannot contain IP addresses
+                # reserved by system or used by other network interfaces. This range may be
+                # a single IP address (such as 10.2.3.4), a netmask (such as/24) or a CIDR-formatted string (such as10.1.2.0/24).
+            &quot;subnetworkRangeName&quot;: &quot;A String&quot;, # The name of a subnetwork secondary IP range from which to allocate an IP
+                # alias range. If not specified, the primary range of the subnetwork is used.
+          },
+        ],
         &quot;enableVpcScopedDns&quot;: True or False, # Optional. If true, DNS resolution will be enabled over this interface. Only valid
             # with network_attachment.
         &quot;fingerprint&quot;: &quot;A String&quot;, # Fingerprint hash of contents stored in this network interface.
@@ -4948,8 +4913,10 @@ Args:
     },
     &quot;resourceManagerTags&quot;: { # Input only. Resource manager tags to be bound to the instance. Tag keys and values
         # have the same definition as resource
-        # manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and
-        # values are in the format `tagValues/456`. The field is ignored (both PUT &amp;
+        # manager tags. Keys and values can be either in numeric format,
+        # such as `tagKeys/{tag_key_id}` and `tagValues/{tag_value_id}` or in
+        # namespaced format such as `{org_id|project_id}/{tag_key_short_name}` and
+        # `{tag_value_short_name}`. The field is ignored (both PUT &amp;
         # PATCH) when empty.
       &quot;a_key&quot;: &quot;A String&quot;,
     },
@@ -5357,12 +5324,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -5657,12 +5624,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -5952,12 +5919,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -6251,12 +6218,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -6546,12 +6513,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -6889,27 +6856,7 @@ Returns:
             # boot disks, the default size is the size of the sourceImage.
             # If you do not specify a sourceImage, the default disk size
             # is 500 GB.
-        &quot;diskType&quot;: &quot;A String&quot;, # Specifies the disk type to use to create the instance. If not specified,
-            # the default is pd-standard, specified using the full URL.
-            # For example:
-            #
-            # https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/pd-standard
-            #
-            #
-            # For a full list of acceptable values, seePersistent disk
-            # types. If you specify this field when creating a VM, you can provide
-            # either the full or partial URL. For example, the following values are
-            # valid:
-            #
-            #
-            #      - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType
-            #    - projects/project/zones/zone/diskTypes/diskType
-            #    - zones/zone/diskTypes/diskType
-            #
-            #
-            # If you specify this field when creating or updating an instance template
-            # or all-instances configuration, specify the type of the disk, not the
-            # URL. For example: pd-standard.
+        &quot;diskType&quot;: &quot;A String&quot;,
         &quot;enableConfidentialCompute&quot;: True or False, # Whether this disk is using confidential compute mode.
         &quot;guestOsFeatures&quot;: [ # A list of features to enable on the guest operating system. Applicable
             # only for bootable images. Read
@@ -6967,8 +6914,8 @@ Returns:
         &quot;resourceManagerTags&quot;: { # Input only. Resource manager tags to be bound to the disk. Tag keys and values
             # have the same definition as resource
             # manager tags. Keys and values can be either in numeric format,
-            # such as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced
-            # format such as `{org_id|project_id}/{tag_key_short_name}` and
+            # such as `tagKeys/{tag_key_id}` and `tagValues/{tag_value_id}` or in
+            # namespaced format such as `{org_id|project_id}/{tag_key_short_name}` and
             # `{tag_value_short_name}`. The field is ignored (both PUT &amp; PATCH) when
             # empty.
           &quot;a_key&quot;: &quot;A String&quot;,
@@ -7454,6 +7401,17 @@ Returns:
               # alias range. If not specified, the primary range of the subnetwork is used.
         },
       ],
+      &quot;aliasIpv6Ranges&quot;: [ # An array of alias IPv6 ranges for this network interface.
+          # You can only specify this field for network interfaces in VPC networks.
+        { # An alias IP range attached to an instance&#x27;s network interface.
+          &quot;ipCidrRange&quot;: &quot;A String&quot;, # The IP alias ranges to allocate for this interface. This IP CIDR range
+              # must belong to the specified subnetwork and cannot contain IP addresses
+              # reserved by system or used by other network interfaces. This range may be
+              # a single IP address (such as 10.2.3.4), a netmask (such as/24) or a CIDR-formatted string (such as10.1.2.0/24).
+          &quot;subnetworkRangeName&quot;: &quot;A String&quot;, # The name of a subnetwork secondary IP range from which to allocate an IP
+              # alias range. If not specified, the primary range of the subnetwork is used.
+        },
+      ],
       &quot;enableVpcScopedDns&quot;: True or False, # Optional. If true, DNS resolution will be enabled over this interface. Only valid
           # with network_attachment.
       &quot;fingerprint&quot;: &quot;A String&quot;, # Fingerprint hash of contents stored in this network interface.
@@ -7597,8 +7555,8 @@ Returns:
     &quot;resourceManagerTags&quot;: { # Input only. Resource manager tags to be bound to the instance. Tag keys and values
         # have the same definition as resource
         # manager tags. Keys and values can be either in numeric format,
-        # such as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced
-        # format such as `{org_id|project_id}/{tag_key_short_name}` and
+        # such as `tagKeys/{tag_key_id}` and `tagValues/{tag_value_id}` or in
+        # namespaced format such as `{org_id|project_id}/{tag_key_short_name}` and
         # `{tag_value_short_name}`. The field is ignored (both PUT &amp;
         # PATCH) when empty.
       &quot;a_key&quot;: &quot;A String&quot;,
@@ -7657,6 +7615,14 @@ Returns:
         # Engine cluster, as well as the ID of the block, sub-block, and host on
         # which the running instance is located.
         # running.
+      &quot;additionalAttributes&quot;: { # Additional location information of the running instance. # Output only. [Output Only] Additional location information of the running instance.
+        &quot;acceleratorTopologyIds&quot;: { # Output only. The IDs of the accelerator topologies the instance belongs to. For
+            # example
+            # The key will be topologies like &quot;4x4&quot;, &quot;2x2x2&quot; and the value will be
+            # the location ID of the topologies.
+          &quot;a_key&quot;: &quot;A String&quot;,
+        },
+      },
       &quot;block&quot;: &quot;A String&quot;, # [Output Only] The ID of the block in which the running instance is
           # located. Instances within the same block experience low network latency.
       &quot;cluster&quot;: &quot;A String&quot;, # [Output Only] The global name of the Compute Engine cluster where the
@@ -7671,6 +7637,10 @@ Returns:
     &quot;reservationConsumptionInfo&quot;: { # Reservation consumption information that the instance is consuming from. # Output only. [Output Only] Reservation information that the instance is consuming from.
       &quot;consumedReservation&quot;: &quot;A String&quot;, # Output only. [Output Only] The full resource name of the reservation that this
           # instance is consuming from.
+      &quot;consumedReservationBlock&quot;: &quot;A String&quot;, # Output only. [Output Only] The full resource name of the reservation block that this
+          # instance is consuming from.
+      &quot;consumedReservationSubBlock&quot;: &quot;A String&quot;, # Output only. [Output Only] The full resource name of the reservation sub-block that
+          # this instance is consuming from.
     },
     &quot;scheduling&quot;: {
       &quot;availabilityDomain&quot;: 42, # Specifies the availability domain to place the instance in. The value
@@ -9807,27 +9777,7 @@ Args:
             # boot disks, the default size is the size of the sourceImage.
             # If you do not specify a sourceImage, the default disk size
             # is 500 GB.
-        &quot;diskType&quot;: &quot;A String&quot;, # Specifies the disk type to use to create the instance. If not specified,
-            # the default is pd-standard, specified using the full URL.
-            # For example:
-            #
-            # https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/pd-standard
-            #
-            #
-            # For a full list of acceptable values, seePersistent disk
-            # types. If you specify this field when creating a VM, you can provide
-            # either the full or partial URL. For example, the following values are
-            # valid:
-            #
-            #
-            #      - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType
-            #    - projects/project/zones/zone/diskTypes/diskType
-            #    - zones/zone/diskTypes/diskType
-            #
-            #
-            # If you specify this field when creating or updating an instance template
-            # or all-instances configuration, specify the type of the disk, not the
-            # URL. For example: pd-standard.
+        &quot;diskType&quot;: &quot;A String&quot;,
         &quot;enableConfidentialCompute&quot;: True or False, # Whether this disk is using confidential compute mode.
         &quot;guestOsFeatures&quot;: [ # A list of features to enable on the guest operating system. Applicable
             # only for bootable images. Read
@@ -9885,8 +9835,8 @@ Args:
         &quot;resourceManagerTags&quot;: { # Input only. Resource manager tags to be bound to the disk. Tag keys and values
             # have the same definition as resource
             # manager tags. Keys and values can be either in numeric format,
-            # such as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced
-            # format such as `{org_id|project_id}/{tag_key_short_name}` and
+            # such as `tagKeys/{tag_key_id}` and `tagValues/{tag_value_id}` or in
+            # namespaced format such as `{org_id|project_id}/{tag_key_short_name}` and
             # `{tag_value_short_name}`. The field is ignored (both PUT &amp; PATCH) when
             # empty.
           &quot;a_key&quot;: &quot;A String&quot;,
@@ -10372,6 +10322,17 @@ Args:
               # alias range. If not specified, the primary range of the subnetwork is used.
         },
       ],
+      &quot;aliasIpv6Ranges&quot;: [ # An array of alias IPv6 ranges for this network interface.
+          # You can only specify this field for network interfaces in VPC networks.
+        { # An alias IP range attached to an instance&#x27;s network interface.
+          &quot;ipCidrRange&quot;: &quot;A String&quot;, # The IP alias ranges to allocate for this interface. This IP CIDR range
+              # must belong to the specified subnetwork and cannot contain IP addresses
+              # reserved by system or used by other network interfaces. This range may be
+              # a single IP address (such as 10.2.3.4), a netmask (such as/24) or a CIDR-formatted string (such as10.1.2.0/24).
+          &quot;subnetworkRangeName&quot;: &quot;A String&quot;, # The name of a subnetwork secondary IP range from which to allocate an IP
+              # alias range. If not specified, the primary range of the subnetwork is used.
+        },
+      ],
       &quot;enableVpcScopedDns&quot;: True or False, # Optional. If true, DNS resolution will be enabled over this interface. Only valid
           # with network_attachment.
       &quot;fingerprint&quot;: &quot;A String&quot;, # Fingerprint hash of contents stored in this network interface.
@@ -10515,8 +10476,8 @@ Args:
     &quot;resourceManagerTags&quot;: { # Input only. Resource manager tags to be bound to the instance. Tag keys and values
         # have the same definition as resource
         # manager tags. Keys and values can be either in numeric format,
-        # such as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced
-        # format such as `{org_id|project_id}/{tag_key_short_name}` and
+        # such as `tagKeys/{tag_key_id}` and `tagValues/{tag_value_id}` or in
+        # namespaced format such as `{org_id|project_id}/{tag_key_short_name}` and
         # `{tag_value_short_name}`. The field is ignored (both PUT &amp;
         # PATCH) when empty.
       &quot;a_key&quot;: &quot;A String&quot;,
@@ -10575,6 +10536,14 @@ Args:
         # Engine cluster, as well as the ID of the block, sub-block, and host on
         # which the running instance is located.
         # running.
+      &quot;additionalAttributes&quot;: { # Additional location information of the running instance. # Output only. [Output Only] Additional location information of the running instance.
+        &quot;acceleratorTopologyIds&quot;: { # Output only. The IDs of the accelerator topologies the instance belongs to. For
+            # example
+            # The key will be topologies like &quot;4x4&quot;, &quot;2x2x2&quot; and the value will be
+            # the location ID of the topologies.
+          &quot;a_key&quot;: &quot;A String&quot;,
+        },
+      },
       &quot;block&quot;: &quot;A String&quot;, # [Output Only] The ID of the block in which the running instance is
           # located. Instances within the same block experience low network latency.
       &quot;cluster&quot;: &quot;A String&quot;, # [Output Only] The global name of the Compute Engine cluster where the
@@ -10589,6 +10558,10 @@ Args:
     &quot;reservationConsumptionInfo&quot;: { # Reservation consumption information that the instance is consuming from. # Output only. [Output Only] Reservation information that the instance is consuming from.
       &quot;consumedReservation&quot;: &quot;A String&quot;, # Output only. [Output Only] The full resource name of the reservation that this
           # instance is consuming from.
+      &quot;consumedReservationBlock&quot;: &quot;A String&quot;, # Output only. [Output Only] The full resource name of the reservation block that this
+          # instance is consuming from.
+      &quot;consumedReservationSubBlock&quot;: &quot;A String&quot;, # Output only. [Output Only] The full resource name of the reservation sub-block that
+          # this instance is consuming from.
     },
     &quot;scheduling&quot;: {
       &quot;availabilityDomain&quot;: 42, # Specifies the availability domain to place the instance in. The value
@@ -11052,12 +11025,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -11481,27 +11454,7 @@ Returns:
                 # boot disks, the default size is the size of the sourceImage.
                 # If you do not specify a sourceImage, the default disk size
                 # is 500 GB.
-            &quot;diskType&quot;: &quot;A String&quot;, # Specifies the disk type to use to create the instance. If not specified,
-                # the default is pd-standard, specified using the full URL.
-                # For example:
-                #
-                # https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/pd-standard
-                #
-                #
-                # For a full list of acceptable values, seePersistent disk
-                # types. If you specify this field when creating a VM, you can provide
-                # either the full or partial URL. For example, the following values are
-                # valid:
-                #
-                #
-                #      - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType
-                #    - projects/project/zones/zone/diskTypes/diskType
-                #    - zones/zone/diskTypes/diskType
-                #
-                #
-                # If you specify this field when creating or updating an instance template
-                # or all-instances configuration, specify the type of the disk, not the
-                # URL. For example: pd-standard.
+            &quot;diskType&quot;: &quot;A String&quot;,
             &quot;enableConfidentialCompute&quot;: True or False, # Whether this disk is using confidential compute mode.
             &quot;guestOsFeatures&quot;: [ # A list of features to enable on the guest operating system. Applicable
                 # only for bootable images. Read
@@ -11559,8 +11512,8 @@ Returns:
             &quot;resourceManagerTags&quot;: { # Input only. Resource manager tags to be bound to the disk. Tag keys and values
                 # have the same definition as resource
                 # manager tags. Keys and values can be either in numeric format,
-                # such as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced
-                # format such as `{org_id|project_id}/{tag_key_short_name}` and
+                # such as `tagKeys/{tag_key_id}` and `tagValues/{tag_value_id}` or in
+                # namespaced format such as `{org_id|project_id}/{tag_key_short_name}` and
                 # `{tag_value_short_name}`. The field is ignored (both PUT &amp; PATCH) when
                 # empty.
               &quot;a_key&quot;: &quot;A String&quot;,
@@ -12046,6 +11999,17 @@ Returns:
                   # alias range. If not specified, the primary range of the subnetwork is used.
             },
           ],
+          &quot;aliasIpv6Ranges&quot;: [ # An array of alias IPv6 ranges for this network interface.
+              # You can only specify this field for network interfaces in VPC networks.
+            { # An alias IP range attached to an instance&#x27;s network interface.
+              &quot;ipCidrRange&quot;: &quot;A String&quot;, # The IP alias ranges to allocate for this interface. This IP CIDR range
+                  # must belong to the specified subnetwork and cannot contain IP addresses
+                  # reserved by system or used by other network interfaces. This range may be
+                  # a single IP address (such as 10.2.3.4), a netmask (such as/24) or a CIDR-formatted string (such as10.1.2.0/24).
+              &quot;subnetworkRangeName&quot;: &quot;A String&quot;, # The name of a subnetwork secondary IP range from which to allocate an IP
+                  # alias range. If not specified, the primary range of the subnetwork is used.
+            },
+          ],
           &quot;enableVpcScopedDns&quot;: True or False, # Optional. If true, DNS resolution will be enabled over this interface. Only valid
               # with network_attachment.
           &quot;fingerprint&quot;: &quot;A String&quot;, # Fingerprint hash of contents stored in this network interface.
@@ -12189,8 +12153,8 @@ Returns:
         &quot;resourceManagerTags&quot;: { # Input only. Resource manager tags to be bound to the instance. Tag keys and values
             # have the same definition as resource
             # manager tags. Keys and values can be either in numeric format,
-            # such as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced
-            # format such as `{org_id|project_id}/{tag_key_short_name}` and
+            # such as `tagKeys/{tag_key_id}` and `tagValues/{tag_value_id}` or in
+            # namespaced format such as `{org_id|project_id}/{tag_key_short_name}` and
             # `{tag_value_short_name}`. The field is ignored (both PUT &amp;
             # PATCH) when empty.
           &quot;a_key&quot;: &quot;A String&quot;,
@@ -12249,6 +12213,14 @@ Returns:
             # Engine cluster, as well as the ID of the block, sub-block, and host on
             # which the running instance is located.
             # running.
+          &quot;additionalAttributes&quot;: { # Additional location information of the running instance. # Output only. [Output Only] Additional location information of the running instance.
+            &quot;acceleratorTopologyIds&quot;: { # Output only. The IDs of the accelerator topologies the instance belongs to. For
+                # example
+                # The key will be topologies like &quot;4x4&quot;, &quot;2x2x2&quot; and the value will be
+                # the location ID of the topologies.
+              &quot;a_key&quot;: &quot;A String&quot;,
+            },
+          },
           &quot;block&quot;: &quot;A String&quot;, # [Output Only] The ID of the block in which the running instance is
               # located. Instances within the same block experience low network latency.
           &quot;cluster&quot;: &quot;A String&quot;, # [Output Only] The global name of the Compute Engine cluster where the
@@ -12263,6 +12235,10 @@ Returns:
         &quot;reservationConsumptionInfo&quot;: { # Reservation consumption information that the instance is consuming from. # Output only. [Output Only] Reservation information that the instance is consuming from.
           &quot;consumedReservation&quot;: &quot;A String&quot;, # Output only. [Output Only] The full resource name of the reservation that this
               # instance is consuming from.
+          &quot;consumedReservationBlock&quot;: &quot;A String&quot;, # Output only. [Output Only] The full resource name of the reservation block that this
+              # instance is consuming from.
+          &quot;consumedReservationSubBlock&quot;: &quot;A String&quot;, # Output only. [Output Only] The full resource name of the reservation sub-block that
+              # this instance is consuming from.
         },
         &quot;scheduling&quot;: {
           &quot;availabilityDomain&quot;: 42, # Specifies the availability domain to place the instance in. The value
@@ -12956,12 +12932,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -13249,12 +13225,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -13551,12 +13527,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -13857,12 +13833,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -14152,12 +14128,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -14579,12 +14555,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -14888,12 +14864,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -15184,12 +15160,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -16365,12 +16341,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -16677,12 +16653,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -16979,12 +16955,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -17304,12 +17280,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -17607,12 +17583,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -17909,12 +17885,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -18329,12 +18305,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -18639,12 +18615,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -18944,12 +18920,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -19249,12 +19225,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -19554,12 +19530,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -19866,12 +19842,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -20162,12 +20138,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -20457,12 +20433,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -20828,12 +20804,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -21130,12 +21106,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -21433,12 +21409,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -21803,27 +21779,7 @@ Args:
             # boot disks, the default size is the size of the sourceImage.
             # If you do not specify a sourceImage, the default disk size
             # is 500 GB.
-        &quot;diskType&quot;: &quot;A String&quot;, # Specifies the disk type to use to create the instance. If not specified,
-            # the default is pd-standard, specified using the full URL.
-            # For example:
-            #
-            # https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/pd-standard
-            #
-            #
-            # For a full list of acceptable values, seePersistent disk
-            # types. If you specify this field when creating a VM, you can provide
-            # either the full or partial URL. For example, the following values are
-            # valid:
-            #
-            #
-            #      - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType
-            #    - projects/project/zones/zone/diskTypes/diskType
-            #    - zones/zone/diskTypes/diskType
-            #
-            #
-            # If you specify this field when creating or updating an instance template
-            # or all-instances configuration, specify the type of the disk, not the
-            # URL. For example: pd-standard.
+        &quot;diskType&quot;: &quot;A String&quot;,
         &quot;enableConfidentialCompute&quot;: True or False, # Whether this disk is using confidential compute mode.
         &quot;guestOsFeatures&quot;: [ # A list of features to enable on the guest operating system. Applicable
             # only for bootable images. Read
@@ -21881,8 +21837,8 @@ Args:
         &quot;resourceManagerTags&quot;: { # Input only. Resource manager tags to be bound to the disk. Tag keys and values
             # have the same definition as resource
             # manager tags. Keys and values can be either in numeric format,
-            # such as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced
-            # format such as `{org_id|project_id}/{tag_key_short_name}` and
+            # such as `tagKeys/{tag_key_id}` and `tagValues/{tag_value_id}` or in
+            # namespaced format such as `{org_id|project_id}/{tag_key_short_name}` and
             # `{tag_value_short_name}`. The field is ignored (both PUT &amp; PATCH) when
             # empty.
           &quot;a_key&quot;: &quot;A String&quot;,
@@ -22368,6 +22324,17 @@ Args:
               # alias range. If not specified, the primary range of the subnetwork is used.
         },
       ],
+      &quot;aliasIpv6Ranges&quot;: [ # An array of alias IPv6 ranges for this network interface.
+          # You can only specify this field for network interfaces in VPC networks.
+        { # An alias IP range attached to an instance&#x27;s network interface.
+          &quot;ipCidrRange&quot;: &quot;A String&quot;, # The IP alias ranges to allocate for this interface. This IP CIDR range
+              # must belong to the specified subnetwork and cannot contain IP addresses
+              # reserved by system or used by other network interfaces. This range may be
+              # a single IP address (such as 10.2.3.4), a netmask (such as/24) or a CIDR-formatted string (such as10.1.2.0/24).
+          &quot;subnetworkRangeName&quot;: &quot;A String&quot;, # The name of a subnetwork secondary IP range from which to allocate an IP
+              # alias range. If not specified, the primary range of the subnetwork is used.
+        },
+      ],
       &quot;enableVpcScopedDns&quot;: True or False, # Optional. If true, DNS resolution will be enabled over this interface. Only valid
           # with network_attachment.
       &quot;fingerprint&quot;: &quot;A String&quot;, # Fingerprint hash of contents stored in this network interface.
@@ -22511,8 +22478,8 @@ Args:
     &quot;resourceManagerTags&quot;: { # Input only. Resource manager tags to be bound to the instance. Tag keys and values
         # have the same definition as resource
         # manager tags. Keys and values can be either in numeric format,
-        # such as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced
-        # format such as `{org_id|project_id}/{tag_key_short_name}` and
+        # such as `tagKeys/{tag_key_id}` and `tagValues/{tag_value_id}` or in
+        # namespaced format such as `{org_id|project_id}/{tag_key_short_name}` and
         # `{tag_value_short_name}`. The field is ignored (both PUT &amp;
         # PATCH) when empty.
       &quot;a_key&quot;: &quot;A String&quot;,
@@ -22571,6 +22538,14 @@ Args:
         # Engine cluster, as well as the ID of the block, sub-block, and host on
         # which the running instance is located.
         # running.
+      &quot;additionalAttributes&quot;: { # Additional location information of the running instance. # Output only. [Output Only] Additional location information of the running instance.
+        &quot;acceleratorTopologyIds&quot;: { # Output only. The IDs of the accelerator topologies the instance belongs to. For
+            # example
+            # The key will be topologies like &quot;4x4&quot;, &quot;2x2x2&quot; and the value will be
+            # the location ID of the topologies.
+          &quot;a_key&quot;: &quot;A String&quot;,
+        },
+      },
       &quot;block&quot;: &quot;A String&quot;, # [Output Only] The ID of the block in which the running instance is
           # located. Instances within the same block experience low network latency.
       &quot;cluster&quot;: &quot;A String&quot;, # [Output Only] The global name of the Compute Engine cluster where the
@@ -22585,6 +22560,10 @@ Args:
     &quot;reservationConsumptionInfo&quot;: { # Reservation consumption information that the instance is consuming from. # Output only. [Output Only] Reservation information that the instance is consuming from.
       &quot;consumedReservation&quot;: &quot;A String&quot;, # Output only. [Output Only] The full resource name of the reservation that this
           # instance is consuming from.
+      &quot;consumedReservationBlock&quot;: &quot;A String&quot;, # Output only. [Output Only] The full resource name of the reservation block that this
+          # instance is consuming from.
+      &quot;consumedReservationSubBlock&quot;: &quot;A String&quot;, # Output only. [Output Only] The full resource name of the reservation sub-block that
+          # this instance is consuming from.
     },
     &quot;scheduling&quot;: {
       &quot;availabilityDomain&quot;: 42, # Specifies the availability domain to place the instance in. The value
@@ -23051,12 +23030,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -23396,12 +23375,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -23699,12 +23678,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -23895,6 +23874,17 @@ Args:
     },
   ],
   &quot;aliasIpRanges&quot;: [ # An array of alias IP ranges for this network interface.
+      # You can only specify this field for network interfaces in VPC networks.
+    { # An alias IP range attached to an instance&#x27;s network interface.
+      &quot;ipCidrRange&quot;: &quot;A String&quot;, # The IP alias ranges to allocate for this interface. This IP CIDR range
+          # must belong to the specified subnetwork and cannot contain IP addresses
+          # reserved by system or used by other network interfaces. This range may be
+          # a single IP address (such as 10.2.3.4), a netmask (such as/24) or a CIDR-formatted string (such as10.1.2.0/24).
+      &quot;subnetworkRangeName&quot;: &quot;A String&quot;, # The name of a subnetwork secondary IP range from which to allocate an IP
+          # alias range. If not specified, the primary range of the subnetwork is used.
+    },
+  ],
+  &quot;aliasIpv6Ranges&quot;: [ # An array of alias IPv6 ranges for this network interface.
       # You can only specify this field for network interfaces in VPC networks.
     { # An alias IP range attached to an instance&#x27;s network interface.
       &quot;ipCidrRange&quot;: &quot;A String&quot;, # The IP alias ranges to allocate for this interface. This IP CIDR range
@@ -24183,12 +24173,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -24491,12 +24481,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -24796,12 +24786,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },

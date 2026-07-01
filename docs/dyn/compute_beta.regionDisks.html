@@ -310,12 +310,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -650,12 +650,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -893,8 +893,8 @@ Args:
     &quot;resourceManagerTags&quot;: { # Input only. Resource manager tags to be bound to the snapshot. Tag keys and values have
         # the same definition as resource
         # manager tags. Keys and values can be either in numeric format,
-        # such as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced
-        # format such as `{org_id|project_id}/{tag_key_short_name}` and
+        # such as `tagKeys/{tag_key_id}` and `tagValues/{tag_value_id}` or in
+        # namespaced format such as `{org_id|project_id}/{tag_key_short_name}` and
         # `{tag_value_short_name}`. The field is ignored (both PUT &amp;
         # PATCH) when empty.
       &quot;a_key&quot;: &quot;A String&quot;,
@@ -1110,11 +1110,13 @@ Args:
   &quot;storageBytes&quot;: &quot;A String&quot;, # Output only. [Output Only] A size of the storage used by the snapshot. As snapshots
       # share storage, this number is expected to change with snapshot
       # creation/deletion.
-  &quot;storageBytesStatus&quot;: &quot;A String&quot;, # Output only. [Output Only] An indicator whether storageBytes is in a
+  &quot;storageBytesStatus&quot;: &quot;A String&quot;, # Output only. [Deprecated] Instead, check the storageBytes field. After
+      # snapshot creation, the storageBytesStatus field is alwaysUP_TO_DATE.
+      # [Output Only] An indicator whether storageBytes is in a
       # stable state or it is being adjusted as a result of shared storage
-      # reallocation. This status can either be UPDATING, meaning
-      # the size of the snapshot is being updated, or UP_TO_DATE,
-      # meaning the size of the snapshot is up-to-date.
+      # reallocation. This status can either be unset, meaning the snapshot is
+      # being created, or UP_TO_DATE, meaning the size of the snapshot
+      # is up-to-date.
   &quot;storageLocations&quot;: [ # Cloud Storage bucket storage location of the snapshot (regional or
       # multi-regional).
     &quot;A String&quot;,
@@ -1277,12 +1279,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -1574,12 +1576,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -1972,8 +1974,8 @@ Returns:
     &quot;resourceManagerTags&quot;: { # Input only. Resource manager tags to be bound to the disk. Tag keys and values
         # have the same definition as resource
         # manager tags. Keys and values can be either in numeric format,
-        # such as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced
-        # format such as `{org_id|project_id}/{tag_key_short_name}` and
+        # such as `tagKeys/{tag_key_id}` and `tagValues/{tag_value_id}` or in
+        # namespaced format such as `{org_id|project_id}/{tag_key_short_name}` and
         # `{tag_value_short_name}`. The field is ignored (both PUT &amp;
         # PATCH) when empty.
       &quot;a_key&quot;: &quot;A String&quot;,
@@ -2152,6 +2154,76 @@ Returns:
       # disk from an instant snapshot that was later deleted and recreated under
       # the same name, the source instant snapshot ID would identify the exact
       # version of the instant snapshot that was used.
+  &quot;sourceMachineImage&quot;: &quot;A String&quot;, # The machine image to create the disk from. You can provide this as a
+      # partial or full URL to the resource. For example, the following are valid
+      # values:
+      #
+      #
+      #      - https://www.googleapis.com/compute/v1/projects/project/global/machineImages/machineImage
+      #    - projects/project/global/machineImages/machineImage
+      #      - global/machineImages/machineImage
+  &quot;sourceMachineImageDiskDeviceName&quot;: &quot;A String&quot;, # The device name of a disk within a given machine image. The
+      # source_machine_image must be specified.
+  &quot;sourceMachineImageEncryptionKey&quot;: { # Thecustomer-supplied
+      # encryption key of the source machine image. Required if the source
+      # machine image is protected by a customer-supplied encryption key.
+    &quot;kmsKeyName&quot;: &quot;A String&quot;, # The name of the encryption key that is stored in Google Cloud KMS.
+        # For example:
+        #
+        # &quot;kmsKeyName&quot;: &quot;projects/kms_project_id/locations/region/keyRings/
+        # key_region/cryptoKeys/key
+        #
+        # The fully-qualifed key name may be returned for resource GET requests. For
+        # example:
+        #
+        # &quot;kmsKeyName&quot;: &quot;projects/kms_project_id/locations/region/keyRings/
+        # key_region/cryptoKeys/key
+        # /cryptoKeyVersions/1
+    &quot;kmsKeyServiceAccount&quot;: &quot;A String&quot;, # The service account being used for the encryption request for the given KMS
+        # key. If absent, the Compute Engine default service account is used.
+        # For example:
+        #
+        # &quot;kmsKeyServiceAccount&quot;: &quot;name@project_id.iam.gserviceaccount.com/
+    &quot;rawKey&quot;: &quot;A String&quot;, # Specifies a 256-bit customer-supplied
+        # encryption key, encoded in RFC
+        # 4648 base64 to either encrypt or decrypt this resource. You can
+        # provide either the rawKey or thersaEncryptedKey.
+        # For example:
+        #
+        # &quot;rawKey&quot;:
+        # &quot;SGVsbG8gZnJvbSBHb29nbGUgQ2xvdWQgUGxhdGZvcm0=&quot;
+    &quot;rsaEncryptedKey&quot;: &quot;A String&quot;, # Specifies an RFC 4648 base64 encoded, RSA-wrapped 2048-bit
+        # customer-supplied encryption key to either encrypt or decrypt this
+        # resource. You can provide either the rawKey or thersaEncryptedKey.
+        # For example:
+        #
+        # &quot;rsaEncryptedKey&quot;:
+        # &quot;ieCx/NcW06PcT7Ep1X6LUTc/hLvUDYyzSZPPVCVPTVEohpeHASqC8uw5TzyO9U+Fka9JFH
+        # z0mBibXUInrC/jEk014kCK/NPjYgEMOyssZ4ZINPKxlUh2zn1bV+MCaTICrdmuSBTWlUUiFoD
+        # D6PYznLwh8ZNdaheCeZ8ewEXgFQ8V+sDroLaN3Xs3MDTXQEMMoNUXMCZEIpg9Vtp9x2oe==&quot;
+        #
+        # The key must meet the following requirements before you can provide it to
+        # Compute Engine:
+        #
+        #    1. The key is wrapped using a RSA public key certificate provided by
+        #    Google.
+        #    2. After being wrapped, the key must be encoded in RFC 4648 base64
+        #    encoding.
+        #
+        # Gets the RSA public key certificate provided by Google at:
+        #
+        #
+        # https://cloud-certs.storage.googleapis.com/google-cloud-csek-ingress.pem
+    &quot;sha256&quot;: &quot;A String&quot;, # [Output only] TheRFC
+        # 4648 base64 encoded SHA-256 hash of the customer-supplied
+        # encryption key that protects this resource.
+  },
+  &quot;sourceMachineImageId&quot;: &quot;A String&quot;, # Output only. [Output Only] The unique ID of the machine image used to create this disk.
+      # This value identifies the exact machine image that was used to create this
+      # persistent disk. For example, if you created the persistent disk from a
+      # machine image that was later deleted and recreated under the same name, the
+      # source machine image ID would identify the exact version of the machine
+      # image that was used.
   &quot;sourceSnapshot&quot;: &quot;A String&quot;, # The source snapshot used to create this disk. You can provide this as a
       # partial or full URL to the resource. For example, the following are valid
       # values:
@@ -2890,8 +2962,8 @@ Args:
     &quot;resourceManagerTags&quot;: { # Input only. Resource manager tags to be bound to the disk. Tag keys and values
         # have the same definition as resource
         # manager tags. Keys and values can be either in numeric format,
-        # such as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced
-        # format such as `{org_id|project_id}/{tag_key_short_name}` and
+        # such as `tagKeys/{tag_key_id}` and `tagValues/{tag_value_id}` or in
+        # namespaced format such as `{org_id|project_id}/{tag_key_short_name}` and
         # `{tag_value_short_name}`. The field is ignored (both PUT &amp;
         # PATCH) when empty.
       &quot;a_key&quot;: &quot;A String&quot;,
@@ -3070,6 +3142,76 @@ Args:
       # disk from an instant snapshot that was later deleted and recreated under
       # the same name, the source instant snapshot ID would identify the exact
       # version of the instant snapshot that was used.
+  &quot;sourceMachineImage&quot;: &quot;A String&quot;, # The machine image to create the disk from. You can provide this as a
+      # partial or full URL to the resource. For example, the following are valid
+      # values:
+      # 
+      # 
+      #      - https://www.googleapis.com/compute/v1/projects/project/global/machineImages/machineImage
+      #    - projects/project/global/machineImages/machineImage
+      #      - global/machineImages/machineImage
+  &quot;sourceMachineImageDiskDeviceName&quot;: &quot;A String&quot;, # The device name of a disk within a given machine image. The
+      # source_machine_image must be specified.
+  &quot;sourceMachineImageEncryptionKey&quot;: { # Thecustomer-supplied
+      # encryption key of the source machine image. Required if the source
+      # machine image is protected by a customer-supplied encryption key.
+    &quot;kmsKeyName&quot;: &quot;A String&quot;, # The name of the encryption key that is stored in Google Cloud KMS.
+        # For example:
+        #
+        # &quot;kmsKeyName&quot;: &quot;projects/kms_project_id/locations/region/keyRings/
+        # key_region/cryptoKeys/key
+        #
+        # The fully-qualifed key name may be returned for resource GET requests. For
+        # example:
+        #
+        # &quot;kmsKeyName&quot;: &quot;projects/kms_project_id/locations/region/keyRings/
+        # key_region/cryptoKeys/key
+        # /cryptoKeyVersions/1
+    &quot;kmsKeyServiceAccount&quot;: &quot;A String&quot;, # The service account being used for the encryption request for the given KMS
+        # key. If absent, the Compute Engine default service account is used.
+        # For example:
+        #
+        # &quot;kmsKeyServiceAccount&quot;: &quot;name@project_id.iam.gserviceaccount.com/
+    &quot;rawKey&quot;: &quot;A String&quot;, # Specifies a 256-bit customer-supplied
+        # encryption key, encoded in RFC
+        # 4648 base64 to either encrypt or decrypt this resource. You can
+        # provide either the rawKey or thersaEncryptedKey.
+        # For example:
+        #
+        # &quot;rawKey&quot;:
+        # &quot;SGVsbG8gZnJvbSBHb29nbGUgQ2xvdWQgUGxhdGZvcm0=&quot;
+    &quot;rsaEncryptedKey&quot;: &quot;A String&quot;, # Specifies an RFC 4648 base64 encoded, RSA-wrapped 2048-bit
+        # customer-supplied encryption key to either encrypt or decrypt this
+        # resource. You can provide either the rawKey or thersaEncryptedKey.
+        # For example:
+        #
+        # &quot;rsaEncryptedKey&quot;:
+        # &quot;ieCx/NcW06PcT7Ep1X6LUTc/hLvUDYyzSZPPVCVPTVEohpeHASqC8uw5TzyO9U+Fka9JFH
+        # z0mBibXUInrC/jEk014kCK/NPjYgEMOyssZ4ZINPKxlUh2zn1bV+MCaTICrdmuSBTWlUUiFoD
+        # D6PYznLwh8ZNdaheCeZ8ewEXgFQ8V+sDroLaN3Xs3MDTXQEMMoNUXMCZEIpg9Vtp9x2oe==&quot;
+        #
+        # The key must meet the following requirements before you can provide it to
+        # Compute Engine:
+        #
+        #    1. The key is wrapped using a RSA public key certificate provided by
+        #    Google.
+        #    2. After being wrapped, the key must be encoded in RFC 4648 base64
+        #    encoding.
+        #
+        # Gets the RSA public key certificate provided by Google at:
+        #
+        #
+        # https://cloud-certs.storage.googleapis.com/google-cloud-csek-ingress.pem
+    &quot;sha256&quot;: &quot;A String&quot;, # [Output only] TheRFC
+        # 4648 base64 encoded SHA-256 hash of the customer-supplied
+        # encryption key that protects this resource.
+  },
+  &quot;sourceMachineImageId&quot;: &quot;A String&quot;, # Output only. [Output Only] The unique ID of the machine image used to create this disk.
+      # This value identifies the exact machine image that was used to create this
+      # persistent disk. For example, if you created the persistent disk from a
+      # machine image that was later deleted and recreated under the same name, the
+      # source machine image ID would identify the exact version of the machine
+      # image that was used.
   &quot;sourceSnapshot&quot;: &quot;A String&quot;, # The source snapshot used to create this disk. You can provide this as a
       # partial or full URL to the resource. For example, the following are valid
       # values:
@@ -3331,12 +3473,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -3815,8 +3957,8 @@ Returns:
         &quot;resourceManagerTags&quot;: { # Input only. Resource manager tags to be bound to the disk. Tag keys and values
             # have the same definition as resource
             # manager tags. Keys and values can be either in numeric format,
-            # such as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced
-            # format such as `{org_id|project_id}/{tag_key_short_name}` and
+            # such as `tagKeys/{tag_key_id}` and `tagValues/{tag_value_id}` or in
+            # namespaced format such as `{org_id|project_id}/{tag_key_short_name}` and
             # `{tag_value_short_name}`. The field is ignored (both PUT &amp;
             # PATCH) when empty.
           &quot;a_key&quot;: &quot;A String&quot;,
@@ -3995,6 +4137,76 @@ Returns:
           # disk from an instant snapshot that was later deleted and recreated under
           # the same name, the source instant snapshot ID would identify the exact
           # version of the instant snapshot that was used.
+      &quot;sourceMachineImage&quot;: &quot;A String&quot;, # The machine image to create the disk from. You can provide this as a
+          # partial or full URL to the resource. For example, the following are valid
+          # values:
+          #
+          #
+          #      - https://www.googleapis.com/compute/v1/projects/project/global/machineImages/machineImage
+          #    - projects/project/global/machineImages/machineImage
+          #      - global/machineImages/machineImage
+      &quot;sourceMachineImageDiskDeviceName&quot;: &quot;A String&quot;, # The device name of a disk within a given machine image. The
+          # source_machine_image must be specified.
+      &quot;sourceMachineImageEncryptionKey&quot;: { # Thecustomer-supplied
+          # encryption key of the source machine image. Required if the source
+          # machine image is protected by a customer-supplied encryption key.
+        &quot;kmsKeyName&quot;: &quot;A String&quot;, # The name of the encryption key that is stored in Google Cloud KMS.
+            # For example:
+            #
+            # &quot;kmsKeyName&quot;: &quot;projects/kms_project_id/locations/region/keyRings/
+            # key_region/cryptoKeys/key
+            #
+            # The fully-qualifed key name may be returned for resource GET requests. For
+            # example:
+            #
+            # &quot;kmsKeyName&quot;: &quot;projects/kms_project_id/locations/region/keyRings/
+            # key_region/cryptoKeys/key
+            # /cryptoKeyVersions/1
+        &quot;kmsKeyServiceAccount&quot;: &quot;A String&quot;, # The service account being used for the encryption request for the given KMS
+            # key. If absent, the Compute Engine default service account is used.
+            # For example:
+            #
+            # &quot;kmsKeyServiceAccount&quot;: &quot;name@project_id.iam.gserviceaccount.com/
+        &quot;rawKey&quot;: &quot;A String&quot;, # Specifies a 256-bit customer-supplied
+            # encryption key, encoded in RFC
+            # 4648 base64 to either encrypt or decrypt this resource. You can
+            # provide either the rawKey or thersaEncryptedKey.
+            # For example:
+            #
+            # &quot;rawKey&quot;:
+            # &quot;SGVsbG8gZnJvbSBHb29nbGUgQ2xvdWQgUGxhdGZvcm0=&quot;
+        &quot;rsaEncryptedKey&quot;: &quot;A String&quot;, # Specifies an RFC 4648 base64 encoded, RSA-wrapped 2048-bit
+            # customer-supplied encryption key to either encrypt or decrypt this
+            # resource. You can provide either the rawKey or thersaEncryptedKey.
+            # For example:
+            #
+            # &quot;rsaEncryptedKey&quot;:
+            # &quot;ieCx/NcW06PcT7Ep1X6LUTc/hLvUDYyzSZPPVCVPTVEohpeHASqC8uw5TzyO9U+Fka9JFH
+            # z0mBibXUInrC/jEk014kCK/NPjYgEMOyssZ4ZINPKxlUh2zn1bV+MCaTICrdmuSBTWlUUiFoD
+            # D6PYznLwh8ZNdaheCeZ8ewEXgFQ8V+sDroLaN3Xs3MDTXQEMMoNUXMCZEIpg9Vtp9x2oe==&quot;
+            #
+            # The key must meet the following requirements before you can provide it to
+            # Compute Engine:
+            #
+            #    1. The key is wrapped using a RSA public key certificate provided by
+            #    Google.
+            #    2. After being wrapped, the key must be encoded in RFC 4648 base64
+            #    encoding.
+            #
+            # Gets the RSA public key certificate provided by Google at:
+            #
+            #
+            # https://cloud-certs.storage.googleapis.com/google-cloud-csek-ingress.pem
+        &quot;sha256&quot;: &quot;A String&quot;, # [Output only] TheRFC
+            # 4648 base64 encoded SHA-256 hash of the customer-supplied
+            # encryption key that protects this resource.
+      },
+      &quot;sourceMachineImageId&quot;: &quot;A String&quot;, # Output only. [Output Only] The unique ID of the machine image used to create this disk.
+          # This value identifies the exact machine image that was used to create this
+          # persistent disk. For example, if you created the persistent disk from a
+          # machine image that was later deleted and recreated under the same name, the
+          # source machine image ID would identify the exact version of the machine
+          # image that was used.
       &quot;sourceSnapshot&quot;: &quot;A String&quot;, # The source snapshot used to create this disk. You can provide this as a
           # partial or full URL to the resource. For example, the following are valid
           # values:
@@ -4322,12 +4534,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -4622,12 +4834,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -5805,12 +6017,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -6127,12 +6339,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -6421,12 +6633,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -6735,12 +6947,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -7163,8 +7375,8 @@ Args:
     &quot;resourceManagerTags&quot;: { # Input only. Resource manager tags to be bound to the disk. Tag keys and values
         # have the same definition as resource
         # manager tags. Keys and values can be either in numeric format,
-        # such as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced
-        # format such as `{org_id|project_id}/{tag_key_short_name}` and
+        # such as `tagKeys/{tag_key_id}` and `tagValues/{tag_value_id}` or in
+        # namespaced format such as `{org_id|project_id}/{tag_key_short_name}` and
         # `{tag_value_short_name}`. The field is ignored (both PUT &amp;
         # PATCH) when empty.
       &quot;a_key&quot;: &quot;A String&quot;,
@@ -7343,6 +7555,76 @@ Args:
       # disk from an instant snapshot that was later deleted and recreated under
       # the same name, the source instant snapshot ID would identify the exact
       # version of the instant snapshot that was used.
+  &quot;sourceMachineImage&quot;: &quot;A String&quot;, # The machine image to create the disk from. You can provide this as a
+      # partial or full URL to the resource. For example, the following are valid
+      # values:
+      # 
+      # 
+      #      - https://www.googleapis.com/compute/v1/projects/project/global/machineImages/machineImage
+      #    - projects/project/global/machineImages/machineImage
+      #      - global/machineImages/machineImage
+  &quot;sourceMachineImageDiskDeviceName&quot;: &quot;A String&quot;, # The device name of a disk within a given machine image. The
+      # source_machine_image must be specified.
+  &quot;sourceMachineImageEncryptionKey&quot;: { # Thecustomer-supplied
+      # encryption key of the source machine image. Required if the source
+      # machine image is protected by a customer-supplied encryption key.
+    &quot;kmsKeyName&quot;: &quot;A String&quot;, # The name of the encryption key that is stored in Google Cloud KMS.
+        # For example:
+        #
+        # &quot;kmsKeyName&quot;: &quot;projects/kms_project_id/locations/region/keyRings/
+        # key_region/cryptoKeys/key
+        #
+        # The fully-qualifed key name may be returned for resource GET requests. For
+        # example:
+        #
+        # &quot;kmsKeyName&quot;: &quot;projects/kms_project_id/locations/region/keyRings/
+        # key_region/cryptoKeys/key
+        # /cryptoKeyVersions/1
+    &quot;kmsKeyServiceAccount&quot;: &quot;A String&quot;, # The service account being used for the encryption request for the given KMS
+        # key. If absent, the Compute Engine default service account is used.
+        # For example:
+        #
+        # &quot;kmsKeyServiceAccount&quot;: &quot;name@project_id.iam.gserviceaccount.com/
+    &quot;rawKey&quot;: &quot;A String&quot;, # Specifies a 256-bit customer-supplied
+        # encryption key, encoded in RFC
+        # 4648 base64 to either encrypt or decrypt this resource. You can
+        # provide either the rawKey or thersaEncryptedKey.
+        # For example:
+        #
+        # &quot;rawKey&quot;:
+        # &quot;SGVsbG8gZnJvbSBHb29nbGUgQ2xvdWQgUGxhdGZvcm0=&quot;
+    &quot;rsaEncryptedKey&quot;: &quot;A String&quot;, # Specifies an RFC 4648 base64 encoded, RSA-wrapped 2048-bit
+        # customer-supplied encryption key to either encrypt or decrypt this
+        # resource. You can provide either the rawKey or thersaEncryptedKey.
+        # For example:
+        #
+        # &quot;rsaEncryptedKey&quot;:
+        # &quot;ieCx/NcW06PcT7Ep1X6LUTc/hLvUDYyzSZPPVCVPTVEohpeHASqC8uw5TzyO9U+Fka9JFH
+        # z0mBibXUInrC/jEk014kCK/NPjYgEMOyssZ4ZINPKxlUh2zn1bV+MCaTICrdmuSBTWlUUiFoD
+        # D6PYznLwh8ZNdaheCeZ8ewEXgFQ8V+sDroLaN3Xs3MDTXQEMMoNUXMCZEIpg9Vtp9x2oe==&quot;
+        #
+        # The key must meet the following requirements before you can provide it to
+        # Compute Engine:
+        #
+        #    1. The key is wrapped using a RSA public key certificate provided by
+        #    Google.
+        #    2. After being wrapped, the key must be encoded in RFC 4648 base64
+        #    encoding.
+        #
+        # Gets the RSA public key certificate provided by Google at:
+        #
+        #
+        # https://cloud-certs.storage.googleapis.com/google-cloud-csek-ingress.pem
+    &quot;sha256&quot;: &quot;A String&quot;, # [Output only] TheRFC
+        # 4648 base64 encoded SHA-256 hash of the customer-supplied
+        # encryption key that protects this resource.
+  },
+  &quot;sourceMachineImageId&quot;: &quot;A String&quot;, # Output only. [Output Only] The unique ID of the machine image used to create this disk.
+      # This value identifies the exact machine image that was used to create this
+      # persistent disk. For example, if you created the persistent disk from a
+      # machine image that was later deleted and recreated under the same name, the
+      # source machine image ID would identify the exact version of the machine
+      # image that was used.
   &quot;sourceSnapshot&quot;: &quot;A String&quot;, # The source snapshot used to create this disk. You can provide this as a
       # partial or full URL to the resource. For example, the following are valid
       # values:
@@ -7605,12 +7887,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -7917,12 +8199,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },

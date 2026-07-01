@@ -139,6 +139,7 @@ Args:
     },
   },
   &quot;connectionPoolConfig&quot;: { # Configuration for Managed Connection Pool (MCP). # Optional. The configuration for Managed Connection Pool (MCP).
+    &quot;authproxyPoolerCount&quot;: 42, # Output only. The number of running AuthProxy poolers per instance.
     &quot;enabled&quot;: True or False, # Optional. Whether to enable Managed Connection Pool (MCP).
     &quot;flags&quot;: { # Optional. Connection Pool flags, as a list of &quot;key&quot;: &quot;value&quot; pairs.
       &quot;a_key&quot;: &quot;A String&quot;,
@@ -332,6 +333,7 @@ Args:
     },
   },
   &quot;connectionPoolConfig&quot;: { # Configuration for Managed Connection Pool (MCP). # Optional. The configuration for Managed Connection Pool (MCP).
+    &quot;authproxyPoolerCount&quot;: 42, # Output only. The number of running AuthProxy poolers per instance.
     &quot;enabled&quot;: True or False, # Optional. Whether to enable Managed Connection Pool (MCP).
     &quot;flags&quot;: { # Optional. Connection Pool flags, as a list of &quot;key&quot;: &quot;value&quot; pairs.
       &quot;a_key&quot;: &quot;A String&quot;,
@@ -616,6 +618,7 @@ Returns:
     },
   },
   &quot;connectionPoolConfig&quot;: { # Configuration for Managed Connection Pool (MCP). # Optional. The configuration for Managed Connection Pool (MCP).
+    &quot;authproxyPoolerCount&quot;: 42, # Output only. The number of running AuthProxy poolers per instance.
     &quot;enabled&quot;: True or False, # Optional. Whether to enable Managed Connection Pool (MCP).
     &quot;flags&quot;: { # Optional. Connection Pool flags, as a list of &quot;key&quot;: &quot;value&quot; pairs.
       &quot;a_key&quot;: &quot;A String&quot;,
@@ -777,6 +780,7 @@ Returns:
   &quot;pemCertificateChain&quot;: [ # Output only. The pem-encoded chain that may be used to verify the X.509 certificate. Expected to be in issuer-to-root order according to RFC 5246.
     &quot;A String&quot;,
   ],
+  &quot;pscAutoDnsName&quot;: &quot;A String&quot;, # Output only. Specifies the DNS name to use with PSC service automation for the Instance.
   &quot;pscDnsName&quot;: &quot;A String&quot;, # Output only. The DNS name to use with PSC for the Instance.
   &quot;publicIpAddress&quot;: &quot;A String&quot;, # Output only. The public IP addresses for the Instance. This is available ONLY when enable_public_ip is set. This is the connection endpoint for an end-user application.
 }</pre>
@@ -860,6 +864,7 @@ Returns:
         },
       },
       &quot;connectionPoolConfig&quot;: { # Configuration for Managed Connection Pool (MCP). # Optional. The configuration for Managed Connection Pool (MCP).
+        &quot;authproxyPoolerCount&quot;: 42, # Output only. The number of running AuthProxy poolers per instance.
         &quot;enabled&quot;: True or False, # Optional. Whether to enable Managed Connection Pool (MCP).
         &quot;flags&quot;: { # Optional. Connection Pool flags, as a list of &quot;key&quot;: &quot;value&quot; pairs.
           &quot;a_key&quot;: &quot;A String&quot;,
@@ -1042,6 +1047,7 @@ Args:
     },
   },
   &quot;connectionPoolConfig&quot;: { # Configuration for Managed Connection Pool (MCP). # Optional. The configuration for Managed Connection Pool (MCP).
+    &quot;authproxyPoolerCount&quot;: 42, # Output only. The number of running AuthProxy poolers per instance.
     &quot;enabled&quot;: True or False, # Optional. Whether to enable Managed Connection Pool (MCP).
     &quot;flags&quot;: { # Optional. Connection Pool flags, as a list of &quot;key&quot;: &quot;value&quot; pairs.
       &quot;a_key&quot;: &quot;A String&quot;,

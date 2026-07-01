@@ -303,12 +303,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -611,6 +611,16 @@ Returns:
           &quot;nodeTemplate&quot;: &quot;A String&quot;, # URL of the node template to create the node group from.
           &quot;selfLink&quot;: &quot;A String&quot;, # Output only. [Output Only] Server-defined URL for the resource.
           &quot;shareSettings&quot;: { # The share setting for reservations and sole tenancy node groups. # Share-settings for the node group
+            &quot;folderMap&quot;: { # A map of folder id and folder config to specify consumer projects for this
+                # shared-reservation. This is only valid when share_type&#x27;s value is
+                # DIRECT_PROJECTS_UNDER_SPECIFIC_FOLDERS.
+                # Folder id should be a string of number, and without &quot;folders/&quot; prefix.
+              &quot;a_key&quot;: { # Config for each folder in the share settings.
+                &quot;folderId&quot;: &quot;A String&quot;, # The folder ID, should be same as the key of this folder config in the
+                    # parent map.
+                    # Folder id should be a string of number, and without &quot;folders/&quot; prefix.
+              },
+            },
             &quot;projectMap&quot;: { # A map of project id and project config. This is only valid when
                 # share_type&#x27;s value is SPECIFIC_PROJECTS.
               &quot;a_key&quot;: { # Config for each project in the share settings.
@@ -881,12 +891,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -1183,12 +1193,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -1395,6 +1405,16 @@ Returns:
   &quot;nodeTemplate&quot;: &quot;A String&quot;, # URL of the node template to create the node group from.
   &quot;selfLink&quot;: &quot;A String&quot;, # Output only. [Output Only] Server-defined URL for the resource.
   &quot;shareSettings&quot;: { # The share setting for reservations and sole tenancy node groups. # Share-settings for the node group
+    &quot;folderMap&quot;: { # A map of folder id and folder config to specify consumer projects for this
+        # shared-reservation. This is only valid when share_type&#x27;s value is
+        # DIRECT_PROJECTS_UNDER_SPECIFIC_FOLDERS.
+        # Folder id should be a string of number, and without &quot;folders/&quot; prefix.
+      &quot;a_key&quot;: { # Config for each folder in the share settings.
+        &quot;folderId&quot;: &quot;A String&quot;, # The folder ID, should be same as the key of this folder config in the
+            # parent map.
+            # Folder id should be a string of number, and without &quot;folders/&quot; prefix.
+      },
+    },
     &quot;projectMap&quot;: { # A map of project id and project config. This is only valid when
         # share_type&#x27;s value is SPECIFIC_PROJECTS.
       &quot;a_key&quot;: { # Config for each project in the share settings.
@@ -1861,6 +1881,16 @@ Args:
   &quot;nodeTemplate&quot;: &quot;A String&quot;, # URL of the node template to create the node group from.
   &quot;selfLink&quot;: &quot;A String&quot;, # Output only. [Output Only] Server-defined URL for the resource.
   &quot;shareSettings&quot;: { # The share setting for reservations and sole tenancy node groups. # Share-settings for the node group
+    &quot;folderMap&quot;: { # A map of folder id and folder config to specify consumer projects for this
+        # shared-reservation. This is only valid when share_type&#x27;s value is
+        # DIRECT_PROJECTS_UNDER_SPECIFIC_FOLDERS.
+        # Folder id should be a string of number, and without &quot;folders/&quot; prefix.
+      &quot;a_key&quot;: { # Config for each folder in the share settings.
+        &quot;folderId&quot;: &quot;A String&quot;, # The folder ID, should be same as the key of this folder config in the
+            # parent map.
+            # Folder id should be a string of number, and without &quot;folders/&quot; prefix.
+      },
+    },
     &quot;projectMap&quot;: { # A map of project id and project config. This is only valid when
         # share_type&#x27;s value is SPECIFIC_PROJECTS.
       &quot;a_key&quot;: { # Config for each project in the share settings.
@@ -2037,12 +2067,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -2332,6 +2362,16 @@ Returns:
       &quot;nodeTemplate&quot;: &quot;A String&quot;, # URL of the node template to create the node group from.
       &quot;selfLink&quot;: &quot;A String&quot;, # Output only. [Output Only] Server-defined URL for the resource.
       &quot;shareSettings&quot;: { # The share setting for reservations and sole tenancy node groups. # Share-settings for the node group
+        &quot;folderMap&quot;: { # A map of folder id and folder config to specify consumer projects for this
+            # shared-reservation. This is only valid when share_type&#x27;s value is
+            # DIRECT_PROJECTS_UNDER_SPECIFIC_FOLDERS.
+            # Folder id should be a string of number, and without &quot;folders/&quot; prefix.
+          &quot;a_key&quot;: { # Config for each folder in the share settings.
+            &quot;folderId&quot;: &quot;A String&quot;, # The folder ID, should be same as the key of this folder config in the
+                # parent map.
+                # Folder id should be a string of number, and without &quot;folders/&quot; prefix.
+          },
+        },
         &quot;projectMap&quot;: { # A map of project id and project config. This is only valid when
             # share_type&#x27;s value is SPECIFIC_PROJECTS.
           &quot;a_key&quot;: { # Config for each project in the share settings.
@@ -2710,6 +2750,16 @@ Args:
   &quot;nodeTemplate&quot;: &quot;A String&quot;, # URL of the node template to create the node group from.
   &quot;selfLink&quot;: &quot;A String&quot;, # Output only. [Output Only] Server-defined URL for the resource.
   &quot;shareSettings&quot;: { # The share setting for reservations and sole tenancy node groups. # Share-settings for the node group
+    &quot;folderMap&quot;: { # A map of folder id and folder config to specify consumer projects for this
+        # shared-reservation. This is only valid when share_type&#x27;s value is
+        # DIRECT_PROJECTS_UNDER_SPECIFIC_FOLDERS.
+        # Folder id should be a string of number, and without &quot;folders/&quot; prefix.
+      &quot;a_key&quot;: { # Config for each folder in the share settings.
+        &quot;folderId&quot;: &quot;A String&quot;, # The folder ID, should be same as the key of this folder config in the
+            # parent map.
+            # Folder id should be a string of number, and without &quot;folders/&quot; prefix.
+      },
+    },
     &quot;projectMap&quot;: { # A map of project id and project config. This is only valid when
         # share_type&#x27;s value is SPECIFIC_PROJECTS.
       &quot;a_key&quot;: { # Config for each project in the share settings.
@@ -2886,12 +2936,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -3189,12 +3239,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -4365,12 +4415,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -4668,12 +4718,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },

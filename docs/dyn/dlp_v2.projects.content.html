@@ -995,6 +995,20 @@ Args:
           },
         },
         &quot;exclusionType&quot;: &quot;A String&quot;, # If set to EXCLUSION_TYPE_EXCLUDE this infoType will not cause a finding to be returned. It still can be used for rules matching. Only supported for the `dictionary`, `regex`, and `stored_type` CustomInfoTypes.
+        &quot;fileLabelInfoType&quot;: { # Configuration for a custom infoType that detects file labels. # File label to detect.
+          &quot;googleDriveLabel&quot;: { # Google Drive labels published by Google. # Google Drive labels published by Google.
+            &quot;labelFieldsToMatch&quot;: [ # The field values of the Google Drive label to match.
+              { # The field values of the Google Drive label to match.
+                &quot;id&quot;: &quot;A String&quot;, # The identifier of the Label Field.
+                &quot;value&quot;: &quot;A String&quot;, # The value of the Label Field to match.
+              },
+            ],
+            &quot;labelId&quot;: &quot;A String&quot;, # The [label ID](https://developers.google.com/workspace/drive/labels/guides/overview) of the Google Drive label.
+          },
+          &quot;sensitivityLabel&quot;: { # Sensitivity labels published by Microsoft. # Sensitivity labels published by Microsoft.
+            &quot;guid&quot;: &quot;A String&quot;, # The GUID of the sensitivity label.
+          },
+        },
         &quot;infoType&quot;: { # Type of information detected by the API. # CustomInfoType can either be a new infoType, or an extension of built-in infoType, when the name matches one of existing infoTypes and that infoType is specified in `InspectContent.info_types` field. Specifying the latter adds findings to the one detected by the system. If built-in info type is not specified in `InspectContent.info_types` list then the name is treated as a custom info type.
           &quot;name&quot;: &quot;A String&quot;, # Name of the information type. Either a name of your choosing when creating a CustomInfoType, or one of the names listed at https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference when specifying a built-in type. When sending Cloud DLP results to Data Catalog, infoType names should conform to the pattern `[A-Za-z0-9$_-]{1,64}`.
           &quot;sensitivityScore&quot;: { # Score is calculated from of all elements in the data profile. A higher level means the data is more sensitive. # Optional custom sensitivity for this InfoType. This only applies to data profiling.
@@ -1200,15 +1214,65 @@ Args:
   },
   &quot;inspectTemplateName&quot;: &quot;A String&quot;, # Template to use. Any configuration directly specified in inspect_config will override those set in the template. Singular fields that are set in this request will replace their corresponding fields in the template. Repeated fields are appended. Singular sub-messages and groups are recursively merged.
   &quot;item&quot;: { # Type of content to inspect. # The item to de-identify. Will be treated as text. This value must be of type Table if your deidentify_config is a RecordTransformations object.
+    &quot;batchContentItem&quot;: { # Represents a batch of content to inspect or redact. # Represents a batch of items to inspect.
+      &quot;stringValueBatch&quot;: { # Represents a batch of string values to inspect or redact. # Optional. Represents a batch of string values to inspect or redact.
+        &quot;values&quot;: [ # Optional. Represents string data to inspect or redact.
+          &quot;A String&quot;,
+        ],
+      },
+    },
     &quot;byteItem&quot;: { # Container for bytes to inspect or redact. # Content data to inspect or redact. Replaces `type` and `data`.
       &quot;data&quot;: &quot;A String&quot;, # Content data to inspect or redact.
       &quot;type&quot;: &quot;A String&quot;, # The type of data stored in the bytes string. Default will be TEXT_UTF8.
     },
     &quot;contentMetadata&quot;: { # Metadata on content to be scanned. # User provided metadata for the content.
+      &quot;fileLabels&quot;: [ # Optional. The file labels associated with the content.
+        { # Represents a file label.
+          &quot;googleDriveLabel&quot;: { # Google Drive labels published by Google. # Google Drive labels published by Google.
+            &quot;labelFields&quot;: [ # The field values of the Google Drive label
+              { # The field values of the Google Drive label
+                &quot;id&quot;: &quot;A String&quot;, # The identifier of the Label Field.
+                &quot;value&quot;: { # Set of primitive values supported by the system. Note that for the purposes of inspection or transformation, the number of bytes considered to comprise a &#x27;Value&#x27; is based on its representation as a UTF-8 encoded string. For example, if &#x27;integer_value&#x27; is set to 123456789, the number of bytes would be counted as 9, even though an int64 only holds up to 8 bytes of data. # The value of the Label Field.
+                  &quot;booleanValue&quot;: True or False, # boolean
+                  &quot;dateValue&quot;: { # Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp # date
+                    &quot;day&quot;: 42, # Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn&#x27;t significant.
+                    &quot;month&quot;: 42, # Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+                    &quot;year&quot;: 42, # Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+                  },
+                  &quot;dayOfWeekValue&quot;: &quot;A String&quot;, # day of week
+                  &quot;floatValue&quot;: 3.14, # float
+                  &quot;integerValue&quot;: &quot;A String&quot;, # integer
+                  &quot;stringValue&quot;: &quot;A String&quot;, # string
+                  &quot;timeValue&quot;: { # Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`. # time of day
+                    &quot;hours&quot;: 42, # Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value &quot;24:00:00&quot; for scenarios like business closing time.
+                    &quot;minutes&quot;: 42, # Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.
+                    &quot;nanos&quot;: 42, # Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.
+                    &quot;seconds&quot;: 42, # Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.
+                  },
+                  &quot;timestampValue&quot;: &quot;A String&quot;, # timestamp
+                },
+              },
+            ],
+            &quot;labelId&quot;: &quot;A String&quot;, # The [label ID](https://developers.google.com/workspace/drive/labels/guides/overview) of the Google Drive label.
+          },
+          &quot;sensitivityLabel&quot;: { # Sensitivity labels published by Microsoft. # Sensitivity labels published by Microsoft.
+            &quot;guid&quot;: &quot;A String&quot;, # Required. The GUID of the sensitivity label.
+          },
+        },
+      ],
       &quot;properties&quot;: [ # User provided key-value pairs of content metadata.
         { # A key-value pair in the Metadata.
           &quot;key&quot;: &quot;A String&quot;, # The key of the property.
           &quot;value&quot;: &quot;A String&quot;, # The value of the property.
+        },
+      ],
+    },
+    &quot;conversation&quot;: { # Complete conversation or slice of a conversation. It is assumed that all included messages are contiguous and ordered in chronological order. # Represents a conversation (either complete or a slice). It is assumed that all included messages are contiguous and ordered in chronological order.
+      &quot;messages&quot;: [ # Messages exchanged within this conversation. The maximum number of messages allowed is 50k. The order of the messages is assumed to be chronological and will be used to index findings in the response.
+        { # Single message in a conversation.
+          &quot;content&quot;: &quot;A String&quot;, # The contents of this message.
+          &quot;messageType&quot;: &quot;A String&quot;, # The type of message.
+          &quot;participantId&quot;: &quot;A String&quot;, # Optional. The identifier of the participant, for example &#x27;test-user&#x27; or &#x27;gemini&#x27;. The participant ID can contain lowercase letters, numbers, and hyphens; that is, it must match the regular expression: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`. The maximum length is 63 characters.
         },
       ],
     },
@@ -1259,15 +1323,65 @@ Returns:
 
     { # Results of de-identifying a ContentItem.
   &quot;item&quot;: { # Type of content to inspect. # The de-identified item.
+    &quot;batchContentItem&quot;: { # Represents a batch of content to inspect or redact. # Represents a batch of items to inspect.
+      &quot;stringValueBatch&quot;: { # Represents a batch of string values to inspect or redact. # Optional. Represents a batch of string values to inspect or redact.
+        &quot;values&quot;: [ # Optional. Represents string data to inspect or redact.
+          &quot;A String&quot;,
+        ],
+      },
+    },
     &quot;byteItem&quot;: { # Container for bytes to inspect or redact. # Content data to inspect or redact. Replaces `type` and `data`.
       &quot;data&quot;: &quot;A String&quot;, # Content data to inspect or redact.
       &quot;type&quot;: &quot;A String&quot;, # The type of data stored in the bytes string. Default will be TEXT_UTF8.
     },
     &quot;contentMetadata&quot;: { # Metadata on content to be scanned. # User provided metadata for the content.
+      &quot;fileLabels&quot;: [ # Optional. The file labels associated with the content.
+        { # Represents a file label.
+          &quot;googleDriveLabel&quot;: { # Google Drive labels published by Google. # Google Drive labels published by Google.
+            &quot;labelFields&quot;: [ # The field values of the Google Drive label
+              { # The field values of the Google Drive label
+                &quot;id&quot;: &quot;A String&quot;, # The identifier of the Label Field.
+                &quot;value&quot;: { # Set of primitive values supported by the system. Note that for the purposes of inspection or transformation, the number of bytes considered to comprise a &#x27;Value&#x27; is based on its representation as a UTF-8 encoded string. For example, if &#x27;integer_value&#x27; is set to 123456789, the number of bytes would be counted as 9, even though an int64 only holds up to 8 bytes of data. # The value of the Label Field.
+                  &quot;booleanValue&quot;: True or False, # boolean
+                  &quot;dateValue&quot;: { # Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp # date
+                    &quot;day&quot;: 42, # Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn&#x27;t significant.
+                    &quot;month&quot;: 42, # Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+                    &quot;year&quot;: 42, # Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+                  },
+                  &quot;dayOfWeekValue&quot;: &quot;A String&quot;, # day of week
+                  &quot;floatValue&quot;: 3.14, # float
+                  &quot;integerValue&quot;: &quot;A String&quot;, # integer
+                  &quot;stringValue&quot;: &quot;A String&quot;, # string
+                  &quot;timeValue&quot;: { # Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`. # time of day
+                    &quot;hours&quot;: 42, # Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value &quot;24:00:00&quot; for scenarios like business closing time.
+                    &quot;minutes&quot;: 42, # Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.
+                    &quot;nanos&quot;: 42, # Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.
+                    &quot;seconds&quot;: 42, # Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.
+                  },
+                  &quot;timestampValue&quot;: &quot;A String&quot;, # timestamp
+                },
+              },
+            ],
+            &quot;labelId&quot;: &quot;A String&quot;, # The [label ID](https://developers.google.com/workspace/drive/labels/guides/overview) of the Google Drive label.
+          },
+          &quot;sensitivityLabel&quot;: { # Sensitivity labels published by Microsoft. # Sensitivity labels published by Microsoft.
+            &quot;guid&quot;: &quot;A String&quot;, # Required. The GUID of the sensitivity label.
+          },
+        },
+      ],
       &quot;properties&quot;: [ # User provided key-value pairs of content metadata.
         { # A key-value pair in the Metadata.
           &quot;key&quot;: &quot;A String&quot;, # The key of the property.
           &quot;value&quot;: &quot;A String&quot;, # The value of the property.
+        },
+      ],
+    },
+    &quot;conversation&quot;: { # Complete conversation or slice of a conversation. It is assumed that all included messages are contiguous and ordered in chronological order. # Represents a conversation (either complete or a slice). It is assumed that all included messages are contiguous and ordered in chronological order.
+      &quot;messages&quot;: [ # Messages exchanged within this conversation. The maximum number of messages allowed is 50k. The order of the messages is assumed to be chronological and will be used to index findings in the response.
+        { # Single message in a conversation.
+          &quot;content&quot;: &quot;A String&quot;, # The contents of this message.
+          &quot;messageType&quot;: &quot;A String&quot;, # The type of message.
+          &quot;participantId&quot;: &quot;A String&quot;, # Optional. The identifier of the participant, for example &#x27;test-user&#x27; or &#x27;gemini&#x27;. The participant ID can contain lowercase letters, numbers, and hyphens; that is, it must match the regular expression: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`. The maximum length is 63 characters.
         },
       ],
     },
@@ -2182,6 +2296,20 @@ Args:
           },
         },
         &quot;exclusionType&quot;: &quot;A String&quot;, # If set to EXCLUSION_TYPE_EXCLUDE this infoType will not cause a finding to be returned. It still can be used for rules matching. Only supported for the `dictionary`, `regex`, and `stored_type` CustomInfoTypes.
+        &quot;fileLabelInfoType&quot;: { # Configuration for a custom infoType that detects file labels. # File label to detect.
+          &quot;googleDriveLabel&quot;: { # Google Drive labels published by Google. # Google Drive labels published by Google.
+            &quot;labelFieldsToMatch&quot;: [ # The field values of the Google Drive label to match.
+              { # The field values of the Google Drive label to match.
+                &quot;id&quot;: &quot;A String&quot;, # The identifier of the Label Field.
+                &quot;value&quot;: &quot;A String&quot;, # The value of the Label Field to match.
+              },
+            ],
+            &quot;labelId&quot;: &quot;A String&quot;, # The [label ID](https://developers.google.com/workspace/drive/labels/guides/overview) of the Google Drive label.
+          },
+          &quot;sensitivityLabel&quot;: { # Sensitivity labels published by Microsoft. # Sensitivity labels published by Microsoft.
+            &quot;guid&quot;: &quot;A String&quot;, # The GUID of the sensitivity label.
+          },
+        },
         &quot;infoType&quot;: { # Type of information detected by the API. # CustomInfoType can either be a new infoType, or an extension of built-in infoType, when the name matches one of existing infoTypes and that infoType is specified in `InspectContent.info_types` field. Specifying the latter adds findings to the one detected by the system. If built-in info type is not specified in `InspectContent.info_types` list then the name is treated as a custom info type.
           &quot;name&quot;: &quot;A String&quot;, # Name of the information type. Either a name of your choosing when creating a CustomInfoType, or one of the names listed at https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference when specifying a built-in type. When sending Cloud DLP results to Data Catalog, infoType names should conform to the pattern `[A-Za-z0-9$_-]{1,64}`.
           &quot;sensitivityScore&quot;: { # Score is calculated from of all elements in the data profile. A higher level means the data is more sensitive. # Optional custom sensitivity for this InfoType. This only applies to data profiling.
@@ -2387,15 +2515,65 @@ Args:
   },
   &quot;inspectTemplateName&quot;: &quot;A String&quot;, # Template to use. Any configuration directly specified in inspect_config will override those set in the template. Singular fields that are set in this request will replace their corresponding fields in the template. Repeated fields are appended. Singular sub-messages and groups are recursively merged.
   &quot;item&quot;: { # Type of content to inspect. # The item to inspect.
+    &quot;batchContentItem&quot;: { # Represents a batch of content to inspect or redact. # Represents a batch of items to inspect.
+      &quot;stringValueBatch&quot;: { # Represents a batch of string values to inspect or redact. # Optional. Represents a batch of string values to inspect or redact.
+        &quot;values&quot;: [ # Optional. Represents string data to inspect or redact.
+          &quot;A String&quot;,
+        ],
+      },
+    },
     &quot;byteItem&quot;: { # Container for bytes to inspect or redact. # Content data to inspect or redact. Replaces `type` and `data`.
       &quot;data&quot;: &quot;A String&quot;, # Content data to inspect or redact.
       &quot;type&quot;: &quot;A String&quot;, # The type of data stored in the bytes string. Default will be TEXT_UTF8.
     },
     &quot;contentMetadata&quot;: { # Metadata on content to be scanned. # User provided metadata for the content.
+      &quot;fileLabels&quot;: [ # Optional. The file labels associated with the content.
+        { # Represents a file label.
+          &quot;googleDriveLabel&quot;: { # Google Drive labels published by Google. # Google Drive labels published by Google.
+            &quot;labelFields&quot;: [ # The field values of the Google Drive label
+              { # The field values of the Google Drive label
+                &quot;id&quot;: &quot;A String&quot;, # The identifier of the Label Field.
+                &quot;value&quot;: { # Set of primitive values supported by the system. Note that for the purposes of inspection or transformation, the number of bytes considered to comprise a &#x27;Value&#x27; is based on its representation as a UTF-8 encoded string. For example, if &#x27;integer_value&#x27; is set to 123456789, the number of bytes would be counted as 9, even though an int64 only holds up to 8 bytes of data. # The value of the Label Field.
+                  &quot;booleanValue&quot;: True or False, # boolean
+                  &quot;dateValue&quot;: { # Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp # date
+                    &quot;day&quot;: 42, # Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn&#x27;t significant.
+                    &quot;month&quot;: 42, # Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+                    &quot;year&quot;: 42, # Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+                  },
+                  &quot;dayOfWeekValue&quot;: &quot;A String&quot;, # day of week
+                  &quot;floatValue&quot;: 3.14, # float
+                  &quot;integerValue&quot;: &quot;A String&quot;, # integer
+                  &quot;stringValue&quot;: &quot;A String&quot;, # string
+                  &quot;timeValue&quot;: { # Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`. # time of day
+                    &quot;hours&quot;: 42, # Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value &quot;24:00:00&quot; for scenarios like business closing time.
+                    &quot;minutes&quot;: 42, # Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.
+                    &quot;nanos&quot;: 42, # Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.
+                    &quot;seconds&quot;: 42, # Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.
+                  },
+                  &quot;timestampValue&quot;: &quot;A String&quot;, # timestamp
+                },
+              },
+            ],
+            &quot;labelId&quot;: &quot;A String&quot;, # The [label ID](https://developers.google.com/workspace/drive/labels/guides/overview) of the Google Drive label.
+          },
+          &quot;sensitivityLabel&quot;: { # Sensitivity labels published by Microsoft. # Sensitivity labels published by Microsoft.
+            &quot;guid&quot;: &quot;A String&quot;, # Required. The GUID of the sensitivity label.
+          },
+        },
+      ],
       &quot;properties&quot;: [ # User provided key-value pairs of content metadata.
         { # A key-value pair in the Metadata.
           &quot;key&quot;: &quot;A String&quot;, # The key of the property.
           &quot;value&quot;: &quot;A String&quot;, # The value of the property.
+        },
+      ],
+    },
+    &quot;conversation&quot;: { # Complete conversation or slice of a conversation. It is assumed that all included messages are contiguous and ordered in chronological order. # Represents a conversation (either complete or a slice). It is assumed that all included messages are contiguous and ordered in chronological order.
+      &quot;messages&quot;: [ # Messages exchanged within this conversation. The maximum number of messages allowed is 50k. The order of the messages is assumed to be chronological and will be used to index findings in the response.
+        { # Single message in a conversation.
+          &quot;content&quot;: &quot;A String&quot;, # The contents of this message.
+          &quot;messageType&quot;: &quot;A String&quot;, # The type of message.
+          &quot;participantId&quot;: &quot;A String&quot;, # Optional. The identifier of the participant, for example &#x27;test-user&#x27; or &#x27;gemini&#x27;. The participant ID can contain lowercase letters, numbers, and hyphens; that is, it must match the regular expression: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`. The maximum length is 63 characters.
         },
       ],
     },
@@ -2483,9 +2661,17 @@ Returns:
           },
           &quot;contentLocations&quot;: [ # List of nested objects pointing to the precise location of the finding within the file or record.
             { # Precise location of the finding within a document, record, image, or metadata container.
+              &quot;batchContentLocation&quot;: { # Location within a batch of content. # Location within a batch of content.
+                &quot;itemIndex&quot;: 42, # Matches an index of a batch item in the batch provided in the request.
+              },
               &quot;containerName&quot;: &quot;A String&quot;, # Name of the container where the finding is located. The top level name is the source file name or table name. Names of some common storage containers are formatted as follows: * BigQuery tables: `{project_id}:{dataset_id}.{table_id}` * Cloud Storage files: `gs://{bucket}/{path}` * Datastore namespace: {namespace} Nested names could be absent if the embedded object has no string identifier (for example, an image contained within a document).
               &quot;containerTimestamp&quot;: &quot;A String&quot;, # Finding container modification timestamp, if applicable. For Cloud Storage, this field contains the last file modification timestamp. For a BigQuery table, this field contains the last_modified_time property. For Datastore, this field isn&#x27;t populated.
               &quot;containerVersion&quot;: &quot;A String&quot;, # Finding container version, if available (&quot;generation&quot; for Cloud Storage).
+              &quot;conversationLocation&quot;: { # Location within a conversation. # Location within a conversation.
+                &quot;allMessages&quot;: { # If set, indicates that the finding applies to all messages in the conversation. # If set, indicates that the finding applies to all messages in the conversation.
+                },
+                &quot;messageIndex&quot;: 42, # Matches an index of a message in the conversation provided in the request.
+              },
               &quot;documentLocation&quot;: { # Location of a finding within a document. # Location data for document files.
                 &quot;fileOffset&quot;: &quot;A String&quot;, # Offset of the line, from the beginning of the file, where the finding is located.
               },
@@ -2624,6 +2810,20 @@ Args:
           },
         },
         &quot;exclusionType&quot;: &quot;A String&quot;, # If set to EXCLUSION_TYPE_EXCLUDE this infoType will not cause a finding to be returned. It still can be used for rules matching. Only supported for the `dictionary`, `regex`, and `stored_type` CustomInfoTypes.
+        &quot;fileLabelInfoType&quot;: { # Configuration for a custom infoType that detects file labels. # File label to detect.
+          &quot;googleDriveLabel&quot;: { # Google Drive labels published by Google. # Google Drive labels published by Google.
+            &quot;labelFieldsToMatch&quot;: [ # The field values of the Google Drive label to match.
+              { # The field values of the Google Drive label to match.
+                &quot;id&quot;: &quot;A String&quot;, # The identifier of the Label Field.
+                &quot;value&quot;: &quot;A String&quot;, # The value of the Label Field to match.
+              },
+            ],
+            &quot;labelId&quot;: &quot;A String&quot;, # The [label ID](https://developers.google.com/workspace/drive/labels/guides/overview) of the Google Drive label.
+          },
+          &quot;sensitivityLabel&quot;: { # Sensitivity labels published by Microsoft. # Sensitivity labels published by Microsoft.
+            &quot;guid&quot;: &quot;A String&quot;, # The GUID of the sensitivity label.
+          },
+        },
         &quot;infoType&quot;: { # Type of information detected by the API. # CustomInfoType can either be a new infoType, or an extension of built-in infoType, when the name matches one of existing infoTypes and that infoType is specified in `InspectContent.info_types` field. Specifying the latter adds findings to the one detected by the system. If built-in info type is not specified in `InspectContent.info_types` list then the name is treated as a custom info type.
           &quot;name&quot;: &quot;A String&quot;, # Name of the information type. Either a name of your choosing when creating a CustomInfoType, or one of the names listed at https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference when specifying a built-in type. When sending Cloud DLP results to Data Catalog, infoType names should conform to the pattern `[A-Za-z0-9$_-]{1,64}`.
           &quot;sensitivityScore&quot;: { # Score is calculated from of all elements in the data profile. A higher level means the data is more sensitive. # Optional custom sensitivity for this InfoType. This only applies to data profiling.
@@ -2829,15 +3029,65 @@ Args:
   },
   &quot;inspectTemplateName&quot;: &quot;A String&quot;, # Template to use. Any configuration directly specified in `inspect_config` will override those set in the template. Singular fields that are set in this request will replace their corresponding fields in the template. Repeated fields are appended. Singular sub-messages and groups are recursively merged.
   &quot;item&quot;: { # Type of content to inspect. # The item to re-identify. Will be treated as text.
+    &quot;batchContentItem&quot;: { # Represents a batch of content to inspect or redact. # Represents a batch of items to inspect.
+      &quot;stringValueBatch&quot;: { # Represents a batch of string values to inspect or redact. # Optional. Represents a batch of string values to inspect or redact.
+        &quot;values&quot;: [ # Optional. Represents string data to inspect or redact.
+          &quot;A String&quot;,
+        ],
+      },
+    },
     &quot;byteItem&quot;: { # Container for bytes to inspect or redact. # Content data to inspect or redact. Replaces `type` and `data`.
       &quot;data&quot;: &quot;A String&quot;, # Content data to inspect or redact.
       &quot;type&quot;: &quot;A String&quot;, # The type of data stored in the bytes string. Default will be TEXT_UTF8.
     },
     &quot;contentMetadata&quot;: { # Metadata on content to be scanned. # User provided metadata for the content.
+      &quot;fileLabels&quot;: [ # Optional. The file labels associated with the content.
+        { # Represents a file label.
+          &quot;googleDriveLabel&quot;: { # Google Drive labels published by Google. # Google Drive labels published by Google.
+            &quot;labelFields&quot;: [ # The field values of the Google Drive label
+              { # The field values of the Google Drive label
+                &quot;id&quot;: &quot;A String&quot;, # The identifier of the Label Field.
+                &quot;value&quot;: { # Set of primitive values supported by the system. Note that for the purposes of inspection or transformation, the number of bytes considered to comprise a &#x27;Value&#x27; is based on its representation as a UTF-8 encoded string. For example, if &#x27;integer_value&#x27; is set to 123456789, the number of bytes would be counted as 9, even though an int64 only holds up to 8 bytes of data. # The value of the Label Field.
+                  &quot;booleanValue&quot;: True or False, # boolean
+                  &quot;dateValue&quot;: { # Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp # date
+                    &quot;day&quot;: 42, # Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn&#x27;t significant.
+                    &quot;month&quot;: 42, # Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+                    &quot;year&quot;: 42, # Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+                  },
+                  &quot;dayOfWeekValue&quot;: &quot;A String&quot;, # day of week
+                  &quot;floatValue&quot;: 3.14, # float
+                  &quot;integerValue&quot;: &quot;A String&quot;, # integer
+                  &quot;stringValue&quot;: &quot;A String&quot;, # string
+                  &quot;timeValue&quot;: { # Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`. # time of day
+                    &quot;hours&quot;: 42, # Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value &quot;24:00:00&quot; for scenarios like business closing time.
+                    &quot;minutes&quot;: 42, # Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.
+                    &quot;nanos&quot;: 42, # Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.
+                    &quot;seconds&quot;: 42, # Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.
+                  },
+                  &quot;timestampValue&quot;: &quot;A String&quot;, # timestamp
+                },
+              },
+            ],
+            &quot;labelId&quot;: &quot;A String&quot;, # The [label ID](https://developers.google.com/workspace/drive/labels/guides/overview) of the Google Drive label.
+          },
+          &quot;sensitivityLabel&quot;: { # Sensitivity labels published by Microsoft. # Sensitivity labels published by Microsoft.
+            &quot;guid&quot;: &quot;A String&quot;, # Required. The GUID of the sensitivity label.
+          },
+        },
+      ],
       &quot;properties&quot;: [ # User provided key-value pairs of content metadata.
         { # A key-value pair in the Metadata.
           &quot;key&quot;: &quot;A String&quot;, # The key of the property.
           &quot;value&quot;: &quot;A String&quot;, # The value of the property.
+        },
+      ],
+    },
+    &quot;conversation&quot;: { # Complete conversation or slice of a conversation. It is assumed that all included messages are contiguous and ordered in chronological order. # Represents a conversation (either complete or a slice). It is assumed that all included messages are contiguous and ordered in chronological order.
+      &quot;messages&quot;: [ # Messages exchanged within this conversation. The maximum number of messages allowed is 50k. The order of the messages is assumed to be chronological and will be used to index findings in the response.
+        { # Single message in a conversation.
+          &quot;content&quot;: &quot;A String&quot;, # The contents of this message.
+          &quot;messageType&quot;: &quot;A String&quot;, # The type of message.
+          &quot;participantId&quot;: &quot;A String&quot;, # Optional. The identifier of the participant, for example &#x27;test-user&#x27; or &#x27;gemini&#x27;. The participant ID can contain lowercase letters, numbers, and hyphens; that is, it must match the regular expression: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`. The maximum length is 63 characters.
         },
       ],
     },
@@ -3744,15 +3994,65 @@ Returns:
 
     { # Results of re-identifying an item.
   &quot;item&quot;: { # Type of content to inspect. # The re-identified item.
+    &quot;batchContentItem&quot;: { # Represents a batch of content to inspect or redact. # Represents a batch of items to inspect.
+      &quot;stringValueBatch&quot;: { # Represents a batch of string values to inspect or redact. # Optional. Represents a batch of string values to inspect or redact.
+        &quot;values&quot;: [ # Optional. Represents string data to inspect or redact.
+          &quot;A String&quot;,
+        ],
+      },
+    },
     &quot;byteItem&quot;: { # Container for bytes to inspect or redact. # Content data to inspect or redact. Replaces `type` and `data`.
       &quot;data&quot;: &quot;A String&quot;, # Content data to inspect or redact.
       &quot;type&quot;: &quot;A String&quot;, # The type of data stored in the bytes string. Default will be TEXT_UTF8.
     },
     &quot;contentMetadata&quot;: { # Metadata on content to be scanned. # User provided metadata for the content.
+      &quot;fileLabels&quot;: [ # Optional. The file labels associated with the content.
+        { # Represents a file label.
+          &quot;googleDriveLabel&quot;: { # Google Drive labels published by Google. # Google Drive labels published by Google.
+            &quot;labelFields&quot;: [ # The field values of the Google Drive label
+              { # The field values of the Google Drive label
+                &quot;id&quot;: &quot;A String&quot;, # The identifier of the Label Field.
+                &quot;value&quot;: { # Set of primitive values supported by the system. Note that for the purposes of inspection or transformation, the number of bytes considered to comprise a &#x27;Value&#x27; is based on its representation as a UTF-8 encoded string. For example, if &#x27;integer_value&#x27; is set to 123456789, the number of bytes would be counted as 9, even though an int64 only holds up to 8 bytes of data. # The value of the Label Field.
+                  &quot;booleanValue&quot;: True or False, # boolean
+                  &quot;dateValue&quot;: { # Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp # date
+                    &quot;day&quot;: 42, # Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn&#x27;t significant.
+                    &quot;month&quot;: 42, # Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+                    &quot;year&quot;: 42, # Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+                  },
+                  &quot;dayOfWeekValue&quot;: &quot;A String&quot;, # day of week
+                  &quot;floatValue&quot;: 3.14, # float
+                  &quot;integerValue&quot;: &quot;A String&quot;, # integer
+                  &quot;stringValue&quot;: &quot;A String&quot;, # string
+                  &quot;timeValue&quot;: { # Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`. # time of day
+                    &quot;hours&quot;: 42, # Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value &quot;24:00:00&quot; for scenarios like business closing time.
+                    &quot;minutes&quot;: 42, # Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.
+                    &quot;nanos&quot;: 42, # Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.
+                    &quot;seconds&quot;: 42, # Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.
+                  },
+                  &quot;timestampValue&quot;: &quot;A String&quot;, # timestamp
+                },
+              },
+            ],
+            &quot;labelId&quot;: &quot;A String&quot;, # The [label ID](https://developers.google.com/workspace/drive/labels/guides/overview) of the Google Drive label.
+          },
+          &quot;sensitivityLabel&quot;: { # Sensitivity labels published by Microsoft. # Sensitivity labels published by Microsoft.
+            &quot;guid&quot;: &quot;A String&quot;, # Required. The GUID of the sensitivity label.
+          },
+        },
+      ],
       &quot;properties&quot;: [ # User provided key-value pairs of content metadata.
         { # A key-value pair in the Metadata.
           &quot;key&quot;: &quot;A String&quot;, # The key of the property.
           &quot;value&quot;: &quot;A String&quot;, # The value of the property.
+        },
+      ],
+    },
+    &quot;conversation&quot;: { # Complete conversation or slice of a conversation. It is assumed that all included messages are contiguous and ordered in chronological order. # Represents a conversation (either complete or a slice). It is assumed that all included messages are contiguous and ordered in chronological order.
+      &quot;messages&quot;: [ # Messages exchanged within this conversation. The maximum number of messages allowed is 50k. The order of the messages is assumed to be chronological and will be used to index findings in the response.
+        { # Single message in a conversation.
+          &quot;content&quot;: &quot;A String&quot;, # The contents of this message.
+          &quot;messageType&quot;: &quot;A String&quot;, # The type of message.
+          &quot;participantId&quot;: &quot;A String&quot;, # Optional. The identifier of the participant, for example &#x27;test-user&#x27; or &#x27;gemini&#x27;. The participant ID can contain lowercase letters, numbers, and hyphens; that is, it must match the regular expression: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`. The maximum length is 63 characters.
         },
       ],
     },

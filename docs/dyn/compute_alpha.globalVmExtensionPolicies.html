@@ -580,12 +580,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -866,7 +866,14 @@ Returns:
   An object of the form:
 
     {
+  &quot;creationTimestamp&quot;: &quot;A String&quot;, # Output only. [Output Only] Creation timestamp inRFC3339
+      # text format.
+  &quot;description&quot;: &quot;A String&quot;, # Output only. [Output Only] An optional textual description of the resource.
+  &quot;id&quot;: &quot;A String&quot;, # Output only. [Output Only] The unique identifier for the resource. This identifier is
+      # defined by the server.
+  &quot;kind&quot;: &quot;compute#globalVmExtension&quot;, # Output only. [Output Only] Type of the resource. Alwayscompute#globalVmExtension.
   &quot;name&quot;: &quot;A String&quot;,
+  &quot;selfLink&quot;: &quot;A String&quot;, # Output only. [Output Only] Server-defined URL for the resource.
   &quot;versions&quot;: [
     &quot;A String&quot;,
   ],
@@ -1162,12 +1169,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },
@@ -1664,7 +1671,14 @@ Returns:
   &quot;id&quot;: &quot;A String&quot;, # Output only. Unique identifier for the resource; defined by the server.
   &quot;items&quot;: [ # Output only. A list of VM extensions.
     {
+      &quot;creationTimestamp&quot;: &quot;A String&quot;, # Output only. [Output Only] Creation timestamp inRFC3339
+          # text format.
+      &quot;description&quot;: &quot;A String&quot;, # Output only. [Output Only] An optional textual description of the resource.
+      &quot;id&quot;: &quot;A String&quot;, # Output only. [Output Only] The unique identifier for the resource. This identifier is
+          # defined by the server.
+      &quot;kind&quot;: &quot;compute#globalVmExtension&quot;, # Output only. [Output Only] Type of the resource. Alwayscompute#globalVmExtension.
       &quot;name&quot;: &quot;A String&quot;,
+      &quot;selfLink&quot;: &quot;A String&quot;, # Output only. [Output Only] Server-defined URL for the resource.
       &quot;versions&quot;: [
         &quot;A String&quot;,
       ],
@@ -2026,12 +2040,12 @@ Returns:
   },
   &quot;getVersionOperationMetadata&quot;: {
     &quot;inlineSbomInfo&quot;: {
-      &quot;currentComponentVersions&quot;: { # SBOM versions currently applied to the resource. The key is the component
-          # name and the value is the version.
+      &quot;currentComponentVersions&quot;: { # A mapping of components to their currently-applied versions or other
+          # appropriate identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
-      &quot;targetComponentVersions&quot;: { # SBOM versions scheduled for the next maintenance. The key is the
-          # component name and the value is the version.
+      &quot;targetComponentVersions&quot;: { # A mapping of components to their target versions or other appropriate
+          # identifiers.
         &quot;a_key&quot;: &quot;A String&quot;,
       },
     },

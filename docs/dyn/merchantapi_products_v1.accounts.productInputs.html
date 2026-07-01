@@ -149,12 +149,16 @@ Args:
     &quot;adsRedirect&quot;: &quot;A String&quot;, # Allows advertisers to override the item URL when the product is shown within the context of Product ads.
     &quot;adult&quot;: True or False, # Set to true if the item is targeted towards adults.
     &quot;ageGroup&quot;: &quot;A String&quot;, # Target [age group](https://support.google.com/merchants/answer/6324463) of the item.
+    &quot;amenityFeature&quot;: [ # The amenity features for the property.
+      &quot;A String&quot;,
+    ],
     &quot;autoPricingMinPrice&quot;: { # The price represented as a number and currency. # A safeguard in the [automated discounts] (https://support.google.com/merchants/answer/10295759) and &quot;Dynamic Promotions&quot; (https://support.google.com/merchants/answer/13949249) projects, ensuring that discounts on business offers do not fall below this value, thereby preserving the offer&#x27;s value and profitability.
       &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
       &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
     },
     &quot;availability&quot;: &quot;A String&quot;, # [Availability](https://support.google.com/merchants/answer/6324448) status of the item.
     &quot;availabilityDate&quot;: &quot;A String&quot;, # The day a pre-ordered product becomes available for delivery, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format.
+    &quot;bodyStyle&quot;: &quot;A String&quot;, # The [body style](https://support.google.com/google-ads/answer/14157085) of the vehicle.
     &quot;brand&quot;: &quot;A String&quot;, # [Brand](https://support.google.com/merchants/answer/6324351) of the item. For example, &quot;Google&quot;.
     &quot;canonicalLink&quot;: &quot;A String&quot;, # URL for the canonical version of your item&#x27;s landing page.
     &quot;carrierShipping&quot;: [ # Rules for carrier-based shipping.
@@ -188,6 +192,7 @@ Args:
         &quot;certificationValue&quot;: &quot;A String&quot;, # The certification value (also known as class, level or grade), for example &quot;A+&quot;, &quot;C&quot;, &quot;gold&quot;. Maximum length is 2000 characters.
       },
     ],
+    &quot;certifiedPreOwned&quot;: True or False, # Whether the vehicle is OEM [certified pre-owned](https://support.google.com/google-ads/answer/14156475).
     &quot;cloudExportAdditionalProperties&quot;: [ # Extra fields to export to the Cloud Retail program.
       { # Product property for the Cloud Retail API. For example, properties for a TV product could be &quot;Screen-Resolution&quot; or &quot;Screen-Size&quot;.
         &quot;boolValue&quot;: True or False, # Boolean value of the given property. For example for a TV product, &quot;True&quot; or &quot;False&quot; if the screen is UHD.
@@ -206,6 +211,10 @@ Args:
         &quot;unitCode&quot;: &quot;A String&quot;, # Unit of the given property. For example, &quot;Pixels&quot; for a TV product. Maximum string size is 256B.
       },
     ],
+    &quot;co2Emissions&quot;: { # The co2 emission of the vehicle. # The [co2 emission](https://support.google.com/google-ads/answer/14546146) of the vehicle.
+      &quot;unit&quot;: &quot;A String&quot;, # The unit of the co2 emission.
+      &quot;value&quot;: &quot;A String&quot;, # The co2 emission value.
+    },
     &quot;color&quot;: &quot;A String&quot;, # [Color](https://support.google.com/merchants/answer/6324487) of the item. For example, &quot;red&quot;.
     &quot;condition&quot;: &quot;A String&quot;, # [Condition](https://support.google.com/merchants/answer/6324469) or state of the item.
     &quot;costOfGoodsSold&quot;: { # The price represented as a number and currency. # Cost of goods sold. Used for gross profit reporting.
@@ -217,8 +226,16 @@ Args:
     &quot;customLabel2&quot;: &quot;A String&quot;, # [Custom label 2](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.
     &quot;customLabel3&quot;: &quot;A String&quot;, # [Custom label 3](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.
     &quot;customLabel4&quot;: &quot;A String&quot;, # [Custom label 4](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.
+    &quot;dateFirstRegistered&quot;: &quot;A String&quot;, # The date the vehicle was first registered. Format: `YYYY-MM`. See the [Date first registered](https://support.google.com/google-ads/answer/14546138) for more information.
     &quot;description&quot;: &quot;A String&quot;, # Description of the item.
     &quot;disclosureDate&quot;: &quot;A String&quot;, # The date time when an offer becomes visible in search results across Google’s YouTube surfaces, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format. See [Disclosure date](https://support.google.com/merchants/answer/13034208) for more information.
+    &quot;displayAddress&quot;: { # The display address of the property. # The display address of the property.
+      &quot;city&quot;: &quot;A String&quot;, # The city such as Seattle, New York, etc.
+      &quot;postalCode&quot;: &quot;A String&quot;, # The postal code, such as 94043.
+      &quot;region&quot;: &quot;A String&quot;, # The region(state), such as WA, OH, etc.
+      &quot;streetName&quot;: &quot;A String&quot;, # The street name.
+      &quot;streetNumber&quot;: &quot;A String&quot;, # The street number.
+    },
     &quot;displayAdsId&quot;: &quot;A String&quot;, # An identifier for an item for dynamic remarketing campaigns.
     &quot;displayAdsLink&quot;: &quot;A String&quot;, # URL directly to your item&#x27;s landing page for dynamic remarketing campaigns.
     &quot;displayAdsSimilarIds&quot;: [ # Advertiser-specified recommendations. For more information, see [Display ads attribute specification](https://support.google.com/merchants/answer/6069387).
@@ -226,7 +243,20 @@ Args:
     ],
     &quot;displayAdsTitle&quot;: &quot;A String&quot;, # Title of an item for dynamic remarketing campaigns.
     &quot;displayAdsValue&quot;: 3.14, # Offer margin for dynamic remarketing campaigns. For more information, see [Display ads attribute](https://support.google.com/merchants/answer/6069387).
+    &quot;documentLinks&quot;: [ # Optional. Contains a list of PDF [document URLs](https://support.google.com/merchants/answer/17084656) for the product. Examples are training manuals, user guides, assembly instructions, package inserts, etc. Must start with &quot;http://&quot; or &quot;https://&quot;), ASCII characters only, and RFC 3986 compliant.
+      &quot;A String&quot;,
+    ],
+    &quot;electricRange&quot;: { # The mileage of the vehicle. # The [electric range](https://support.google.com/google-ads/answer/15162232) of the vehicle in miles/kms.
+      &quot;unit&quot;: &quot;A String&quot;, # The unit of the mileage.
+      &quot;value&quot;: &quot;A String&quot;, # The distance value.
+    },
+    &quot;emissionsStandard&quot;: &quot;A String&quot;, # The [emission standard](https://support.google.com/google-ads/answer/14869021) of the vehicle.
+    &quot;energyConsumption&quot;: { # The energy consumption of the vehicle. # The [energy consumption](https://support.google.com/google-ads/answer/14546149) of the vehicle.
+      &quot;unit&quot;: &quot;A String&quot;, # The unit of the energy consumption.
+      &quot;value&quot;: 3.14, # The energy consumption value.
+    },
     &quot;energyEfficiencyClass&quot;: &quot;A String&quot;, # The [energy efficiency class](https://support.google.com/merchants/answer/7562785) as defined in EU directive 2010/30/EU.
+    &quot;engine&quot;: &quot;A String&quot;, # The [engine](https://support.google.com/google-ads/answer/14156068) type of the vehicle.
     &quot;excludedDestinations&quot;: [ # The list of destinations to exclude for this target (corresponds to unchecked check boxes in Merchant Center). For more information, see [Excluded destination](https://support.google.com/merchants/answer/6324486). Note: We recommend setting destinations on datasources level for most use cases. Use this field within products to only setup exceptions.
       &quot;A String&quot;,
     ],
@@ -241,9 +271,17 @@ Args:
         },
       },
     ],
+    &quot;fuelConsumption&quot;: { # The fuel consumption of the vehicle. # The [fuel consumption](https://support.google.com/google-ads/answer/14543580) of the vehicle.
+      &quot;unit&quot;: &quot;A String&quot;, # The unit of the fuel consumption.
+      &quot;value&quot;: 3.14, # The fuel consumption value.
+    },
+    &quot;fuelConsumptionDischargedBattery&quot;: { # The fuel consumption of the vehicle. # The fuel consumption of the vehicle when the hybrid battery is discharged. See the [Help Center article](https://support.google.com/google-ads/answer/15162033) for more information.
+      &quot;unit&quot;: &quot;A String&quot;, # The unit of the fuel consumption.
+      &quot;value&quot;: 3.14, # The fuel consumption value.
+    },
     &quot;gender&quot;: &quot;A String&quot;, # Target [gender](https://support.google.com/merchants/answer/6324479) of the item.
     &quot;googleProductCategory&quot;: &quot;A String&quot;, # Google&#x27;s category of the item (see [Google product taxonomy](https://support.google.com/merchants/answer/1705911)). When querying products, this field will contain the user provided value. There is currently no way to get back the auto assigned google product categories through the API.
-    &quot;gtins&quot;: [ # Global Trade Item Numbers ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the item. You can provide up to 10 GTINs.
+    &quot;gtins&quot;: [ # Global Trade Item Numbers ([GTIN](https://support.google.com/merchants/answer/6324461)) of the item. You can provide up to 10 GTINs.
       &quot;A String&quot;,
     ],
     &quot;handlingCutoffTimes&quot;: [ # The handling cutoff times for shipping.
@@ -264,20 +302,28 @@ Args:
         &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
         &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
       },
+      &quot;annualPercentageRate&quot;: 3.14, # Optional. Annual percentage rate for `credit_type` finance
       &quot;creditType&quot;: &quot;A String&quot;, # Type of installment payments.
       &quot;downpayment&quot;: { # The price represented as a number and currency. # The up-front down payment amount the buyer has to pay.
         &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
         &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
       },
       &quot;months&quot;: &quot;A String&quot;, # The number of installments the buyer has to pay.
+      &quot;totalAmount&quot;: { # The price represented as a number and currency. # Optional. Total amount the buyer has to pay, including interest.
+        &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+        &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+      },
     },
     &quot;isBundle&quot;: True or False, # Whether the item is a business-defined sub-API. A [sub-API] (https://support.google.com/merchants/answer/6324449) is a custom grouping of different products sold by a business for a single price.
     &quot;itemGroupId&quot;: &quot;A String&quot;, # Shared identifier for all variants of the same product.
+    &quot;itemGroupTitle&quot;: &quot;A String&quot;, # Optional. Represents the [title of the product group](https://support.google.com/merchants/answer/17085146) to which this variant product belongs. This can be used along with the [item group id](https://support.google.com/merchants/answer/6324507) attribute. It lets you perform better grouping of variant products, and helps identifying common product characteristics more efficiently.
+    &quot;latitude&quot;: 3.14, # The latitude of the property. The value must be between -90 (inclusive) and 90 (inclusive), up to 6 decimal places.
     &quot;lifestyleImageLinks&quot;: [ # Additional URLs of lifestyle images of the item, used to explicitly identify images that showcase your item in a real-world context. See the [Help Center article](https://support.google.com/merchants/answer/9103186) for more information.
       &quot;A String&quot;,
     ],
     &quot;link&quot;: &quot;A String&quot;, # URL directly linking to your item&#x27;s page on your online store.
     &quot;linkTemplate&quot;: &quot;A String&quot;, # [Link template](https://support.google.com/merchants/answer/13871172) for business hosted local storefront.
+    &quot;longitude&quot;: 3.14, # The longitude of the property. The value must be between -180 (inclusive) and 180 (inclusive), up to 6 decimal places.
     &quot;loyaltyPoints&quot;: { # A message that represents loyalty points. # Loyalty points that users receive after purchasing the item. Japan only.
       &quot;name&quot;: &quot;A String&quot;, # Name of loyalty points program. It is recommended to limit the name to 12 full-width characters or 24 Roman characters.
       &quot;pointsValue&quot;: &quot;A String&quot;, # The retailer&#x27;s loyalty points in absolute value.
@@ -310,16 +356,53 @@ Args:
       &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
       &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
     },
+    &quot;mileage&quot;: { # The mileage of the vehicle. # The number of miles/kms on the vehicle. See the [Mileage](https://support.google.com/google-ads/answer/14156166) for more information.
+      &quot;unit&quot;: &quot;A String&quot;, # The unit of the mileage.
+      &quot;value&quot;: &quot;A String&quot;, # The distance value.
+    },
     &quot;minEnergyEfficiencyClass&quot;: &quot;A String&quot;, # The [energy efficiency class](https://support.google.com/merchants/answer/7562785) as defined in EU directive 2010/30/EU.
     &quot;minHandlingTime&quot;: &quot;A String&quot;, # Minimal product handling time (in business days).
+    &quot;minimumOrderValues&quot;: [ # The [minimum value](https://support.google.com/merchants/answer/16989009) in the cart before a customer can initiate checkout. Supports multiple minimum order values. Different minimum order values can be specified per country, service and surface. Maximum entries: 100.
+      { # The minimum order value in the cart before the checkout is permitted.
+        &quot;country&quot;: &quot;A String&quot;, # Required. The [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) of the country to which an item will ship.
+        &quot;price&quot;: { # The price represented as a number and currency. # Required. The minimum cart or basket value before the checkout is permitted.
+          &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+          &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+        },
+        &quot;service&quot;: &quot;A String&quot;, # A free-form description of the service class or delivery speed. This should match the service value set for the Shipping attribute. See service.
+        &quot;surface&quot;: &quot;A String&quot;, # The surface to which the minimum order value applies. Defaults to `ONLINE_LOCAL` if not configured.
+      },
+    ],
     &quot;mobileLink&quot;: &quot;A String&quot;, # URL for the mobile-optimized version of your item&#x27;s landing page.
     &quot;mobileLinkTemplate&quot;: &quot;A String&quot;, # [Link template](https://support.google.com/merchants/answer/13870216) for business hosted local storefront optimized for mobile devices.
-    &quot;mpn&quot;: &quot;A String&quot;, # Manufacturer Part Number ([MPN](https://support.google.com/merchants/answer/188494#mpn)) of the item.
+    &quot;model&quot;: &quot;A String&quot;, # The [Model](https://support.google.com/google-ads/answer/14154511) of the vehicle, such as `LX`, `EX`, and others.
+    &quot;mpn&quot;: &quot;A String&quot;, # Manufacturer Part Number ([MPN](https://support.google.com/merchants/answer/6324482)) of the item.
     &quot;multipack&quot;: &quot;A String&quot;, # The number of identical products in a business-defined multipack.
+    &quot;neighborhood&quot;: &quot;A String&quot;, # The neighborhood (locality) of the property, such as `Wallingford`, `Greenwood`, etc.
+    &quot;numberOfBathrooms&quot;: 3.14, # The number of bathrooms in the property. The value must be greater than 0 and a multiple of 0.5.
+    &quot;numberOfBedrooms&quot;: 3.14, # The number of bedrooms in the property. The value must be greater than or equal to 0 and a multiple of 1.0.
+    &quot;numberOfUnits&quot;: &quot;A String&quot;, # The number of units available for a specific floor plan of the property. The value must be greater than 0.
     &quot;pattern&quot;: &quot;A String&quot;, # The item&#x27;s [pattern](https://support.google.com/merchants/answer/6324483). For example, polka dots.
     &quot;pause&quot;: &quot;A String&quot;, # Publication of this item will be temporarily [paused](https://support.google.com/merchants/answer/11909930).
+    &quot;petPolicy&quot;: { # The pet policy of the property. # The pet policy for the property.
+      &quot;petTypes&quot;: [ # The pet types allowed.
+        &quot;A String&quot;,
+      ],
+      &quot;petsAllowed&quot;: True or False, # Whether pets are allowed.
+    },
+    &quot;pickupCost&quot;: { # The pickup cost of the item. # Optional. The [pickup cost](https://support.google.com/merchants/answer/16988704) for an item when a customer buys it online and picks it up at a store.
+      &quot;flatRate&quot;: { # The price represented as a number and currency. # Required. The flat rate pickup cost of the item.
+        &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+        &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+      },
+      &quot;freeThreshold&quot;: { # The price represented as a number and currency. # Optional. The price threshold above which pickup is free of charge.
+        &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+        &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+      },
+    },
     &quot;pickupMethod&quot;: &quot;A String&quot;, # The [pickup](https://support.google.com/merchants/answer/14634021) option for the item.
     &quot;pickupSla&quot;: &quot;A String&quot;, # Item store pickup timeline. For more information, see [Pickup SLA](https://support.google.com/merchants/answer/14635400).
+    &quot;popularityRank&quot;: 3.14, # Optional. Indicates the [popularity](https://support.google.com/merchants/answer/17085297) of the product in a merchant&#x27;s inventory. Using a scale of 0.0 (lowest) to 100.0 (highest).
     &quot;price&quot;: { # The price represented as a number and currency. # Price of the item.
       &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
       &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
@@ -329,6 +412,15 @@ Args:
         &quot;attributeName&quot;: &quot;A String&quot;, # The name of the product detail.
         &quot;attributeValue&quot;: &quot;A String&quot;, # The value of the product detail.
         &quot;sectionName&quot;: &quot;A String&quot;, # The section header used to group a set of product details.
+      },
+    ],
+    &quot;productFee&quot;: [ # The product fee for the property.
+      { # The product fee attribute containing type and amount.
+        &quot;amount&quot;: { # The price represented as a number and currency. # The amount of product fee.
+          &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+          &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+        },
+        &quot;type&quot;: &quot;A String&quot;, # The type of product fee.
       },
     ],
     &quot;productHeight&quot;: { # The dimension of the product. # The height of the product in the units provided. The value must be between 0 (exclusive) and 3000 (inclusive).
@@ -356,6 +448,21 @@ Args:
     &quot;promotionIds&quot;: [ # The unique ID of a promotion.
       &quot;A String&quot;,
     ],
+    &quot;propertyName&quot;: &quot;A String&quot;, # The name of the property.
+    &quot;propertyType&quot;: &quot;A String&quot;, # The type of property.
+    &quot;questionsAndAnswers&quot;: [ # Optional. Contains user-, merchant-, and manufacturer-authored [questions and answers](https://support.google.com/merchants/answer/17085211) about the product. Max 30 question and answer pairs. Max 10000 characters total. Each question can have max 1000 characters. Each answer can have max 1000 characters.
+      { # The question and answer for the product.
+        &quot;answer&quot;: &quot;A String&quot;, # Required. The answer text.
+        &quot;question&quot;: &quot;A String&quot;, # Required. The question text.
+      },
+    ],
+    &quot;relatedProducts&quot;: [ # Optional. Specifies how other [products are related](https://support.google.com/merchants/answer/17085213) to this product.
+      { # Specifies how other products are related to this product.
+        &quot;id&quot;: &quot;A String&quot;, # Required. The identifier of the related product.
+        &quot;idType&quot;: &quot;A String&quot;, # Required. The type of the identifier of the related product. For example, [GTIN](https://support.google.com/merchants/answer/6219078) or [product ID](https://support.google.com/merchants/answer/6324405).
+        &quot;relationshipType&quot;: &quot;A String&quot;, # Required. The type of the relationship between this product and the related product.
+      },
+    ],
     &quot;returnPolicyLabel&quot;: &quot;A String&quot;, # The return label of the product, used to group products in account-level return policies. Max. 100 characters. For more information, see [Return policy label](https://support.google.com/merchants/answer/9445425).
     &quot;salePrice&quot;: { # The price represented as a number and currency. # Advertised sale price of the item.
       &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
@@ -373,6 +480,8 @@ Args:
         &quot;handlingCutoffTimezone&quot;: &quot;A String&quot;, # [Timezone identifier](https://developers.google.com/adwords/api/docs/appendix/codes-formats#timezone-ids) For example `Europe/Zurich`. This field only applies if `handling_cutoff_time` is set. If `handling_cutoff_time` is set but this field is not set, the shipping destination timezone will be used. If both fields are not set, the handling cutoff time will default to 8AM PST.
         &quot;locationGroupName&quot;: &quot;A String&quot;, # The location where the shipping is applicable, represented by a location group name.
         &quot;locationId&quot;: &quot;A String&quot;, # The numeric ID of a location that the shipping rate applies to as defined in the [AdWords API](https://developers.google.com/adwords/api/docs/appendix/geotargeting).
+        &quot;loyaltyProgramLabel&quot;: &quot;A String&quot;, # Optional. The label of the [loyalty program](https://support.google.com/merchants/answer/6324484). Must match one of the program labels set in loyalty_programs. When set (in combination with [loyalty_tier_label](https://support.google.com/merchants/answer/6324484)), this shipping option is only applicable to loyalty program members of the specified tier.
+        &quot;loyaltyTierLabel&quot;: &quot;A String&quot;, # Optional. The label of the [loyalty tier](https://support.google.com/merchants/answer/6324484) within the loyalty program. Must match one of the tiers set in the loyalty_programs. When set (in combination with [loyalty_program_label](https://support.google.com/merchants/answer/6324484)), this shipping option is only applicable to loyalty program members of the specified tier.
         &quot;maxHandlingTime&quot;: &quot;A String&quot;, # Maximum handling time (inclusive) between when the order is received and shipped in business days. 0 means that the order is shipped on the same day as it is received if it happens before the cut-off time. Both maxHandlingTime and maxTransitTime are required if providing shipping speeds. minHandlingTime is optional if maxHandlingTime is present.
         &quot;maxTransitTime&quot;: &quot;A String&quot;, # Maximum transit time (inclusive) between when the order has shipped and when it is delivered in business days. 0 means that the order is delivered on the same day as it ships. Both maxHandlingTime and maxTransitTime are required if providing shipping speeds. minTransitTime is optional if maxTransitTime is present.
         &quot;minHandlingTime&quot;: &quot;A String&quot;, # Minimum handling time (inclusive) between when the order is received and shipped in business days. 0 means that the order is shipped on the same day as it is received if it happens before the cut-off time. minHandlingTime can only be present together with maxHandlingTime; but it is not required if maxHandlingTime is present.
@@ -418,11 +527,13 @@ Args:
     &quot;shoppingAdsExcludedCountries&quot;: [ # List of country codes [(ISO 3166-1 alpha-2)](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) to exclude the offer from Shopping Ads destination. Countries from this list are removed from countries configured in data source settings.
       &quot;A String&quot;,
     ],
+    &quot;shortTitle&quot;: &quot;A String&quot;, # The short title of the item.
     &quot;size&quot;: &quot;A String&quot;, # Size of the item. Only one value is allowed. For variants with different sizes, insert a separate product for each size with the same `itemGroupId` value, see [Size](https://support.google.com/merchants/answer/6324492).
     &quot;sizeSystem&quot;: &quot;A String&quot;, # System in which the size is specified. Recommended for apparel items. For more information, see [Size system](https://support.google.com/merchants/answer/6324502).
     &quot;sizeTypes&quot;: [ # The cut of the item. It can be used to represent combined size types for apparel items. Maximum two of size types can be provided, see [Size type](https://support.google.com/merchants/answer/6324497).
       &quot;A String&quot;,
     ],
+    &quot;specialtyHousingType&quot;: &quot;A String&quot;, # The specialty housing type for the property.
     &quot;structuredDescription&quot;: { # Structured description, for algorithmically (AI)-generated descriptions. # Structured description, for algorithmically (AI)-generated descriptions.
       &quot;content&quot;: &quot;A String&quot;, # The description text Maximum length is 5000 characters
       &quot;digitalSourceType&quot;: &quot;A String&quot;, # The digital source type. Following [IPTC](https://cv.iptc.org/newscodes/digitalsourcetype).
@@ -451,6 +562,11 @@ Args:
     ],
     &quot;title&quot;: &quot;A String&quot;, # Title of the item.
     &quot;transitTimeLabel&quot;: &quot;A String&quot;, # The transit time label of the product, used to group product in account-level transit time tables.
+    &quot;trim&quot;: &quot;A String&quot;, # The [Trim](https://support.google.com/google-ads/answer/14154176) of the vehicle model, such as `S`, `SV`, `SL` and others.
+    &quot;unitArea&quot;: { # The unit area of the property. # The unit area of the property, such as `1000 sqft`.
+      &quot;unit&quot;: &quot;A String&quot;, # The unit of area.
+      &quot;value&quot;: 3.14, # The area value.
+    },
     &quot;unitPricingBaseMeasure&quot;: { # The UnitPricingBaseMeasure of the product. # The preference of the denominator of the unit price.
       &quot;unit&quot;: &quot;A String&quot;, # The unit of the denominator.
       &quot;value&quot;: &quot;A String&quot;, # The denominator of the unit price.
@@ -459,7 +575,42 @@ Args:
       &quot;unit&quot;: &quot;A String&quot;, # The unit of the measure.
       &quot;value&quot;: 3.14, # The measure of an item.
     },
+    &quot;utilitiesIncluded&quot;: [ # The utilities included for the property.
+      &quot;A String&quot;,
+    ],
+    &quot;variantOptions&quot;: [ # Optional. Contains the [list of all variant-identifying options](https://support.google.com/merchants/answer/17085214) of this product.
+      { # Additional product variants for the product.
+        &quot;name&quot;: &quot;A String&quot;, # Required. The name of the variant. For example, &quot;Color&quot;, &quot;Memory&quot;, &quot;Size&quot;, &quot;Length&quot;
+        &quot;value&quot;: &quot;A String&quot;, # Required. The value of the variant. For example, &quot;Red&quot;, &quot;128GB&quot;, &quot;XL&quot;, &quot;100cm&quot;
+      },
+    ],
+    &quot;vehicleAllInPrice&quot;: { # The price represented as a number and currency. # The all-in advertised price for a vehicle, which includes costs for the following – any accessories attached to the vehicle, environmental levies, extra warranty, fuel, freight, pre-delivery inspection (PDI), dealer fees for handling licensing, provincial regulatory fees, miscellaneous dealer charges for security etching and nitrogen tire fill, and factory-to-customer or dealer-to-customer discounts or incentives. See the [Vehicle all-in price](https://support.google.com/google-ads/answer/14156981) for more information.
+      &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+      &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+    },
+    &quot;vehicleExpenses&quot;: { # The price represented as a number and currency. # The miscellaneous expenses like insurance and registration fees of the vehicle. See the [Vehicle expenses](https://support.google.com/google-ads/answer/15957154) for more information.
+      &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+      &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+    },
+    &quot;vehicleMandatoryInspectionIncluded&quot;: True or False, # Whether the vehicle is sold with mandatory inspection and maintenance performed before delivery. See the [Vehicle mandatory inspection included](https://support.google.com/google-ads/answer/15956630) for more information.`
+    &quot;vehicleMsrp&quot;: { # The price represented as a number and currency. # The MSRP (Manufacturer Suggested Retail Price) for the vehicle in its current configuration. See the [Vehicle MSRP](https://support.google.com/google-ads/answer/14154171) for more information.
+      &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+      &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+    },
+    &quot;vehiclePriceType&quot;: &quot;A String&quot;, # The [price type](https://support.google.com/google-ads/answer/14592783) of the vehicle.
+    &quot;videoLinks&quot;: [ # Optional. A list of video URLs for the item. Use this attribute to provide more visuals for your product beyond your image attributes. See the [Help Center article](https://support.google.com/merchants/answer/15216925) for more information.
+      &quot;A String&quot;,
+    ],
+    &quot;vin&quot;: &quot;A String&quot;, # The [Vehicle Identification Number (VIN)](https://support.google.com/google-ads/answer/14154510) of the vehicle.
     &quot;virtualModelLink&quot;: &quot;A String&quot;, # URL of the 3D image of the item. See the [Help Center article](https://support.google.com/merchants/answer/13674896) for more information.
+    &quot;warranty&quot;: { # The warranty of the vehicle. # The [warranty](https://support.google.com/google-ads/answer/15957626) of the vehicle.
+      &quot;duration&quot;: &quot;A String&quot;, # The warranty duration in months.
+      &quot;mileage&quot;: { # The mileage of the vehicle. # The warranty mileage.
+        &quot;unit&quot;: &quot;A String&quot;, # The unit of the mileage.
+        &quot;value&quot;: &quot;A String&quot;, # The distance value.
+      },
+    },
+    &quot;year&quot;: &quot;A String&quot;, # The [Year](https://support.google.com/google-ads/answer/14152816) of the vehicle model.
   },
   &quot;versionNumber&quot;: &quot;A String&quot;, # Optional. Immutable. Represents the existing version (freshness) of the product, which can be used to preserve the right order when multiple updates are done at the same time. If set, the insertion is prevented when version number is lower than the current version number of the existing product. Re-insertion (for example, product refresh after 30 days) can be performed with the current `version_number`. Only supported for insertions into primary data sources. Do not set this field for updates. Do not set this field for insertions into supplemental data sources. If the operation is prevented, the aborted exception will be thrown.
 }
@@ -502,12 +653,16 @@ Returns:
     &quot;adsRedirect&quot;: &quot;A String&quot;, # Allows advertisers to override the item URL when the product is shown within the context of Product ads.
     &quot;adult&quot;: True or False, # Set to true if the item is targeted towards adults.
     &quot;ageGroup&quot;: &quot;A String&quot;, # Target [age group](https://support.google.com/merchants/answer/6324463) of the item.
+    &quot;amenityFeature&quot;: [ # The amenity features for the property.
+      &quot;A String&quot;,
+    ],
     &quot;autoPricingMinPrice&quot;: { # The price represented as a number and currency. # A safeguard in the [automated discounts] (https://support.google.com/merchants/answer/10295759) and &quot;Dynamic Promotions&quot; (https://support.google.com/merchants/answer/13949249) projects, ensuring that discounts on business offers do not fall below this value, thereby preserving the offer&#x27;s value and profitability.
       &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
       &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
     },
     &quot;availability&quot;: &quot;A String&quot;, # [Availability](https://support.google.com/merchants/answer/6324448) status of the item.
     &quot;availabilityDate&quot;: &quot;A String&quot;, # The day a pre-ordered product becomes available for delivery, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format.
+    &quot;bodyStyle&quot;: &quot;A String&quot;, # The [body style](https://support.google.com/google-ads/answer/14157085) of the vehicle.
     &quot;brand&quot;: &quot;A String&quot;, # [Brand](https://support.google.com/merchants/answer/6324351) of the item. For example, &quot;Google&quot;.
     &quot;canonicalLink&quot;: &quot;A String&quot;, # URL for the canonical version of your item&#x27;s landing page.
     &quot;carrierShipping&quot;: [ # Rules for carrier-based shipping.
@@ -541,6 +696,7 @@ Returns:
         &quot;certificationValue&quot;: &quot;A String&quot;, # The certification value (also known as class, level or grade), for example &quot;A+&quot;, &quot;C&quot;, &quot;gold&quot;. Maximum length is 2000 characters.
       },
     ],
+    &quot;certifiedPreOwned&quot;: True or False, # Whether the vehicle is OEM [certified pre-owned](https://support.google.com/google-ads/answer/14156475).
     &quot;cloudExportAdditionalProperties&quot;: [ # Extra fields to export to the Cloud Retail program.
       { # Product property for the Cloud Retail API. For example, properties for a TV product could be &quot;Screen-Resolution&quot; or &quot;Screen-Size&quot;.
         &quot;boolValue&quot;: True or False, # Boolean value of the given property. For example for a TV product, &quot;True&quot; or &quot;False&quot; if the screen is UHD.
@@ -559,6 +715,10 @@ Returns:
         &quot;unitCode&quot;: &quot;A String&quot;, # Unit of the given property. For example, &quot;Pixels&quot; for a TV product. Maximum string size is 256B.
       },
     ],
+    &quot;co2Emissions&quot;: { # The co2 emission of the vehicle. # The [co2 emission](https://support.google.com/google-ads/answer/14546146) of the vehicle.
+      &quot;unit&quot;: &quot;A String&quot;, # The unit of the co2 emission.
+      &quot;value&quot;: &quot;A String&quot;, # The co2 emission value.
+    },
     &quot;color&quot;: &quot;A String&quot;, # [Color](https://support.google.com/merchants/answer/6324487) of the item. For example, &quot;red&quot;.
     &quot;condition&quot;: &quot;A String&quot;, # [Condition](https://support.google.com/merchants/answer/6324469) or state of the item.
     &quot;costOfGoodsSold&quot;: { # The price represented as a number and currency. # Cost of goods sold. Used for gross profit reporting.
@@ -570,8 +730,16 @@ Returns:
     &quot;customLabel2&quot;: &quot;A String&quot;, # [Custom label 2](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.
     &quot;customLabel3&quot;: &quot;A String&quot;, # [Custom label 3](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.
     &quot;customLabel4&quot;: &quot;A String&quot;, # [Custom label 4](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.
+    &quot;dateFirstRegistered&quot;: &quot;A String&quot;, # The date the vehicle was first registered. Format: `YYYY-MM`. See the [Date first registered](https://support.google.com/google-ads/answer/14546138) for more information.
     &quot;description&quot;: &quot;A String&quot;, # Description of the item.
     &quot;disclosureDate&quot;: &quot;A String&quot;, # The date time when an offer becomes visible in search results across Google’s YouTube surfaces, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format. See [Disclosure date](https://support.google.com/merchants/answer/13034208) for more information.
+    &quot;displayAddress&quot;: { # The display address of the property. # The display address of the property.
+      &quot;city&quot;: &quot;A String&quot;, # The city such as Seattle, New York, etc.
+      &quot;postalCode&quot;: &quot;A String&quot;, # The postal code, such as 94043.
+      &quot;region&quot;: &quot;A String&quot;, # The region(state), such as WA, OH, etc.
+      &quot;streetName&quot;: &quot;A String&quot;, # The street name.
+      &quot;streetNumber&quot;: &quot;A String&quot;, # The street number.
+    },
     &quot;displayAdsId&quot;: &quot;A String&quot;, # An identifier for an item for dynamic remarketing campaigns.
     &quot;displayAdsLink&quot;: &quot;A String&quot;, # URL directly to your item&#x27;s landing page for dynamic remarketing campaigns.
     &quot;displayAdsSimilarIds&quot;: [ # Advertiser-specified recommendations. For more information, see [Display ads attribute specification](https://support.google.com/merchants/answer/6069387).
@@ -579,7 +747,20 @@ Returns:
     ],
     &quot;displayAdsTitle&quot;: &quot;A String&quot;, # Title of an item for dynamic remarketing campaigns.
     &quot;displayAdsValue&quot;: 3.14, # Offer margin for dynamic remarketing campaigns. For more information, see [Display ads attribute](https://support.google.com/merchants/answer/6069387).
+    &quot;documentLinks&quot;: [ # Optional. Contains a list of PDF [document URLs](https://support.google.com/merchants/answer/17084656) for the product. Examples are training manuals, user guides, assembly instructions, package inserts, etc. Must start with &quot;http://&quot; or &quot;https://&quot;), ASCII characters only, and RFC 3986 compliant.
+      &quot;A String&quot;,
+    ],
+    &quot;electricRange&quot;: { # The mileage of the vehicle. # The [electric range](https://support.google.com/google-ads/answer/15162232) of the vehicle in miles/kms.
+      &quot;unit&quot;: &quot;A String&quot;, # The unit of the mileage.
+      &quot;value&quot;: &quot;A String&quot;, # The distance value.
+    },
+    &quot;emissionsStandard&quot;: &quot;A String&quot;, # The [emission standard](https://support.google.com/google-ads/answer/14869021) of the vehicle.
+    &quot;energyConsumption&quot;: { # The energy consumption of the vehicle. # The [energy consumption](https://support.google.com/google-ads/answer/14546149) of the vehicle.
+      &quot;unit&quot;: &quot;A String&quot;, # The unit of the energy consumption.
+      &quot;value&quot;: 3.14, # The energy consumption value.
+    },
     &quot;energyEfficiencyClass&quot;: &quot;A String&quot;, # The [energy efficiency class](https://support.google.com/merchants/answer/7562785) as defined in EU directive 2010/30/EU.
+    &quot;engine&quot;: &quot;A String&quot;, # The [engine](https://support.google.com/google-ads/answer/14156068) type of the vehicle.
     &quot;excludedDestinations&quot;: [ # The list of destinations to exclude for this target (corresponds to unchecked check boxes in Merchant Center). For more information, see [Excluded destination](https://support.google.com/merchants/answer/6324486). Note: We recommend setting destinations on datasources level for most use cases. Use this field within products to only setup exceptions.
       &quot;A String&quot;,
     ],
@@ -594,9 +775,17 @@ Returns:
         },
       },
     ],
+    &quot;fuelConsumption&quot;: { # The fuel consumption of the vehicle. # The [fuel consumption](https://support.google.com/google-ads/answer/14543580) of the vehicle.
+      &quot;unit&quot;: &quot;A String&quot;, # The unit of the fuel consumption.
+      &quot;value&quot;: 3.14, # The fuel consumption value.
+    },
+    &quot;fuelConsumptionDischargedBattery&quot;: { # The fuel consumption of the vehicle. # The fuel consumption of the vehicle when the hybrid battery is discharged. See the [Help Center article](https://support.google.com/google-ads/answer/15162033) for more information.
+      &quot;unit&quot;: &quot;A String&quot;, # The unit of the fuel consumption.
+      &quot;value&quot;: 3.14, # The fuel consumption value.
+    },
     &quot;gender&quot;: &quot;A String&quot;, # Target [gender](https://support.google.com/merchants/answer/6324479) of the item.
     &quot;googleProductCategory&quot;: &quot;A String&quot;, # Google&#x27;s category of the item (see [Google product taxonomy](https://support.google.com/merchants/answer/1705911)). When querying products, this field will contain the user provided value. There is currently no way to get back the auto assigned google product categories through the API.
-    &quot;gtins&quot;: [ # Global Trade Item Numbers ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the item. You can provide up to 10 GTINs.
+    &quot;gtins&quot;: [ # Global Trade Item Numbers ([GTIN](https://support.google.com/merchants/answer/6324461)) of the item. You can provide up to 10 GTINs.
       &quot;A String&quot;,
     ],
     &quot;handlingCutoffTimes&quot;: [ # The handling cutoff times for shipping.
@@ -617,20 +806,28 @@ Returns:
         &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
         &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
       },
+      &quot;annualPercentageRate&quot;: 3.14, # Optional. Annual percentage rate for `credit_type` finance
       &quot;creditType&quot;: &quot;A String&quot;, # Type of installment payments.
       &quot;downpayment&quot;: { # The price represented as a number and currency. # The up-front down payment amount the buyer has to pay.
         &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
         &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
       },
       &quot;months&quot;: &quot;A String&quot;, # The number of installments the buyer has to pay.
+      &quot;totalAmount&quot;: { # The price represented as a number and currency. # Optional. Total amount the buyer has to pay, including interest.
+        &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+        &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+      },
     },
     &quot;isBundle&quot;: True or False, # Whether the item is a business-defined sub-API. A [sub-API] (https://support.google.com/merchants/answer/6324449) is a custom grouping of different products sold by a business for a single price.
     &quot;itemGroupId&quot;: &quot;A String&quot;, # Shared identifier for all variants of the same product.
+    &quot;itemGroupTitle&quot;: &quot;A String&quot;, # Optional. Represents the [title of the product group](https://support.google.com/merchants/answer/17085146) to which this variant product belongs. This can be used along with the [item group id](https://support.google.com/merchants/answer/6324507) attribute. It lets you perform better grouping of variant products, and helps identifying common product characteristics more efficiently.
+    &quot;latitude&quot;: 3.14, # The latitude of the property. The value must be between -90 (inclusive) and 90 (inclusive), up to 6 decimal places.
     &quot;lifestyleImageLinks&quot;: [ # Additional URLs of lifestyle images of the item, used to explicitly identify images that showcase your item in a real-world context. See the [Help Center article](https://support.google.com/merchants/answer/9103186) for more information.
       &quot;A String&quot;,
     ],
     &quot;link&quot;: &quot;A String&quot;, # URL directly linking to your item&#x27;s page on your online store.
     &quot;linkTemplate&quot;: &quot;A String&quot;, # [Link template](https://support.google.com/merchants/answer/13871172) for business hosted local storefront.
+    &quot;longitude&quot;: 3.14, # The longitude of the property. The value must be between -180 (inclusive) and 180 (inclusive), up to 6 decimal places.
     &quot;loyaltyPoints&quot;: { # A message that represents loyalty points. # Loyalty points that users receive after purchasing the item. Japan only.
       &quot;name&quot;: &quot;A String&quot;, # Name of loyalty points program. It is recommended to limit the name to 12 full-width characters or 24 Roman characters.
       &quot;pointsValue&quot;: &quot;A String&quot;, # The retailer&#x27;s loyalty points in absolute value.
@@ -663,16 +860,53 @@ Returns:
       &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
       &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
     },
+    &quot;mileage&quot;: { # The mileage of the vehicle. # The number of miles/kms on the vehicle. See the [Mileage](https://support.google.com/google-ads/answer/14156166) for more information.
+      &quot;unit&quot;: &quot;A String&quot;, # The unit of the mileage.
+      &quot;value&quot;: &quot;A String&quot;, # The distance value.
+    },
     &quot;minEnergyEfficiencyClass&quot;: &quot;A String&quot;, # The [energy efficiency class](https://support.google.com/merchants/answer/7562785) as defined in EU directive 2010/30/EU.
     &quot;minHandlingTime&quot;: &quot;A String&quot;, # Minimal product handling time (in business days).
+    &quot;minimumOrderValues&quot;: [ # The [minimum value](https://support.google.com/merchants/answer/16989009) in the cart before a customer can initiate checkout. Supports multiple minimum order values. Different minimum order values can be specified per country, service and surface. Maximum entries: 100.
+      { # The minimum order value in the cart before the checkout is permitted.
+        &quot;country&quot;: &quot;A String&quot;, # Required. The [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) of the country to which an item will ship.
+        &quot;price&quot;: { # The price represented as a number and currency. # Required. The minimum cart or basket value before the checkout is permitted.
+          &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+          &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+        },
+        &quot;service&quot;: &quot;A String&quot;, # A free-form description of the service class or delivery speed. This should match the service value set for the Shipping attribute. See service.
+        &quot;surface&quot;: &quot;A String&quot;, # The surface to which the minimum order value applies. Defaults to `ONLINE_LOCAL` if not configured.
+      },
+    ],
     &quot;mobileLink&quot;: &quot;A String&quot;, # URL for the mobile-optimized version of your item&#x27;s landing page.
     &quot;mobileLinkTemplate&quot;: &quot;A String&quot;, # [Link template](https://support.google.com/merchants/answer/13870216) for business hosted local storefront optimized for mobile devices.
-    &quot;mpn&quot;: &quot;A String&quot;, # Manufacturer Part Number ([MPN](https://support.google.com/merchants/answer/188494#mpn)) of the item.
+    &quot;model&quot;: &quot;A String&quot;, # The [Model](https://support.google.com/google-ads/answer/14154511) of the vehicle, such as `LX`, `EX`, and others.
+    &quot;mpn&quot;: &quot;A String&quot;, # Manufacturer Part Number ([MPN](https://support.google.com/merchants/answer/6324482)) of the item.
     &quot;multipack&quot;: &quot;A String&quot;, # The number of identical products in a business-defined multipack.
+    &quot;neighborhood&quot;: &quot;A String&quot;, # The neighborhood (locality) of the property, such as `Wallingford`, `Greenwood`, etc.
+    &quot;numberOfBathrooms&quot;: 3.14, # The number of bathrooms in the property. The value must be greater than 0 and a multiple of 0.5.
+    &quot;numberOfBedrooms&quot;: 3.14, # The number of bedrooms in the property. The value must be greater than or equal to 0 and a multiple of 1.0.
+    &quot;numberOfUnits&quot;: &quot;A String&quot;, # The number of units available for a specific floor plan of the property. The value must be greater than 0.
     &quot;pattern&quot;: &quot;A String&quot;, # The item&#x27;s [pattern](https://support.google.com/merchants/answer/6324483). For example, polka dots.
     &quot;pause&quot;: &quot;A String&quot;, # Publication of this item will be temporarily [paused](https://support.google.com/merchants/answer/11909930).
+    &quot;petPolicy&quot;: { # The pet policy of the property. # The pet policy for the property.
+      &quot;petTypes&quot;: [ # The pet types allowed.
+        &quot;A String&quot;,
+      ],
+      &quot;petsAllowed&quot;: True or False, # Whether pets are allowed.
+    },
+    &quot;pickupCost&quot;: { # The pickup cost of the item. # Optional. The [pickup cost](https://support.google.com/merchants/answer/16988704) for an item when a customer buys it online and picks it up at a store.
+      &quot;flatRate&quot;: { # The price represented as a number and currency. # Required. The flat rate pickup cost of the item.
+        &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+        &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+      },
+      &quot;freeThreshold&quot;: { # The price represented as a number and currency. # Optional. The price threshold above which pickup is free of charge.
+        &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+        &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+      },
+    },
     &quot;pickupMethod&quot;: &quot;A String&quot;, # The [pickup](https://support.google.com/merchants/answer/14634021) option for the item.
     &quot;pickupSla&quot;: &quot;A String&quot;, # Item store pickup timeline. For more information, see [Pickup SLA](https://support.google.com/merchants/answer/14635400).
+    &quot;popularityRank&quot;: 3.14, # Optional. Indicates the [popularity](https://support.google.com/merchants/answer/17085297) of the product in a merchant&#x27;s inventory. Using a scale of 0.0 (lowest) to 100.0 (highest).
     &quot;price&quot;: { # The price represented as a number and currency. # Price of the item.
       &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
       &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
@@ -682,6 +916,15 @@ Returns:
         &quot;attributeName&quot;: &quot;A String&quot;, # The name of the product detail.
         &quot;attributeValue&quot;: &quot;A String&quot;, # The value of the product detail.
         &quot;sectionName&quot;: &quot;A String&quot;, # The section header used to group a set of product details.
+      },
+    ],
+    &quot;productFee&quot;: [ # The product fee for the property.
+      { # The product fee attribute containing type and amount.
+        &quot;amount&quot;: { # The price represented as a number and currency. # The amount of product fee.
+          &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+          &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+        },
+        &quot;type&quot;: &quot;A String&quot;, # The type of product fee.
       },
     ],
     &quot;productHeight&quot;: { # The dimension of the product. # The height of the product in the units provided. The value must be between 0 (exclusive) and 3000 (inclusive).
@@ -709,6 +952,21 @@ Returns:
     &quot;promotionIds&quot;: [ # The unique ID of a promotion.
       &quot;A String&quot;,
     ],
+    &quot;propertyName&quot;: &quot;A String&quot;, # The name of the property.
+    &quot;propertyType&quot;: &quot;A String&quot;, # The type of property.
+    &quot;questionsAndAnswers&quot;: [ # Optional. Contains user-, merchant-, and manufacturer-authored [questions and answers](https://support.google.com/merchants/answer/17085211) about the product. Max 30 question and answer pairs. Max 10000 characters total. Each question can have max 1000 characters. Each answer can have max 1000 characters.
+      { # The question and answer for the product.
+        &quot;answer&quot;: &quot;A String&quot;, # Required. The answer text.
+        &quot;question&quot;: &quot;A String&quot;, # Required. The question text.
+      },
+    ],
+    &quot;relatedProducts&quot;: [ # Optional. Specifies how other [products are related](https://support.google.com/merchants/answer/17085213) to this product.
+      { # Specifies how other products are related to this product.
+        &quot;id&quot;: &quot;A String&quot;, # Required. The identifier of the related product.
+        &quot;idType&quot;: &quot;A String&quot;, # Required. The type of the identifier of the related product. For example, [GTIN](https://support.google.com/merchants/answer/6219078) or [product ID](https://support.google.com/merchants/answer/6324405).
+        &quot;relationshipType&quot;: &quot;A String&quot;, # Required. The type of the relationship between this product and the related product.
+      },
+    ],
     &quot;returnPolicyLabel&quot;: &quot;A String&quot;, # The return label of the product, used to group products in account-level return policies. Max. 100 characters. For more information, see [Return policy label](https://support.google.com/merchants/answer/9445425).
     &quot;salePrice&quot;: { # The price represented as a number and currency. # Advertised sale price of the item.
       &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
@@ -726,6 +984,8 @@ Returns:
         &quot;handlingCutoffTimezone&quot;: &quot;A String&quot;, # [Timezone identifier](https://developers.google.com/adwords/api/docs/appendix/codes-formats#timezone-ids) For example `Europe/Zurich`. This field only applies if `handling_cutoff_time` is set. If `handling_cutoff_time` is set but this field is not set, the shipping destination timezone will be used. If both fields are not set, the handling cutoff time will default to 8AM PST.
         &quot;locationGroupName&quot;: &quot;A String&quot;, # The location where the shipping is applicable, represented by a location group name.
         &quot;locationId&quot;: &quot;A String&quot;, # The numeric ID of a location that the shipping rate applies to as defined in the [AdWords API](https://developers.google.com/adwords/api/docs/appendix/geotargeting).
+        &quot;loyaltyProgramLabel&quot;: &quot;A String&quot;, # Optional. The label of the [loyalty program](https://support.google.com/merchants/answer/6324484). Must match one of the program labels set in loyalty_programs. When set (in combination with [loyalty_tier_label](https://support.google.com/merchants/answer/6324484)), this shipping option is only applicable to loyalty program members of the specified tier.
+        &quot;loyaltyTierLabel&quot;: &quot;A String&quot;, # Optional. The label of the [loyalty tier](https://support.google.com/merchants/answer/6324484) within the loyalty program. Must match one of the tiers set in the loyalty_programs. When set (in combination with [loyalty_program_label](https://support.google.com/merchants/answer/6324484)), this shipping option is only applicable to loyalty program members of the specified tier.
         &quot;maxHandlingTime&quot;: &quot;A String&quot;, # Maximum handling time (inclusive) between when the order is received and shipped in business days. 0 means that the order is shipped on the same day as it is received if it happens before the cut-off time. Both maxHandlingTime and maxTransitTime are required if providing shipping speeds. minHandlingTime is optional if maxHandlingTime is present.
         &quot;maxTransitTime&quot;: &quot;A String&quot;, # Maximum transit time (inclusive) between when the order has shipped and when it is delivered in business days. 0 means that the order is delivered on the same day as it ships. Both maxHandlingTime and maxTransitTime are required if providing shipping speeds. minTransitTime is optional if maxTransitTime is present.
         &quot;minHandlingTime&quot;: &quot;A String&quot;, # Minimum handling time (inclusive) between when the order is received and shipped in business days. 0 means that the order is shipped on the same day as it is received if it happens before the cut-off time. minHandlingTime can only be present together with maxHandlingTime; but it is not required if maxHandlingTime is present.
@@ -771,11 +1031,13 @@ Returns:
     &quot;shoppingAdsExcludedCountries&quot;: [ # List of country codes [(ISO 3166-1 alpha-2)](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) to exclude the offer from Shopping Ads destination. Countries from this list are removed from countries configured in data source settings.
       &quot;A String&quot;,
     ],
+    &quot;shortTitle&quot;: &quot;A String&quot;, # The short title of the item.
     &quot;size&quot;: &quot;A String&quot;, # Size of the item. Only one value is allowed. For variants with different sizes, insert a separate product for each size with the same `itemGroupId` value, see [Size](https://support.google.com/merchants/answer/6324492).
     &quot;sizeSystem&quot;: &quot;A String&quot;, # System in which the size is specified. Recommended for apparel items. For more information, see [Size system](https://support.google.com/merchants/answer/6324502).
     &quot;sizeTypes&quot;: [ # The cut of the item. It can be used to represent combined size types for apparel items. Maximum two of size types can be provided, see [Size type](https://support.google.com/merchants/answer/6324497).
       &quot;A String&quot;,
     ],
+    &quot;specialtyHousingType&quot;: &quot;A String&quot;, # The specialty housing type for the property.
     &quot;structuredDescription&quot;: { # Structured description, for algorithmically (AI)-generated descriptions. # Structured description, for algorithmically (AI)-generated descriptions.
       &quot;content&quot;: &quot;A String&quot;, # The description text Maximum length is 5000 characters
       &quot;digitalSourceType&quot;: &quot;A String&quot;, # The digital source type. Following [IPTC](https://cv.iptc.org/newscodes/digitalsourcetype).
@@ -804,6 +1066,11 @@ Returns:
     ],
     &quot;title&quot;: &quot;A String&quot;, # Title of the item.
     &quot;transitTimeLabel&quot;: &quot;A String&quot;, # The transit time label of the product, used to group product in account-level transit time tables.
+    &quot;trim&quot;: &quot;A String&quot;, # The [Trim](https://support.google.com/google-ads/answer/14154176) of the vehicle model, such as `S`, `SV`, `SL` and others.
+    &quot;unitArea&quot;: { # The unit area of the property. # The unit area of the property, such as `1000 sqft`.
+      &quot;unit&quot;: &quot;A String&quot;, # The unit of area.
+      &quot;value&quot;: 3.14, # The area value.
+    },
     &quot;unitPricingBaseMeasure&quot;: { # The UnitPricingBaseMeasure of the product. # The preference of the denominator of the unit price.
       &quot;unit&quot;: &quot;A String&quot;, # The unit of the denominator.
       &quot;value&quot;: &quot;A String&quot;, # The denominator of the unit price.
@@ -812,7 +1079,42 @@ Returns:
       &quot;unit&quot;: &quot;A String&quot;, # The unit of the measure.
       &quot;value&quot;: 3.14, # The measure of an item.
     },
+    &quot;utilitiesIncluded&quot;: [ # The utilities included for the property.
+      &quot;A String&quot;,
+    ],
+    &quot;variantOptions&quot;: [ # Optional. Contains the [list of all variant-identifying options](https://support.google.com/merchants/answer/17085214) of this product.
+      { # Additional product variants for the product.
+        &quot;name&quot;: &quot;A String&quot;, # Required. The name of the variant. For example, &quot;Color&quot;, &quot;Memory&quot;, &quot;Size&quot;, &quot;Length&quot;
+        &quot;value&quot;: &quot;A String&quot;, # Required. The value of the variant. For example, &quot;Red&quot;, &quot;128GB&quot;, &quot;XL&quot;, &quot;100cm&quot;
+      },
+    ],
+    &quot;vehicleAllInPrice&quot;: { # The price represented as a number and currency. # The all-in advertised price for a vehicle, which includes costs for the following – any accessories attached to the vehicle, environmental levies, extra warranty, fuel, freight, pre-delivery inspection (PDI), dealer fees for handling licensing, provincial regulatory fees, miscellaneous dealer charges for security etching and nitrogen tire fill, and factory-to-customer or dealer-to-customer discounts or incentives. See the [Vehicle all-in price](https://support.google.com/google-ads/answer/14156981) for more information.
+      &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+      &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+    },
+    &quot;vehicleExpenses&quot;: { # The price represented as a number and currency. # The miscellaneous expenses like insurance and registration fees of the vehicle. See the [Vehicle expenses](https://support.google.com/google-ads/answer/15957154) for more information.
+      &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+      &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+    },
+    &quot;vehicleMandatoryInspectionIncluded&quot;: True or False, # Whether the vehicle is sold with mandatory inspection and maintenance performed before delivery. See the [Vehicle mandatory inspection included](https://support.google.com/google-ads/answer/15956630) for more information.`
+    &quot;vehicleMsrp&quot;: { # The price represented as a number and currency. # The MSRP (Manufacturer Suggested Retail Price) for the vehicle in its current configuration. See the [Vehicle MSRP](https://support.google.com/google-ads/answer/14154171) for more information.
+      &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+      &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+    },
+    &quot;vehiclePriceType&quot;: &quot;A String&quot;, # The [price type](https://support.google.com/google-ads/answer/14592783) of the vehicle.
+    &quot;videoLinks&quot;: [ # Optional. A list of video URLs for the item. Use this attribute to provide more visuals for your product beyond your image attributes. See the [Help Center article](https://support.google.com/merchants/answer/15216925) for more information.
+      &quot;A String&quot;,
+    ],
+    &quot;vin&quot;: &quot;A String&quot;, # The [Vehicle Identification Number (VIN)](https://support.google.com/google-ads/answer/14154510) of the vehicle.
     &quot;virtualModelLink&quot;: &quot;A String&quot;, # URL of the 3D image of the item. See the [Help Center article](https://support.google.com/merchants/answer/13674896) for more information.
+    &quot;warranty&quot;: { # The warranty of the vehicle. # The [warranty](https://support.google.com/google-ads/answer/15957626) of the vehicle.
+      &quot;duration&quot;: &quot;A String&quot;, # The warranty duration in months.
+      &quot;mileage&quot;: { # The mileage of the vehicle. # The warranty mileage.
+        &quot;unit&quot;: &quot;A String&quot;, # The unit of the mileage.
+        &quot;value&quot;: &quot;A String&quot;, # The distance value.
+      },
+    },
+    &quot;year&quot;: &quot;A String&quot;, # The [Year](https://support.google.com/google-ads/answer/14152816) of the vehicle model.
   },
   &quot;versionNumber&quot;: &quot;A String&quot;, # Optional. Immutable. Represents the existing version (freshness) of the product, which can be used to preserve the right order when multiple updates are done at the same time. If set, the insertion is prevented when version number is lower than the current version number of the existing product. Re-insertion (for example, product refresh after 30 days) can be performed with the current `version_number`. Only supported for insertions into primary data sources. Do not set this field for updates. Do not set this field for insertions into supplemental data sources. If the operation is prevented, the aborted exception will be thrown.
 }</pre>
@@ -856,12 +1158,16 @@ Args:
     &quot;adsRedirect&quot;: &quot;A String&quot;, # Allows advertisers to override the item URL when the product is shown within the context of Product ads.
     &quot;adult&quot;: True or False, # Set to true if the item is targeted towards adults.
     &quot;ageGroup&quot;: &quot;A String&quot;, # Target [age group](https://support.google.com/merchants/answer/6324463) of the item.
+    &quot;amenityFeature&quot;: [ # The amenity features for the property.
+      &quot;A String&quot;,
+    ],
     &quot;autoPricingMinPrice&quot;: { # The price represented as a number and currency. # A safeguard in the [automated discounts] (https://support.google.com/merchants/answer/10295759) and &quot;Dynamic Promotions&quot; (https://support.google.com/merchants/answer/13949249) projects, ensuring that discounts on business offers do not fall below this value, thereby preserving the offer&#x27;s value and profitability.
       &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
       &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
     },
     &quot;availability&quot;: &quot;A String&quot;, # [Availability](https://support.google.com/merchants/answer/6324448) status of the item.
     &quot;availabilityDate&quot;: &quot;A String&quot;, # The day a pre-ordered product becomes available for delivery, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format.
+    &quot;bodyStyle&quot;: &quot;A String&quot;, # The [body style](https://support.google.com/google-ads/answer/14157085) of the vehicle.
     &quot;brand&quot;: &quot;A String&quot;, # [Brand](https://support.google.com/merchants/answer/6324351) of the item. For example, &quot;Google&quot;.
     &quot;canonicalLink&quot;: &quot;A String&quot;, # URL for the canonical version of your item&#x27;s landing page.
     &quot;carrierShipping&quot;: [ # Rules for carrier-based shipping.
@@ -895,6 +1201,7 @@ Args:
         &quot;certificationValue&quot;: &quot;A String&quot;, # The certification value (also known as class, level or grade), for example &quot;A+&quot;, &quot;C&quot;, &quot;gold&quot;. Maximum length is 2000 characters.
       },
     ],
+    &quot;certifiedPreOwned&quot;: True or False, # Whether the vehicle is OEM [certified pre-owned](https://support.google.com/google-ads/answer/14156475).
     &quot;cloudExportAdditionalProperties&quot;: [ # Extra fields to export to the Cloud Retail program.
       { # Product property for the Cloud Retail API. For example, properties for a TV product could be &quot;Screen-Resolution&quot; or &quot;Screen-Size&quot;.
         &quot;boolValue&quot;: True or False, # Boolean value of the given property. For example for a TV product, &quot;True&quot; or &quot;False&quot; if the screen is UHD.
@@ -913,6 +1220,10 @@ Args:
         &quot;unitCode&quot;: &quot;A String&quot;, # Unit of the given property. For example, &quot;Pixels&quot; for a TV product. Maximum string size is 256B.
       },
     ],
+    &quot;co2Emissions&quot;: { # The co2 emission of the vehicle. # The [co2 emission](https://support.google.com/google-ads/answer/14546146) of the vehicle.
+      &quot;unit&quot;: &quot;A String&quot;, # The unit of the co2 emission.
+      &quot;value&quot;: &quot;A String&quot;, # The co2 emission value.
+    },
     &quot;color&quot;: &quot;A String&quot;, # [Color](https://support.google.com/merchants/answer/6324487) of the item. For example, &quot;red&quot;.
     &quot;condition&quot;: &quot;A String&quot;, # [Condition](https://support.google.com/merchants/answer/6324469) or state of the item.
     &quot;costOfGoodsSold&quot;: { # The price represented as a number and currency. # Cost of goods sold. Used for gross profit reporting.
@@ -924,8 +1235,16 @@ Args:
     &quot;customLabel2&quot;: &quot;A String&quot;, # [Custom label 2](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.
     &quot;customLabel3&quot;: &quot;A String&quot;, # [Custom label 3](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.
     &quot;customLabel4&quot;: &quot;A String&quot;, # [Custom label 4](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.
+    &quot;dateFirstRegistered&quot;: &quot;A String&quot;, # The date the vehicle was first registered. Format: `YYYY-MM`. See the [Date first registered](https://support.google.com/google-ads/answer/14546138) for more information.
     &quot;description&quot;: &quot;A String&quot;, # Description of the item.
     &quot;disclosureDate&quot;: &quot;A String&quot;, # The date time when an offer becomes visible in search results across Google’s YouTube surfaces, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format. See [Disclosure date](https://support.google.com/merchants/answer/13034208) for more information.
+    &quot;displayAddress&quot;: { # The display address of the property. # The display address of the property.
+      &quot;city&quot;: &quot;A String&quot;, # The city such as Seattle, New York, etc.
+      &quot;postalCode&quot;: &quot;A String&quot;, # The postal code, such as 94043.
+      &quot;region&quot;: &quot;A String&quot;, # The region(state), such as WA, OH, etc.
+      &quot;streetName&quot;: &quot;A String&quot;, # The street name.
+      &quot;streetNumber&quot;: &quot;A String&quot;, # The street number.
+    },
     &quot;displayAdsId&quot;: &quot;A String&quot;, # An identifier for an item for dynamic remarketing campaigns.
     &quot;displayAdsLink&quot;: &quot;A String&quot;, # URL directly to your item&#x27;s landing page for dynamic remarketing campaigns.
     &quot;displayAdsSimilarIds&quot;: [ # Advertiser-specified recommendations. For more information, see [Display ads attribute specification](https://support.google.com/merchants/answer/6069387).
@@ -933,7 +1252,20 @@ Args:
     ],
     &quot;displayAdsTitle&quot;: &quot;A String&quot;, # Title of an item for dynamic remarketing campaigns.
     &quot;displayAdsValue&quot;: 3.14, # Offer margin for dynamic remarketing campaigns. For more information, see [Display ads attribute](https://support.google.com/merchants/answer/6069387).
+    &quot;documentLinks&quot;: [ # Optional. Contains a list of PDF [document URLs](https://support.google.com/merchants/answer/17084656) for the product. Examples are training manuals, user guides, assembly instructions, package inserts, etc. Must start with &quot;http://&quot; or &quot;https://&quot;), ASCII characters only, and RFC 3986 compliant.
+      &quot;A String&quot;,
+    ],
+    &quot;electricRange&quot;: { # The mileage of the vehicle. # The [electric range](https://support.google.com/google-ads/answer/15162232) of the vehicle in miles/kms.
+      &quot;unit&quot;: &quot;A String&quot;, # The unit of the mileage.
+      &quot;value&quot;: &quot;A String&quot;, # The distance value.
+    },
+    &quot;emissionsStandard&quot;: &quot;A String&quot;, # The [emission standard](https://support.google.com/google-ads/answer/14869021) of the vehicle.
+    &quot;energyConsumption&quot;: { # The energy consumption of the vehicle. # The [energy consumption](https://support.google.com/google-ads/answer/14546149) of the vehicle.
+      &quot;unit&quot;: &quot;A String&quot;, # The unit of the energy consumption.
+      &quot;value&quot;: 3.14, # The energy consumption value.
+    },
     &quot;energyEfficiencyClass&quot;: &quot;A String&quot;, # The [energy efficiency class](https://support.google.com/merchants/answer/7562785) as defined in EU directive 2010/30/EU.
+    &quot;engine&quot;: &quot;A String&quot;, # The [engine](https://support.google.com/google-ads/answer/14156068) type of the vehicle.
     &quot;excludedDestinations&quot;: [ # The list of destinations to exclude for this target (corresponds to unchecked check boxes in Merchant Center). For more information, see [Excluded destination](https://support.google.com/merchants/answer/6324486). Note: We recommend setting destinations on datasources level for most use cases. Use this field within products to only setup exceptions.
       &quot;A String&quot;,
     ],
@@ -948,9 +1280,17 @@ Args:
         },
       },
     ],
+    &quot;fuelConsumption&quot;: { # The fuel consumption of the vehicle. # The [fuel consumption](https://support.google.com/google-ads/answer/14543580) of the vehicle.
+      &quot;unit&quot;: &quot;A String&quot;, # The unit of the fuel consumption.
+      &quot;value&quot;: 3.14, # The fuel consumption value.
+    },
+    &quot;fuelConsumptionDischargedBattery&quot;: { # The fuel consumption of the vehicle. # The fuel consumption of the vehicle when the hybrid battery is discharged. See the [Help Center article](https://support.google.com/google-ads/answer/15162033) for more information.
+      &quot;unit&quot;: &quot;A String&quot;, # The unit of the fuel consumption.
+      &quot;value&quot;: 3.14, # The fuel consumption value.
+    },
     &quot;gender&quot;: &quot;A String&quot;, # Target [gender](https://support.google.com/merchants/answer/6324479) of the item.
     &quot;googleProductCategory&quot;: &quot;A String&quot;, # Google&#x27;s category of the item (see [Google product taxonomy](https://support.google.com/merchants/answer/1705911)). When querying products, this field will contain the user provided value. There is currently no way to get back the auto assigned google product categories through the API.
-    &quot;gtins&quot;: [ # Global Trade Item Numbers ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the item. You can provide up to 10 GTINs.
+    &quot;gtins&quot;: [ # Global Trade Item Numbers ([GTIN](https://support.google.com/merchants/answer/6324461)) of the item. You can provide up to 10 GTINs.
       &quot;A String&quot;,
     ],
     &quot;handlingCutoffTimes&quot;: [ # The handling cutoff times for shipping.
@@ -971,20 +1311,28 @@ Args:
         &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
         &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
       },
+      &quot;annualPercentageRate&quot;: 3.14, # Optional. Annual percentage rate for `credit_type` finance
       &quot;creditType&quot;: &quot;A String&quot;, # Type of installment payments.
       &quot;downpayment&quot;: { # The price represented as a number and currency. # The up-front down payment amount the buyer has to pay.
         &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
         &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
       },
       &quot;months&quot;: &quot;A String&quot;, # The number of installments the buyer has to pay.
+      &quot;totalAmount&quot;: { # The price represented as a number and currency. # Optional. Total amount the buyer has to pay, including interest.
+        &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+        &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+      },
     },
     &quot;isBundle&quot;: True or False, # Whether the item is a business-defined sub-API. A [sub-API] (https://support.google.com/merchants/answer/6324449) is a custom grouping of different products sold by a business for a single price.
     &quot;itemGroupId&quot;: &quot;A String&quot;, # Shared identifier for all variants of the same product.
+    &quot;itemGroupTitle&quot;: &quot;A String&quot;, # Optional. Represents the [title of the product group](https://support.google.com/merchants/answer/17085146) to which this variant product belongs. This can be used along with the [item group id](https://support.google.com/merchants/answer/6324507) attribute. It lets you perform better grouping of variant products, and helps identifying common product characteristics more efficiently.
+    &quot;latitude&quot;: 3.14, # The latitude of the property. The value must be between -90 (inclusive) and 90 (inclusive), up to 6 decimal places.
     &quot;lifestyleImageLinks&quot;: [ # Additional URLs of lifestyle images of the item, used to explicitly identify images that showcase your item in a real-world context. See the [Help Center article](https://support.google.com/merchants/answer/9103186) for more information.
       &quot;A String&quot;,
     ],
     &quot;link&quot;: &quot;A String&quot;, # URL directly linking to your item&#x27;s page on your online store.
     &quot;linkTemplate&quot;: &quot;A String&quot;, # [Link template](https://support.google.com/merchants/answer/13871172) for business hosted local storefront.
+    &quot;longitude&quot;: 3.14, # The longitude of the property. The value must be between -180 (inclusive) and 180 (inclusive), up to 6 decimal places.
     &quot;loyaltyPoints&quot;: { # A message that represents loyalty points. # Loyalty points that users receive after purchasing the item. Japan only.
       &quot;name&quot;: &quot;A String&quot;, # Name of loyalty points program. It is recommended to limit the name to 12 full-width characters or 24 Roman characters.
       &quot;pointsValue&quot;: &quot;A String&quot;, # The retailer&#x27;s loyalty points in absolute value.
@@ -1017,16 +1365,53 @@ Args:
       &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
       &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
     },
+    &quot;mileage&quot;: { # The mileage of the vehicle. # The number of miles/kms on the vehicle. See the [Mileage](https://support.google.com/google-ads/answer/14156166) for more information.
+      &quot;unit&quot;: &quot;A String&quot;, # The unit of the mileage.
+      &quot;value&quot;: &quot;A String&quot;, # The distance value.
+    },
     &quot;minEnergyEfficiencyClass&quot;: &quot;A String&quot;, # The [energy efficiency class](https://support.google.com/merchants/answer/7562785) as defined in EU directive 2010/30/EU.
     &quot;minHandlingTime&quot;: &quot;A String&quot;, # Minimal product handling time (in business days).
+    &quot;minimumOrderValues&quot;: [ # The [minimum value](https://support.google.com/merchants/answer/16989009) in the cart before a customer can initiate checkout. Supports multiple minimum order values. Different minimum order values can be specified per country, service and surface. Maximum entries: 100.
+      { # The minimum order value in the cart before the checkout is permitted.
+        &quot;country&quot;: &quot;A String&quot;, # Required. The [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) of the country to which an item will ship.
+        &quot;price&quot;: { # The price represented as a number and currency. # Required. The minimum cart or basket value before the checkout is permitted.
+          &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+          &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+        },
+        &quot;service&quot;: &quot;A String&quot;, # A free-form description of the service class or delivery speed. This should match the service value set for the Shipping attribute. See service.
+        &quot;surface&quot;: &quot;A String&quot;, # The surface to which the minimum order value applies. Defaults to `ONLINE_LOCAL` if not configured.
+      },
+    ],
     &quot;mobileLink&quot;: &quot;A String&quot;, # URL for the mobile-optimized version of your item&#x27;s landing page.
     &quot;mobileLinkTemplate&quot;: &quot;A String&quot;, # [Link template](https://support.google.com/merchants/answer/13870216) for business hosted local storefront optimized for mobile devices.
-    &quot;mpn&quot;: &quot;A String&quot;, # Manufacturer Part Number ([MPN](https://support.google.com/merchants/answer/188494#mpn)) of the item.
+    &quot;model&quot;: &quot;A String&quot;, # The [Model](https://support.google.com/google-ads/answer/14154511) of the vehicle, such as `LX`, `EX`, and others.
+    &quot;mpn&quot;: &quot;A String&quot;, # Manufacturer Part Number ([MPN](https://support.google.com/merchants/answer/6324482)) of the item.
     &quot;multipack&quot;: &quot;A String&quot;, # The number of identical products in a business-defined multipack.
+    &quot;neighborhood&quot;: &quot;A String&quot;, # The neighborhood (locality) of the property, such as `Wallingford`, `Greenwood`, etc.
+    &quot;numberOfBathrooms&quot;: 3.14, # The number of bathrooms in the property. The value must be greater than 0 and a multiple of 0.5.
+    &quot;numberOfBedrooms&quot;: 3.14, # The number of bedrooms in the property. The value must be greater than or equal to 0 and a multiple of 1.0.
+    &quot;numberOfUnits&quot;: &quot;A String&quot;, # The number of units available for a specific floor plan of the property. The value must be greater than 0.
     &quot;pattern&quot;: &quot;A String&quot;, # The item&#x27;s [pattern](https://support.google.com/merchants/answer/6324483). For example, polka dots.
     &quot;pause&quot;: &quot;A String&quot;, # Publication of this item will be temporarily [paused](https://support.google.com/merchants/answer/11909930).
+    &quot;petPolicy&quot;: { # The pet policy of the property. # The pet policy for the property.
+      &quot;petTypes&quot;: [ # The pet types allowed.
+        &quot;A String&quot;,
+      ],
+      &quot;petsAllowed&quot;: True or False, # Whether pets are allowed.
+    },
+    &quot;pickupCost&quot;: { # The pickup cost of the item. # Optional. The [pickup cost](https://support.google.com/merchants/answer/16988704) for an item when a customer buys it online and picks it up at a store.
+      &quot;flatRate&quot;: { # The price represented as a number and currency. # Required. The flat rate pickup cost of the item.
+        &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+        &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+      },
+      &quot;freeThreshold&quot;: { # The price represented as a number and currency. # Optional. The price threshold above which pickup is free of charge.
+        &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+        &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+      },
+    },
     &quot;pickupMethod&quot;: &quot;A String&quot;, # The [pickup](https://support.google.com/merchants/answer/14634021) option for the item.
     &quot;pickupSla&quot;: &quot;A String&quot;, # Item store pickup timeline. For more information, see [Pickup SLA](https://support.google.com/merchants/answer/14635400).
+    &quot;popularityRank&quot;: 3.14, # Optional. Indicates the [popularity](https://support.google.com/merchants/answer/17085297) of the product in a merchant&#x27;s inventory. Using a scale of 0.0 (lowest) to 100.0 (highest).
     &quot;price&quot;: { # The price represented as a number and currency. # Price of the item.
       &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
       &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
@@ -1036,6 +1421,15 @@ Args:
         &quot;attributeName&quot;: &quot;A String&quot;, # The name of the product detail.
         &quot;attributeValue&quot;: &quot;A String&quot;, # The value of the product detail.
         &quot;sectionName&quot;: &quot;A String&quot;, # The section header used to group a set of product details.
+      },
+    ],
+    &quot;productFee&quot;: [ # The product fee for the property.
+      { # The product fee attribute containing type and amount.
+        &quot;amount&quot;: { # The price represented as a number and currency. # The amount of product fee.
+          &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+          &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+        },
+        &quot;type&quot;: &quot;A String&quot;, # The type of product fee.
       },
     ],
     &quot;productHeight&quot;: { # The dimension of the product. # The height of the product in the units provided. The value must be between 0 (exclusive) and 3000 (inclusive).
@@ -1063,6 +1457,21 @@ Args:
     &quot;promotionIds&quot;: [ # The unique ID of a promotion.
       &quot;A String&quot;,
     ],
+    &quot;propertyName&quot;: &quot;A String&quot;, # The name of the property.
+    &quot;propertyType&quot;: &quot;A String&quot;, # The type of property.
+    &quot;questionsAndAnswers&quot;: [ # Optional. Contains user-, merchant-, and manufacturer-authored [questions and answers](https://support.google.com/merchants/answer/17085211) about the product. Max 30 question and answer pairs. Max 10000 characters total. Each question can have max 1000 characters. Each answer can have max 1000 characters.
+      { # The question and answer for the product.
+        &quot;answer&quot;: &quot;A String&quot;, # Required. The answer text.
+        &quot;question&quot;: &quot;A String&quot;, # Required. The question text.
+      },
+    ],
+    &quot;relatedProducts&quot;: [ # Optional. Specifies how other [products are related](https://support.google.com/merchants/answer/17085213) to this product.
+      { # Specifies how other products are related to this product.
+        &quot;id&quot;: &quot;A String&quot;, # Required. The identifier of the related product.
+        &quot;idType&quot;: &quot;A String&quot;, # Required. The type of the identifier of the related product. For example, [GTIN](https://support.google.com/merchants/answer/6219078) or [product ID](https://support.google.com/merchants/answer/6324405).
+        &quot;relationshipType&quot;: &quot;A String&quot;, # Required. The type of the relationship between this product and the related product.
+      },
+    ],
     &quot;returnPolicyLabel&quot;: &quot;A String&quot;, # The return label of the product, used to group products in account-level return policies. Max. 100 characters. For more information, see [Return policy label](https://support.google.com/merchants/answer/9445425).
     &quot;salePrice&quot;: { # The price represented as a number and currency. # Advertised sale price of the item.
       &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
@@ -1080,6 +1489,8 @@ Args:
         &quot;handlingCutoffTimezone&quot;: &quot;A String&quot;, # [Timezone identifier](https://developers.google.com/adwords/api/docs/appendix/codes-formats#timezone-ids) For example `Europe/Zurich`. This field only applies if `handling_cutoff_time` is set. If `handling_cutoff_time` is set but this field is not set, the shipping destination timezone will be used. If both fields are not set, the handling cutoff time will default to 8AM PST.
         &quot;locationGroupName&quot;: &quot;A String&quot;, # The location where the shipping is applicable, represented by a location group name.
         &quot;locationId&quot;: &quot;A String&quot;, # The numeric ID of a location that the shipping rate applies to as defined in the [AdWords API](https://developers.google.com/adwords/api/docs/appendix/geotargeting).
+        &quot;loyaltyProgramLabel&quot;: &quot;A String&quot;, # Optional. The label of the [loyalty program](https://support.google.com/merchants/answer/6324484). Must match one of the program labels set in loyalty_programs. When set (in combination with [loyalty_tier_label](https://support.google.com/merchants/answer/6324484)), this shipping option is only applicable to loyalty program members of the specified tier.
+        &quot;loyaltyTierLabel&quot;: &quot;A String&quot;, # Optional. The label of the [loyalty tier](https://support.google.com/merchants/answer/6324484) within the loyalty program. Must match one of the tiers set in the loyalty_programs. When set (in combination with [loyalty_program_label](https://support.google.com/merchants/answer/6324484)), this shipping option is only applicable to loyalty program members of the specified tier.
         &quot;maxHandlingTime&quot;: &quot;A String&quot;, # Maximum handling time (inclusive) between when the order is received and shipped in business days. 0 means that the order is shipped on the same day as it is received if it happens before the cut-off time. Both maxHandlingTime and maxTransitTime are required if providing shipping speeds. minHandlingTime is optional if maxHandlingTime is present.
         &quot;maxTransitTime&quot;: &quot;A String&quot;, # Maximum transit time (inclusive) between when the order has shipped and when it is delivered in business days. 0 means that the order is delivered on the same day as it ships. Both maxHandlingTime and maxTransitTime are required if providing shipping speeds. minTransitTime is optional if maxTransitTime is present.
         &quot;minHandlingTime&quot;: &quot;A String&quot;, # Minimum handling time (inclusive) between when the order is received and shipped in business days. 0 means that the order is shipped on the same day as it is received if it happens before the cut-off time. minHandlingTime can only be present together with maxHandlingTime; but it is not required if maxHandlingTime is present.
@@ -1125,11 +1536,13 @@ Args:
     &quot;shoppingAdsExcludedCountries&quot;: [ # List of country codes [(ISO 3166-1 alpha-2)](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) to exclude the offer from Shopping Ads destination. Countries from this list are removed from countries configured in data source settings.
       &quot;A String&quot;,
     ],
+    &quot;shortTitle&quot;: &quot;A String&quot;, # The short title of the item.
     &quot;size&quot;: &quot;A String&quot;, # Size of the item. Only one value is allowed. For variants with different sizes, insert a separate product for each size with the same `itemGroupId` value, see [Size](https://support.google.com/merchants/answer/6324492).
     &quot;sizeSystem&quot;: &quot;A String&quot;, # System in which the size is specified. Recommended for apparel items. For more information, see [Size system](https://support.google.com/merchants/answer/6324502).
     &quot;sizeTypes&quot;: [ # The cut of the item. It can be used to represent combined size types for apparel items. Maximum two of size types can be provided, see [Size type](https://support.google.com/merchants/answer/6324497).
       &quot;A String&quot;,
     ],
+    &quot;specialtyHousingType&quot;: &quot;A String&quot;, # The specialty housing type for the property.
     &quot;structuredDescription&quot;: { # Structured description, for algorithmically (AI)-generated descriptions. # Structured description, for algorithmically (AI)-generated descriptions.
       &quot;content&quot;: &quot;A String&quot;, # The description text Maximum length is 5000 characters
       &quot;digitalSourceType&quot;: &quot;A String&quot;, # The digital source type. Following [IPTC](https://cv.iptc.org/newscodes/digitalsourcetype).
@@ -1158,6 +1571,11 @@ Args:
     ],
     &quot;title&quot;: &quot;A String&quot;, # Title of the item.
     &quot;transitTimeLabel&quot;: &quot;A String&quot;, # The transit time label of the product, used to group product in account-level transit time tables.
+    &quot;trim&quot;: &quot;A String&quot;, # The [Trim](https://support.google.com/google-ads/answer/14154176) of the vehicle model, such as `S`, `SV`, `SL` and others.
+    &quot;unitArea&quot;: { # The unit area of the property. # The unit area of the property, such as `1000 sqft`.
+      &quot;unit&quot;: &quot;A String&quot;, # The unit of area.
+      &quot;value&quot;: 3.14, # The area value.
+    },
     &quot;unitPricingBaseMeasure&quot;: { # The UnitPricingBaseMeasure of the product. # The preference of the denominator of the unit price.
       &quot;unit&quot;: &quot;A String&quot;, # The unit of the denominator.
       &quot;value&quot;: &quot;A String&quot;, # The denominator of the unit price.
@@ -1166,7 +1584,42 @@ Args:
       &quot;unit&quot;: &quot;A String&quot;, # The unit of the measure.
       &quot;value&quot;: 3.14, # The measure of an item.
     },
+    &quot;utilitiesIncluded&quot;: [ # The utilities included for the property.
+      &quot;A String&quot;,
+    ],
+    &quot;variantOptions&quot;: [ # Optional. Contains the [list of all variant-identifying options](https://support.google.com/merchants/answer/17085214) of this product.
+      { # Additional product variants for the product.
+        &quot;name&quot;: &quot;A String&quot;, # Required. The name of the variant. For example, &quot;Color&quot;, &quot;Memory&quot;, &quot;Size&quot;, &quot;Length&quot;
+        &quot;value&quot;: &quot;A String&quot;, # Required. The value of the variant. For example, &quot;Red&quot;, &quot;128GB&quot;, &quot;XL&quot;, &quot;100cm&quot;
+      },
+    ],
+    &quot;vehicleAllInPrice&quot;: { # The price represented as a number and currency. # The all-in advertised price for a vehicle, which includes costs for the following – any accessories attached to the vehicle, environmental levies, extra warranty, fuel, freight, pre-delivery inspection (PDI), dealer fees for handling licensing, provincial regulatory fees, miscellaneous dealer charges for security etching and nitrogen tire fill, and factory-to-customer or dealer-to-customer discounts or incentives. See the [Vehicle all-in price](https://support.google.com/google-ads/answer/14156981) for more information.
+      &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+      &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+    },
+    &quot;vehicleExpenses&quot;: { # The price represented as a number and currency. # The miscellaneous expenses like insurance and registration fees of the vehicle. See the [Vehicle expenses](https://support.google.com/google-ads/answer/15957154) for more information.
+      &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+      &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+    },
+    &quot;vehicleMandatoryInspectionIncluded&quot;: True or False, # Whether the vehicle is sold with mandatory inspection and maintenance performed before delivery. See the [Vehicle mandatory inspection included](https://support.google.com/google-ads/answer/15956630) for more information.`
+    &quot;vehicleMsrp&quot;: { # The price represented as a number and currency. # The MSRP (Manufacturer Suggested Retail Price) for the vehicle in its current configuration. See the [Vehicle MSRP](https://support.google.com/google-ads/answer/14154171) for more information.
+      &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+      &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+    },
+    &quot;vehiclePriceType&quot;: &quot;A String&quot;, # The [price type](https://support.google.com/google-ads/answer/14592783) of the vehicle.
+    &quot;videoLinks&quot;: [ # Optional. A list of video URLs for the item. Use this attribute to provide more visuals for your product beyond your image attributes. See the [Help Center article](https://support.google.com/merchants/answer/15216925) for more information.
+      &quot;A String&quot;,
+    ],
+    &quot;vin&quot;: &quot;A String&quot;, # The [Vehicle Identification Number (VIN)](https://support.google.com/google-ads/answer/14154510) of the vehicle.
     &quot;virtualModelLink&quot;: &quot;A String&quot;, # URL of the 3D image of the item. See the [Help Center article](https://support.google.com/merchants/answer/13674896) for more information.
+    &quot;warranty&quot;: { # The warranty of the vehicle. # The [warranty](https://support.google.com/google-ads/answer/15957626) of the vehicle.
+      &quot;duration&quot;: &quot;A String&quot;, # The warranty duration in months.
+      &quot;mileage&quot;: { # The mileage of the vehicle. # The warranty mileage.
+        &quot;unit&quot;: &quot;A String&quot;, # The unit of the mileage.
+        &quot;value&quot;: &quot;A String&quot;, # The distance value.
+      },
+    },
+    &quot;year&quot;: &quot;A String&quot;, # The [Year](https://support.google.com/google-ads/answer/14152816) of the vehicle model.
   },
   &quot;versionNumber&quot;: &quot;A String&quot;, # Optional. Immutable. Represents the existing version (freshness) of the product, which can be used to preserve the right order when multiple updates are done at the same time. If set, the insertion is prevented when version number is lower than the current version number of the existing product. Re-insertion (for example, product refresh after 30 days) can be performed with the current `version_number`. Only supported for insertions into primary data sources. Do not set this field for updates. Do not set this field for insertions into supplemental data sources. If the operation is prevented, the aborted exception will be thrown.
 }
@@ -1210,12 +1663,16 @@ Returns:
     &quot;adsRedirect&quot;: &quot;A String&quot;, # Allows advertisers to override the item URL when the product is shown within the context of Product ads.
     &quot;adult&quot;: True or False, # Set to true if the item is targeted towards adults.
     &quot;ageGroup&quot;: &quot;A String&quot;, # Target [age group](https://support.google.com/merchants/answer/6324463) of the item.
+    &quot;amenityFeature&quot;: [ # The amenity features for the property.
+      &quot;A String&quot;,
+    ],
     &quot;autoPricingMinPrice&quot;: { # The price represented as a number and currency. # A safeguard in the [automated discounts] (https://support.google.com/merchants/answer/10295759) and &quot;Dynamic Promotions&quot; (https://support.google.com/merchants/answer/13949249) projects, ensuring that discounts on business offers do not fall below this value, thereby preserving the offer&#x27;s value and profitability.
       &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
       &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
     },
     &quot;availability&quot;: &quot;A String&quot;, # [Availability](https://support.google.com/merchants/answer/6324448) status of the item.
     &quot;availabilityDate&quot;: &quot;A String&quot;, # The day a pre-ordered product becomes available for delivery, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format.
+    &quot;bodyStyle&quot;: &quot;A String&quot;, # The [body style](https://support.google.com/google-ads/answer/14157085) of the vehicle.
     &quot;brand&quot;: &quot;A String&quot;, # [Brand](https://support.google.com/merchants/answer/6324351) of the item. For example, &quot;Google&quot;.
     &quot;canonicalLink&quot;: &quot;A String&quot;, # URL for the canonical version of your item&#x27;s landing page.
     &quot;carrierShipping&quot;: [ # Rules for carrier-based shipping.
@@ -1249,6 +1706,7 @@ Returns:
         &quot;certificationValue&quot;: &quot;A String&quot;, # The certification value (also known as class, level or grade), for example &quot;A+&quot;, &quot;C&quot;, &quot;gold&quot;. Maximum length is 2000 characters.
       },
     ],
+    &quot;certifiedPreOwned&quot;: True or False, # Whether the vehicle is OEM [certified pre-owned](https://support.google.com/google-ads/answer/14156475).
     &quot;cloudExportAdditionalProperties&quot;: [ # Extra fields to export to the Cloud Retail program.
       { # Product property for the Cloud Retail API. For example, properties for a TV product could be &quot;Screen-Resolution&quot; or &quot;Screen-Size&quot;.
         &quot;boolValue&quot;: True or False, # Boolean value of the given property. For example for a TV product, &quot;True&quot; or &quot;False&quot; if the screen is UHD.
@@ -1267,6 +1725,10 @@ Returns:
         &quot;unitCode&quot;: &quot;A String&quot;, # Unit of the given property. For example, &quot;Pixels&quot; for a TV product. Maximum string size is 256B.
       },
     ],
+    &quot;co2Emissions&quot;: { # The co2 emission of the vehicle. # The [co2 emission](https://support.google.com/google-ads/answer/14546146) of the vehicle.
+      &quot;unit&quot;: &quot;A String&quot;, # The unit of the co2 emission.
+      &quot;value&quot;: &quot;A String&quot;, # The co2 emission value.
+    },
     &quot;color&quot;: &quot;A String&quot;, # [Color](https://support.google.com/merchants/answer/6324487) of the item. For example, &quot;red&quot;.
     &quot;condition&quot;: &quot;A String&quot;, # [Condition](https://support.google.com/merchants/answer/6324469) or state of the item.
     &quot;costOfGoodsSold&quot;: { # The price represented as a number and currency. # Cost of goods sold. Used for gross profit reporting.
@@ -1278,8 +1740,16 @@ Returns:
     &quot;customLabel2&quot;: &quot;A String&quot;, # [Custom label 2](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.
     &quot;customLabel3&quot;: &quot;A String&quot;, # [Custom label 3](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.
     &quot;customLabel4&quot;: &quot;A String&quot;, # [Custom label 4](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.
+    &quot;dateFirstRegistered&quot;: &quot;A String&quot;, # The date the vehicle was first registered. Format: `YYYY-MM`. See the [Date first registered](https://support.google.com/google-ads/answer/14546138) for more information.
     &quot;description&quot;: &quot;A String&quot;, # Description of the item.
     &quot;disclosureDate&quot;: &quot;A String&quot;, # The date time when an offer becomes visible in search results across Google’s YouTube surfaces, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format. See [Disclosure date](https://support.google.com/merchants/answer/13034208) for more information.
+    &quot;displayAddress&quot;: { # The display address of the property. # The display address of the property.
+      &quot;city&quot;: &quot;A String&quot;, # The city such as Seattle, New York, etc.
+      &quot;postalCode&quot;: &quot;A String&quot;, # The postal code, such as 94043.
+      &quot;region&quot;: &quot;A String&quot;, # The region(state), such as WA, OH, etc.
+      &quot;streetName&quot;: &quot;A String&quot;, # The street name.
+      &quot;streetNumber&quot;: &quot;A String&quot;, # The street number.
+    },
     &quot;displayAdsId&quot;: &quot;A String&quot;, # An identifier for an item for dynamic remarketing campaigns.
     &quot;displayAdsLink&quot;: &quot;A String&quot;, # URL directly to your item&#x27;s landing page for dynamic remarketing campaigns.
     &quot;displayAdsSimilarIds&quot;: [ # Advertiser-specified recommendations. For more information, see [Display ads attribute specification](https://support.google.com/merchants/answer/6069387).
@@ -1287,7 +1757,20 @@ Returns:
     ],
     &quot;displayAdsTitle&quot;: &quot;A String&quot;, # Title of an item for dynamic remarketing campaigns.
     &quot;displayAdsValue&quot;: 3.14, # Offer margin for dynamic remarketing campaigns. For more information, see [Display ads attribute](https://support.google.com/merchants/answer/6069387).
+    &quot;documentLinks&quot;: [ # Optional. Contains a list of PDF [document URLs](https://support.google.com/merchants/answer/17084656) for the product. Examples are training manuals, user guides, assembly instructions, package inserts, etc. Must start with &quot;http://&quot; or &quot;https://&quot;), ASCII characters only, and RFC 3986 compliant.
+      &quot;A String&quot;,
+    ],
+    &quot;electricRange&quot;: { # The mileage of the vehicle. # The [electric range](https://support.google.com/google-ads/answer/15162232) of the vehicle in miles/kms.
+      &quot;unit&quot;: &quot;A String&quot;, # The unit of the mileage.
+      &quot;value&quot;: &quot;A String&quot;, # The distance value.
+    },
+    &quot;emissionsStandard&quot;: &quot;A String&quot;, # The [emission standard](https://support.google.com/google-ads/answer/14869021) of the vehicle.
+    &quot;energyConsumption&quot;: { # The energy consumption of the vehicle. # The [energy consumption](https://support.google.com/google-ads/answer/14546149) of the vehicle.
+      &quot;unit&quot;: &quot;A String&quot;, # The unit of the energy consumption.
+      &quot;value&quot;: 3.14, # The energy consumption value.
+    },
     &quot;energyEfficiencyClass&quot;: &quot;A String&quot;, # The [energy efficiency class](https://support.google.com/merchants/answer/7562785) as defined in EU directive 2010/30/EU.
+    &quot;engine&quot;: &quot;A String&quot;, # The [engine](https://support.google.com/google-ads/answer/14156068) type of the vehicle.
     &quot;excludedDestinations&quot;: [ # The list of destinations to exclude for this target (corresponds to unchecked check boxes in Merchant Center). For more information, see [Excluded destination](https://support.google.com/merchants/answer/6324486). Note: We recommend setting destinations on datasources level for most use cases. Use this field within products to only setup exceptions.
       &quot;A String&quot;,
     ],
@@ -1302,9 +1785,17 @@ Returns:
         },
       },
     ],
+    &quot;fuelConsumption&quot;: { # The fuel consumption of the vehicle. # The [fuel consumption](https://support.google.com/google-ads/answer/14543580) of the vehicle.
+      &quot;unit&quot;: &quot;A String&quot;, # The unit of the fuel consumption.
+      &quot;value&quot;: 3.14, # The fuel consumption value.
+    },
+    &quot;fuelConsumptionDischargedBattery&quot;: { # The fuel consumption of the vehicle. # The fuel consumption of the vehicle when the hybrid battery is discharged. See the [Help Center article](https://support.google.com/google-ads/answer/15162033) for more information.
+      &quot;unit&quot;: &quot;A String&quot;, # The unit of the fuel consumption.
+      &quot;value&quot;: 3.14, # The fuel consumption value.
+    },
     &quot;gender&quot;: &quot;A String&quot;, # Target [gender](https://support.google.com/merchants/answer/6324479) of the item.
     &quot;googleProductCategory&quot;: &quot;A String&quot;, # Google&#x27;s category of the item (see [Google product taxonomy](https://support.google.com/merchants/answer/1705911)). When querying products, this field will contain the user provided value. There is currently no way to get back the auto assigned google product categories through the API.
-    &quot;gtins&quot;: [ # Global Trade Item Numbers ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the item. You can provide up to 10 GTINs.
+    &quot;gtins&quot;: [ # Global Trade Item Numbers ([GTIN](https://support.google.com/merchants/answer/6324461)) of the item. You can provide up to 10 GTINs.
       &quot;A String&quot;,
     ],
     &quot;handlingCutoffTimes&quot;: [ # The handling cutoff times for shipping.
@@ -1325,20 +1816,28 @@ Returns:
         &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
         &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
       },
+      &quot;annualPercentageRate&quot;: 3.14, # Optional. Annual percentage rate for `credit_type` finance
       &quot;creditType&quot;: &quot;A String&quot;, # Type of installment payments.
       &quot;downpayment&quot;: { # The price represented as a number and currency. # The up-front down payment amount the buyer has to pay.
         &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
         &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
       },
       &quot;months&quot;: &quot;A String&quot;, # The number of installments the buyer has to pay.
+      &quot;totalAmount&quot;: { # The price represented as a number and currency. # Optional. Total amount the buyer has to pay, including interest.
+        &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+        &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+      },
     },
     &quot;isBundle&quot;: True or False, # Whether the item is a business-defined sub-API. A [sub-API] (https://support.google.com/merchants/answer/6324449) is a custom grouping of different products sold by a business for a single price.
     &quot;itemGroupId&quot;: &quot;A String&quot;, # Shared identifier for all variants of the same product.
+    &quot;itemGroupTitle&quot;: &quot;A String&quot;, # Optional. Represents the [title of the product group](https://support.google.com/merchants/answer/17085146) to which this variant product belongs. This can be used along with the [item group id](https://support.google.com/merchants/answer/6324507) attribute. It lets you perform better grouping of variant products, and helps identifying common product characteristics more efficiently.
+    &quot;latitude&quot;: 3.14, # The latitude of the property. The value must be between -90 (inclusive) and 90 (inclusive), up to 6 decimal places.
     &quot;lifestyleImageLinks&quot;: [ # Additional URLs of lifestyle images of the item, used to explicitly identify images that showcase your item in a real-world context. See the [Help Center article](https://support.google.com/merchants/answer/9103186) for more information.
       &quot;A String&quot;,
     ],
     &quot;link&quot;: &quot;A String&quot;, # URL directly linking to your item&#x27;s page on your online store.
     &quot;linkTemplate&quot;: &quot;A String&quot;, # [Link template](https://support.google.com/merchants/answer/13871172) for business hosted local storefront.
+    &quot;longitude&quot;: 3.14, # The longitude of the property. The value must be between -180 (inclusive) and 180 (inclusive), up to 6 decimal places.
     &quot;loyaltyPoints&quot;: { # A message that represents loyalty points. # Loyalty points that users receive after purchasing the item. Japan only.
       &quot;name&quot;: &quot;A String&quot;, # Name of loyalty points program. It is recommended to limit the name to 12 full-width characters or 24 Roman characters.
       &quot;pointsValue&quot;: &quot;A String&quot;, # The retailer&#x27;s loyalty points in absolute value.
@@ -1371,16 +1870,53 @@ Returns:
       &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
       &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
     },
+    &quot;mileage&quot;: { # The mileage of the vehicle. # The number of miles/kms on the vehicle. See the [Mileage](https://support.google.com/google-ads/answer/14156166) for more information.
+      &quot;unit&quot;: &quot;A String&quot;, # The unit of the mileage.
+      &quot;value&quot;: &quot;A String&quot;, # The distance value.
+    },
     &quot;minEnergyEfficiencyClass&quot;: &quot;A String&quot;, # The [energy efficiency class](https://support.google.com/merchants/answer/7562785) as defined in EU directive 2010/30/EU.
     &quot;minHandlingTime&quot;: &quot;A String&quot;, # Minimal product handling time (in business days).
+    &quot;minimumOrderValues&quot;: [ # The [minimum value](https://support.google.com/merchants/answer/16989009) in the cart before a customer can initiate checkout. Supports multiple minimum order values. Different minimum order values can be specified per country, service and surface. Maximum entries: 100.
+      { # The minimum order value in the cart before the checkout is permitted.
+        &quot;country&quot;: &quot;A String&quot;, # Required. The [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) of the country to which an item will ship.
+        &quot;price&quot;: { # The price represented as a number and currency. # Required. The minimum cart or basket value before the checkout is permitted.
+          &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+          &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+        },
+        &quot;service&quot;: &quot;A String&quot;, # A free-form description of the service class or delivery speed. This should match the service value set for the Shipping attribute. See service.
+        &quot;surface&quot;: &quot;A String&quot;, # The surface to which the minimum order value applies. Defaults to `ONLINE_LOCAL` if not configured.
+      },
+    ],
     &quot;mobileLink&quot;: &quot;A String&quot;, # URL for the mobile-optimized version of your item&#x27;s landing page.
     &quot;mobileLinkTemplate&quot;: &quot;A String&quot;, # [Link template](https://support.google.com/merchants/answer/13870216) for business hosted local storefront optimized for mobile devices.
-    &quot;mpn&quot;: &quot;A String&quot;, # Manufacturer Part Number ([MPN](https://support.google.com/merchants/answer/188494#mpn)) of the item.
+    &quot;model&quot;: &quot;A String&quot;, # The [Model](https://support.google.com/google-ads/answer/14154511) of the vehicle, such as `LX`, `EX`, and others.
+    &quot;mpn&quot;: &quot;A String&quot;, # Manufacturer Part Number ([MPN](https://support.google.com/merchants/answer/6324482)) of the item.
     &quot;multipack&quot;: &quot;A String&quot;, # The number of identical products in a business-defined multipack.
+    &quot;neighborhood&quot;: &quot;A String&quot;, # The neighborhood (locality) of the property, such as `Wallingford`, `Greenwood`, etc.
+    &quot;numberOfBathrooms&quot;: 3.14, # The number of bathrooms in the property. The value must be greater than 0 and a multiple of 0.5.
+    &quot;numberOfBedrooms&quot;: 3.14, # The number of bedrooms in the property. The value must be greater than or equal to 0 and a multiple of 1.0.
+    &quot;numberOfUnits&quot;: &quot;A String&quot;, # The number of units available for a specific floor plan of the property. The value must be greater than 0.
     &quot;pattern&quot;: &quot;A String&quot;, # The item&#x27;s [pattern](https://support.google.com/merchants/answer/6324483). For example, polka dots.
     &quot;pause&quot;: &quot;A String&quot;, # Publication of this item will be temporarily [paused](https://support.google.com/merchants/answer/11909930).
+    &quot;petPolicy&quot;: { # The pet policy of the property. # The pet policy for the property.
+      &quot;petTypes&quot;: [ # The pet types allowed.
+        &quot;A String&quot;,
+      ],
+      &quot;petsAllowed&quot;: True or False, # Whether pets are allowed.
+    },
+    &quot;pickupCost&quot;: { # The pickup cost of the item. # Optional. The [pickup cost](https://support.google.com/merchants/answer/16988704) for an item when a customer buys it online and picks it up at a store.
+      &quot;flatRate&quot;: { # The price represented as a number and currency. # Required. The flat rate pickup cost of the item.
+        &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+        &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+      },
+      &quot;freeThreshold&quot;: { # The price represented as a number and currency. # Optional. The price threshold above which pickup is free of charge.
+        &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+        &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+      },
+    },
     &quot;pickupMethod&quot;: &quot;A String&quot;, # The [pickup](https://support.google.com/merchants/answer/14634021) option for the item.
     &quot;pickupSla&quot;: &quot;A String&quot;, # Item store pickup timeline. For more information, see [Pickup SLA](https://support.google.com/merchants/answer/14635400).
+    &quot;popularityRank&quot;: 3.14, # Optional. Indicates the [popularity](https://support.google.com/merchants/answer/17085297) of the product in a merchant&#x27;s inventory. Using a scale of 0.0 (lowest) to 100.0 (highest).
     &quot;price&quot;: { # The price represented as a number and currency. # Price of the item.
       &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
       &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
@@ -1390,6 +1926,15 @@ Returns:
         &quot;attributeName&quot;: &quot;A String&quot;, # The name of the product detail.
         &quot;attributeValue&quot;: &quot;A String&quot;, # The value of the product detail.
         &quot;sectionName&quot;: &quot;A String&quot;, # The section header used to group a set of product details.
+      },
+    ],
+    &quot;productFee&quot;: [ # The product fee for the property.
+      { # The product fee attribute containing type and amount.
+        &quot;amount&quot;: { # The price represented as a number and currency. # The amount of product fee.
+          &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+          &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+        },
+        &quot;type&quot;: &quot;A String&quot;, # The type of product fee.
       },
     ],
     &quot;productHeight&quot;: { # The dimension of the product. # The height of the product in the units provided. The value must be between 0 (exclusive) and 3000 (inclusive).
@@ -1417,6 +1962,21 @@ Returns:
     &quot;promotionIds&quot;: [ # The unique ID of a promotion.
       &quot;A String&quot;,
     ],
+    &quot;propertyName&quot;: &quot;A String&quot;, # The name of the property.
+    &quot;propertyType&quot;: &quot;A String&quot;, # The type of property.
+    &quot;questionsAndAnswers&quot;: [ # Optional. Contains user-, merchant-, and manufacturer-authored [questions and answers](https://support.google.com/merchants/answer/17085211) about the product. Max 30 question and answer pairs. Max 10000 characters total. Each question can have max 1000 characters. Each answer can have max 1000 characters.
+      { # The question and answer for the product.
+        &quot;answer&quot;: &quot;A String&quot;, # Required. The answer text.
+        &quot;question&quot;: &quot;A String&quot;, # Required. The question text.
+      },
+    ],
+    &quot;relatedProducts&quot;: [ # Optional. Specifies how other [products are related](https://support.google.com/merchants/answer/17085213) to this product.
+      { # Specifies how other products are related to this product.
+        &quot;id&quot;: &quot;A String&quot;, # Required. The identifier of the related product.
+        &quot;idType&quot;: &quot;A String&quot;, # Required. The type of the identifier of the related product. For example, [GTIN](https://support.google.com/merchants/answer/6219078) or [product ID](https://support.google.com/merchants/answer/6324405).
+        &quot;relationshipType&quot;: &quot;A String&quot;, # Required. The type of the relationship between this product and the related product.
+      },
+    ],
     &quot;returnPolicyLabel&quot;: &quot;A String&quot;, # The return label of the product, used to group products in account-level return policies. Max. 100 characters. For more information, see [Return policy label](https://support.google.com/merchants/answer/9445425).
     &quot;salePrice&quot;: { # The price represented as a number and currency. # Advertised sale price of the item.
       &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
@@ -1434,6 +1994,8 @@ Returns:
         &quot;handlingCutoffTimezone&quot;: &quot;A String&quot;, # [Timezone identifier](https://developers.google.com/adwords/api/docs/appendix/codes-formats#timezone-ids) For example `Europe/Zurich`. This field only applies if `handling_cutoff_time` is set. If `handling_cutoff_time` is set but this field is not set, the shipping destination timezone will be used. If both fields are not set, the handling cutoff time will default to 8AM PST.
         &quot;locationGroupName&quot;: &quot;A String&quot;, # The location where the shipping is applicable, represented by a location group name.
         &quot;locationId&quot;: &quot;A String&quot;, # The numeric ID of a location that the shipping rate applies to as defined in the [AdWords API](https://developers.google.com/adwords/api/docs/appendix/geotargeting).
+        &quot;loyaltyProgramLabel&quot;: &quot;A String&quot;, # Optional. The label of the [loyalty program](https://support.google.com/merchants/answer/6324484). Must match one of the program labels set in loyalty_programs. When set (in combination with [loyalty_tier_label](https://support.google.com/merchants/answer/6324484)), this shipping option is only applicable to loyalty program members of the specified tier.
+        &quot;loyaltyTierLabel&quot;: &quot;A String&quot;, # Optional. The label of the [loyalty tier](https://support.google.com/merchants/answer/6324484) within the loyalty program. Must match one of the tiers set in the loyalty_programs. When set (in combination with [loyalty_program_label](https://support.google.com/merchants/answer/6324484)), this shipping option is only applicable to loyalty program members of the specified tier.
         &quot;maxHandlingTime&quot;: &quot;A String&quot;, # Maximum handling time (inclusive) between when the order is received and shipped in business days. 0 means that the order is shipped on the same day as it is received if it happens before the cut-off time. Both maxHandlingTime and maxTransitTime are required if providing shipping speeds. minHandlingTime is optional if maxHandlingTime is present.
         &quot;maxTransitTime&quot;: &quot;A String&quot;, # Maximum transit time (inclusive) between when the order has shipped and when it is delivered in business days. 0 means that the order is delivered on the same day as it ships. Both maxHandlingTime and maxTransitTime are required if providing shipping speeds. minTransitTime is optional if maxTransitTime is present.
         &quot;minHandlingTime&quot;: &quot;A String&quot;, # Minimum handling time (inclusive) between when the order is received and shipped in business days. 0 means that the order is shipped on the same day as it is received if it happens before the cut-off time. minHandlingTime can only be present together with maxHandlingTime; but it is not required if maxHandlingTime is present.
@@ -1479,11 +2041,13 @@ Returns:
     &quot;shoppingAdsExcludedCountries&quot;: [ # List of country codes [(ISO 3166-1 alpha-2)](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) to exclude the offer from Shopping Ads destination. Countries from this list are removed from countries configured in data source settings.
       &quot;A String&quot;,
     ],
+    &quot;shortTitle&quot;: &quot;A String&quot;, # The short title of the item.
     &quot;size&quot;: &quot;A String&quot;, # Size of the item. Only one value is allowed. For variants with different sizes, insert a separate product for each size with the same `itemGroupId` value, see [Size](https://support.google.com/merchants/answer/6324492).
     &quot;sizeSystem&quot;: &quot;A String&quot;, # System in which the size is specified. Recommended for apparel items. For more information, see [Size system](https://support.google.com/merchants/answer/6324502).
     &quot;sizeTypes&quot;: [ # The cut of the item. It can be used to represent combined size types for apparel items. Maximum two of size types can be provided, see [Size type](https://support.google.com/merchants/answer/6324497).
       &quot;A String&quot;,
     ],
+    &quot;specialtyHousingType&quot;: &quot;A String&quot;, # The specialty housing type for the property.
     &quot;structuredDescription&quot;: { # Structured description, for algorithmically (AI)-generated descriptions. # Structured description, for algorithmically (AI)-generated descriptions.
       &quot;content&quot;: &quot;A String&quot;, # The description text Maximum length is 5000 characters
       &quot;digitalSourceType&quot;: &quot;A String&quot;, # The digital source type. Following [IPTC](https://cv.iptc.org/newscodes/digitalsourcetype).
@@ -1512,6 +2076,11 @@ Returns:
     ],
     &quot;title&quot;: &quot;A String&quot;, # Title of the item.
     &quot;transitTimeLabel&quot;: &quot;A String&quot;, # The transit time label of the product, used to group product in account-level transit time tables.
+    &quot;trim&quot;: &quot;A String&quot;, # The [Trim](https://support.google.com/google-ads/answer/14154176) of the vehicle model, such as `S`, `SV`, `SL` and others.
+    &quot;unitArea&quot;: { # The unit area of the property. # The unit area of the property, such as `1000 sqft`.
+      &quot;unit&quot;: &quot;A String&quot;, # The unit of area.
+      &quot;value&quot;: 3.14, # The area value.
+    },
     &quot;unitPricingBaseMeasure&quot;: { # The UnitPricingBaseMeasure of the product. # The preference of the denominator of the unit price.
       &quot;unit&quot;: &quot;A String&quot;, # The unit of the denominator.
       &quot;value&quot;: &quot;A String&quot;, # The denominator of the unit price.
@@ -1520,7 +2089,42 @@ Returns:
       &quot;unit&quot;: &quot;A String&quot;, # The unit of the measure.
       &quot;value&quot;: 3.14, # The measure of an item.
     },
+    &quot;utilitiesIncluded&quot;: [ # The utilities included for the property.
+      &quot;A String&quot;,
+    ],
+    &quot;variantOptions&quot;: [ # Optional. Contains the [list of all variant-identifying options](https://support.google.com/merchants/answer/17085214) of this product.
+      { # Additional product variants for the product.
+        &quot;name&quot;: &quot;A String&quot;, # Required. The name of the variant. For example, &quot;Color&quot;, &quot;Memory&quot;, &quot;Size&quot;, &quot;Length&quot;
+        &quot;value&quot;: &quot;A String&quot;, # Required. The value of the variant. For example, &quot;Red&quot;, &quot;128GB&quot;, &quot;XL&quot;, &quot;100cm&quot;
+      },
+    ],
+    &quot;vehicleAllInPrice&quot;: { # The price represented as a number and currency. # The all-in advertised price for a vehicle, which includes costs for the following – any accessories attached to the vehicle, environmental levies, extra warranty, fuel, freight, pre-delivery inspection (PDI), dealer fees for handling licensing, provincial regulatory fees, miscellaneous dealer charges for security etching and nitrogen tire fill, and factory-to-customer or dealer-to-customer discounts or incentives. See the [Vehicle all-in price](https://support.google.com/google-ads/answer/14156981) for more information.
+      &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+      &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+    },
+    &quot;vehicleExpenses&quot;: { # The price represented as a number and currency. # The miscellaneous expenses like insurance and registration fees of the vehicle. See the [Vehicle expenses](https://support.google.com/google-ads/answer/15957154) for more information.
+      &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+      &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+    },
+    &quot;vehicleMandatoryInspectionIncluded&quot;: True or False, # Whether the vehicle is sold with mandatory inspection and maintenance performed before delivery. See the [Vehicle mandatory inspection included](https://support.google.com/google-ads/answer/15956630) for more information.`
+    &quot;vehicleMsrp&quot;: { # The price represented as a number and currency. # The MSRP (Manufacturer Suggested Retail Price) for the vehicle in its current configuration. See the [Vehicle MSRP](https://support.google.com/google-ads/answer/14154171) for more information.
+      &quot;amountMicros&quot;: &quot;A String&quot;, # The price represented as a number in micros (1 million micros is an equivalent to one&#x27;s currency standard unit, for example, 1 USD = 1000000 micros).
+      &quot;currencyCode&quot;: &quot;A String&quot;, # The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217).
+    },
+    &quot;vehiclePriceType&quot;: &quot;A String&quot;, # The [price type](https://support.google.com/google-ads/answer/14592783) of the vehicle.
+    &quot;videoLinks&quot;: [ # Optional. A list of video URLs for the item. Use this attribute to provide more visuals for your product beyond your image attributes. See the [Help Center article](https://support.google.com/merchants/answer/15216925) for more information.
+      &quot;A String&quot;,
+    ],
+    &quot;vin&quot;: &quot;A String&quot;, # The [Vehicle Identification Number (VIN)](https://support.google.com/google-ads/answer/14154510) of the vehicle.
     &quot;virtualModelLink&quot;: &quot;A String&quot;, # URL of the 3D image of the item. See the [Help Center article](https://support.google.com/merchants/answer/13674896) for more information.
+    &quot;warranty&quot;: { # The warranty of the vehicle. # The [warranty](https://support.google.com/google-ads/answer/15957626) of the vehicle.
+      &quot;duration&quot;: &quot;A String&quot;, # The warranty duration in months.
+      &quot;mileage&quot;: { # The mileage of the vehicle. # The warranty mileage.
+        &quot;unit&quot;: &quot;A String&quot;, # The unit of the mileage.
+        &quot;value&quot;: &quot;A String&quot;, # The distance value.
+      },
+    },
+    &quot;year&quot;: &quot;A String&quot;, # The [Year](https://support.google.com/google-ads/answer/14152816) of the vehicle model.
   },
   &quot;versionNumber&quot;: &quot;A String&quot;, # Optional. Immutable. Represents the existing version (freshness) of the product, which can be used to preserve the right order when multiple updates are done at the same time. If set, the insertion is prevented when version number is lower than the current version number of the existing product. Re-insertion (for example, product refresh after 30 days) can be performed with the current `version_number`. Only supported for insertions into primary data sources. Do not set this field for updates. Do not set this field for insertions into supplemental data sources. If the operation is prevented, the aborted exception will be thrown.
 }</pre>

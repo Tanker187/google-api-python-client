@@ -786,7 +786,7 @@
 }
 }
 },
-"revision": "20260405",
+"revision": "20260517",
 "rootUrl": "https://recaptchaenterprise.googleapis.com/",
 "schemas": {
 "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -833,13 +833,15 @@
 "RISK_REASON_UNSPECIFIED",
 "CLIENT_HISTORICAL_BOT_ACTIVITY",
 "ACCOUNT_IN_LARGE_RELATED_GROUP",
-"CLIENT_ACCESSED_MANY_ACCOUNTS"
+"CLIENT_ACCESSED_MANY_ACCOUNTS",
+"DISPOSABLE_EMAIL_DOMAIN"
 ],
 "enumDescriptions": [
 "Default unspecified type.",
 "The client has been observed sending bot-like traffic to this site in the past. This reason incorporates historical reputation and indicates that the client is known to use bots, even if the current request is being made by a human.",
 "The account is part of a large group of related accounts, indicating that it may be part of a fraudulent network. Related accounts are identified based on having similar traffic patterns and request characteristics.",
-"The client has been observed accessing many accounts on this site."
+"The client has been observed accessing many accounts on this site.",
+"This email domain is a suspected provider of disposable email addresses."
 ],
 "readOnly": true,
 "type": "string"
@@ -1203,7 +1205,7 @@ true
 "type": "string"
 },
 "name": {
-"description": "Optional. Enumerated string value that indicates the identity of the bot, formatted in kebab-case.",
+"description": "Optional. Enumerated string value that indicates the identity of the bot, formatted in kebab-case. Current example values include the following: * google-agent * browser-base * chat-gpt * aws-bedrock * cybaa-bot * cloudflare * payhawk Ensure that your applications can handle identifier values not explicitly listed here. Deprecated values might take some time to stop showing up in responses. New values can be pushed so this list should be taken as non exhaustive.",
 "type": "string"
 }
 },
@@ -2293,7 +2295,7 @@ true
 "type": "string"
 },
 "valid": {
-"description": "Output only. Whether the provided user response token is valid. When valid = false, the reason could be specified in invalid_reason or it could also be due to a user failing to solve a challenge or a sitekey mismatch (i.e the sitekey used to generate the token was different than the one specified in the assessment).",
+"description": "Output only. Indicates whether the provided user response token is valid. If `false`, the token is invalid, either because the user failed the challenge or for a reason provided in the `invalid_reason` field.",
 "readOnly": true,
 "type": "boolean"
 }

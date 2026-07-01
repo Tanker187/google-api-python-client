@@ -111,7 +111,7 @@ Args:
     The object takes the form of:
 
 { # Message describing Endpoint object.
-  &quot;associatedNetworks&quot;: [ # Output only. List of networks that are associated with this endpoint in the local zone. This is a projection of the FirewallEndpointAssociations pointing at this endpoint. A network will only appear in this list after traffic routing is fully configured. Format: projects/{project}/global/networks/{name}.
+  &quot;associatedNetworks&quot;: [ # Output only. Deprecated: List of networks that are associated with this endpoint in the local zone. This is a projection of the FirewallEndpointAssociations pointing at this endpoint. A network will only appear in this list after traffic routing is fully configured. Format: projects/{project}/global/networks/{name}.
     &quot;A String&quot;,
   ],
   &quot;associations&quot;: [ # Output only. List of FirewallEndpointAssociations that are associated to this endpoint. An association will only appear in this list after traffic routing is fully configured.
@@ -120,7 +120,7 @@ Args:
       &quot;network&quot;: &quot;A String&quot;, # Output only. The VPC network associated. Format: projects/{project}/global/networks/{name}.
     },
   ],
-  &quot;billingProjectId&quot;: &quot;A String&quot;, # Required. Project to bill on endpoint uptime usage.
+  &quot;billingProjectId&quot;: &quot;A String&quot;, # Optional. Project to charge for the deployed firewall endpoint. This field must be specified when creating the endpoint in the organization scope, and should be omitted otherwise.
   &quot;createTime&quot;: &quot;A String&quot;, # Output only. Create time stamp.
   &quot;description&quot;: &quot;A String&quot;, # Optional. Description of the firewall endpoint. Max length 2048 characters.
   &quot;endpointSettings&quot;: { # Settings for the endpoint. # Optional. Settings for the endpoint.
@@ -219,7 +219,7 @@ Returns:
   An object of the form:
 
     { # Message describing Endpoint object.
-  &quot;associatedNetworks&quot;: [ # Output only. List of networks that are associated with this endpoint in the local zone. This is a projection of the FirewallEndpointAssociations pointing at this endpoint. A network will only appear in this list after traffic routing is fully configured. Format: projects/{project}/global/networks/{name}.
+  &quot;associatedNetworks&quot;: [ # Output only. Deprecated: List of networks that are associated with this endpoint in the local zone. This is a projection of the FirewallEndpointAssociations pointing at this endpoint. A network will only appear in this list after traffic routing is fully configured. Format: projects/{project}/global/networks/{name}.
     &quot;A String&quot;,
   ],
   &quot;associations&quot;: [ # Output only. List of FirewallEndpointAssociations that are associated to this endpoint. An association will only appear in this list after traffic routing is fully configured.
@@ -228,7 +228,7 @@ Returns:
       &quot;network&quot;: &quot;A String&quot;, # Output only. The VPC network associated. Format: projects/{project}/global/networks/{name}.
     },
   ],
-  &quot;billingProjectId&quot;: &quot;A String&quot;, # Required. Project to bill on endpoint uptime usage.
+  &quot;billingProjectId&quot;: &quot;A String&quot;, # Optional. Project to charge for the deployed firewall endpoint. This field must be specified when creating the endpoint in the organization scope, and should be omitted otherwise.
   &quot;createTime&quot;: &quot;A String&quot;, # Output only. Create time stamp.
   &quot;description&quot;: &quot;A String&quot;, # Optional. Description of the firewall endpoint. Max length 2048 characters.
   &quot;endpointSettings&quot;: { # Settings for the endpoint. # Optional. Settings for the endpoint.
@@ -267,7 +267,7 @@ Returns:
     { # Message for response to listing Endpoints
   &quot;firewallEndpoints&quot;: [ # The list of Endpoint
     { # Message describing Endpoint object.
-      &quot;associatedNetworks&quot;: [ # Output only. List of networks that are associated with this endpoint in the local zone. This is a projection of the FirewallEndpointAssociations pointing at this endpoint. A network will only appear in this list after traffic routing is fully configured. Format: projects/{project}/global/networks/{name}.
+      &quot;associatedNetworks&quot;: [ # Output only. Deprecated: List of networks that are associated with this endpoint in the local zone. This is a projection of the FirewallEndpointAssociations pointing at this endpoint. A network will only appear in this list after traffic routing is fully configured. Format: projects/{project}/global/networks/{name}.
         &quot;A String&quot;,
       ],
       &quot;associations&quot;: [ # Output only. List of FirewallEndpointAssociations that are associated to this endpoint. An association will only appear in this list after traffic routing is fully configured.
@@ -276,7 +276,7 @@ Returns:
           &quot;network&quot;: &quot;A String&quot;, # Output only. The VPC network associated. Format: projects/{project}/global/networks/{name}.
         },
       ],
-      &quot;billingProjectId&quot;: &quot;A String&quot;, # Required. Project to bill on endpoint uptime usage.
+      &quot;billingProjectId&quot;: &quot;A String&quot;, # Optional. Project to charge for the deployed firewall endpoint. This field must be specified when creating the endpoint in the organization scope, and should be omitted otherwise.
       &quot;createTime&quot;: &quot;A String&quot;, # Output only. Create time stamp.
       &quot;description&quot;: &quot;A String&quot;, # Optional. Description of the firewall endpoint. Max length 2048 characters.
       &quot;endpointSettings&quot;: { # Settings for the endpoint. # Optional. Settings for the endpoint.
@@ -324,7 +324,7 @@ Args:
     The object takes the form of:
 
 { # Message describing Endpoint object.
-  &quot;associatedNetworks&quot;: [ # Output only. List of networks that are associated with this endpoint in the local zone. This is a projection of the FirewallEndpointAssociations pointing at this endpoint. A network will only appear in this list after traffic routing is fully configured. Format: projects/{project}/global/networks/{name}.
+  &quot;associatedNetworks&quot;: [ # Output only. Deprecated: List of networks that are associated with this endpoint in the local zone. This is a projection of the FirewallEndpointAssociations pointing at this endpoint. A network will only appear in this list after traffic routing is fully configured. Format: projects/{project}/global/networks/{name}.
     &quot;A String&quot;,
   ],
   &quot;associations&quot;: [ # Output only. List of FirewallEndpointAssociations that are associated to this endpoint. An association will only appear in this list after traffic routing is fully configured.
@@ -333,7 +333,7 @@ Args:
       &quot;network&quot;: &quot;A String&quot;, # Output only. The VPC network associated. Format: projects/{project}/global/networks/{name}.
     },
   ],
-  &quot;billingProjectId&quot;: &quot;A String&quot;, # Required. Project to bill on endpoint uptime usage.
+  &quot;billingProjectId&quot;: &quot;A String&quot;, # Optional. Project to charge for the deployed firewall endpoint. This field must be specified when creating the endpoint in the organization scope, and should be omitted otherwise.
   &quot;createTime&quot;: &quot;A String&quot;, # Output only. Create time stamp.
   &quot;description&quot;: &quot;A String&quot;, # Optional. Description of the firewall endpoint. Max length 2048 characters.
   &quot;endpointSettings&quot;: { # Settings for the endpoint. # Optional. Settings for the endpoint.

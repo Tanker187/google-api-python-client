@@ -72,7 +72,7 @@ h1, h2, h3 {
 
 </style>
 
-<h1><a href="aiplatform_v1.html">Vertex AI API</a> . <a href="aiplatform_v1.projects.html">projects</a> . <a href="aiplatform_v1.projects.locations.html">locations</a> . <a href="aiplatform_v1.projects.locations.reasoningEngines.html">reasoningEngines</a> . <a href="aiplatform_v1.projects.locations.reasoningEngines.sandboxEnvironmentTemplates.html">sandboxEnvironmentTemplates</a></h1>
+<h1><a href="aiplatform_v1.html">Agent Platform API</a> . <a href="aiplatform_v1.projects.html">projects</a> . <a href="aiplatform_v1.projects.locations.html">locations</a> . <a href="aiplatform_v1.projects.locations.reasoningEngines.html">reasoningEngines</a> . <a href="aiplatform_v1.projects.locations.reasoningEngines.sandboxEnvironmentTemplates.html">sandboxEnvironmentTemplates</a></h1>
 <h2>Instance Methods</h2>
 <p class="toc_element">
   <code><a href="aiplatform_v1.projects.locations.reasoningEngines.sandboxEnvironmentTemplates.operations.html">operations()</a></code>
@@ -135,14 +135,22 @@ Args:
   },
   &quot;defaultContainerEnvironment&quot;: { # The default sandbox runtime environment for default container workloads. # The sandbox environment for default container workloads.
     &quot;defaultContainerCategory&quot;: &quot;A String&quot;, # Required. The category of the default container image.
+    &quot;resources&quot;: { # Message to define resource requests and limits (mirroring Kubernetes) for each sandbox instance created from this template. # Optional. Resource requests and limits for the default container.
+      &quot;limits&quot;: { # Optional. The maximum amounts of compute resources allowed. Keys are resource names (e.g., &quot;cpu&quot;, &quot;memory&quot;). Values are quantities (e.g., &quot;500m&quot;, &quot;1Gi&quot;).
+        &quot;a_key&quot;: &quot;A String&quot;,
+      },
+      &quot;requests&quot;: { # Optional. The requested amounts of compute resources. Keys are resource names (e.g., &quot;cpu&quot;, &quot;memory&quot;). Values are quantities (e.g., &quot;250m&quot;, &quot;512Mi&quot;).
+        &quot;a_key&quot;: &quot;A String&quot;,
+      },
+    },
   },
   &quot;displayName&quot;: &quot;A String&quot;, # Required. The display name of the SandboxEnvironmentTemplate.
+  &quot;egressControlConfig&quot;: { # Configuration for egress control of sandbox instances. # Optional. The configuration for egress control of this template.
+    &quot;internetAccess&quot;: True or False, # Optional. Whether to allow internet access.
+  },
   &quot;name&quot;: &quot;A String&quot;, # Identifier. The resource name of the SandboxEnvironmentTemplate. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/sandboxEnvironmentTemplates/{sandbox_environment_template}`
   &quot;state&quot;: &quot;A String&quot;, # Output only. The state of the sandbox environment template.
   &quot;updateTime&quot;: &quot;A String&quot;, # Output only. The timestamp when this SandboxEnvironmentTemplate was most recently updated.
-  &quot;warmPoolConfig&quot;: { # Configuration for a warm pool of sandbox instances. # Optional. The configuration for the warm pool of this template.
-    &quot;targetInstanceCount&quot;: 42, # Optional. The target number of pre-warmed instances to maintain.
-  },
 }
 
   x__xgafv: string, V1 error format.
@@ -246,14 +254,22 @@ Returns:
   },
   &quot;defaultContainerEnvironment&quot;: { # The default sandbox runtime environment for default container workloads. # The sandbox environment for default container workloads.
     &quot;defaultContainerCategory&quot;: &quot;A String&quot;, # Required. The category of the default container image.
+    &quot;resources&quot;: { # Message to define resource requests and limits (mirroring Kubernetes) for each sandbox instance created from this template. # Optional. Resource requests and limits for the default container.
+      &quot;limits&quot;: { # Optional. The maximum amounts of compute resources allowed. Keys are resource names (e.g., &quot;cpu&quot;, &quot;memory&quot;). Values are quantities (e.g., &quot;500m&quot;, &quot;1Gi&quot;).
+        &quot;a_key&quot;: &quot;A String&quot;,
+      },
+      &quot;requests&quot;: { # Optional. The requested amounts of compute resources. Keys are resource names (e.g., &quot;cpu&quot;, &quot;memory&quot;). Values are quantities (e.g., &quot;250m&quot;, &quot;512Mi&quot;).
+        &quot;a_key&quot;: &quot;A String&quot;,
+      },
+    },
   },
   &quot;displayName&quot;: &quot;A String&quot;, # Required. The display name of the SandboxEnvironmentTemplate.
+  &quot;egressControlConfig&quot;: { # Configuration for egress control of sandbox instances. # Optional. The configuration for egress control of this template.
+    &quot;internetAccess&quot;: True or False, # Optional. Whether to allow internet access.
+  },
   &quot;name&quot;: &quot;A String&quot;, # Identifier. The resource name of the SandboxEnvironmentTemplate. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/sandboxEnvironmentTemplates/{sandbox_environment_template}`
   &quot;state&quot;: &quot;A String&quot;, # Output only. The state of the sandbox environment template.
   &quot;updateTime&quot;: &quot;A String&quot;, # Output only. The timestamp when this SandboxEnvironmentTemplate was most recently updated.
-  &quot;warmPoolConfig&quot;: { # Configuration for a warm pool of sandbox instances. # Optional. The configuration for the warm pool of this template.
-    &quot;targetInstanceCount&quot;: 42, # Optional. The target number of pre-warmed instances to maintain.
-  },
 }</pre>
 </div>
 
@@ -300,14 +316,22 @@ Returns:
       },
       &quot;defaultContainerEnvironment&quot;: { # The default sandbox runtime environment for default container workloads. # The sandbox environment for default container workloads.
         &quot;defaultContainerCategory&quot;: &quot;A String&quot;, # Required. The category of the default container image.
+        &quot;resources&quot;: { # Message to define resource requests and limits (mirroring Kubernetes) for each sandbox instance created from this template. # Optional. Resource requests and limits for the default container.
+          &quot;limits&quot;: { # Optional. The maximum amounts of compute resources allowed. Keys are resource names (e.g., &quot;cpu&quot;, &quot;memory&quot;). Values are quantities (e.g., &quot;500m&quot;, &quot;1Gi&quot;).
+            &quot;a_key&quot;: &quot;A String&quot;,
+          },
+          &quot;requests&quot;: { # Optional. The requested amounts of compute resources. Keys are resource names (e.g., &quot;cpu&quot;, &quot;memory&quot;). Values are quantities (e.g., &quot;250m&quot;, &quot;512Mi&quot;).
+            &quot;a_key&quot;: &quot;A String&quot;,
+          },
+        },
       },
       &quot;displayName&quot;: &quot;A String&quot;, # Required. The display name of the SandboxEnvironmentTemplate.
+      &quot;egressControlConfig&quot;: { # Configuration for egress control of sandbox instances. # Optional. The configuration for egress control of this template.
+        &quot;internetAccess&quot;: True or False, # Optional. Whether to allow internet access.
+      },
       &quot;name&quot;: &quot;A String&quot;, # Identifier. The resource name of the SandboxEnvironmentTemplate. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/sandboxEnvironmentTemplates/{sandbox_environment_template}`
       &quot;state&quot;: &quot;A String&quot;, # Output only. The state of the sandbox environment template.
       &quot;updateTime&quot;: &quot;A String&quot;, # Output only. The timestamp when this SandboxEnvironmentTemplate was most recently updated.
-      &quot;warmPoolConfig&quot;: { # Configuration for a warm pool of sandbox instances. # Optional. The configuration for the warm pool of this template.
-        &quot;targetInstanceCount&quot;: 42, # Optional. The target number of pre-warmed instances to maintain.
-      },
     },
   ],
 }</pre>
