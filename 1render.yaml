@@ -1,0 +1,21 @@
+# Exported from Render on 2026-07-01T19:15:33Z
+version: "1"
+projects:
+- name: Nodoubtz
+  environments:
+  - name: Production
+    services:
+    - type: web
+      name: google-api-python-client
+      runtime: python
+      repo: https://github.com/Tanker187/google-api-python-client
+      plan: free
+      envVars:
+      - key: OPENWEATHER_API_KEY
+        sync: false
+      region: oregon
+      buildCommand: pip install -r requirements.txt
+      startCommand: gunicorn app:app
+      autoDeployTrigger: commit
+      previews:
+        generation: automatic
